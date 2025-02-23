@@ -1,0 +1,12 @@
+.box-socials {
+    a {
+        svg {
+            fill: $color-gray-500;
+        }
+        &:hover {
+            svg {
+                fill: $color-brand-2;
+            }
+        }
+    }
+}
