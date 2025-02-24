@@ -50,7 +50,7 @@ export default function pricing() {
             <a
                 href="Booking"
                 style={{
-                    backgroundColor: "#FF7F00",
+                    backgroundColor: "#FF7701",
                     color: "black",
                     border: "none",
                     padding: "15px 20px",
@@ -117,7 +117,7 @@ export default function pricing() {
                                                                                                                   
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
 >Get an Estimate Now With our Online Pricing Estimator!
 </h3>    
                                
@@ -144,7 +144,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                  
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
 >How to Use BinBear’s Pricing Estimator:
 </h3>    
        
@@ -164,7 +164,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -188,7 +188,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -215,7 +215,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -240,7 +240,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -266,7 +266,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -292,7 +292,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -350,13 +350,13 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                 
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
 >BinBear Believes in Fair and Transparent Pricing
 </h3>  
 
                         <style jsx>{
                           `h2 {
-  color: orange;
+  color: #FF7701;
   font-size: 30px;
   margin-bottom: 20px;
 }
@@ -514,7 +514,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                                         
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
 >Four Ways to Get Your Estimate
 </h3> 
                         
@@ -532,7 +532,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -557,7 +557,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -582,7 +582,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -604,7 +604,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         height: '30px',
         lineHeight: '30px',
         borderRadius: '50%',
-        backgroundColor: '#FF7F00',
+        backgroundColor: '#FF7701',
         color: 'white',
         textAlign: 'center',
         fontWeight: 'bold',
@@ -634,7 +634,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                                                                   
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
 >Why Choose Junk King?
 </h3> 
       
