@@ -33,7 +33,7 @@ function ServiceCards() {
           <h3>Junk Hauling</h3>
           <ul>
             <li>
-              Choose from our list of items for removal. We'll handle all your junk removal needs with professional service.
+              Choose from our list of items for junk removal. We'll handle all your junk removal needs with professional service.
             </li>
           </ul>
           <button>Get Started</button>
