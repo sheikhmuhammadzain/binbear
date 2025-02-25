@@ -11,7 +11,7 @@ export default function JunkHauling() {
     if (option === 'items') {
       router.push('/Item-we-take'); // Redirect to items selection page
     } else if (option === 'truckload') {
-      router.push('/estimate'); // Create this page for truck load estimates
+      router.push('/ScheduleDumpster'); // Updated to the correct route and casing
     }
   };
 

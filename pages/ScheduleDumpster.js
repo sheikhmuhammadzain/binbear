@@ -4,8 +4,12 @@ import { useRouter } from "next/router";
 
 export default function ScheduleDumpster() {
     const router = useRouter();
-    const handlemyClick = () => {
-        router.push("/FinalBooking"); // Redirect to Dumpster Rental page
+    
+    const handlemyClick = (e) => {
+        e.preventDefault();
+        if (validateForm()) {
+            router.push("/FinalBooking");
+        }
     };
 
     const [formData, setFormData] = useState({
@@ -24,8 +28,7 @@ export default function ScheduleDumpster() {
         setErrors({ ...errors, [field]: "" }); // Clear error when the field is updated
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const validateForm = () => {
         const newErrors = {};
 
         // Validation for each field
@@ -34,14 +37,15 @@ export default function ScheduleDumpster() {
         if (!formData.email) newErrors.email = "Email address is required.";
         if (!formData.phone) newErrors.phone = "Phone number is required.";
         if (!formData.date) newErrors.date = "Please select a date.";
-        if (!formData.couponCode) newErrors.couponCode = "Coupon code is required.";
+        
+        // Make coupon code optional
+        // if (!formData.couponCode) newErrors.couponCode = "Coupon code is required.";
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
-        } else {
-            // Redirect to another page
-            window.location.href = "/next-page"; // Replace "/next-page" with your actual route
+            return false;
         }
+        return true;
     };
 
     return (
@@ -55,10 +59,9 @@ export default function ScheduleDumpster() {
                     position: "relative",
                 }}
             >
-                <h4 style={{ marginBottom: "20px" }}>Schedule Your Dumpster</h4>
+                <h4 style={{ marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}>Schedule Your Dumpster</h4>
 
                 <form
-                    onSubmit={handleSubmit}
                     style={{
                         backgroundColor: "#fff",
                         maxWidth: "600px",
@@ -79,12 +82,12 @@ export default function ScheduleDumpster() {
                                 style={{
                                     width: "100%",
                                     padding: "10px",
-                                    border: "1px solid #ccc",
+                                    border: errors.firstName ? "1px solid red" : "1px solid #ccc",
                                     borderRadius: "5px",
                                 }}
                             />
                             {errors.firstName && (
-                                <p style={{ color: "red", fontSize: "14px" }}>{errors.firstName}</p>
+                                <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.firstName}</p>
                             )}
                         </div>
                         <div style={{ flex: 1 }}>
@@ -96,12 +99,12 @@ export default function ScheduleDumpster() {
                                 style={{
                                     width: "100%",
                                     padding: "10px",
-                                    border: "1px solid #ccc",
+                                    border: errors.address ? "1px solid red" : "1px solid #ccc",
                                     borderRadius: "5px",
                                 }}
                             />
                             {errors.address && (
-                                <p style={{ color: "red", fontSize: "14px" }}>{errors.address}</p>
+                                <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.address}</p>
                             )}
                         </div>
                     </div>
@@ -117,12 +120,12 @@ export default function ScheduleDumpster() {
                                 style={{
                                     width: "100%",
                                     padding: "10px",
-                                    border: "1px solid #ccc",
+                                    border: errors.email ? "1px solid red" : "1px solid #ccc",
                                     borderRadius: "5px",
                                 }}
                             />
                             {errors.email && (
-                                <p style={{ color: "red", fontSize: "14px" }}>{errors.email}</p>
+                                <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.email}</p>
                             )}
                         </div>
                         <div style={{ flex: 1 }}>
@@ -134,12 +137,12 @@ export default function ScheduleDumpster() {
                                 style={{
                                     width: "100%",
                                     padding: "10px",
-                                    border: "1px solid #ccc",
+                                    border: errors.phone ? "1px solid red" : "1px solid #ccc",
                                     borderRadius: "5px",
                                 }}
                             />
                             {errors.phone && (
-                                <p style={{ color: "red", fontSize: "14px" }}>{errors.phone}</p>
+                                <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.phone}</p>
                             )}
                         </div>
                     </div>
@@ -152,7 +155,7 @@ export default function ScheduleDumpster() {
                             style={{
                                 width: "100%",
                                 padding: "10px",
-                                border: "1px solid #ccc",
+                                border: errors.date ? "1px solid red" : "1px solid #ccc",
                                 borderRadius: "5px",
                             }}
                         >
@@ -160,9 +163,11 @@ export default function ScheduleDumpster() {
                             <option value="2024-12-01">December 1, 2024</option>
                             <option value="2024-12-02">December 2, 2024</option>
                             <option value="2024-12-03">December 3, 2024</option>
+                            <option value="2024-12-04">December 4, 2024</option>
+                            <option value="2024-12-05">December 5, 2024</option>
                         </select>
                         {errors.date && (
-                            <p style={{ color: "red", fontSize: "14px" }}>{errors.date}</p>
+                            <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.date}</p>
                         )}
                     </div>
 
@@ -170,18 +175,18 @@ export default function ScheduleDumpster() {
                     <div style={{ marginBottom: "20px" }}>
                         <input
                             type="text"
-                            placeholder="Coupon Code"
+                            placeholder="Coupon Code (Optional)"
                             value={formData.couponCode}
                             onChange={(e) => handleChange("couponCode", e.target.value)}
                             style={{
                                 width: "100%",
                                 padding: "10px",
-                                border: "1px solid #ccc",
+                                border: errors.couponCode ? "1px solid red" : "1px solid #ccc",
                                 borderRadius: "5px",
                             }}
                         />
                         {errors.couponCode && (
-                            <p style={{ color: "red", fontSize: "14px" }}>{errors.couponCode}</p>
+                            <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.couponCode}</p>
                         )}
                     </div>
 
@@ -195,16 +200,17 @@ export default function ScheduleDumpster() {
                         }}
                     >
                         <button
-                            type="submit"
+                            type="button"
                             style={{
                                 width: "300px",
                                 padding: "13px 20px",
-                                backgroundColor: " #FF7F00",
+                                backgroundColor: "#FF7F00",
                                 color: "#fff",
                                 border: "none",
                                 borderRadius: "5px",
                                 cursor: "pointer",
                                 fontSize: "16px",
+                                fontWeight: "bold",
                             }}
                             onClick={handlemyClick}
                         >
@@ -219,11 +225,9 @@ export default function ScheduleDumpster() {
                     onClick={() => router.back()}
                     style={{
                         marginTop: "20px",
-                      
-                       
                         color: "black",
                         border: "none",
-                     backgroundColor:'none',
+                        background: "none",
                         cursor: "pointer",
                         fontSize: "16px",
                     }}

@@ -67,7 +67,7 @@ function ServiceCards() {
           <ul>
             <li>Contact us:<br />Phone: (815) 246-2327 (BINBEAR)<br />Email: quote@Binbearjunk.com<br />Website: BinBearJunk.com</li>
           </ul>
-          <Link href="/register">
+          <Link href="/ScheduleDumpster">
             <button className="contact-btn">Contact us</button>
           </Link>
         </div>

@@ -2,41 +2,21 @@ import React, { useState } from 'react';
 import { useRouter } from "next/router";
 import { FaTruck } from 'react-icons/fa';
 import { BsTruck } from 'react-icons/bs';
-import { IoArrowBackOutline, IoCloseOutline } from 'react-icons/io5';
+import { IoArrowBackOutline } from 'react-icons/io5';
 import { HiLocationMarker } from 'react-icons/hi';
-import { GiCrownCoin } from 'react-icons/gi';
-import ScheduleForm from '@/components/ScheduleForm';
+import Layout from "@/components/layout/Layout";
 import Link from 'next/link';
 
 function ConstructionCleanup() {
   const router = useRouter();
-  const [showForm, setShowForm] = useState(false);
-  const [formType, setFormType] = useState('');
-
-  const handleButtonClick = (type) => {
-    setFormType(type);
-    setShowForm(true);
-  };
 
   return (
-    <div className="modal-container">
-      {/* Header */}
-      <div className="header">
-        <button className="back-button" onClick={() => router.back()}>
-          <IoArrowBackOutline size={24} />
-        </button>
-        <div className="phone-number">
-          <GiCrownCoin size={20} className="crown-icon" />
-          <span>(888) 888-JUNK</span>
-        </div>
-        <button className="close-button" onClick={() => router.push('/')}>
-          <IoCloseOutline size={24} />
-        </button>
-      </div>
-
-      {/* Main Content */}
-      <div className="content">
-        <div className="content-header">
+    <Layout>
+      <div className="container">
+        <div className="page-header">
+          <button className="back-button" onClick={() => router.back()}>
+            <IoArrowBackOutline size={20} /> Back
+          </button>
           <h1 className="main-title">By Items or Pickup Truck Loads?</h1>
           <div className="location">
             <HiLocationMarker size={18} className="location-pin" /> 
@@ -67,7 +47,7 @@ function ConstructionCleanup() {
                   <li>Hot Tub Disposal</li>
                 </ul>
               </div>
-              <Link href="/register">
+              <Link href="/ScheduleDumpster">
                 <button className="action-button">
                   Add My Items
                 </button>
@@ -105,7 +85,7 @@ function ConstructionCleanup() {
                   <li>Garage Clean Outs</li>
                 </ul>
               </div>
-              <Link href="/register">
+              <Link href="/ScheduleDumpster">
                 <button className="action-button">
                   By Pickup Truck Loads
                 </button>
@@ -115,87 +95,53 @@ function ConstructionCleanup() {
         </div>
       </div>
 
-      {showForm && (
-        <ScheduleForm 
-          onClose={() => setShowForm(false)}
-          formType={formType}
-        />
-      )}
-
       <style jsx>{`
-        .modal-container {
-          background-color: #ffffff;
-          min-height: 100vh;
+        .container {
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: 20px;
+          min-height: calc(100vh - 350px);
+        }
+
+        .page-header {
+          text-align: center;
+          margin-bottom: 30px;
           position: relative;
-          display: flex;
-          flex-direction: column;
         }
 
-        .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0.75rem 1rem;
-          color: #ffffff;
-          background-color: #000000;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          position: sticky;
+        .back-button {
+          position: absolute;
+          left: 0;
           top: 0;
-          z-index: 10;
-        }
-
-        .back-button, .close-button {
           background: none;
           border: none;
-          color: #ffffff;
+          color: #333;
           cursor: pointer;
-          padding: 0.5rem;
           display: flex;
           align-items: center;
-          justify-content: center;
-          transition: transform 0.2s ease;
+          gap: 5px;
+          font-size: 16px;
+          padding: 5px;
         }
 
-        .phone-number {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          font-size: 1rem;
-          font-weight: 500;
-          color: #ffffff;
-        }
-
-        .crown-icon {
+        .back-button:hover {
           color: #FF7701;
         }
 
-        .content {
-          flex: 1;
-          padding: 1.5rem 1rem;
-          max-width: 1000px;
-          margin: 0 auto;
-          width: 100%;
-        }
-
-        .content-header {
-          text-align: center;
-          margin-bottom: 2rem;
-        }
-
         .main-title {
-          font-size: 1.75rem;
+          font-size: 28px;
           font-weight: 600;
           color: #333;
-          margin-bottom: 0.5rem;
+          margin-bottom: 10px;
         }
 
         .location {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.5rem;
+          gap: 5px;
           color: #666;
-          font-size: 0.875rem;
+          font-size: 14px;
         }
 
         .location-pin {
@@ -205,8 +151,8 @@ function ConstructionCleanup() {
         .cards-container {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 1.5rem;
-          padding: 0.5rem;
+          gap: 20px;
+          padding: 10px;
           max-width: 900px;
           margin: 0 auto;
         }
@@ -218,6 +164,7 @@ function ConstructionCleanup() {
           overflow: hidden;
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
+          height: 100%;
         }
 
         .card:hover {
@@ -226,7 +173,7 @@ function ConstructionCleanup() {
         }
 
         .card-inner {
-          padding: 1.25rem;
+          padding: 20px;
           height: 100%;
           display: flex;
           flex-direction: column;
@@ -235,18 +182,17 @@ function ConstructionCleanup() {
         .icons-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 0.75rem;
-          margin-bottom: 1rem;
-          padding: 0.5rem;
+          gap: 10px;
+          margin-bottom: 15px;
         }
 
         .item-icon {
-          font-size: 1.5rem;
+          font-size: 24px;
           text-align: center;
         }
 
         .truck-illustration {
-          margin-bottom: 1rem;
+          margin-bottom: 15px;
           padding: 0.5rem;
           text-align: center;
         }
@@ -254,14 +200,14 @@ function ConstructionCleanup() {
         .small-trucks {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
-          margin-bottom: 0.75rem;
+          gap: 10px;
+          margin-bottom: 10px;
         }
 
         .truck-row {
           display: flex;
           justify-content: center;
-          gap: 0.75rem;
+          gap: 12px;
         }
 
         .small-truck {
@@ -269,8 +215,8 @@ function ConstructionCleanup() {
         }
 
         .equals-sign {
-          font-size: 1.25rem;
-          margin: 0.5rem 0;
+          font-size: 18px;
+          margin: 8px 0;
           color: #333;
           text-align: center;
           font-weight: 500;
@@ -284,21 +230,21 @@ function ConstructionCleanup() {
 
         .card-title {
           color: #333;
-          font-size: 1.25rem;
+          font-size: 20px;
           text-align: center;
-          margin: 0.75rem 0;
+          margin: 10px 0;
           font-weight: 600;
         }
 
         .recommended-section {
           flex: 1;
-          margin: 0.75rem 0;
+          margin: 10px 0 20px;
         }
 
         .recommended-section h3 {
           color: #333;
-          margin-bottom: 0.75rem;
-          font-size: 0.875rem;
+          margin-bottom: 10px;
+          font-size: 16px;
           font-weight: 600;
         }
 
@@ -309,11 +255,11 @@ function ConstructionCleanup() {
         }
 
         .recommended-section li {
-          margin-bottom: 0.5rem;
-          font-size: 0.8125rem;
+          margin-bottom: 8px;
+          font-size: 14px;
           display: flex;
           align-items: center;
-          gap: 0.375rem;
+          gap: 6px;
         }
 
         .recommended-section li::before {
@@ -326,9 +272,9 @@ function ConstructionCleanup() {
           background-color: #FF7701;
           color: white;
           border: none;
-          padding: 0.625rem;
+          padding: 10px;
           border-radius: 4px;
-          font-size: 0.875rem;
+          font-size: 16px;
           font-weight: 500;
           cursor: pointer;
           width: 100%;
@@ -338,38 +284,51 @@ function ConstructionCleanup() {
 
         .action-button:hover {
           background-color: #e66901;
-          transform: translateY(-1px);
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
           .cards-container {
             grid-template-columns: 1fr;
             max-width: 400px;
-            gap: 1rem;
-          }
-
-          .content {
-            padding: 1rem;
           }
 
           .main-title {
-            font-size: 1.5rem;
+            font-size: 24px;
+            margin-top: 30px;
           }
 
+          .back-button {
+            top: -25px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .container {
+            padding: 15px 10px;
+          }
+          
           .card-inner {
-            padding: 1rem;
+            padding: 15px;
           }
 
           .icons-grid {
-            gap: 0.5rem;
+            gap: 8px;
           }
 
           .item-icon {
-            font-size: 1.25rem;
+            font-size: 20px;
+          }
+
+          .card-title {
+            font-size: 18px;
+          }
+
+          .recommended-section li {
+            font-size: 13px;
           }
         }
       `}</style>
-    </div>
+    </Layout>
   );
 }
 
