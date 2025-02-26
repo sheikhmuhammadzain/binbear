@@ -193,18 +193,11 @@ const ItemSelection = () => {
                     {/* Bottom CTA */}
                     <div className="bottom-cta">
                         <Link href="/construction-cleanup">
-                            <button className="book-now-btn" aria-disabled="false">
+                            <button className="book-now-btn">
                                 Book Now & Save $20!*
                             </button>
                         </Link>
                         <p className="cta-note">* Online booking discount applied at checkout.</p>
-                    </div>
-
-                    {/* Debug Info */}
-                    <div style={{ position: 'fixed', top: 0, right: 0, background: 'rgba(0,0,0,0.8)', color: 'white', padding: '10px', zIndex: 10000 }}>
-                        <p>Button Debug:</p>
-                        <p>Viewport Height: {typeof window !== 'undefined' ? window.innerHeight + 'px' : 'N/A'}</p>
-                        <p>Scroll Position: {typeof window !== 'undefined' ? window.scrollY + 'px' : 'N/A'}</p>
                     </div>
 
                     {/* Add padding at the bottom to prevent content from being hidden behind the fixed CTA */}
@@ -353,7 +346,9 @@ const ItemSelection = () => {
                             min-width: 14px;
                             font-size: 12px;
                             width: 12px;
-                        }
+<button className="book-now-btn">
+    Book Now & Save $20!*
+</button>                        }
 
                         .item-name {
                             font-size: 0.9rem;
