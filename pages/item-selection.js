@@ -118,13 +118,13 @@ const ItemSelection = () => {
                             {itemCategories.slice(0, Math.ceil(itemCategories.length / 2)).map((category, catIdx) => (
                                 <div key={catIdx} className="category-section">
                                     <h3>
-                                        <FontAwesomeIcon icon={category.icon} size="2x" className="category-icon" />
+                                        <FontAwesomeIcon icon={category.icon} size="sm" className="category-icon" />
                                         {category.title}
                                     </h3>
                                     {category.items.map((item, itemIdx) => (
                                         <div key={itemIdx} className="item-row">
                                             <div className="item-info">
-                                                <FontAwesomeIcon icon={item.icon} size="lg" className="item-icon" />
+                                                <FontAwesomeIcon icon={item.icon} size="sm" className="item-icon" />
                                                 <span className="item-name">{item.name}</span>
                                             </div>
                                             <div className="item-controls">
@@ -155,13 +155,13 @@ const ItemSelection = () => {
                             {itemCategories.slice(Math.ceil(itemCategories.length / 2)).map((category, catIdx) => (
                                 <div key={catIdx} className="category-section">
                                     <h3>
-                                        <FontAwesomeIcon icon={category.icon} size="2x" className="category-icon" />
+                                        <FontAwesomeIcon icon={category.icon} size="sm" className="category-icon" />
                                         {category.title}
                                     </h3>
                                     {category.items.map((item, itemIdx) => (
                                         <div key={itemIdx} className="item-row">
                                             <div className="item-info">
-                                                <FontAwesomeIcon icon={item.icon} size="lg" className="item-icon" />
+                                                <FontAwesomeIcon icon={item.icon} size="sm" className="item-icon" />
                                                 <span className="item-name">{item.name}</span>
                                             </div>
                                             <div className="item-controls">
@@ -192,7 +192,7 @@ const ItemSelection = () => {
 
                     {/* Bottom CTA */}
                     <div className="bottom-cta">
-                        <Link href="/ScheduleDumpster">
+                        <Link href="/construction-cleanup">
                             <button className="book-now-btn" aria-disabled="false">
                                 Book Now & Save $20!*
                             </button>
@@ -208,17 +208,17 @@ const ItemSelection = () => {
                     </div>
 
                     {/* Add padding at the bottom to prevent content from being hidden behind the fixed CTA */}
-                    <div style={{ height: '100px' }}></div>
+                    <div style={{ height: '70px' }}></div>
 
                     {/* Styles */}
                     <style jsx>{`
                         .item-selection-container {
                             max-width: 1000px;
                             margin: 0 auto;
-                            padding: 10px 15px;
+                            padding: 5px 10px;
                             background: #fff;
                             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                            padding-bottom: 150px !important;
+                            padding-bottom: 100px !important;
                         }
 
                         /* Header */
@@ -226,18 +226,18 @@ const ItemSelection = () => {
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
-                            padding: 5px 0;
+                            padding: 2px 0;
                             border-bottom: 1px solid #eee;
-                            margin-bottom: 15px;
+                            margin-bottom: 8px;
                         }
 
                         .back-button {
                             background: none;
                             border: none;
-                            font-size: 20px;
+                            font-size: 18px;
                             color: #FF7701;
                             cursor: pointer;
-                            padding: 5px;
+                            padding: 3px;
                             transition: color 0.3s ease;
                         }
 
@@ -246,14 +246,14 @@ const ItemSelection = () => {
                         }
 
                         h1 {
-                            font-size: 20px;
+                            font-size: 18px;
                             margin: 0;
                             color: #333;
                         }
 
                         .location {
                             color: #666;
-                            font-size: 12px;
+                            font-size: 11px;
                         }
 
                         /* Estimate Section */
@@ -262,13 +262,13 @@ const ItemSelection = () => {
                             justify-content: space-between;
                             align-items: center;
                             background-color: #f9f9f9;
-                            padding: 10px 15px;
-                            border-radius: 5px;
-                            margin-bottom: 15px;
+                            padding: 6px 10px;
+                            border-radius: 4px;
+                            margin-bottom: 8px;
                         }
 
                         h2 {
-                            font-size: 18px;
+                            font-size: 16px;
                             margin: 0;
                             color: #333;
                         }
@@ -277,11 +277,11 @@ const ItemSelection = () => {
                             background: none;
                             border: 1px solid #ccc;
                             border-radius: 4px;
-                            padding: 5px 10px;
+                            padding: 3px 8px;
                             color: #666;
                             cursor: pointer;
                             transition: all 0.3s ease;
-                            font-size: 14px;
+                            font-size: 12px;
                         }
 
                         .clear-items:hover {
@@ -291,9 +291,10 @@ const ItemSelection = () => {
                         /* Items Grid */
                         .items-grid {
                             display: flex;
-                            gap: 15px;
-                            margin-bottom: 100px;
+                            gap: 10px;
+                            margin-bottom: 70px;
                             overflow-y: auto;
+                            max-height: calc(100vh - 180px);
                             -webkit-overflow-scrolling: touch;
                         }
 
@@ -302,35 +303,37 @@ const ItemSelection = () => {
                         }
 
                         .category-section {
-                            margin-bottom: 15px;
+                            margin-bottom: 8px;
                             background-color: #fff;
-                            border-radius: 5px;
-                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+                            border-radius: 4px;
+                            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
                         }
 
                         h3 {
                             display: flex;
                             align-items: center;
-                            font-size: 1.4rem;
+                            font-size: 1.1rem;
                             color: #333;
-                            margin: 20px 0 15px;
-                            padding-bottom: 8px;
-                            border-bottom: 2px solid #eee;
+                            margin: 10px 0 8px;
+                            padding-bottom: 5px;
+                            border-bottom: 1px solid #eee;
                         }
 
                         .category-icon {
-                            margin-right: 12px;
+                            margin-right: 8px;
                             color: #FF7701;
                             vertical-align: middle;
+                            font-size: 14px;
+                            width: 14px;
                         }
 
                         .item-row {
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
-                            padding: 12px;
-                            border-radius: 8px;
-                            margin-bottom: 8px;
+                            padding: 6px 8px;
+                            border-radius: 4px;
+                            margin-bottom: 4px;
                             transition: background-color 0.2s ease;
                         }
 
@@ -345,33 +348,35 @@ const ItemSelection = () => {
                         }
 
                         .item-icon {
-                            margin-right: 10px;
+                            margin-right: 6px;
                             color: #666;
-                            min-width: 20px;
+                            min-width: 14px;
+                            font-size: 12px;
+                            width: 12px;
                         }
 
                         .item-name {
-                            font-size: 1.1rem;
+                            font-size: 0.9rem;
                             color: #444;
                         }
 
                         .item-controls {
                             display: flex;
                             align-items: center;
-                            gap: 8px;
+                            gap: 6px;
                         }
 
                         .control-btn {
-                            width: 28px;
-                            height: 28px;
+                            width: 24px;
+                            height: 24px;
                             display: flex;
                             align-items: center;
                             justify-content: center;
                             border: 1px solid #ddd;
                             background-color: #fff;
-                            border-radius: 4px;
+                            border-radius: 3px;
                             color: #333;
-                            font-size: 16px;
+                            font-size: 14px;
                             cursor: pointer;
                             transition: all 0.15s ease;
                         }
@@ -381,9 +386,9 @@ const ItemSelection = () => {
                         }
 
                         .item-count {
-                            min-width: 25px;
+                            min-width: 20px;
                             text-align: center;
-                            font-size: 14px;
+                            font-size: 13px;
                             color: #333;
                         }
 
@@ -395,19 +400,19 @@ const ItemSelection = () => {
                             right: 0;
                             width: 100%;
                             background: white;
-                            padding: 20px;
+                            padding: 10px;
                             text-align: center;
-                            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                            box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
                             z-index: 99999;
                         }
 
                         .book-now-btn {
                             width: 100%;
-                            max-width: 400px;
-                            padding: 15px 30px;
+                            max-width: 350px;
+                            padding: 10px 20px;
                             background-color: #FF7701;
                             color: white;
-                            font-size: 18px;
+                            font-size: 16px;
                             font-weight: bold;
                             border: none;
                             border-radius: 4px;
@@ -421,77 +426,52 @@ const ItemSelection = () => {
                         }
 
                         .cta-note {
-                            margin-top: 8px;
-                            font-size: 12px;
+                            margin: 5px 0 0;
+                            font-size: 11px;
                             color: #666;
-                            text-align: center;
-                        }
-
-                        /* Remove any conflicting styles */
-                        .bottom-cta-wrapper,
-                        .cta-container,
-                        .book-now-link {
-                            display: none;
                         }
 
                         /* Responsive Styles */
-                        @media (max-width: 768px) {
+                        @media (max-width: 600px) {
                             .items-grid {
                                 flex-direction: column;
-                                max-height: calc(100vh - 330px);
+                                max-height: calc(100vh - 150px);
                             }
-
-                            .item-name {
-                                font-size: 13px;
+                            
+                            .grid-column {
+                                width: 100%;
                             }
-
-                            .control-btn {
-                                width: 25px;
-                                height: 25px;
-                            }
-
+                            
                             h1 {
-                                font-size: 18px;
+                                font-size: 16px;
                             }
-
+                            
                             h2 {
-                                font-size: 16px;
-                            }
-
-                            h3 {
-                                font-size: 15px;
-                            }
-
-                            .bottom-cta {
-                                padding: 10px;
-                            }
-
-                            .book-now-btn {
-                                padding: 12px 20px;
-                                font-size: 16px;
+                                font-size: 14px;
                             }
                         }
 
                         @media (max-width: 480px) {
                             .item-selection-container {
-                                padding: 5px 10px;
+                                padding: 3px 6px;
                             }
 
                             .items-grid {
-                                max-height: calc(100vh - 300px);
+                                max-height: calc(100vh - 150px);
+                                margin-bottom: 60px;
                             }
 
                             .selection-header, 
                             .estimate-section {
-                                padding: 8px;
+                                padding: 5px;
                             }
 
                             .item-row {
-                                padding: 6px 8px;
+                                padding: 4px 6px;
                             }
 
                             .book-now-btn {
-                                padding: 8px 16px;
+                                padding: 8px 12px;
                                 font-size: 14px;
                             }
                         }
