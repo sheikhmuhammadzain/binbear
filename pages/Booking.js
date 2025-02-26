@@ -2,7 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { useState, useEffect } from "react"; // Import useState and useEffect
 import { useRouter } from "next/router"; // Import useRouter for navigation
 
-export default function Login() {
+export default function Booking() {
     const [zipCode, setZipCode] = useState(""); // Initialize state for zip code
     const [email, setEmail] = useState(""); // Initialize state for email
     const [message, setMessage] = useState(""); // State to manage success or error messages
@@ -54,8 +54,26 @@ export default function Login() {
             setEmailError("");
             // Store the email in session storage or state management if needed
             sessionStorage.setItem("userEmail", email);
-            router.push("/choose-service");
+            handleZipCodeSubmit();
         }
+    };
+
+    const handleZipCodeSubmit = () => {
+        // When zip code is entered successfully
+        sessionStorage.setItem('hasEnteredZip', 'true');
+        
+        // Force remove sticky container
+        const stickyContainers = document.querySelectorAll('.sticky-container, .jsx-84cd9f3fe42f54c9.sticky-container');
+        stickyContainers.forEach(container => {
+            container.style.display = 'none';
+            container.style.opacity = '0';
+            container.style.visibility = 'hidden';
+            container.style.pointerEvents = 'none';
+            container.remove(); // Physically remove from DOM
+        });
+
+        // Navigate to next page
+        router.push('/choose-service');
     };
 
     // Detect screen size and update isMobile state

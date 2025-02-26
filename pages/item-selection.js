@@ -89,386 +89,414 @@ const ItemSelection = () => {
 
     return (
         <Layout>
-            <div className="item-selection-container">
-                {/* Header */}
-                <header className="selection-header">
-                    <Link href="/choose-service">
-                        <button className="back-button" aria-label="Go back">
-                            <FontAwesomeIcon icon={faArrowLeft} />
+            <div style={{ position: 'relative', minHeight: '100vh' }}>
+                <div className="item-selection-container">
+                    {/* Header */}
+                    <header className="selection-header">
+                        <Link href="/choose-service">
+                            <button className="back-button" aria-label="Go back">
+                                <FontAwesomeIcon icon={faArrowLeft} />
+                            </button>
+                        </Link>
+                        <h1>Add Your Items</h1>
+                        <div className="location">
+                            <span>📍 BinBear Junk Removal</span>
+                        </div>
+                    </header>
+
+                    {/* Estimate Section */}
+                    <div className="estimate-section">
+                        <h2>Your Estimate: ${estimate.toFixed(2)}</h2>
+                        <button className="clear-items" onClick={clearItems} aria-label="Clear all items">
+                            Clear Items
                         </button>
-                    </Link>
-                    <h1>Add Your Items</h1>
-                    <div className="location">
-                        <span>📍 BinBear Junk Removal</span>
                     </div>
-                </header>
 
-                {/* Estimate Section */}
-                <div className="estimate-section">
-                    <h2>Your Estimate: ${estimate.toFixed(2)}</h2>
-                    <button className="clear-items" onClick={clearItems} aria-label="Clear all items">
-                        Clear Items
-                    </button>
-                </div>
-
-                {/* Items List Grouped by Category in Two Columns */}
-                <div className="items-grid">
-                    <div className="grid-column">
-                        {itemCategories.slice(0, Math.ceil(itemCategories.length / 2)).map((category, catIdx) => (
-                            <div key={catIdx} className="category-section">
-                                <h3>
-                                    <FontAwesomeIcon icon={category.icon} size="2x" className="category-icon" />
-                                    {category.title}
-                                </h3>
-                                {category.items.map((item, itemIdx) => (
-                                    <div key={itemIdx} className="item-row">
-                                        <div className="item-info">
-                                            <FontAwesomeIcon icon={item.icon} size="lg" className="item-icon" />
-                                            <span className="item-name">{item.name}</span>
+                    {/* Items List Grouped by Category in Two Columns */}
+                    <div className="items-grid">
+                        <div className="grid-column">
+                            {itemCategories.slice(0, Math.ceil(itemCategories.length / 2)).map((category, catIdx) => (
+                                <div key={catIdx} className="category-section">
+                                    <h3>
+                                        <FontAwesomeIcon icon={category.icon} size="2x" className="category-icon" />
+                                        {category.title}
+                                    </h3>
+                                    {category.items.map((item, itemIdx) => (
+                                        <div key={itemIdx} className="item-row">
+                                            <div className="item-info">
+                                                <FontAwesomeIcon icon={item.icon} size="lg" className="item-icon" />
+                                                <span className="item-name">{item.name}</span>
+                                            </div>
+                                            <div className="item-controls">
+                                                <button
+                                                    className="control-btn"
+                                                    onClick={() => updateItemCount(item.name, -1)}
+                                                    aria-label={`Decrease ${item.name} count`}
+                                                >
+                                                    −
+                                                </button>
+                                                <span className="item-count">
+                                                    {selectedItems[item.name] || 0}
+                                                </span>
+                                                <button
+                                                    className="control-btn"
+                                                    onClick={() => updateItemCount(item.name, 1)}
+                                                    aria-label={`Increase ${item.name} count`}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className="item-controls">
-                                            <button
-                                                className="control-btn"
-                                                onClick={() => updateItemCount(item.name, -1)}
-                                                aria-label={`Decrease ${item.name} count`}
-                                            >
-                                                −
-                                            </button>
-                                            <span className="item-count">
-                                                {selectedItems[item.name] || 0}
-                                            </span>
-                                            <button
-                                                className="control-btn"
-                                                onClick={() => updateItemCount(item.name, 1)}
-                                                aria-label={`Increase ${item.name} count`}
-                                            >
-                                                +
-                                            </button>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                        <div className="grid-column">
+                            {itemCategories.slice(Math.ceil(itemCategories.length / 2)).map((category, catIdx) => (
+                                <div key={catIdx} className="category-section">
+                                    <h3>
+                                        <FontAwesomeIcon icon={category.icon} size="2x" className="category-icon" />
+                                        {category.title}
+                                    </h3>
+                                    {category.items.map((item, itemIdx) => (
+                                        <div key={itemIdx} className="item-row">
+                                            <div className="item-info">
+                                                <FontAwesomeIcon icon={item.icon} size="lg" className="item-icon" />
+                                                <span className="item-name">{item.name}</span>
+                                            </div>
+                                            <div className="item-controls">
+                                                <button
+                                                    className="control-btn"
+                                                    onClick={() => updateItemCount(item.name, -1)}
+                                                    aria-label={`Decrease ${item.name} count`}
+                                                >
+                                                    −
+                                                </button>
+                                                <span className="item-count">
+                                                    {selectedItems[item.name] || 0}
+                                                </span>
+                                                <button
+                                                    className="control-btn"
+                                                    onClick={() => updateItemCount(item.name, 1)}
+                                                    aria-label={`Increase ${item.name} count`}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    <div className="grid-column">
-                        {itemCategories.slice(Math.ceil(itemCategories.length / 2)).map((category, catIdx) => (
-                            <div key={catIdx} className="category-section">
-                                <h3>
-                                    <FontAwesomeIcon icon={category.icon} size="2x" className="category-icon" />
-                                    {category.title}
-                                </h3>
-                                {category.items.map((item, itemIdx) => (
-                                    <div key={itemIdx} className="item-row">
-                                        <div className="item-info">
-                                            <FontAwesomeIcon icon={item.icon} size="lg" className="item-icon" />
-                                            <span className="item-name">{item.name}</span>
-                                        </div>
-                                        <div className="item-controls">
-                                            <button
-                                                className="control-btn"
-                                                onClick={() => updateItemCount(item.name, -1)}
-                                                aria-label={`Decrease ${item.name} count`}
-                                            >
-                                                −
-                                            </button>
-                                            <span className="item-count">
-                                                {selectedItems[item.name] || 0}
-                                            </span>
-                                            <button
-                                                className="control-btn"
-                                                onClick={() => updateItemCount(item.name, 1)}
-                                                aria-label={`Increase ${item.name} count`}
-                                            >
-                                                +
-                                            </button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
+
+                    {/* Bottom CTA */}
+                    <div className="bottom-cta">
+                        <Link href="/ScheduleDumpster">
+                            <button className="book-now-btn" aria-disabled="false">
+                                Book Now & Save $20!*
+                            </button>
+                        </Link>
+                        <p className="cta-note">* Online booking discount applied at checkout.</p>
                     </div>
-                </div>
 
-                {/* Bottom CTA */}
-                <div className="bottom-cta">
-                    <Link href="/construction-cleanup">
-                        <button
-                            className="book-now-btn"
-                            disabled={estimate === 0}
-                            aria-disabled={estimate === 0}
-                        >
-                            Book Now & Save $20!*
-                        </button>
-                    </Link>
-                    <p className="cta-note">* Online booking discount applied at checkout.</p>
-                </div>
+                    {/* Debug Info */}
+                    <div style={{ position: 'fixed', top: 0, right: 0, background: 'rgba(0,0,0,0.8)', color: 'white', padding: '10px', zIndex: 10000 }}>
+                        <p>Button Debug:</p>
+                        <p>Viewport Height: {typeof window !== 'undefined' ? window.innerHeight + 'px' : 'N/A'}</p>
+                        <p>Scroll Position: {typeof window !== 'undefined' ? window.scrollY + 'px' : 'N/A'}</p>
+                    </div>
 
-                {/* Styles */}
-                <style jsx>{`
-                    .item-selection-container {
-                        max-width: 1000px;
-                        margin: 0 auto;
-                        padding: 10px 15px;
-                        background: #fff;
-                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                    }
+                    {/* Add padding at the bottom to prevent content from being hidden behind the fixed CTA */}
+                    <div style={{ height: '100px' }}></div>
 
-                    /* Header */
-                    .selection-header {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        padding: 5px 0;
-                        border-bottom: 1px solid #eee;
-                        margin-bottom: 15px;
-                    }
-
-                    .back-button {
-                        background: none;
-                        border: none;
-                        font-size: 20px;
-                        color: #FF7701;
-                        cursor: pointer;
-                        padding: 5px;
-                        transition: color 0.3s ease;
-                    }
-
-                    .back-button:hover {
-                        color: #e66901;
-                    }
-
-                    h1 {
-                        font-size: 20px;
-                        margin: 0;
-                        color: #333;
-                    }
-
-                    .location {
-                        color: #666;
-                        font-size: 12px;
-                    }
-
-                    /* Estimate Section */
-                    .estimate-section {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        background-color: #f9f9f9;
-                        padding: 10px 15px;
-                        border-radius: 5px;
-                        margin-bottom: 15px;
-                    }
-
-                    h2 {
-                        font-size: 18px;
-                        margin: 0;
-                        color: #333;
-                    }
-
-                    .clear-items {
-                        background: none;
-                        border: 1px solid #ccc;
-                        border-radius: 4px;
-                        padding: 5px 10px;
-                        color: #666;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        font-size: 14px;
-                    }
-
-                    .clear-items:hover {
-                        background-color: #f0f0f0;
-                    }
-
-                    /* Items Grid */
-                    .items-grid {
-                        display: flex;
-                        gap: 15px;
-                        margin-bottom: 15px;
-                        max-height: calc(100vh - 350px);
-                        overflow-y: auto;
-                    }
-
-                    .grid-column {
-                        flex: 1;
-                    }
-
-                    .category-section {
-                        margin-bottom: 15px;
-                        background-color: #fff;
-                        border-radius: 5px;
-                        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-                    }
-
-                    h3 {
-                        display: flex;
-                        align-items: center;
-                        font-size: 1.4rem;
-                        color: #333;
-                        margin: 20px 0 15px;
-                        padding-bottom: 8px;
-                        border-bottom: 2px solid #eee;
-                    }
-
-                    .category-icon {
-                        margin-right: 12px;
-                        color: #FF7701;
-                        vertical-align: middle;
-                    }
-
-                    .item-row {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 12px;
-                        border-radius: 8px;
-                        margin-bottom: 8px;
-                        transition: background-color 0.2s ease;
-                    }
-
-                    .item-row:hover {
-                        background-color: #f8f8f8;
-                    }
-
-                    .item-info {
-                        display: flex;
-                        align-items: center;
-                        flex: 1;
-                    }
-
-                    .item-icon {
-                        margin-right: 10px;
-                        color: #666;
-                        min-width: 20px;
-                    }
-
-                    .item-name {
-                        font-size: 1.1rem;
-                        color: #444;
-                    }
-
-                    .item-controls {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                    }
-
-                    .control-btn {
-                        width: 28px;
-                        height: 28px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border: 1px solid #ddd;
-                        background-color: #fff;
-                        border-radius: 4px;
-                        color: #333;
-                        font-size: 16px;
-                        cursor: pointer;
-                        transition: all 0.15s ease;
-                    }
-
-                    .control-btn:hover {
-                        background-color: #f5f5f5;
-                    }
-
-                    .item-count {
-                        min-width: 25px;
-                        text-align: center;
-                        font-size: 14px;
-                        color: #333;
-                    }
-
-                    /* Bottom CTA */
-                    .bottom-cta {
-                        margin-top: 15px;
-                        padding: 15px;
-                        background-color: #f9f9f9;
-                        border-radius: 5px;
-                        text-align: center;
-                    }
-
-                    .book-now-btn {
-                        background-color: #FF7701;
-                        color: white;
-                        padding: 10px 20px;
-                        font-size: 16px;
-                        border: none;
-                        border-radius: 4px;
-                        cursor: pointer;
-                        transition: background-color 0.3s;
-                        width: 100%;
-                        max-width: 300px;
-                    }
-
-                    .book-now-btn:hover:not(:disabled) {
-                        background-color: #e66901;
-                    }
-
-                    .book-now-btn:disabled {
-                        background-color: #ccc;
-                        cursor: not-allowed;
-                    }
-
-                    .cta-note {
-                        margin-top: 10px;
-                        font-size: 12px;
-                        color: #666;
-                    }
-
-                    /* Responsive Styles */
-                    @media (max-width: 768px) {
-                        .items-grid {
-                            flex-direction: column;
-                            max-height: calc(100vh - 330px);
+                    {/* Styles */}
+                    <style jsx>{`
+                        .item-selection-container {
+                            max-width: 1000px;
+                            margin: 0 auto;
+                            padding: 10px 15px;
+                            background: #fff;
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                            padding-bottom: 150px !important;
                         }
 
-                        .item-name {
-                            font-size: 13px;
+                        /* Header */
+                        .selection-header {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            padding: 5px 0;
+                            border-bottom: 1px solid #eee;
+                            margin-bottom: 15px;
                         }
 
-                        .control-btn {
-                            width: 25px;
-                            height: 25px;
+                        .back-button {
+                            background: none;
+                            border: none;
+                            font-size: 20px;
+                            color: #FF7701;
+                            cursor: pointer;
+                            padding: 5px;
+                            transition: color 0.3s ease;
+                        }
+
+                        .back-button:hover {
+                            color: #e66901;
                         }
 
                         h1 {
-                            font-size: 18px;
+                            font-size: 20px;
+                            margin: 0;
+                            color: #333;
+                        }
+
+                        .location {
+                            color: #666;
+                            font-size: 12px;
+                        }
+
+                        /* Estimate Section */
+                        .estimate-section {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            background-color: #f9f9f9;
+                            padding: 10px 15px;
+                            border-radius: 5px;
+                            margin-bottom: 15px;
                         }
 
                         h2 {
-                            font-size: 16px;
+                            font-size: 18px;
+                            margin: 0;
+                            color: #333;
+                        }
+
+                        .clear-items {
+                            background: none;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            padding: 5px 10px;
+                            color: #666;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                            font-size: 14px;
+                        }
+
+                        .clear-items:hover {
+                            background-color: #f0f0f0;
+                        }
+
+                        /* Items Grid */
+                        .items-grid {
+                            display: flex;
+                            gap: 15px;
+                            margin-bottom: 100px;
+                            overflow-y: auto;
+                            -webkit-overflow-scrolling: touch;
+                        }
+
+                        .grid-column {
+                            flex: 1;
+                        }
+
+                        .category-section {
+                            margin-bottom: 15px;
+                            background-color: #fff;
+                            border-radius: 5px;
+                            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
                         }
 
                         h3 {
-                            font-size: 15px;
-                        }
-                    }
-
-                    @media (max-width: 480px) {
-                        .item-selection-container {
-                            padding: 5px 10px;
-                        }
-
-                        .items-grid {
-                            max-height: calc(100vh - 300px);
+                            display: flex;
+                            align-items: center;
+                            font-size: 1.4rem;
+                            color: #333;
+                            margin: 20px 0 15px;
+                            padding-bottom: 8px;
+                            border-bottom: 2px solid #eee;
                         }
 
-                        .selection-header, 
-                        .estimate-section {
-                            padding: 8px;
+                        .category-icon {
+                            margin-right: 12px;
+                            color: #FF7701;
+                            vertical-align: middle;
                         }
 
                         .item-row {
-                            padding: 6px 8px;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 12px;
+                            border-radius: 8px;
+                            margin-bottom: 8px;
+                            transition: background-color 0.2s ease;
+                        }
+
+                        .item-row:hover {
+                            background-color: #f8f8f8;
+                        }
+
+                        .item-info {
+                            display: flex;
+                            align-items: center;
+                            flex: 1;
+                        }
+
+                        .item-icon {
+                            margin-right: 10px;
+                            color: #666;
+                            min-width: 20px;
+                        }
+
+                        .item-name {
+                            font-size: 1.1rem;
+                            color: #444;
+                        }
+
+                        .item-controls {
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                        }
+
+                        .control-btn {
+                            width: 28px;
+                            height: 28px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border: 1px solid #ddd;
+                            background-color: #fff;
+                            border-radius: 4px;
+                            color: #333;
+                            font-size: 16px;
+                            cursor: pointer;
+                            transition: all 0.15s ease;
+                        }
+
+                        .control-btn:hover {
+                            background-color: #f5f5f5;
+                        }
+
+                        .item-count {
+                            min-width: 25px;
+                            text-align: center;
+                            font-size: 14px;
+                            color: #333;
+                        }
+
+                        /* Updated Bottom CTA Styles */
+                        .bottom-cta {
+                            position: fixed;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            width: 100%;
+                            background: white;
+                            padding: 20px;
+                            text-align: center;
+                            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                            z-index: 99999;
                         }
 
                         .book-now-btn {
-                            padding: 8px 16px;
-                            font-size: 14px;
+                            width: 100%;
+                            max-width: 400px;
+                            padding: 15px 30px;
+                            background-color: #FF7701;
+                            color: white;
+                            font-size: 18px;
+                            font-weight: bold;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            margin: 0 auto;
+                            display: block;
                         }
-                    }
-                `}</style>
+
+                        .book-now-btn:hover {
+                            background-color: #e66901;
+                        }
+
+                        .cta-note {
+                            margin-top: 8px;
+                            font-size: 12px;
+                            color: #666;
+                            text-align: center;
+                        }
+
+                        /* Remove any conflicting styles */
+                        .bottom-cta-wrapper,
+                        .cta-container,
+                        .book-now-link {
+                            display: none;
+                        }
+
+                        /* Responsive Styles */
+                        @media (max-width: 768px) {
+                            .items-grid {
+                                flex-direction: column;
+                                max-height: calc(100vh - 330px);
+                            }
+
+                            .item-name {
+                                font-size: 13px;
+                            }
+
+                            .control-btn {
+                                width: 25px;
+                                height: 25px;
+                            }
+
+                            h1 {
+                                font-size: 18px;
+                            }
+
+                            h2 {
+                                font-size: 16px;
+                            }
+
+                            h3 {
+                                font-size: 15px;
+                            }
+
+                            .bottom-cta {
+                                padding: 10px;
+                            }
+
+                            .book-now-btn {
+                                padding: 12px 20px;
+                                font-size: 16px;
+                            }
+                        }
+
+                        @media (max-width: 480px) {
+                            .item-selection-container {
+                                padding: 5px 10px;
+                            }
+
+                            .items-grid {
+                                max-height: calc(100vh - 300px);
+                            }
+
+                            .selection-header, 
+                            .estimate-section {
+                                padding: 8px;
+                            }
+
+                            .item-row {
+                                padding: 6px 8px;
+                            }
+
+                            .book-now-btn {
+                                padding: 8px 16px;
+                                font-size: 14px;
+                            }
+                        }
+                    `}</style>
+                </div>
             </div>
         </Layout>
     );

@@ -1,10 +1,15 @@
-
-
-   
-
 import Link from "next/link";
+import { useEffect, useState } from 'react';
 
-export default function Footer1({ }) {
+export default function Footer() {
+    const [hideBooking, setHideBooking] = useState(false);
+
+    useEffect(() => {
+        // Check if zip code was entered
+        const hasEnteredZip = sessionStorage.getItem('hasEnteredZip');
+        setHideBooking(hasEnteredZip === 'true');
+    }, []);
+
     return (
         <>
             <footer className="footer" style={{ marginTop: '0px' }}>
@@ -41,24 +46,26 @@ export default function Footer1({ }) {
                                         alignItems: 'center',
                                     }}
                                 >
-                                    <a href="/Booking" style={{ textDecoration: 'none', width: '100%' }}>
-                                        <button
-                                            style={{
-                                                backgroundColor: '#FF7F00',
-                                                color: 'black',
-                                                border: 'none',
-                                                padding: '10px 20px',
-                                                cursor: 'pointer',
-                                                display: 'flex',
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                width: '100%',
-                                                maxWidth: '200px',
-                                            }}
-                                        >
-                                            Book Online
-                                        </button>
-                                    </a>
+                                    {!hideBooking && (
+                                        <a href="/Booking" style={{ textDecoration: 'none', width: '100%' }}>
+                                            <button
+                                                style={{
+                                                    backgroundColor: '#FF7F00',
+                                                    color: 'black',
+                                                    border: 'none',
+                                                    padding: '10px 20px',
+                                                    cursor: 'pointer',
+                                                    display: 'flex',
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                    width: '100%',
+                                                    maxWidth: '200px',
+                                                }}
+                                            >
+                                                Book Online
+                                            </button>
+                                        </a>
+                                    )}
                                     <a href="/contact" style={{ textDecoration: 'none', width: '100%' }}>
                                         <button
                                             style={{
@@ -226,6 +233,20 @@ export default function Footer1({ }) {
                     </div>
                 </div>
             </footer>
+
+            {!hideBooking && (
+                <div className="footer-book-now">
+                    <a href="/Booking" className="footer-book-btn">Book Now</a>
+                </div>
+            )}
+
+            <style jsx global>{`
+                /* Force hide sticky elements */
+                .sticky-container,
+                .jsx-84cd9f3fe42f54c9.sticky-container {
+                    display: none !important;
+                }
+            `}</style>
         </>
     );
 }

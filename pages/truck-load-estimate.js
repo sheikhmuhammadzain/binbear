@@ -2,7 +2,6 @@ import Layout from "@/components/layout/Layout";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { FaTruck } from 'react-icons/fa';
-import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 
 export default function TruckLoadEstimate() {
     const router = useRouter();
@@ -19,297 +18,285 @@ export default function TruckLoadEstimate() {
     };
 
     const calculateTotal = () => {
-        return (quantities.full * 429) + (quantities.half * 229);
+        const total = (quantities.full * 429) + (quantities.half * 229);
+        return {
+            min: total,
+            max: total + 20
+        };
     };
 
-    const handleContinue = () => {
-        if (quantities.full > 0 || quantities.half > 0) {
-            router.push('/ScheduleDumpster');
-        }
+    const calculateTruckFillPercentage = () => {
+        const totalLoad = quantities.full + (quantities.half * 0.5);
+        const percentage = (totalLoad / 6) * 100;
+        return Math.min(100, percentage);
     };
+
+    const estimate = calculateTotal();
+    const fillPercentage = calculateTruckFillPercentage();
 
     return (
         <Layout>
-            <div className="container">
-                <div className="header-section">
-                    <button className="back-button" onClick={() => router.back()}>
-                        ← Back
-                    </button>
-                    <h1>How Many Loads?</h1>
-                    <p className="subtitle">Choose the number of truck loads you need</p>
-                </div>
+            <div className="container mt-4 mb-4">
+                <div className="estimate-container" style={{
+                    maxWidth: "550px",
+                    margin: "0 auto",
+                    padding: "15px",
+                    backgroundColor: "white",
+                    borderRadius: "8px",
+                    boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
+                }}>
+                    {/* Header */}
+                    <div className="header" style={{
+                        backgroundColor: "#FF7701",
+                        color: "white",
+                        padding: "12px",
+                        borderRadius: "8px 8px 0 0",
+                        marginBottom: "15px",
+                        position: "relative"
+                    }}>
+                            <button 
+                            onClick={() => router.back()}
+                            style={{
+                                position: "absolute",
+                                left: "10px",
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                background: "none",
+                                border: "none",
+                                color: "white",
+                                cursor: "pointer",
+                                fontSize: "14px",
+                                padding: "5px"
+                            }}
+                        >
+                            ←
+                            </button>
+                        <h2 style={{ margin: 0, textAlign: "center", fontSize: "20px" }}>How Many Loads?</h2>
+                        <p style={{ margin: "5px 0 0 0", fontSize: "12px", textAlign: "center" }}>Junk King North Texas (75056)</p>
+                        </div>
 
-                <div className="trucks-container">
-                    {/* Full Truck */}
-                    <div className="truck-option">
-                        <div className="truck-visual">
-                            <FaTruck size={80} className="truck-icon" />
-                            <div className="load-label">Full Pickup Truck Load</div>
-                            <div className="price">$429</div>
-                        </div>
-                        <div className="quantity-controls">
-                            <button 
-                                className="quantity-btn"
-                                onClick={() => handleQuantityChange('full', -1)}
-                            >
-                                <AiOutlineMinus />
-                            </button>
-                            <span className="quantity">{quantities.full}</span>
-                            <button 
-                                className="quantity-btn"
-                                onClick={() => handleQuantityChange('full', 1)}
-                            >
-                                <AiOutlinePlus />
-                            </button>
-                        </div>
+                    {/* Context Text */}
+                    <div style={{ textAlign: "center", marginBottom: "12px", color: "#666", fontSize: "12px" }}>
+                        <p>*1 Junk King Truck = 6 Regular Pickup Truck Loads</p>
                     </div>
 
-                    {/* Half Truck */}
-                    <div className="truck-option">
-                        <div className="truck-visual">
-                            <div className="half-truck-wrapper">
-                                <FaTruck 
-                                    size={80} 
+                    {/* Truck Selection */}
+                    <div className="truck-selection" style={{
+                        display: "flex",
+                        justifyContent: "space-around",
+                        marginBottom: "25px",
+                        flexWrap: "wrap",
+                        gap: "15px"
+                    }}>
+                        {/* Full Truck Option */}
+                        <div className="truck-option" style={{
+                            flex: "1",
+                            minWidth: "160px",
+                            maxWidth: "220px",
+                            textAlign: "center",
+                            border: "1px solid #ddd",
+                            borderRadius: "8px",
+                            padding: "15px",
+                            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                            backgroundColor: "white"
+                        }}>
+                            <FaTruck size={70} color="#FF7701" />
+                            <p style={{ margin: "8px 0", fontSize: "14px" }}>Full Pickup Truck Load(s)</p>
+                            <div style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "8px"
+                            }}>
+                                <button 
+                                    onClick={() => handleQuantityChange('full', -1)}
+                                    className="quantity-button"
                                     style={{ 
-                                        clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0% 100%)',
-                                        color: '#FF7701',
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0
-                                    }} 
-                                />
-                                <FaTruck 
-                                    size={80} 
+                                        padding: "8px 12px",
+                                        backgroundColor: "#FF7701",
+                                        color: "white",
+                                        border: "none",
+                                        borderRadius: "4px",
+                                        cursor: "pointer",
+                                        fontSize: "18px"
+                                    }}
+                                >−</button>
+                                <span style={{ fontSize: "18px", minWidth: "25px" }}>{quantities.full}</span>
+                                <button 
+                                    onClick={() => handleQuantityChange('full', 1)}
+                                    className="quantity-button"
                                     style={{ 
-                                        clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)',
-                                        color: '#ccc',
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0
-                                    }} 
-                                />
+                                        padding: "8px 12px",
+                                        backgroundColor: "#FF7701",
+                                        color: "white",
+                                        border: "none",
+                                        borderRadius: "4px",
+                                        cursor: "pointer",
+                                        fontSize: "18px"
+                                    }}
+                                >+</button>
                             </div>
-                            <div className="load-label">Half Pickup Truck Load</div>
-                            <div className="price">$229</div>
                         </div>
-                        <div className="quantity-controls">
+
+                        {/* Half Truck Option - with similar reduced dimensions */}
+                        <div className="truck-option" style={{
+                            flex: "1",
+                            minWidth: "160px",
+                            maxWidth: "220px",
+                            textAlign: "center",
+                            border: "1px solid #ddd",
+                            borderRadius: "8px",
+                            padding: "15px",
+                            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+                            backgroundColor: "white"
+                        }}>
+                            <div style={{ position: "relative", width: "70px", height: "70px", margin: "0 auto" }}>
+                                <FaTruck size={70} style={{ clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0% 100%)', color: '#FF7701', position: 'absolute', top: 0, left: 0 }} />
+                                <FaTruck size={70} style={{ clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)', color: '#ccc', position: 'absolute', top: 0, left: 0 }} />
+                            </div>
+                            <p style={{ margin: "8px 0", fontSize: "14px" }}>Half Pickup Truck Load(s)</p>
+                            {/* Quantity controls - same as full truck but for half */}
+                            <div style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "8px"
+                            }}>
                             <button 
-                                className="quantity-btn"
                                 onClick={() => handleQuantityChange('half', -1)}
-                            >
-                                <AiOutlineMinus />
-                            </button>
-                            <span className="quantity">{quantities.half}</span>
+                                    className="quantity-button"
+                                    style={{
+                                        padding: "8px 12px",
+                                        backgroundColor: "#FF7701",
+                                        color: "white",
+                                        border: "none",
+                                        borderRadius: "4px",
+                                        cursor: "pointer",
+                                        fontSize: "18px"
+                                    }}
+                                >−</button>
+                                <span style={{ fontSize: "18px", minWidth: "25px" }}>{quantities.half}</span>
                             <button 
-                                className="quantity-btn"
                                 onClick={() => handleQuantityChange('half', 1)}
-                            >
-                                <AiOutlinePlus />
-                            </button>
+                                    className="quantity-button"
+                                    style={{
+                                        padding: "8px 12px",
+                                        backgroundColor: "#FF7701",
+                                        color: "white",
+                                        border: "none",
+                                        borderRadius: "4px",
+                                        cursor: "pointer",
+                                        fontSize: "18px"
+                                    }}
+                                >+</button>
+                            </div>
                         </div>
                     </div>
+
+                    {/* Truck Fill Indicator */}
+                    <div className="truck-fill-indicator" style={{
+                        width: "100%",
+                        marginBottom: "25px",
+                        textAlign: "center"
+                    }}>
+                        <div style={{
+                            position: "relative",
+                            width: "70%",
+                            height: "35px",
+                            backgroundColor: "#f0f0f0",
+                            margin: "0 auto",
+                            borderRadius: "4px",
+                            overflow: "hidden"
+                        }}>
+                            <div style={{
+                                position: "absolute",
+                                left: 0,
+                                top: 0,
+                                height: "100%",
+                                width: `${fillPercentage}%`,
+                                backgroundColor: "#FF7701",
+                                transition: "width 0.3s ease-in-out"
+                            }}></div>
+                        </div>
+                        <p style={{
+                            margin: "8px 0 0 0",
+                            color: "#333",
+                            fontWeight: "bold",
+                            fontSize: "14px"
+                        }}>
+                            {Math.round(fillPercentage)}% FULL JUNK KING TRUCK
+                        </p>
                 </div>
 
-                <div className="estimate-section">
-                    <div className="total">
-                        Your Estimate: ${calculateTotal().toFixed(2)}
+                    {/* Estimate */}
+                    <div style={{
+                        textAlign: "center",
+                        marginBottom: "15px"
+                    }}>
+                        <h3 style={{ color: "#333", fontSize: "18px" }}>Your Estimate: ${estimate.min} - ${estimate.max}</h3>
                     </div>
+
+                    {/* Call to Action */}
+                    <div style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: "15px"
+                    }}>
                     <button 
-                        className="continue-button"
-                        disabled={calculateTotal() === 0}
-                        onClick={handleContinue}
-                    >
-                        Book Now
+                            onClick={() => router.push('/ScheduleDumpster')}
+                            disabled={estimate.min === 0}
+                            className="book-button"
+                            style={{
+                                padding: "12px 40px",
+                                backgroundColor: "#4CAF50",
+                                color: "white",
+                                border: "none",
+                                borderRadius: "4px",
+                                cursor: estimate.min === 0 ? "not-allowed" : "pointer",
+                                fontSize: "18px",
+                                opacity: estimate.min === 0 ? 0.7 : 1
+                            }}
+                        >
+                            Book It!
                     </button>
-                    <p className="note">* Final price may vary based on actual load size and materials</p>
+                    </div>
+
+                    {/* Disclaimer */}
+                    <p style={{
+                        textAlign: "center",
+                        color: "#666",
+                        fontSize: "12px",
+                        marginTop: "20px"
+                    }}>
+                        * Final price may vary based on actual load size and materials
+                    </p>
+                </div>
                 </div>
 
+            {/* Global Styles */}
                 <style jsx>{`
-                    .container {
-                        max-width: 1000px;
-                        margin: 0 auto;
-                        padding: 20px;
-                        min-height: calc(100vh - 300px);
-                    }
-                    .header-section {
-                        text-align: center;
-                        margin-bottom: 40px;
-                        position: relative;
-                    }
-                    .back-button {
-                        position: absolute;
-                        left: 0;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        background: none;
-                        border: none;
-                        color: #333;
-                        cursor: pointer;
-                        font-size: 16px;
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                    }
-                    .back-button:hover {
-                        color: #FF7701;
-                    }
-                    h1 {
-                        font-size: 32px;
-                        color: #333;
-                        margin-bottom: 10px;
-                    }
-                    .subtitle {
-                        color: #666;
-                        font-size: 16px;
-                    }
-                    .trucks-container {
-                        display: flex;
-                        justify-content: center;
-                        gap: 40px;
-                        margin: 40px 0;
-                    }
-                    .truck-option {
-                        background: #fff;
-                        border: 2px solid #eee;
-                        border-radius: 10px;
-                        padding: 30px;
-                        width: 300px;
-                        text-align: center;
-                        transition: all 0.3s ease;
-                    }
-                    .truck-option:hover {
-                        border-color: #FF7701;
-                        transform: translateY(-2px);
-                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                    }
-                    .truck-visual {
-                        margin-bottom: 20px;
-                        position: relative;
-                    }
-                    .truck-icon {
-                        color: #FF7701;
-                        margin-bottom: 10px;
-                    }
-                    .half-truck-wrapper {
-                        position: relative;
-                        width: 80px;
-                        height: 80px;
-                        margin: 0 auto;
-                    }
-                    .load-label {
-                        font-weight: bold;
-                        color: #333;
-                        margin: 10px 0;
-                    }
-                    .price {
-                        font-size: 24px;
-                        color: #FF7701;
-                        font-weight: bold;
-                        margin: 10px 0;
-                    }
-                    .quantity-controls {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 15px;
-                        margin-top: 20px;
-                    }
-                    .quantity-btn {
-                        background: #f5f5f5;
-                        border: 1px solid #ddd;
-                        border-radius: 5px;
-                        width: 36px;
-                        height: 36px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        transition: all 0.2s ease;
-                    }
-                    .quantity-btn:hover {
-                        background: #eee;
-                        border-color: #ccc;
-                    }
-                    .quantity {
-                        font-size: 20px;
-                        font-weight: bold;
-                        color: #333;
-                        min-width: 30px;
-                        text-align: center;
-                    }
-                    .estimate-section {
-                        text-align: center;
-                        margin-top: 40px;
-                    }
-                    .total {
-                        font-size: 24px;
-                        font-weight: bold;
-                        color: #333;
-                        margin-bottom: 20px;
-                    }
-                    .continue-button {
-                        background-color: #FF7701;
-                        color: white;
-                        border: none;
-                        padding: 15px 40px;
-                        border-radius: 5px;
-                        font-size: 18px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        transition: background-color 0.3s ease;
-                    }
-                    .continue-button:hover:not(:disabled) {
-                        background-color: #e66901;
-                    }
-                    .continue-button:disabled {
-                        background-color: #ccc;
-                        cursor: not-allowed;
-                    }
-                    .note {
-                        color: #666;
-                        font-size: 14px;
-                        margin-top: 10px;
-                    }
-                    @media (max-width: 768px) {
-                        .container {
-                            padding: 15px;
-                        }
-                        .trucks-container {
-                            flex-direction: column;
-                            align-items: center;
-                            gap: 20px;
-                        }
-                        .truck-option {
-                            width: 100%;
-                            max-width: 300px;
-                        }
-                        h1 {
-                            font-size: 24px;
-                            margin-top: 30px;
-                        }
-                        .back-button {
-                            top: -25px;
-                            transform: none;
-                        }
-                    }
-                    @media (max-width: 480px) {
-                        .container {
-                            padding: 10px;
-                        }
-                        .truck-option {
-                            padding: 20px;
-                        }
-                        .continue-button {
-                            width: 100%;
-                            padding: 12px 20px;
-                            font-size: 16px;
-                        }
-                        .price {
-                            font-size: 20px;
-                        }
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.02); }
+                    100% { transform: scale(1); }
+                }
+                .truck-fill-indicator {
+                    animation: ${fillPercentage >= 100 ? 'pulse 1s infinite' : 'none'};
+                }
+                .quantity-button {
+                    transition: filter 0.2s ease-in-out;
+                }
+                .quantity-button:hover {
+                    filter: brightness(1.1);
+                }
+                .book-button {
+                    transition: all 0.2s ease-in-out;
+                }
+                .book-button:hover:not(:disabled) {
+                    transform: scale(1.02);
+                    boxShadow: 0 4px 8px rgba(0,0,0,0.2);
                     }
                 `}</style>
-            </div>
         </Layout>
     );
 }
