@@ -117,13 +117,13 @@ const ItemSelection = () => {
                         {itemCategories.slice(0, Math.ceil(itemCategories.length / 2)).map((category, catIdx) => (
                             <div key={catIdx} className="category-section">
                                 <h3>
-                                    <FontAwesomeIcon icon={category.icon} className="category-icon" />
+                                    <FontAwesomeIcon icon={category.icon} size="2x" className="category-icon" />
                                     {category.title}
                                 </h3>
                                 {category.items.map((item, itemIdx) => (
                                     <div key={itemIdx} className="item-row">
                                         <div className="item-info">
-                                            <FontAwesomeIcon icon={item.icon} className="item-icon" />
+                                            <FontAwesomeIcon icon={item.icon} size="lg" className="item-icon" />
                                             <span className="item-name">{item.name}</span>
                                         </div>
                                         <div className="item-controls">
@@ -154,13 +154,13 @@ const ItemSelection = () => {
                         {itemCategories.slice(Math.ceil(itemCategories.length / 2)).map((category, catIdx) => (
                             <div key={catIdx} className="category-section">
                                 <h3>
-                                    <FontAwesomeIcon icon={category.icon} className="category-icon" />
+                                    <FontAwesomeIcon icon={category.icon} size="2x" className="category-icon" />
                                     {category.title}
                                 </h3>
                                 {category.items.map((item, itemIdx) => (
                                     <div key={itemIdx} className="item-row">
                                         <div className="item-info">
-                                            <FontAwesomeIcon icon={item.icon} className="item-icon" />
+                                            <FontAwesomeIcon icon={item.icon} size="lg" className="item-icon" />
                                             <span className="item-name">{item.name}</span>
                                         </div>
                                         <div className="item-controls">
@@ -191,7 +191,7 @@ const ItemSelection = () => {
 
                 {/* Bottom CTA */}
                 <div className="bottom-cta">
-                    <Link href="/ScheduleDumpster">
+                    <Link href="/construction-cleanup">
                         <button
                             className="book-now-btn"
                             disabled={estimate === 0}
@@ -303,44 +303,48 @@ const ItemSelection = () => {
                     h3 {
                         display: flex;
                         align-items: center;
-                        gap: 8px;
-                        font-size: 16px;
-                        margin: 0;
-                        padding: 10px;
-                        border-bottom: 1px solid #eee;
+                        font-size: 1.4rem;
                         color: #333;
+                        margin: 20px 0 15px;
+                        padding-bottom: 8px;
+                        border-bottom: 2px solid #eee;
                     }
 
                     .category-icon {
+                        margin-right: 12px;
                         color: #FF7701;
+                        vertical-align: middle;
                     }
 
                     .item-row {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        padding: 8px 10px;
-                        border-bottom: 1px solid #f5f5f5;
+                        padding: 12px;
+                        border-radius: 8px;
+                        margin-bottom: 8px;
+                        transition: background-color 0.2s ease;
                     }
 
-                    .item-row:last-child {
-                        border-bottom: none;
+                    .item-row:hover {
+                        background-color: #f8f8f8;
                     }
 
                     .item-info {
                         display: flex;
                         align-items: center;
-                        gap: 8px;
+                        flex: 1;
                     }
 
                     .item-icon {
+                        margin-right: 10px;
                         color: #666;
-                        font-size: 14px;
+                        min-width: 20px;
                     }
 
                     .item-name {
-                        font-size: 14px;
-                        color: #333;
+                        font-size: 1.1rem;
+                        color: #444;
                     }
 
                     .item-controls {

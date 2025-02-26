@@ -172,23 +172,7 @@ export default function ScheduleDumpster() {
                     </div>
 
                     {/* Coupon Code */}
-                    <div style={{ marginBottom: "20px" }}>
-                        <input
-                            type="text"
-                            placeholder="Coupon Code (Optional)"
-                            value={formData.couponCode}
-                            onChange={(e) => handleChange("couponCode", e.target.value)}
-                            style={{
-                                width: "100%",
-                                padding: "10px",
-                                border: errors.couponCode ? "1px solid red" : "1px solid #ccc",
-                                borderRadius: "5px",
-                            }}
-                        />
-                        {errors.couponCode && (
-                            <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.couponCode}</p>
-                        )}
-                    </div>
+          
 
                     {/* Next Button */}
                     <div
