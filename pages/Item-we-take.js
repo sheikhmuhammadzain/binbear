@@ -105,7 +105,7 @@ export default function ServiceDetail() {
                 <section className="section mt-50">
                     <div className="container">
                         <h2 className="wow animate__animated animate__fadeIn responsive-heading">
-                            Enjoy a Clutter-Free Life with BinBear Junk Removal!
+                            Enjoy a Clutter-Free Life with the BinBear Junk Removal!
                         </h2>
                         <p className="font-md color-grey-900 wow animate__animated animate__fadeIn" style={{ marginLeft: "10px" }}>
                             Is clutter piling up in your home? Want to reclaim your space? Searching for a reliable junk removal service you can trust? You're not alone! Many homeowners struggle with these same challenges, and BinBear is here to help.
