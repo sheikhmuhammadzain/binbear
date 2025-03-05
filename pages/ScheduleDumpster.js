@@ -1,7 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import { useState } from "react";
 import { useRouter } from "next/router";
-
 export default function ScheduleDumpster() {
     const router = useRouter();
     

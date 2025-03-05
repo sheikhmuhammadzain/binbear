@@ -89,7 +89,7 @@ const HistoryPage = () => {
 
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'50px'}}
 >Why Is Junk Removal?
 </h3>
 
@@ -119,7 +119,7 @@ const HistoryPage = () => {
                                 <div className="box-info-aabout-2"><span className="btn btn-tag wow animate__animated animate__fadeIn"style={{backgroundColor:'#FF7F00'}}>History</span>
                                 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginTop:'10px' }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginBlock:'40px' ,}}
 >
 The History of Junk Removal
 </h3>
@@ -145,7 +145,7 @@ As urbanization grew, particularly in the 20th century, waste disposal became mo
                                 <div className="box-info-about-2"><span className="btn btn-tag wow animate__animated animate__fadeIn"style={{backgroundColor:'#FF7F00',marginTop:'40px'}}>Our Partners</span>
                                 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginTop:'10px' }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginBlock:'40px' }}
 >
 Landfill Stress in the United States
 </h3>
@@ -167,7 +167,7 @@ Landfill Stress in the United States
                             <div className="box-info-aabout-2">
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" ,marginBlock:'40px' }}
 >
 Recycling and Junk
 </h3>
@@ -193,7 +193,7 @@ Recycling and Junk
                                 <div className="box-info-aabout-2"><span className="btn btn-tag wow animate__animated animate__fadeIn"style={{backgroundColor:'#FF7F00'}}>Our Partners</span>
                                 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginTop:'10px' }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginBlock:'40px' }}
 >
 Hazardous Waste and Junk Removal
 </h3>
@@ -231,7 +231,7 @@ Hazardous Waste and Junk Removal
                             <div className="col-lg-6" ><span className="btn btn-tag wow animate__animated animate__fadeIn" style={{backgroundColor:'#FF7F00'}}>History</span>
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginTop:'10px' }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginBlock:'40px' }}
 >
 The Junk Removal Process
 </h3>
@@ -326,7 +326,7 @@ The Junk Removal Process
                 <div className="container">
                 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'50px' }}
 >
 Choose your Junk Pickup Options
 </h3>
