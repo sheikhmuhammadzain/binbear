@@ -156,166 +156,121 @@ Our pricing estimator even allows you to estimate based on the space your junk w
 
 
                                 <div className="row">
-                                        <div className="col-lg-6 mb-30">
-                                        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
-        
-    }}>
-        1
-    </span>
-    Click the green "Launch Pricing Estimator" button above
-</h6>
-                                          
-                                          
-                                             <p className="font-xs color-grey-900 wow animate__animated animate__fadeIn"></p>
-                                        </div>
-                                        <div className="col-lg-6 mb-30">
-                                            
-                                        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-         marginRight: '5px', 
-
-        
-    }}>
-        2
-    </span>
-    Enter your zip code and follow the prompts.
-</h6>
-           
-                                            
-                                            
-                                         
-                                            <p className="font-xs color-grey-900 wow animate__animated animate__fadeIn"> </p>
-                                        </div>
-                                        <div className="col-lg-6 mb-30">
-                                                                         
-                                        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
-        
-    }}>
-        3
-    </span>
-    Choose your estimation method: select items individually or estimate by truck load.
-</h6>
-                                           
-                                           
-                                           
-                                           
-                                            <p className="font-xs color-grey-900 wow animate__animated animate__fadeIn"></p>
-                                        </div>
-                                        <div className="col-lg-6 mb-30">
-                                        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
-    }}>
-        4
-    </span>
-    Enter your contact info and let’s get started!
-</h6>
-                                           
-                                           
-                                           
-                                            
-                                            <p className="font-xs color-grey-900 wow animate__animated animate__fadeIn"></p>
-                                        </div>
-
-                                        <div className="col-lg-6 mb-30">
-                                           
-                                        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
-        
-    }}>
-        5
-    </span>
-    Add your items or specify the number of pickup truck loads.
-</h6>
-                                           
-                                           
-                                           
-                                            
-                                            <p className="font-xs color-grey-900 wow animate__animated animate__fadeIn"></p>
-                                        </div>
-                                        <div className="col-lg-6 mb-30">
-                                                                           
-                                        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
-        
-    }}>
-        6
-    </span>
-    Click "Book It" to schedule your junk removal!
-</h6>
-                 
-                                            
-                                            
-                                            
-                                            <p className="font-xs color-grey-900 wow animate__animated animate__fadeIn"> </p>
-                                        </div>
-                                       
-                                        
-
-
-
-
-                                    </div>
+    <div className="col-12 mb-30">
+        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+            <span style={{
+                display: 'inline-block',
+                width: '30px',
+                height: '30px',
+                lineHeight: '30px',
+                borderRadius: '50%',
+                backgroundColor: '#FF7701',
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                marginRight: '10px',
+            }}>
+                1
+            </span>
+            Click the green "Launch Pricing Estimator" button above
+        </h6>
+    </div>
+    <div className="col-12 mb-30">
+        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+            <span style={{
+                display: 'inline-block',
+                width: '30px',
+                height: '30px',
+                lineHeight: '30px',
+                borderRadius: '50%',
+                backgroundColor: '#FF7701',
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                marginRight: '10px',
+            }}>
+                2
+            </span>
+            Enter your zip code and follow the prompts.
+        </h6>
+    </div>
+    <div className="col-12 mb-30">
+        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+            <span style={{
+                display: 'inline-block',
+                width: '30px',
+                height: '30px',
+                lineHeight: '30px',
+                borderRadius: '50%',
+                backgroundColor: '#FF7701',
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                marginRight: '10px',
+            }}>
+                3
+            </span>
+            Choose your estimation method: select items individually or estimate by truck load.
+        </h6>
+    </div>
+    <div className="col-12 mb-30">
+        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+            <span style={{
+                display: 'inline-block',
+                width: '30px',
+                height: '30px',
+                lineHeight: '30px',
+                borderRadius: '50%',
+                backgroundColor: '#FF7701',
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                marginRight: '10px',
+            }}>
+                4
+            </span>
+            Enter your contact info and let's get started!
+        </h6>
+    </div>
+    <div className="col-12 mb-30">
+        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+            <span style={{
+                display: 'inline-block',
+                width: '30px',
+                height: '30px',
+                lineHeight: '30px',
+                borderRadius: '50%',
+                backgroundColor: '#FF7701',
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                marginRight: '10px',
+            }}>
+                5
+            </span>
+            Add your items or specify the number of pickup truck loads.
+        </h6>
+    </div>
+    <div className="col-12 mb-30">
+        <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+            <span style={{
+                display: 'inline-block',
+                width: '30px',
+                height: '30px',
+                lineHeight: '30px',
+                borderRadius: '50%',
+                backgroundColor: '#FF7701',
+                color: 'white',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                marginRight: '10px',
+            }}>
+                6
+            </span>
+            Click "Book It" to schedule your junk removal!
+        </h6>
+    </div>
+</div>
 
                                    
 
