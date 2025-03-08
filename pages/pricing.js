@@ -506,6 +506,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                
                                 <div className="item-faqs-2 mb-30">
                                 <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+ 
     <span style={{
         display: 'inline-block',
         width: '30px',
@@ -517,8 +518,34 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         textAlign: 'center',
         fontWeight: 'bold',
         marginRight: '5px', 
+
     }}>
         2
+    </span>
+    Text Us a Photo
+</h6>
+                                    
+                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">Send photos of your junk to 214-901-4769, and we’ll reply with an estimate.</p>
+                                </div>
+                                <div className="item-faqs-2 mb-30">
+                                <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+
+
+
+
+                                <span style={{
+        display: 'inline-block',
+        width: '30px',
+        height: '30px',
+        lineHeight: '30px',
+        borderRadius: '50%',
+        backgroundColor: '#FF7701',
+        color: 'white',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginRight: '5px', 
+    }}>
+        3
     </span>
     On-Site Pricing
 </h6>
@@ -531,28 +558,21 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                             <div className="col-lg-6">
                             <div className="item-faqs-2 mb-30">
                             <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
 
-    }}>
-        3
-    </span>
-    Text Us a Photo
-</h6>
-                                    
-                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">Send photos of your junk to 214-901-4769, and we’ll reply with an estimate.</p>
-                                </div>
-                                <div className="item-faqs-2 mb-30">
-                                <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <span style={{
         display: 'inline-block',
         width: '30px',
