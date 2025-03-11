@@ -114,7 +114,7 @@ export default function WorkProcess() {
                                  
                         <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
 >Our Process
 </h3>
                  
@@ -129,7 +129,7 @@ export default function WorkProcess() {
                                          
                         <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
 >What is Junk Removal?
 </h3>    
                                 
@@ -148,7 +148,7 @@ export default function WorkProcess() {
                                 
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center", marginBlock:'30px' }}
 >BinBear’s Approach to Junk Removal
 </h3>    
                                 
@@ -199,7 +199,7 @@ export default function WorkProcess() {
                                
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center",marginBlock:'30px' }}
 >How It Works: Just 3 Easy Steps
 </h3>    
                                
@@ -265,7 +265,7 @@ export default function WorkProcess() {
                                     
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center", marginBlock:'30px' }}
 >What is Junk Removal?
 </h3>    
                        
@@ -337,7 +337,7 @@ export default function WorkProcess() {
                             <div className="col-lg-6 mb-0"><img className="mb-15 wow animate__animated animate__fadeIn" src="/assets/imgs/page/workprocess/parachute.png" alt="transp" />
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
 >What Makes BinBear Different 
 </h3>   
                                   <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">BinBear has earned its #1 rating by offering exceptional customer service. Our team of friendly professionals is trained, uniformed, licensed, and insured, equipped with vehicles built for efficient junk removal. You’ll notice the BinBear difference as our crew handles everything with care and courtesy.</p>
@@ -390,7 +390,7 @@ export default function WorkProcess() {
                <div className="container">
                <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
 >Residential Junk Removal with BinBear
 </h3>   
                    
@@ -414,7 +414,7 @@ Customers love BinBear because we’re fast, professional, and eco-friendly. We 
 
                    <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
 >Residential Junk Removal Services
 </h3>   
                   
@@ -883,7 +883,7 @@ Customers love BinBear because we’re fast, professional, and eco-friendly. We 
                                <div className="box-info-pround box-whychooseus-3"style={{marginTop:'10px'}}><span className="btn btn-tag color-grey-900 wow animate__animated animate__fadeIn"style={{backgroundColor:'#FF7701'}}>Our Features</span>
                                <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'  }}
 >Why Choose BinBear?
 </h3>   
                  

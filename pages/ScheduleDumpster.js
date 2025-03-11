@@ -1,6 +1,8 @@
 import Layout from "@/components/layout/Layout";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Bgmap from "@/components/sections/homepage1/Bgmap";
+
 export default function ScheduleDumpster() {
     const router = useRouter();
     
@@ -21,6 +23,9 @@ export default function ScheduleDumpster() {
     });
 
     const [errors, setErrors] = useState({});
+    const [addressSuggestions, setAddressSuggestions] = useState([]);
+    const [showTooltip, setShowTooltip] = useState(false);
+    const [isVerifying, setIsVerifying] = useState(false);
 
     const handleChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -45,6 +50,33 @@ export default function ScheduleDumpster() {
             return false;
         }
         return true;
+    };
+
+    const verifyAddress = async (address) => {
+        setIsVerifying(true);
+        try {
+            // Using OpenStreetMap Nominatim API (free)
+            const response = await fetch(
+                `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=5`
+            );
+            const data = await response.json();
+            setAddressSuggestions(data);
+        } catch (error) {
+            console.error('Error verifying address:', error);
+        }
+        setIsVerifying(false);
+    };
+
+    const selectAddress = (address) => {
+        handleChange("address", address.display_name);
+        setAddressSuggestions([]);
+        // Update map coordinates if needed
+        if (address.lat && address.lon) {
+            setFormData(prev => ({
+                ...prev,
+                coordinates: `${address.lat},${address.lon}`
+            }));
+        }
     };
 
     return (
@@ -89,12 +121,14 @@ export default function ScheduleDumpster() {
                                 <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.firstName}</p>
                             )}
                         </div>
-                        <div style={{ flex: 1 }}>
+                        <div style={{ flex: 1, position: 'relative' }}>
                             <input
                                 type="text"
                                 placeholder="Address"
                                 value={formData.address}
                                 onChange={(e) => handleChange("address", e.target.value)}
+                                onFocus={() => setShowTooltip(true)}
+                                onBlur={() => setTimeout(() => setShowTooltip(false), 200)}
                                 style={{
                                     width: "100%",
                                     padding: "10px",
@@ -102,6 +136,67 @@ export default function ScheduleDumpster() {
                                     borderRadius: "5px",
                                 }}
                             />
+                            {showTooltip && (
+                                <div 
+                                    style={{
+                                        position: 'absolute',
+                                        right: '10px',
+                                        top: '50%',
+                                        transform: 'translateY(-50%)',
+                                        cursor: 'pointer',
+                                        backgroundColor: '#FF7701',
+                                        color: 'white',
+                                        padding: '5px 10px',
+                                        borderRadius: '3px',
+                                        fontSize: '12px',
+                                        zIndex: 1000
+                                    }}
+                                    onClick={() => verifyAddress(formData.address)}
+                                >
+                                    Verify Address
+                                </div>
+                            )}
+                            {addressSuggestions.length > 0 && (
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '100%',
+                                    left: 0,
+                                    right: 0,
+                                    backgroundColor: 'white',
+                                    border: '1px solid #ccc',
+                                    borderRadius: '5px',
+                                    marginTop: '5px',
+                                    zIndex: 1000,
+                                    maxHeight: '200px',
+                                    overflowY: 'auto'
+                                }}>
+                                    {addressSuggestions.map((suggestion, index) => (
+                                        <div
+                                            key={index}
+                                            style={{
+                                                padding: '10px',
+                                                borderBottom: '1px solid #eee',
+                                                cursor: 'pointer',
+                                                fontSize: '14px'
+                                            }}
+                                            onClick={() => selectAddress(suggestion)}
+                                            onMouseDown={(e) => e.preventDefault()}
+                                        >
+                                            {suggestion.display_name}
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                            {isVerifying && (
+                                <div style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)'
+                                }}>
+                                    Verifying...
+                                </div>
+                            )}
                             {errors.address && (
                                 <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.address}</p>
                             )}
