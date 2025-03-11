@@ -32,7 +32,7 @@ export default function OurTeam() {
                             <div className="col-lg-6 mb-30">
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
 >
 BinBear’s Junk Recycling Service
 </h3>
@@ -526,7 +526,7 @@ Contrary to popular belief, the U.S. isn’t the world’s top producer of waste
                                            
                     <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
 >
 How to Get Rid of Your Recyclable Junk
 </h3>
@@ -805,7 +805,7 @@ With insured operators and fair pricing, BinBear delivers great value and eco-fr
                                                        
                     <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px' }}
 >
 Recycling FAQs
 </h3>
@@ -927,7 +927,7 @@ Recycling FAQs
                         
                     <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7F00", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" ,  marginBlock:'30px'}}
 >
 Choosing a Junk Recycling Company
 </h3>
