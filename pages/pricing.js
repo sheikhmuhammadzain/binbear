@@ -520,12 +520,13 @@ Our pricing estimator even allows you to estimate based on the space your junk w
     }}>
         2
     </span>
-    On-Site Pricing
+    Text Us a Photo
 </h6>
 
                                     
                                     
-                                     <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"> For the most accurate estimate, we offer free on-site evaluations. </p>
+                                     <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"> 
+                                     Send photos of your junk to 214-901-4769, and we’ll reply with an estimate. </p>
                                 </div>
                             </div>
                             <div className="col-lg-6">
@@ -546,10 +547,10 @@ Our pricing estimator even allows you to estimate based on the space your junk w
     }}>
         3
     </span>
-    Text Us a Photo
+    On-Site Pricing
 </h6>
                                     
-                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">Send photos of your junk to 214-901-4769, and we’ll reply with an estimate.</p>
+                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">For the most accurate estimate, we offer free on-site evaluations.</p>
                                 </div>
                                 <div className="item-faqs-2 mb-30">
                                 <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
