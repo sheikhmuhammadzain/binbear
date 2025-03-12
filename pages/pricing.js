@@ -117,7 +117,7 @@ export default function pricing() {
                                                                                                                   
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginBlock:'40px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
 >Get an Estimate Now With our Online Pricing Estimator!
 </h3>    
                                
@@ -144,7 +144,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                  
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'30px', borderRadius: "5px",marginBottom:'30px', width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
 >How to Use BinBear’s Pricing Estimator:
 </h3>    
        
@@ -305,7 +305,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                 
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'30px', borderRadius: "5px", width: "fit-content", textAlign: "center", marginBottom:'30px' }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
 >BinBear Believes in Fair and Transparent Pricing
 </h3>  
 
@@ -469,7 +469,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                                         
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'30px', borderRadius: "5px",marginBottom:'30px', width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
 >Four Ways to Get Your Estimate
 </h3> 
                         
@@ -518,7 +518,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         fontWeight: 'bold',
         marginRight: '5px', 
     }}>
-        2
+        3
     </span>
     Text Us a Photo
 </h6>
@@ -526,7 +526,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                     
                                     
                                      <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"> 
-                                     Send photos of your junk to 214-901-4769, and we’ll reply with an estimate. </p>
+                                     Send photos of your junk to 214-901-4769, and we’ll reply with an estimate.</p>
                                 </div>
                             </div>
                             <div className="col-lg-6">
@@ -545,12 +545,15 @@ Our pricing estimator even allows you to estimate based on the space your junk w
         marginRight: '5px', 
 
     }}>
-        3
+        2
     </span>
+   
     On-Site Pricing
 </h6>
                                     
-                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">For the most accurate estimate, we offer free on-site evaluations.</p>
+                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">
+                                    For the most accurate estimate, we offer free on-site evaluations.
+                                    </p>
                                 </div>
                                 <div className="item-faqs-2 mb-30">
                                 <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
