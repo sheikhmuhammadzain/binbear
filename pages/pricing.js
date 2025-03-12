@@ -117,7 +117,7 @@ export default function pricing() {
                                                                                                                   
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginBlock:'40px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
 >Get an Estimate Now With our Online Pricing Estimator!
 </h3>    
                                
@@ -144,7 +144,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                  
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'30px', borderRadius: "5px",marginBottom:'30px', width: "fit-content", textAlign: "center" }}
 >How to Use BinBear’s Pricing Estimator:
 </h3>    
        
@@ -305,7 +305,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                 
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px", width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'30px', borderRadius: "5px", width: "fit-content", textAlign: "center", marginBottom:'30px' }}
 >BinBear Believes in Fair and Transparent Pricing
 </h3>  
 
@@ -469,7 +469,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
                                                                                                                                                                         
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
+    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'30px', borderRadius: "5px",marginBottom:'30px', width: "fit-content", textAlign: "center" }}
 >Four Ways to Get Your Estimate
 </h3> 
                         
