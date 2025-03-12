@@ -500,7 +500,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
 </h6>
 
                                     
-                                      <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"> Estimate your cost quickly with our online tool.
+                                      <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginLeft: '40px' }}> Estimate your cost quickly with our online tool.
                                     .</p>
                                 </div>
                                
@@ -525,7 +525,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
 
                                     
                                     
-                                     <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"> 
+                                     <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginLeft: '40px' }}> 
                                      Send photos of your junk to 214-901-4769, and we’ll reply with an estimate.</p>
                                 </div>
                             </div>
@@ -551,7 +551,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
     On-Site Pricing
 </h6>
                                     
-                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">
+                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginLeft: '40px' }}>
                                     For the most accurate estimate, we offer free on-site evaluations.
                                     </p>
                                 </div>
@@ -575,9 +575,9 @@ Our pricing estimator even allows you to estimate based on the space your junk w
     Call or Live Chat
 </h6>
                                     
-                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"> Talk to our trained staff for a price estimate—perfect for smaller jobs of four items or less. </p>
+                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginLeft: '40px' }}> Talk to our trained staff for a price estimate—perfect for smaller jobs of four items or less. </p>
                                 </div>
-                                <p className="color-brand-2 mb-10 wow animate__animated animate__fadeIn"style={{marginTop:'30px',marginRight:'70px'}}>No matter which option you choose, our final, no-obligation price is always confirmed on site by our technicians.</p>
+                                <p className="color-brand-2 mb-10 wow animate__animated animate__fadeIn" style={{ marginTop: '30px', marginRight: '70px', marginLeft: '40px' }}>No matter which option you choose, our final, no-obligation price is always confirmed on site by our technicians.</p>
                                 <div className="item-faqs-2 mb-30">
                             
                                       </div>
