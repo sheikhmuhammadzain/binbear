@@ -465,126 +465,113 @@ Our pricing estimator even allows you to estimate based on the space your junk w
 
 
                         <section className="section mt-10">
-                    <div className="container position-relative">
-                                                                                                                                                                        
-<h3
-    className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
->Four Ways to Get Your Estimate
-</h3> 
-                        
-                     
-                        <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">
-                        </p>We make it easy to get a free estimate with four convenient options:
-                        <div className="row mt-50">
-                            <div className="col-lg-6">
-                                <div className="item-faqs-2 mb-30">
-                                    
-                                <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
+    <div className="container position-relative">
+        <h3 className="wow animate__animated animate__fadeIn responsive-heading mb-4"
+            style={{ 
+                backgroundColor: "#FF7701", 
+                color: "white", 
+                padding: "15px",
+                borderRadius: "5px",
+                margin: "0 auto",
+                maxWidth: "fit-content",
+                textAlign: "left" // force left alignment
+            }}>
+            Four Ways to Get Your Estimate
+        </h3>
 
-    }}>
-        1
-    </span>
-         Online Pricing Estimator
-</h6>
+        <p className="font-md color-grey-700 wow animate__animated animate__fadeIn mb-5" 
+           style={{ textAlign: "left", marginTop: "0" }}>
+            We make it easy to get a free estimate with four convenient options:
+        </p>
 
-                                    
-                                      <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginLeft: '40px' }}> Estimate your cost quickly with our online tool.
-                                    .</p>
-                                </div>
-                               
-                                <div className="item-faqs-2 mb-30">
-                                <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
-    }}>
-        3
-    </span>
-    Text Us a Photo
-</h6>
+        <div className="row estimate-options">
+            <div className="col-lg-6">
+                <div className="estimate-item mb-4">
+                    <h6 className="color-brand-2 d-flex align-items-center">
+                        <span className="number-circle">1</span>
+                        Online Pricing Estimator
+                    </h6>
+                    <p>Estimate your cost quickly with our online tool.</p>
+                </div>
 
-                                    
-                                    
-                                     <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginLeft: '40px' }}> 
-                                     Send photos of your junk to 214-901-4769, and we’ll reply with an estimate.</p>
-                                </div>
-                            </div>
-                            <div className="col-lg-6">
-                            <div className="item-faqs-2 mb-30">
-                            <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
+                <div className="estimate-item mb-4">
+                    <h6 className="color-brand-2 d-flex align-items-center">
+                        <span className="number-circle">3</span>
+                        Text Us a Photo
+                    </h6>
+                    <p>Send photos of your junk to 214-901-4769, and we'll reply with an estimate.</p>
+                </div>
+            </div>
 
-    }}>
-        2
-    </span>
-   
-    On-Site Pricing
-</h6>
-                                    
-                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginLeft: '40px' }}>
-                                    For the most accurate estimate, we offer free on-site evaluations.
-                                    </p>
-                                </div>
-                                <div className="item-faqs-2 mb-30">
-                                <h6 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-    <span style={{
-        display: 'inline-block',
-        width: '30px',
-        height: '30px',
-        lineHeight: '30px',
-        borderRadius: '50%',
-        backgroundColor: '#FF7701',
-        color: 'white',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginRight: '5px', 
-        
-    }}>
-        4
-    </span>
-    Call or Live Chat
-</h6>
-                                    
-                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginLeft: '40px' }}> Talk to our trained staff for a price estimate—perfect for smaller jobs of four items or less. </p>
-                                </div>
-                                <p className="color-brand-2 mb-10 wow animate__animated animate__fadeIn" style={{ marginTop: '30px', marginRight: '70px', marginLeft: '40px' }}>No matter which option you choose, our final, no-obligation price is always confirmed on site by our technicians.</p>
-                                <div className="item-faqs-2 mb-30">
-                            
-                                      </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <div className="col-lg-6">
+                <div className="estimate-item mb-4">
+                    <h6 className="color-brand-2 d-flex align-items-center">
+                        <span className="number-circle">2</span>
+                        On-Site Pricing
+                    </h6>
+                    <p>For the most accurate estimate, we offer free on-site evaluations.</p>
+                </div>
+
+                <div className="estimate-item mb-4">
+                    <h6 className="color-brand-2 d-flex align-items-center">
+                        <span className="number-circle">4</span>
+                        Call or Live Chat
+                    </h6>
+                    <p>Talk to our trained staff for a price estimate—perfect for smaller jobs of four items or less.</p>
+                </div>
+            </div>
+        </div>
+
+        <p className="color-brand-2 mt-4" style={{ textAlign: "left" }}>
+            No matter which option you choose, our final, no-obligation price is always confirmed on site by our technicians.
+        </p>
+
+        <style jsx>{`
+            .number-circle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background-color: #FF7701;
+                color: white;
+                font-weight: bold;
+                margin-right: 10px;
+                flex-shrink: 0;
+            }
+            .estimate-item {
+                padding: 15px;
+                transition: all 0.3s ease;
+            }
+            .estimate-item:hover {
+                background-color: rgba(255, 119, 1, 0.1);
+                border-radius: 8px;
+            }
+            .estimate-item h6 {
+                margin: 0;
+                text-align: left;
+            }
+            .estimate-item p {
+                margin: 5px 0 0 40px; /* adjust indent to align text with heading text */
+            }
+            @media (max-width: 768px) {
+                .estimate-options {
+                    margin-top: 20px;
+                }
+                .estimate-item {
+                    padding: 10px;
+                }
+                .estimate-item p {
+                    margin-left: 35px; /* reduced indent on mobile */
+                }
+                .responsive-heading, p.font-md.color-grey-700, p.color-brand-2 {
+                    text-align: left !important;
+                }
+            }
+        `}</style>
+    </div>
+</section>
                 
 
                 <section className="section pb-5 pt-50 mb-80">
