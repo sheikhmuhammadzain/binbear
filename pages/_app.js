@@ -1,6 +1,7 @@
 import Preloader from "@/components/elements/Preloader"
 import { useEffect, useState } from "react"
 import "../public/assets/css/style.css"
+import "../public/assets/css/premium.css"
 import "../public/ast/globals.css"
 import 'swiper/css';
 // import "swiper/css/navigation";
@@ -32,6 +33,17 @@ function MyApp({ Component, pageProps }) {
                 }
             `;
             document.head.appendChild(style);
+        }
+
+        // Initialize AOS animation library
+        if (typeof window !== 'undefined') {
+            const AOS = require('aos');
+            require('aos/dist/aos.css');
+            AOS.init({
+                duration: 800,
+                once: true,
+                easing: 'ease-out-cubic'
+            });
         }
     }, [])
     return (<>

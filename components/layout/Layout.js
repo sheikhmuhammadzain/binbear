@@ -7,6 +7,7 @@ import Header2 from './Header2'
 import HeaderNewsletter from "./HeaderNewsletter"
 import PageHead from './PageHead'
 import Sidebar from './Sidebar'
+import WelcomePopup from '../WelcomePopup'
 import { useRouter } from 'next/router'
 
 export default function Layout({ headerStyle, footerStyle, headTitle, children, topBarStyle }) {
@@ -14,12 +15,16 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
     const [openClass, setOpenClass] = useState('');
     const router = useRouter();
     const [hideBookNow, setHideBookNow] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         // Check if we're on a page where we should hide the book now button
         const hideOnPages = ['/item-estimate', '/Booking', '/choose-service'];
         const shouldHide = hideOnPages.includes(router.pathname);
         setHideBookNow(shouldHide);
+
+        // Only show popup on homepage
+        setShowPopup(router.pathname === '/');
 
         // Force remove any existing sticky containers when needed
         if (shouldHide) {
@@ -114,6 +119,9 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
             {footerStyle == "newsletter" && <FooterNewsletter hideBookNow={hideBookNow} />}
 
             {!hideBookNow && <BackToTop />}
+
+            {/* Welcome Popup - only shown on homepage */}
+            {showPopup && <WelcomePopup />}
 
             <style jsx global>{`
                 /* Global styles for layout management */
