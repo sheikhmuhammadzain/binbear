@@ -141,7 +141,7 @@ export default function Services1() {
                         <div className="swiper-pagination swiper-pagination-services"></div>
                     </div>
                     
-                    <div className="row align-items-end mt-4">
+                    <div className="row align-items-end mt-3">
                         <div className="col-12">
                             <p className="disclaimer-text" data-aos="fade-up">
                                 Disclaimer: If you a input the first differs greatly from new information you have provided, your price of service may
@@ -154,7 +154,7 @@ export default function Services1() {
 
             <style jsx>{`
                 .section-premium {
-                    padding: 100px 0;
+                    padding: 70px 0;
                     background-color: #f9f9f9;
                     position: relative;
                     overflow: hidden;
@@ -165,8 +165,8 @@ export default function Services1() {
                     position: absolute;
                     top: -100px;
                     right: -100px;
-                    width: 300px;
-                    height: 300px;
+                    width: 250px;
+                    height: 250px;
                     border-radius: 50%;
                     background: linear-gradient(45deg, rgba(255, 127, 0, 0.1), rgba(255, 127, 0, 0.05));
                 }
@@ -176,21 +176,21 @@ export default function Services1() {
                     position: absolute;
                     bottom: -100px;
                     left: -100px;
-                    width: 300px;
-                    height: 300px;
+                    width: 250px;
+                    height: 250px;
                     border-radius: 50%;
                     background: linear-gradient(45deg, rgba(255, 127, 0, 0.1), rgba(255, 127, 0, 0.05));
                 }
                 
                 .section-premium-header {
                     text-align: center;
-                    margin-bottom: 60px;
+                    margin-bottom: 40px;
                 }
                 
                 .section-premium-title {
-                    font-size: 36px;
+                    font-size: 32px;
                     font-weight: 800;
-                    margin-bottom: 20px;
+                    margin-bottom: 15px;
                     color: #212121;
                     position: relative;
                     display: inline-block;
@@ -199,19 +199,19 @@ export default function Services1() {
                 .section-premium-title::after {
                     content: '';
                     position: absolute;
-                    bottom: -10px;
+                    bottom: -8px;
                     left: 50%;
                     transform: translateX(-50%);
-                    width: 80px;
-                    height: 4px;
+                    width: 70px;
+                    height: 3px;
                     background: linear-gradient(to right, #FF7F00, #FFA64D);
                     border-radius: 2px;
                 }
                 
                 .section-premium-subtitle {
-                    font-size: 18px;
+                    font-size: 16px;
                     color: #757575;
-                    max-width: 700px;
+                    max-width: 650px;
                     margin: 0 auto;
                 }
                 
@@ -222,8 +222,8 @@ export default function Services1() {
                 
                 .step-premium {
                     position: relative;
-                    padding-left: 80px;
-                    margin-bottom: 30px;
+                    padding-left: 70px;
+                    margin-bottom: 25px;
                     z-index: 2;
                 }
                 
@@ -233,70 +233,70 @@ export default function Services1() {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    width: 60px;
-                    height: 60px;
+                    width: 50px;
+                    height: 50px;
                     background: linear-gradient(45deg, #FF7F00, #FFA64D);
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 24px;
+                    font-size: 20px;
                     font-weight: 700;
                     color: #212121;
-                    box-shadow: 0 6px 15px rgba(255, 127, 0, 0.3);
+                    box-shadow: 0 5px 12px rgba(255, 127, 0, 0.3);
                 }
                 
                 .step-premium-content {
                     background-color: white;
-                    border-radius: 12px;
-                    padding: 25px;
-                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+                    border-radius: 8px;
+                    padding: 20px;
+                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
                     transition: all 0.3s ease;
-                    border-left: 4px solid #FF7F00;
+                    border-left: 3px solid #FF7F00;
                 }
                 
                 .step-premium-content:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                    transform: translateY(-3px);
+                    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
                 }
                 
                 .step-premium-title {
-                    font-size: 20px;
+                    font-size: 18px;
                     font-weight: 700;
-                    margin-bottom: 10px;
+                    margin-bottom: 8px;
                     color: #212121;
                 }
                 
                 .step-premium-text {
-                    font-size: 16px;
-                    line-height: 1.6;
+                    font-size: 15px;
+                    line-height: 1.5;
                     color: #757575;
                     margin-bottom: 0;
                 }
                 
                 .service-cards-premium {
-                    margin-top: 60px;
+                    margin-top: 40px;
                     position: relative;
-                    padding-bottom: 50px;
+                    padding-bottom: 40px;
                 }
                 
                 .card-premium {
                     background-color: white;
-                    border-radius: 12px;
+                    border-radius: 8px;
                     overflow: hidden;
-                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
                     transition: all 0.3s ease;
                     height: 100%;
                     border: none;
                 }
                 
                 .card-premium:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                    transform: translateY(-3px);
+                    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
                 }
                 
                 .card-premium-image {
-                    height: 220px;
+                    height: 200px;
                     overflow: hidden;
                 }
                 
@@ -312,19 +312,19 @@ export default function Services1() {
                 }
                 
                 .card-premium-content {
-                    padding: 25px;
+                    padding: 20px;
                 }
                 
                 .card-premium-title {
-                    font-size: 20px;
+                    font-size: 18px;
                     font-weight: 700;
-                    margin-bottom: 15px;
+                    margin-bottom: 10px;
                     color: #212121;
                 }
                 
                 .card-premium-text {
-                    font-size: 15px;
-                    line-height: 1.6;
+                    font-size: 14px;
+                    line-height: 1.5;
                     color: #757575;
                     margin-bottom: 0;
                 }
@@ -338,11 +338,11 @@ export default function Services1() {
                 }
                 
                 .swiper-pagination-services .swiper-pagination-bullet {
-                    width: 10px;
-                    height: 10px;
+                    width: 8px;
+                    height: 8px;
                     background: #ddd;
                     opacity: 1;
-                    margin: 0 5px;
+                    margin: 0 4px;
                 }
                 
                 .swiper-pagination-services .swiper-pagination-bullet-active {
@@ -352,10 +352,10 @@ export default function Services1() {
                 .btn-premium {
                     display: inline-flex;
                     align-items: center;
-                    padding: 14px 30px;
-                    border-radius: 8px;
+                    padding: 12px 25px;
+                    border-radius: 6px;
                     font-weight: 600;
-                    font-size: 16px;
+                    font-size: 15px;
                     transition: all 0.3s ease;
                     text-decoration: none;
                 }
@@ -363,53 +363,29 @@ export default function Services1() {
                 .btn-premium-primary {
                     background: linear-gradient(45deg, #FF7F00, #FFA64D);
                     color: #212121;
-                    box-shadow: 0 4px 15px rgba(255, 127, 0, 0.3);
+                    box-shadow: 0 3px 12px rgba(255, 127, 0, 0.3);
                 }
                 
                 .btn-premium-primary:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 8px 20px rgba(255, 127, 0, 0.4);
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 15px rgba(255, 127, 0, 0.4);
                     color: #212121;
                 }
                 
                 .disclaimer-text {
-                    font-size: 13px;
+                    font-size: 12px;
                     color: #ff0000;
                     text-align: center;
-                    margin-top: 20px;
+                    margin-top: 15px;
                 }
                 
                 @media (max-width: 992px) {
-                    .section-premium {
-                        padding: 80px 0;
-                    }
-                    
-                    .section-premium-title {
-                        font-size: 32px;
-                    }
-                    
-                    .step-premium {
-                        padding-left: 70px;
-                    }
-                    
-                    .step-premium::before {
-                        width: 50px;
-                        height: 50px;
-                        font-size: 20px;
-                    }
-                }
-                
-                @media (max-width: 768px) {
                     .section-premium {
                         padding: 60px 0;
                     }
                     
                     .section-premium-title {
                         font-size: 28px;
-                    }
-                    
-                    .section-premium-subtitle {
-                        font-size: 16px;
                     }
                     
                     .step-premium {
@@ -421,27 +397,19 @@ export default function Services1() {
                         height: 45px;
                         font-size: 18px;
                     }
-                    
-                    .step-premium-content {
-                        padding: 20px;
-                    }
-                    
-                    .step-premium-title {
-                        font-size: 18px;
-                    }
-                    
-                    .step-premium-text {
-                        font-size: 15px;
-                    }
                 }
                 
-                @media (max-width: 576px) {
+                @media (max-width: 768px) {
                     .section-premium {
                         padding: 50px 0;
                     }
                     
                     .section-premium-title {
-                        font-size: 24px;
+                        font-size: 26px;
+                    }
+                    
+                    .section-premium-subtitle {
+                        font-size: 15px;
                     }
                     
                     .step-premium {
@@ -465,10 +433,42 @@ export default function Services1() {
                     .step-premium-text {
                         font-size: 14px;
                     }
+                }
+                
+                @media (max-width: 576px) {
+                    .section-premium {
+                        padding: 40px 0;
+                    }
+                    
+                    .section-premium-title {
+                        font-size: 22px;
+                    }
+                    
+                    .step-premium {
+                        padding-left: 50px;
+                    }
+                    
+                    .step-premium::before {
+                        width: 35px;
+                        height: 35px;
+                        font-size: 15px;
+                    }
+                    
+                    .step-premium-content {
+                        padding: 12px;
+                    }
+                    
+                    .step-premium-title {
+                        font-size: 16px;
+                    }
+                    
+                    .step-premium-text {
+                        font-size: 13px;
+                    }
                     
                     .btn-premium {
-                        padding: 12px 24px;
-                        font-size: 15px;
+                        padding: 10px 20px;
+                        font-size: 14px;
                     }
                 }
             `}</style>

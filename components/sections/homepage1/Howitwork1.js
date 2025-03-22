@@ -8,7 +8,7 @@ export default function Howitwork1() {
             <section className="section-premium bg-worldmap">
                 <div className="container">
                     <div className="section-premium-header" data-aos="fade-up">
-                        <img className="mb-15" src="/img/bear.png.png" width={150} height={60} alt="BinBear Logo" />
+                        <img className="mb-10" src="/img/bear.png.png" width={120} height={48} alt="BinBear Logo" />
                         <h2 className="section-premium-title">You just book, and we take care of rest!</h2>
                         <h4 className="section-premium-subtitle">We make Junk Removal Easy</h4>
                         <p className="section-premium-description">
@@ -16,8 +16,8 @@ export default function Howitwork1() {
                         </p>
                     </div>
                     
-                    <div className="row mt-50">
-                        <div className="col-lg-6 mb-30" data-aos="fade-right">
+                    <div className="row mt-40">
+                        <div className="col-lg-6 mb-25" data-aos="fade-right">
                             <div className="image-premium-container">
                                 <img className="image-premium" src="/assets/imgs/page/homepage1/how-it-work.png" alt="BinBear Service" />
                                 <div className="image-premium-overlay">
@@ -98,7 +98,7 @@ export default function Howitwork1() {
             
             <style jsx>{`
                 .section-premium {
-                    padding: 100px 0;
+                    padding: 70px 0;
                     position: relative;
                     background-color: #f9f9f9;
                     overflow: hidden;
@@ -106,38 +106,38 @@ export default function Howitwork1() {
                 
                 .section-premium-header {
                     text-align: center;
-                    margin-bottom: 60px;
+                    margin-bottom: 40px;
                 }
                 
                 .section-premium-title {
-                    font-size: 36px;
+                    font-size: 32px;
                     font-weight: 800;
-                    margin-bottom: 20px;
+                    margin-bottom: 15px;
                     color: #FF7F00;
                     position: relative;
                     display: inline-block;
                 }
                 
                 .section-premium-subtitle {
-                    font-size: 24px;
+                    font-size: 22px;
                     font-weight: 600;
-                    margin-bottom: 20px;
+                    margin-bottom: 15px;
                     color: #212121;
                 }
                 
                 .section-premium-description {
-                    font-size: 18px;
+                    font-size: 16px;
                     color: #757575;
-                    max-width: 800px;
+                    max-width: 750px;
                     margin: 0 auto;
-                    line-height: 1.6;
+                    line-height: 1.5;
                 }
                 
                 .image-premium-container {
                     position: relative;
-                    border-radius: 12px;
+                    border-radius: 8px;
                     overflow: hidden;
-                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
                 }
                 
                 .image-premium {
@@ -156,7 +156,7 @@ export default function Howitwork1() {
                     left: 0;
                     right: 0;
                     background-color: rgba(0, 0, 0, 0.8);
-                    padding: 30px;
+                    padding: 25px;
                     transition: all 0.3s ease;
                 }
                 
@@ -165,15 +165,15 @@ export default function Howitwork1() {
                 }
                 
                 .image-premium-title {
-                    font-size: 22px;
+                    font-size: 20px;
                     font-weight: 700;
-                    margin-bottom: 15px;
+                    margin-bottom: 12px;
                     color: white;
                 }
                 
                 .image-premium-text {
-                    font-size: 16px;
-                    line-height: 1.6;
+                    font-size: 15px;
+                    line-height: 1.5;
                     color: rgba(255, 255, 255, 0.9);
                     margin-bottom: 0;
                 }
@@ -181,41 +181,41 @@ export default function Howitwork1() {
                 .features-premium {
                     display: flex;
                     flex-direction: column;
-                    gap: 25px;
+                    gap: 20px;
                 }
                 
                 .feature-premium {
                     display: flex;
                     align-items: flex-start;
                     background-color: white;
-                    border-radius: 12px;
-                    padding: 25px;
-                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+                    border-radius: 8px;
+                    padding: 20px;
+                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
                     transition: all 0.3s ease;
-                    border-left: 4px solid #FF7F00;
+                    border-left: 3px solid #FF7F00;
                 }
                 
                 .feature-premium:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                    transform: translateY(-3px);
+                    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
                 }
                 
                 .feature-premium-icon {
-                    width: 60px;
-                    height: 60px;
-                    min-width: 60px;
+                    width: 50px;
+                    height: 50px;
+                    min-width: 50px;
                     background: linear-gradient(45deg, #FF7F00, #FFA64D);
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    margin-right: 20px;
-                    box-shadow: 0 6px 15px rgba(255, 127, 0, 0.2);
+                    margin-right: 15px;
+                    box-shadow: 0 5px 12px rgba(255, 127, 0, 0.2);
                 }
                 
                 .feature-premium-icon img {
-                    width: 30px;
-                    height: 30px;
+                    width: 25px;
+                    height: 25px;
                     object-fit: contain;
                 }
                 
@@ -224,46 +224,20 @@ export default function Howitwork1() {
                 }
                 
                 .feature-premium-title {
-                    font-size: 18px;
+                    font-size: 17px;
                     font-weight: 700;
-                    margin-bottom: 10px;
+                    margin-bottom: 8px;
                     color: #212121;
                 }
                 
                 .feature-premium-text {
-                    font-size: 15px;
-                    line-height: 1.6;
+                    font-size: 14px;
+                    line-height: 1.5;
                     color: #757575;
                     margin-bottom: 0;
                 }
                 
                 @media (max-width: 992px) {
-                    .section-premium {
-                        padding: 80px 0;
-                    }
-                    
-                    .section-premium-title {
-                        font-size: 32px;
-                    }
-                    
-                    .section-premium-subtitle {
-                        font-size: 22px;
-                    }
-                    
-                    .section-premium-description {
-                        font-size: 16px;
-                    }
-                    
-                    .image-premium-overlay {
-                        padding: 25px;
-                    }
-                    
-                    .image-premium-title {
-                        font-size: 20px;
-                    }
-                }
-                
-                @media (max-width: 768px) {
                     .section-premium {
                         padding: 60px 0;
                     }
@@ -276,59 +250,43 @@ export default function Howitwork1() {
                         font-size: 20px;
                     }
                     
+                    .section-premium-description {
+                        font-size: 15px;
+                    }
+                    
                     .image-premium-overlay {
                         padding: 20px;
                     }
                     
                     .image-premium-title {
                         font-size: 18px;
-                        margin-bottom: 10px;
-                    }
-                    
-                    .image-premium-text {
-                        font-size: 14px;
-                    }
-                    
-                    .feature-premium {
-                        padding: 20px;
-                    }
-                    
-                    .feature-premium-icon {
-                        width: 50px;
-                        height: 50px;
-                        min-width: 50px;
-                        margin-right: 15px;
-                    }
-                    
-                    .feature-premium-icon img {
-                        width: 25px;
-                        height: 25px;
-                    }
-                    
-                    .feature-premium-title {
-                        font-size: 17px;
-                    }
-                    
-                    .feature-premium-text {
-                        font-size: 14px;
                     }
                 }
                 
-                @media (max-width: 576px) {
+                @media (max-width: 768px) {
                     .section-premium {
                         padding: 50px 0;
                     }
                     
                     .section-premium-title {
-                        font-size: 24px;
+                        font-size: 26px;
                     }
                     
                     .section-premium-subtitle {
                         font-size: 18px;
                     }
                     
-                    .section-premium-description {
-                        font-size: 15px;
+                    .image-premium-overlay {
+                        padding: 15px;
+                    }
+                    
+                    .image-premium-title {
+                        font-size: 17px;
+                        margin-bottom: 8px;
+                    }
+                    
+                    .image-premium-text {
+                        font-size: 13px;
                     }
                     
                     .feature-premium {
@@ -349,6 +307,48 @@ export default function Howitwork1() {
                     
                     .feature-premium-title {
                         font-size: 16px;
+                    }
+                    
+                    .feature-premium-text {
+                        font-size: 13px;
+                    }
+                }
+                
+                @media (max-width: 576px) {
+                    .section-premium {
+                        padding: 40px 0;
+                    }
+                    
+                    .section-premium-title {
+                        font-size: 22px;
+                    }
+                    
+                    .section-premium-subtitle {
+                        font-size: 16px;
+                    }
+                    
+                    .section-premium-description {
+                        font-size: 14px;
+                    }
+                    
+                    .feature-premium {
+                        padding: 12px;
+                    }
+                    
+                    .feature-premium-icon {
+                        width: 40px;
+                        height: 40px;
+                        min-width: 40px;
+                        margin-right: 10px;
+                    }
+                    
+                    .feature-premium-icon img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                    
+                    .feature-premium-title {
+                        font-size: 15px;
                     }
                 }
             `}</style>

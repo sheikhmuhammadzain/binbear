@@ -27,7 +27,7 @@ export default function Cta1() {
             
             <style jsx>{`
                 .cta-premium-section {
-                    padding: 70px 0;
+                    padding: 50px 0;
                     background-color: #f9f9f9;
                     position: relative;
                     overflow: hidden;
@@ -35,12 +35,12 @@ export default function Cta1() {
                 
                 .cta-premium {
                     background: linear-gradient(45deg, #000000, #333333);
-                    border-radius: 16px;
-                    padding: 60px;
+                    border-radius: 12px;
+                    padding: 45px;
                     color: white;
                     position: relative;
                     overflow: hidden;
-                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
                 }
                 
                 .cta-premium::before {
@@ -48,11 +48,11 @@ export default function Cta1() {
                     position: absolute;
                     top: 0;
                     right: 0;
-                    width: 300px;
-                    height: 300px;
+                    width: 250px;
+                    height: 250px;
                     background: rgba(255, 127, 0, 0.1);
                     border-radius: 50%;
-                    transform: translate(150px, -150px);
+                    transform: translate(125px, -125px);
                 }
                 
                 .cta-premium::after {
@@ -60,11 +60,11 @@ export default function Cta1() {
                     position: absolute;
                     bottom: 0;
                     left: 0;
-                    width: 200px;
-                    height: 200px;
+                    width: 160px;
+                    height: 160px;
                     background: rgba(255, 127, 0, 0.1);
                     border-radius: 50%;
-                    transform: translate(-100px, 100px);
+                    transform: translate(-80px, 80px);
                 }
                 
                 .cta-premium-content {
@@ -74,23 +74,23 @@ export default function Cta1() {
                     justify-content: space-between;
                     align-items: center;
                     flex-wrap: wrap;
-                    gap: 30px;
+                    gap: 25px;
                 }
                 
                 .cta-premium-left {
                     flex: 1;
-                    min-width: 300px;
+                    min-width: 280px;
                 }
                 
                 .cta-premium-subtitle {
-                    font-size: 20px;
+                    font-size: 18px;
                     font-weight: 500;
-                    margin-bottom: 15px;
+                    margin-bottom: 12px;
                     color: rgba(255, 255, 255, 0.9);
                 }
                 
                 .cta-premium-title {
-                    font-size: 32px;
+                    font-size: 28px;
                     font-weight: 700;
                     color: #FF7F00;
                     margin-bottom: 0;
@@ -104,11 +104,11 @@ export default function Cta1() {
                 .btn-premium {
                     display: inline-flex;
                     align-items: center;
-                    gap: 10px;
-                    padding: 16px 32px;
-                    border-radius: 8px;
+                    gap: 8px;
+                    padding: 14px 28px;
+                    border-radius: 6px;
                     font-weight: 600;
-                    font-size: 16px;
+                    font-size: 15px;
                     transition: all 0.3s ease;
                     text-decoration: none;
                 }
@@ -116,75 +116,75 @@ export default function Cta1() {
                 .btn-premium-secondary {
                     background: linear-gradient(45deg, #FF7F00, #FFA64D);
                     color: #212121;
-                    box-shadow: 0 8px 20px rgba(255, 127, 0, 0.3);
+                    box-shadow: 0 6px 15px rgba(255, 127, 0, 0.3);
                 }
                 
                 .btn-premium-secondary:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 12px 25px rgba(255, 127, 0, 0.4);
+                    transform: translateY(-2px);
+                    box-shadow: 0 10px 20px rgba(255, 127, 0, 0.4);
                     color: #212121;
                 }
                 
                 .cta-premium-icon {
-                    width: 24px;
-                    height: 24px;
+                    width: 22px;
+                    height: 22px;
                 }
                 
                 @media (max-width: 992px) {
                     .cta-premium {
-                        padding: 40px;
+                        padding: 35px;
                     }
                     
                     .cta-premium-title {
-                        font-size: 28px;
+                        font-size: 26px;
                     }
                     
                     .cta-premium-subtitle {
-                        font-size: 18px;
+                        font-size: 17px;
                     }
                 }
                 
                 @media (max-width: 768px) {
                     .cta-premium {
-                        padding: 30px;
+                        padding: 25px;
                     }
                     
                     .cta-premium-content {
                         flex-direction: column;
                         align-items: flex-start;
-                        gap: 20px;
-                    }
-                    
-                    .cta-premium-title {
-                        font-size: 24px;
-                    }
-                    
-                    .cta-premium-subtitle {
-                        font-size: 16px;
-                    }
-                    
-                    .btn-premium {
-                        padding: 14px 28px;
-                    }
-                }
-                
-                @media (max-width: 576px) {
-                    .cta-premium-section {
-                        padding: 50px 0;
-                    }
-                    
-                    .cta-premium {
-                        padding: 25px;
+                        gap: 15px;
                     }
                     
                     .cta-premium-title {
                         font-size: 22px;
                     }
                     
+                    .cta-premium-subtitle {
+                        font-size: 15px;
+                    }
+                    
+                    .btn-premium {
+                        padding: 12px 24px;
+                    }
+                }
+                
+                @media (max-width: 576px) {
+                    .cta-premium-section {
+                        padding: 40px 0;
+                    }
+                    
+                    .cta-premium {
+                        padding: 20px;
+                    }
+                    
+                    .cta-premium-title {
+                        font-size: 20px;
+                    }
+                    
                     .btn-premium {
                         width: 100%;
                         justify-content: center;
-                        padding: 12px 24px;
+                        padding: 10px 20px;
                     }
                 }
             `}</style>

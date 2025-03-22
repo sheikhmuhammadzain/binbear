@@ -57,7 +57,7 @@ export default function Faqs1() {
                                 </div>
                             </div>
                             
-                            <div className="text-center mt-50" data-aos="fade-up" data-aos-delay="300">
+                            <div className="text-center mt-40" data-aos="fade-up" data-aos-delay="300">
                                 <Link href="/contact" className="btn-premium btn-premium-primary">
                                     View All FAQs
                                 </Link>
@@ -69,47 +69,47 @@ export default function Faqs1() {
             
             <style jsx>{`
                 .section-premium {
-                    padding: 100px 0;
+                    padding: 70px 0;
                     background-color: #f9f9f9;
                     position: relative;
                 }
                 
                 .faqs-premium {
-                    margin-top: 50px;
+                    margin-top: 35px;
                 }
                 
                 .faq-premium {
                     background-color: white;
-                    border-radius: 12px;
-                    margin-bottom: 20px;
-                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                    border-radius: 8px;
+                    margin-bottom: 15px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
                     overflow: hidden;
                     transition: all 0.3s ease;
                 }
                 
                 .faq-premium:hover {
-                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-                    transform: translateY(-3px);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+                    transform: translateY(-2px);
                 }
                 
                 .faq-premium-question {
-                    padding: 25px 30px;
+                    padding: 20px 25px;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     cursor: pointer;
-                    border-left: 4px solid #FF7F00;
+                    border-left: 3px solid #FF7F00;
                 }
                 
                 .faq-premium-question h3 {
-                    font-size: 18px;
+                    font-size: 17px;
                     font-weight: 600;
                     margin: 0;
                     color: #212121;
                 }
                 
                 .faq-premium-icon {
-                    font-size: 24px;
+                    font-size: 22px;
                     font-weight: 700;
                     color: #FF7F00;
                     transition: all 0.3s ease;
@@ -120,7 +120,7 @@ export default function Faqs1() {
                 }
                 
                 .faq-premium-answer {
-                    padding: 0 30px 25px;
+                    padding: 0 25px 20px;
                     display: none;
                 }
                 
@@ -129,8 +129,8 @@ export default function Faqs1() {
                 }
                 
                 .faq-premium-answer p {
-                    font-size: 16px;
-                    line-height: 1.6;
+                    font-size: 15px;
+                    line-height: 1.5;
                     color: #757575;
                     margin: 0;
                 }
@@ -138,10 +138,10 @@ export default function Faqs1() {
                 .btn-premium {
                     display: inline-flex;
                     align-items: center;
-                    padding: 14px 30px;
-                    border-radius: 8px;
+                    padding: 12px 25px;
+                    border-radius: 6px;
                     font-weight: 600;
-                    font-size: 16px;
+                    font-size: 15px;
                     transition: all 0.3s ease;
                     text-decoration: none;
                 }
@@ -149,22 +149,22 @@ export default function Faqs1() {
                 .btn-premium-primary {
                     background: linear-gradient(45deg, #FF7F00, #FFA64D);
                     color: #212121;
-                    box-shadow: 0 4px 15px rgba(255, 127, 0, 0.3);
+                    box-shadow: 0 3px 12px rgba(255, 127, 0, 0.3);
                 }
                 
                 .btn-premium-primary:hover {
-                    transform: translateY(-3px);
-                    box-shadow: 0 8px 20px rgba(255, 127, 0, 0.4);
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 15px rgba(255, 127, 0, 0.4);
                     color: #212121;
                 }
                 
                 @media (max-width: 768px) {
                     .section-premium {
-                        padding: 60px 0;
+                        padding: 50px 0;
                     }
                     
                     .faq-premium-question {
-                        padding: 20px 25px;
+                        padding: 18px 20px;
                     }
                     
                     .faq-premium-question h3 {
@@ -172,33 +172,33 @@ export default function Faqs1() {
                     }
                     
                     .faq-premium-answer {
-                        padding: 0 25px 20px;
+                        padding: 0 20px 18px;
                     }
                     
                     .faq-premium-answer p {
-                        font-size: 15px;
+                        font-size: 14px;
                     }
                 }
                 
                 @media (max-width: 576px) {
                     .section-premium {
-                        padding: 50px 0;
+                        padding: 40px 0;
                     }
                     
                     .faq-premium-question {
-                        padding: 15px 20px;
+                        padding: 12px 15px;
                     }
                     
                     .faq-premium-question h3 {
-                        font-size: 15px;
+                        font-size: 14px;
                     }
                     
                     .faq-premium-answer {
-                        padding: 0 20px 15px;
+                        padding: 0 15px 12px;
                     }
                     
                     .faq-premium-answer p {
-                        font-size: 14px;
+                        font-size: 13px;
                     }
                 }
             `}</style>

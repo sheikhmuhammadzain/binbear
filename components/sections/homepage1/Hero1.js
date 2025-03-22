@@ -3,7 +3,7 @@ import Hero1Slider from "@/components/slider/Hero1Slider";
 export default function Hero1() {
     return (
         <>
-            <section className="hero-premium">
+            <section className="hero-premium full-width-section">
                 <div className="box-swiper">
                     <div className="swiper-container swiper-group-1 swiper-banner-1">
                         <Hero1Slider/>
@@ -49,29 +49,54 @@ export default function Hero1() {
             <style jsx>{`
                 .hero-premium {
                     position: relative;
-                    padding-bottom: 120px;
+                    padding-bottom: 90px;
+                    overflow: hidden;
+                    width: 100vw;
+                    background: #ffffff;
+                    margin-left: -50vw;
+                    margin-right: -50vw;
+                    left: 50%;
+                    right: 50%;
+                }
+                
+                .box-swiper {
+                    position: relative;
+                    width: 100%;
+                    overflow: hidden;
+                }
+                
+                .swiper-container.swiper-banner-1 {
+                    width: 100%;
+                    padding: 0;
+                    margin: 0;
                 }
                 
                 .hero-premium-features {
                     position: relative;
-                    margin-top: -80px;
+                    margin-top: -70px;
                     z-index: 10;
+                    padding: 0 15px;
+                    width: 100%;
+                    max-width: 1320px;
+                    margin-left: auto;
+                    margin-right: auto;
                 }
                 
                 .feature-premium {
                     background-color: white;
-                    border-radius: 12px;
-                    padding: 30px;
-                    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+                    border-radius: 10px;
+                    padding: 25px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
                     transition: all 0.3s ease;
-                    border-bottom: 4px solid transparent;
+                    border-bottom: 3px solid transparent;
                     height: 100%;
+                    transform: translateY(0);
                 }
                 
                 .feature-premium:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
-                    border-bottom: 4px solid #FF7F00;
+                    transform: translateY(-6px);
+                    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+                    border-bottom: 3px solid #FF7F00;
                 }
                 
                 .feature-premium-icon {
@@ -83,6 +108,7 @@ export default function Hero1() {
                     align-items: center;
                     justify-content: center;
                     margin-bottom: 20px;
+                    box-shadow: 0 5px 15px rgba(255, 127, 0, 0.2);
                 }
                 
                 .feature-premium-icon img {
@@ -94,7 +120,7 @@ export default function Hero1() {
                 .feature-premium-title {
                     font-size: 20px;
                     font-weight: 700;
-                    margin-bottom: 15px;
+                    margin-bottom: 12px;
                     color: #212121;
                 }
                 
@@ -102,6 +128,7 @@ export default function Hero1() {
                     font-size: 15px;
                     line-height: 1.6;
                     color: #757575;
+                    margin-bottom: 0;
                 }
                 
                 @media (max-width: 992px) {
@@ -110,14 +137,93 @@ export default function Hero1() {
                     }
                     
                     .hero-premium-features {
-                        margin-top: 30px;
+                        margin-top: 20px;
                     }
                     
                     .feature-premium {
-                        margin-bottom: 30px;
+                        margin-bottom: 20px;
+                        padding: 20px;
+                    }
+                    
+                    .feature-premium-icon {
+                        width: 60px;
+                        height: 60px;
+                        margin-bottom: 15px;
+                    }
+                    
+                    .feature-premium-icon img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                    
+                    .feature-premium-title {
+                        font-size: 18px;
+                    }
+                }
+                
+                @media (max-width: 767px) {
+                    .hero-premium {
+                        padding-bottom: 40px;
+                    }
+                    
+                    .hero-premium-features {
+                        margin-top: 15px;
+                    }
+                    
+                    .feature-premium {
+                        padding: 18px;
+                        margin-bottom: 15px;
+                    }
+                    
+                    .feature-premium-icon {
+                        width: 55px;
+                        height: 55px;
+                        margin-bottom: 12px;
+                    }
+                    
+                    .feature-premium-icon img {
+                        width: 28px;
+                        height: 28px;
+                    }
+                    
+                    .feature-premium-title {
+                        font-size: 17px;
+                        margin-bottom: 10px;
+                    }
+                }
+                
+                @media (max-width: 576px) {
+                    .hero-premium {
+                        padding-bottom: 30px;
+                    }
+                    
+                    .hero-premium-features {
+                        margin-top: 10px;
+                    }
+                    
+                    .feature-premium {
+                        padding: 15px;
+                        margin-bottom: 15px;
+                    }
+                    
+                    .feature-premium-icon {
+                        width: 50px;
+                        height: 50px;
+                        margin-bottom: 10px;
+                    }
+                    
+                    .feature-premium-icon img {
+                        width: 25px;
+                        height: 25px;
+                    }
+                    
+                    .feature-premium-title {
+                        font-size: 16px;
+                        margin-bottom: 8px;
                     }
                 }
             `}</style>
         </>
     )
 }
+

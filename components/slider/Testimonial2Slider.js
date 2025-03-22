@@ -52,9 +52,15 @@ export default function Testimonial2Slider() {
             >
                 <SwiperSlide className="wow animate__animated animate__fadeIn">
                     <div className="card-testimonial-grid">
-                        <div className="box-author mb-25"><Link href="#"><img src="/assets/imgs/page/homepage1/author.png" alt="transp" /></Link>
-                            <div className="author-info"><Link href="#"><span className="font-xl-bold color-brand-2 author-name">Guy
-                                Hawkins</span></Link><span className="font-sm color-grey-500 department">Bank of America</span>
+                        <div className="box-author mb-25">
+                            <Link href="#" className="author-image">
+                                <img src="/assets/imgs/page/homepage1/author.png" alt="transp" />
+                            </Link>
+                            <div className="author-info">
+                                <Link href="#" className="font-xl-bold color-brand-2 author-name">
+                                    Guy Hawkins
+                                </Link>
+                                <span className="font-sm color-grey-500 department">Bank of America</span>
                             </div>
                         </div>
                         <p className="font-md color-grey-700">Access the same project through five different
@@ -67,9 +73,15 @@ export default function Testimonial2Slider() {
                 </SwiperSlide>
                 <SwiperSlide className="wow animate__animated animate__fadeIn">
                     <div className="card-testimonial-grid">
-                        <div className="box-author mb-25"><Link href="#"><img src="/assets/imgs/page/homepage1/author2.png" alt="transp" /></Link>
-                            <div className="author-info"><Link href="#"><span className="font-xl-bold color-brand-2 author-name">Eleanor
-                                Pena</span></Link><span className="font-sm color-grey-500 department">Bank of America</span>
+                        <div className="box-author mb-25">
+                            <Link href="#" className="author-image">
+                                <img src="/assets/imgs/page/homepage1/author2.png" alt="transp" />
+                            </Link>
+                            <div className="author-info">
+                                <Link href="#" className="font-xl-bold color-brand-2 author-name">
+                                    Eleanor Pena
+                                </Link>
+                                <span className="font-sm color-grey-500 department">Bank of America</span>
                             </div>
                         </div>
                         <p className="font-md color-grey-700">Access the same project through five different
@@ -82,9 +94,15 @@ export default function Testimonial2Slider() {
                 </SwiperSlide>
                 <SwiperSlide className="wow animate__animated animate__fadeIn">
                     <div className="card-testimonial-grid">
-                        <div className="box-author mb-25"><Link href="#"><img src="/assets/imgs/page/homepage1/author3.png" alt="transp" /></Link>
-                            <div className="author-info"><Link href="#"><span className="font-xl-bold color-brand-2 author-name">Cody
-                                Fisher</span></Link><span className="font-sm color-grey-500 department">Bank of America</span>
+                        <div className="box-author mb-25">
+                            <Link href="#" className="author-image">
+                                <img src="/assets/imgs/page/homepage1/author3.png" alt="transp" />
+                            </Link>
+                            <div className="author-info">
+                                <Link href="#" className="font-xl-bold color-brand-2 author-name">
+                                    Cody Fisher
+                                </Link>
+                                <span className="font-sm color-grey-500 department">Bank of America</span>
                             </div>
                         </div>
                         <p className="font-md color-grey-700">Access the same project through five different
@@ -96,6 +114,36 @@ export default function Testimonial2Slider() {
                     </div>
                 </SwiperSlide>
             </Swiper>
+
+            <style jsx>{`
+                .author-image {
+                    display: inline-block;
+                    margin-right: 15px;
+                }
+                
+                .author-image img {
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    object-fit: cover;
+                }
+                
+                .box-author {
+                    display: flex;
+                    align-items: center;
+                }
+                
+                .author-info {
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+                .author-name {
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: 600;
+                }
+            `}</style>
         </>
     )
 }

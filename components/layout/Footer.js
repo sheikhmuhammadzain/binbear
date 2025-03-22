@@ -1,252 +1,324 @@
 import Link from "next/link";
 import { useEffect, useState } from 'react';
 
-export default function Footer() {
-    const [hideBooking, setHideBooking] = useState(false);
-
+const Footer = () => {
+    const [showBookingButton, setShowBookingButton] = useState(false);
+    const [isSubscribed, setIsSubscribed] = useState(false);
+    
     useEffect(() => {
         // Check if zip code was entered
         const hasEnteredZip = sessionStorage.getItem('hasEnteredZip');
-        setHideBooking(hasEnteredZip === 'true');
+        if (hasEnteredZip === 'true') {
+            setShowBookingButton(true);
+        }
     }, []);
+    
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        setIsSubscribed(true);
+        setTimeout(() => {
+            setIsSubscribed(false);
+        }, 3000);
+    };
 
     return (
         <>
-            <footer className="footer" style={{ marginTop: '0px' }}>
-                <div
-                    className="footer-1"
-                    style={{
-                        height: 'auto',
-                        padding: '20px 0',
-                        backgroundColor: 'black',
-                    }}
-                >
-                    <div className="container">
+            <footer className="layout-premium-footer">
+                <div className="container">
+                    <div className="footer-top">
                         <div className="row">
-                            <div className="col-lg-3 width-23 mb-30">
-                                <Link className="mb-20" href="/">
-                                    <img
-                                    
-                                        src="/img/bear.png.png"
-                                        width={150}
-                                        height={60}
-                                        alt="transp"
-                                    />
-                                </Link>
-                                <p className="font-xs mb-20 color-white">
-                                    
+                            <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                                <div className="footer-logo mb-4">
+                                    <Link href="/" className="logo-link">
+                                        <img src="/assets/imgs/logo-light.png" alt="BinBear" width={180} />
+                                    </Link>
+                                </div>
+                                <p className="footer-desc mb-4">
+                                    BinBear provides premium waste management services for residential and commercial properties. Our mission is to make waste disposal easy, efficient, and environmentally friendly.
                                 </p>
-
-                                {/* Buttons with 20px gap below the paragraph */}
-                                <div
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: '10px', // 20px gap between paragraph and buttons
-                                        alignItems: 'center',
-                                    }}
-                                >
-                                    {!hideBooking && (
-                                        <a href="/Booking" style={{ textDecoration: 'none', width: '100%' }}>
-                                            <button
-                                                style={{
-                                                    backgroundColor: '#FF7F00',
-                                                    color: 'black',
-                                                    border: 'none',
-                                                    padding: '10px 20px',
-                                                    cursor: 'pointer',
-                                                    display: 'flex',
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    width: '100%',
-                                                    maxWidth: '200px',
-                                                }}
-                                            >
-                                                Book Online
-                                            </button>
-                                        </a>
-                                    )}
-                                    <a href="/contact" style={{ textDecoration: 'none', width: '100%' }}>
-                                        <button
-                                            style={{
-                                                backgroundColor: '#FF7F00',
-                                                color: 'black',
-                                                border: 'none',
-                                                padding: '10px 20px',
-                                                cursor: 'pointer',
-                                                display: 'flex',
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                width: '100%',
-                                                maxWidth: '200px',
-                                            }}
-                                        >
-                                            Our Location
-                                        </button>
+                                <div className="social-links">
+                                    <a href="#" className="social-link">
+                                        <i className="fab fa-facebook-f"></i>
                                     </a>
-                                   
+                                    <a href="#" className="social-link">
+                                        <i className="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" className="social-link">
+                                        <i className="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#" className="social-link">
+                                        <i className="fab fa-linkedin-in"></i>
+                                    </a>
                                 </div>
                             </div>
-
-                            <div className="col-lg-3 width-16 mb-30" style={{ backgroundColor: 'black' }}>
-                                <h5 className="mb-10 color-brand-"style={{color:'orange'}}>Services</h5>
-                                <ul className="menu-footer">
-                                    <li>
-                                        <Link href="/Item-we-take">Item we take</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/JK-Removal">Junk removal</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/Dumpster-Rental">Dumpster Rental</Link>
-                                    </li>
-                                    
-                                    <li>
-                                        <Link href="/Estimate">National Accounts</Link>
-                                    </li>
+                            
+                            <div className="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                                <h4 className="footer-title">Services</h4>
+                                <ul className="footer-links">
+                                    <li><Link href="/services/residential" className="footer-link">Residential</Link></li>
+                                    <li><Link href="/services/commercial" className="footer-link">Commercial</Link></li>
+                                    <li><Link href="/services/recycling" className="footer-link">Recycling</Link></li>
+                                    <li><Link href="/services/dumpster-rental" className="footer-link">Dumpster Rental</Link></li>
+                                    <li><Link href="/services/junk-removal" className="footer-link">Junk Removal</Link></li>
                                 </ul>
                             </div>
-                            <div className="col-lg-3 width-16 mb-30" style={{ backgroundColor: 'black' }}>
-                                <h5 className="mb-10 color-brand-"style={{color:'orange'}}>Company</h5>
-                                <ul className="menu-footer">
-                                    <li>
-                                        <Link href="/about"> About us</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="Event">Events</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">Apply Locally</Link>
-                                    </li>
-                                   
-                                    <li>
-                                        <Link href="/register">Contact us</Link>
-                                    </li>
+                            
+                            <div className="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                                <h4 className="footer-title">Company</h4>
+                                <ul className="footer-links">
+                                    <li><Link href="/about" className="footer-link">About Us</Link></li>
+                                    <li><Link href="/how-it-works" className="footer-link">How It Works</Link></li>
+                                    <li><Link href="/pricing" className="footer-link">Pricing</Link></li>
+                                    <li><Link href="/faq" className="footer-link">FAQ</Link></li>
+                                    <li><Link href="/contact" className="footer-link">Contact Us</Link></li>
                                 </ul>
                             </div>
-                            <div className="col-lg-3 width-16 mb-30" style={{ backgroundColor: 'black' }}>
-                                <h5 className="mb-10 color-brand-"style={{color:'orange'}}>Other Links</h5>
-                                <ul className="menu-footer">
-                                    <li>
-                                        <Link href="#">Terms of use</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">Accesibility</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="#">Privacy Policy</Link>
-                                    </li>
-                                    <li>
-                                        <Link href="/Recycle">We Recycle</Link>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div className="col-lg-3 width-20 mb-30" style={{ backgroundColor: 'black' }}>
-                                <h5 className="mb-10 color-brand-"style={{color:'orange'}}>Gallery</h5>
-                                <div className="galleries-footer">
-                                    <ul className="list-imgs">
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal1.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal2.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal3.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal4.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal5.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal6.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal2.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal3.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                        <li>
-                                            <img
-                                                src="/assets/imgs/page/homepage1/gal2.png"
-                                                alt="transp"
-                                            />
-                                        </li>
-                                    </ul>
+                            
+                            <div className="col-lg-4 col-md-6">
+                                <h4 className="footer-title">Newsletter</h4>
+                                <p className="mb-4">Subscribe to our newsletter to receive updates and special offers.</p>
+                                <div className="newsletter-form">
+                                    {!isSubscribed ? (
+                                        <form onSubmit={handleSubscribe}>
+                                            <div className="form-group">
+                                                <input 
+                                                    type="email" 
+                                                    className="form-premium-input" 
+                                                    placeholder="Your email address" 
+                                                    required 
+                                                />
+                                                <button type="submit" className="btn-premium">
+                                                    Subscribe
+                                                </button>
+                                            </div>
+                                        </form>
+                                    ) : (
+                                        <div className="alert-premium alert-premium-success">
+                                            Thank you for subscribing!
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div
-                    className="footer-2"
-                    style={{
-                        paddingTop: '0px',
-                        backgroundColor: 'black',
-                        paddingBottom: '50px',
-                    }}
-                >
-                    <div className="footer-bottom"style={{marginLeft:'60px',marginRight:'60px'}}>
+                    
+                    <div className="divider-premium"></div>
+                    
+                    <div className="footer-bottom">
                         <div className="row align-items-center">
-                            <div className="col-sm-5 text-center text-sm-start">
-                                <span className="color-grey-300 font-xs">
-                                    @binbear Official {new Date().getFullYear()}. All rights reserved.
-                                </span>
+                            <div className="col-md-6 mb-3 mb-md-0">
+                                <p className="copyright">
+                                    &copy; {new Date().getFullYear()} BinBear. All rights reserved.
+                                </p>
                             </div>
-                            <div className="col-sm-7 text-center text-sm-end">
-                                <ul className="menu-bottom">
-                                    <li><Link className="font-xs color-grey-300" href="/term-conditions"></Link></li>
-                                    <li><Link className="font-xs color-grey-300" href="/term-conditions">Cookies</Link></li>
-                                    <li><Link className="font-xs color-grey-300" href="/term-conditions">Terms of service</Link></li>
-                                </ul>
+                            <div className="col-md-6 text-md-end">
+                                <div className="footer-bottom-links">
+                                    <Link href="/privacy-policy" className="footer-bottom-link">Privacy Policy</Link>
+                                    <Link href="/terms-of-service" className="footer-bottom-link">Terms of Service</Link>
+                                    <Link href="/sitemap" className="footer-bottom-link">Sitemap</Link>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                {showBookingButton && (
+                    <div className="booking-button-container">
+                        <Link href="/booking" className="btn-premium btn-premium-lg">
+                            <i className="fas fa-calendar-alt me-2"></i>
+                            Book Now
+                        </Link>
+                    </div>
+                )}
             </footer>
 
-            {!hideBooking && (
-                <div className="footer-book-now">
-                    <a href="/Booking" className="footer-book-btn">Book Now</a>
-                </div>
-            )}
-
-            <style jsx global>{`
-                /* Force hide sticky elements */
-                .sticky-container,
-                .jsx-84cd9f3fe42f54c9.sticky-container {
-                    display: none !important;
+            <style jsx>{`
+                .footer-top {
+                    padding: 60px 0 30px;
+                }
+                
+                .footer-logo {
+                    margin-bottom: 20px;
+                }
+                
+                .footer-desc {
+                    color: #b0b0b0;
+                    line-height: 1.6;
+                    font-size: 15px;
+                }
+                
+                .social-links {
+                    display: flex;
+                    gap: 15px;
+                }
+                
+                .social-link {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    color: white;
+                    font-size: 16px;
+                    transition: all 0.3s ease;
+                }
+                
+                .social-link:hover {
+                    background-color: #FF7F00;
+                    transform: translateY(-3px);
+                }
+                
+                .footer-title {
+                    color: white;
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 25px;
+                    position: relative;
+                    padding-bottom: 10px;
+                }
+                
+                .footer-title::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 40px;
+                    height: 2px;
+                    background-color: #FF7F00;
+                }
+                
+                .footer-links {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+                
+                .footer-links li {
+                    margin-bottom: 12px;
+                }
+                
+                .footer-link {
+                    color: #b0b0b0;
+                    transition: all 0.3s ease;
+                    font-size: 15px;
+                    display: inline-block;
+                }
+                
+                .footer-link:hover {
+                    color: #FF7F00;
+                    transform: translateX(5px);
+                }
+                
+                .logo-link {
+                    display: inline-block;
+                }
+                
+                .newsletter-form .form-group {
+                    position: relative;
+                }
+                
+                .newsletter-form .form-premium-input {
+                    padding-right: 120px;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    color: white;
+                }
+                
+                .newsletter-form .form-premium-input::placeholder {
+                    color: rgba(255, 255, 255, 0.6);
+                }
+                
+                .newsletter-form .form-premium-input:focus {
+                    background-color: rgba(255, 255, 255, 0.15);
+                    border-color: rgba(255, 255, 255, 0.3);
+                }
+                
+                .newsletter-form .btn-premium {
+                    position: absolute;
+                    right: 5px;
+                    top: 5px;
+                    padding: 8px 15px;
+                    font-size: 14px;
+                }
+                
+                .footer-bottom {
+                    padding: 20px 0;
+                }
+                
+                .copyright {
+                    color: #b0b0b0;
+                    font-size: 14px;
+                    margin: 0;
+                }
+                
+                .footer-bottom-links {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 20px;
+                }
+                
+                .footer-bottom-link {
+                    color: #b0b0b0;
+                    font-size: 14px;
+                    transition: all 0.3s ease;
+                }
+                
+                .footer-bottom-link:hover {
+                    color: #FF7F00;
+                }
+                
+                .booking-button-container {
+                    position: fixed;
+                    bottom: 30px;
+                    right: 30px;
+                    z-index: 99;
+                }
+                
+                .booking-button-container .btn-premium {
+                    box-shadow: 0 5px 15px rgba(255, 127, 0, 0.4);
+                }
+                
+                @media (max-width: 991px) {
+                    .footer-top {
+                        padding: 50px 0 20px;
+                    }
+                }
+                
+                @media (max-width: 767px) {
+                    .footer-bottom-links {
+                        justify-content: center;
+                        margin-top: 15px;
+                    }
+                    
+                    .copyright {
+                        text-align: center;
+                    }
+                    
+                    .booking-button-container {
+                        bottom: 20px;
+                        right: 20px;
+                    }
+                }
+                
+                @media (max-width: 576px) {
+                    .footer-top {
+                        padding: 40px 0 20px;
+                    }
+                    
+                    .footer-title {
+                        margin-bottom: 20px;
+                    }
+                    
+                    .footer-bottom-links {
+                        gap: 15px;
+                        flex-wrap: wrap;
+                    }
                 }
             `}</style>
         </>
     );
 }
+
+export default Footer;

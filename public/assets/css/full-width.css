@@ -1,0 +1,210 @@
+/* Full-width sections and fixes for the hero area */
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.layout-premium {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.main, .page-content {
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+/* Remove page-content-inner constraints */
+.page-content-inner {
+    max-width: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* Full-width fix for the hero section */
+.hero-premium,
+.full-width-section {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: none !important;
+    overflow: hidden;
+}
+
+.box-swiper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper-container.swiper-banner-1,
+.hero-swiper-fullwidth {
+    width: 100vw !important;
+    padding: 0;
+    margin: 0;
+}
+
+.swiper-slide {
+    width: 100vw !important;
+}
+
+.banner-premium {
+    width: 100vw !important;
+}
+
+/* Container inside full-width sections */
+.full-width-section .container,
+.hero-premium .container {
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Container fixes for mobile */
+@media (max-width: 991px) {
+    .container {
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .hero-premium {
+        width: 100vw !important;
+        margin-left: -50vw !important;
+        margin-right: -50vw !important;
+        left: 50%;
+        right: 50%;
+    }
+}
+
+/* Full-width section class that can be applied to any section */
+.full-width-section {
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: none !important;
+    overflow: hidden;
+}
+
+/* Premium hero styles for improved aesthetics */
+.banner-premium {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    width: 100vw !important;
+}
+
+.banner-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%);
+}
+
+.banner-premium-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero premium features styling */
+.hero-premium-features {
+    position: relative;
+    margin-top: -70px;
+    z-index: 10;
+}
+
+.feature-premium {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    height: 100%;
+    transform: translateY(0);
+}
+
+.feature-premium:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    border-bottom: 3px solid #FF7F00;
+}
+
+/* Responsive styles for various screen sizes */
+@media (max-width: 1200px) {
+    .banner-premium {
+        min-height: 550px;
+    }
+}
+
+@media (max-width: 992px) {
+    .banner-premium {
+        min-height: 500px;
+        padding: 70px 0;
+    }
+    
+    .hero-premium-features {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-premium {
+        min-height: 450px;
+        padding: 60px 0;
+    }
+    
+    .hero-premium-features {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .banner-premium {
+        min-height: 400px;
+        padding: 50px 0;
+    }
+    
+    .hero-premium-features {
+        margin-top: 10px;
+    }
+} 
