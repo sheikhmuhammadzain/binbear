@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCouch, faChair, faTable, faTv, faWashingMachine, faRefrigerator, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCouch, faChair, faTable, faTv, faBath, faKitchenSet, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Layout from "@/components/layout/Layout";
 
 // Define item categories and price map outside the component for performance
@@ -39,12 +39,12 @@ const itemCategories = [
     },
     {
         title: 'Appliances',
-        icon: faWashingMachine,
+        icon: faKitchenSet,
         items: [
-            { name: 'Refrigerator', basePrice: 65, icon: faRefrigerator },
-            { name: 'Washer/Dryer', basePrice: 50, icon: faWashingMachine },
-            { name: 'Dishwasher', basePrice: 45, icon: faWashingMachine },
-            { name: 'Microwave', basePrice: 25, icon: faWashingMachine }
+            { name: 'Refrigerator', basePrice: 65, icon: faKitchenSet },
+            { name: 'Washer/Dryer', basePrice: 50, icon: faBath },
+            { name: 'Dishwasher', basePrice: 45, icon: faKitchenSet },
+            { name: 'Microwave', basePrice: 25, icon: faKitchenSet }
         ]
     }
 ];
@@ -346,9 +346,7 @@ const ItemSelection = () => {
                             min-width: 14px;
                             font-size: 12px;
                             width: 12px;
-<button className="book-now-btn">
-    Book Now & Save $20!*
-</button>                        }
+                        }
 
                         .item-name {
                             font-size: 0.9rem;
