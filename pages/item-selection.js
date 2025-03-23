@@ -457,7 +457,7 @@ const ItemSelection = () => {
                     .price {
                         color: #FF7701;
                         margin-left: 5px;
-                    }
+                        }
 
                         .clear-items {
                         background-color: #ff9800;

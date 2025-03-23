@@ -100,7 +100,7 @@ export default function Services1() {
                                     <div className="card-premium-content">
                                         <h3 className="card-premium-title">3. Choose a Date for Pickup</h3>
                                         <p className="card-premium-text">Choose a Date for Pickup</p>
-                                    </div>
+</div>
                                     </div>
                                 </div>
                             </div>

@@ -111,7 +111,7 @@ export default function ServiceDetail() {
                                     <div className="service-card-inner">
                                         <div className="service-icon">
                                             <i className={service.icon}></i>
-                                        </div>
+                                            </div>
                                         <div className="service-content">
                                             <h4 className="service-title">{service.title}</h4>
                                             <Link href="#" className="service-link">
@@ -259,24 +259,24 @@ export default function ServiceDetail() {
                                 <div className="step-content">
                                     <h4>Book Your Appointment</h4>
                                     <p>Schedule online or call us - we offer flexible time slots to fit your schedule.</p>
-                                </div>
-                            </div>
+                                                </div>
+                                            </div>
                             
                             <div className="process-step wow animate__animated animate__fadeIn">
                                 <div className="step-number">2</div>
                                 <div className="step-content">
                                     <h4>We Arrive On Time</h4>
                                     <p>Our uniformed professionals will arrive in our branded trucks ready to work.</p>
-                                </div>
-                            </div>
+                                                </div>
+                                            </div>
                             
                             <div className="process-step wow animate__animated animate__fadeIn">
                                 <div className="step-number">3</div>
                                 <div className="step-content">
                                     <h4>We Do All The Work</h4>
                                     <p>Point to what needs to go, and we'll handle the heavy lifting and loading.</p>
-                                </div>
-                            </div>
+                                                </div>
+                                            </div>
                             
                             <div className="process-step wow animate__animated animate__fadeIn">
                                 <div className="step-number">4</div>
@@ -293,17 +293,17 @@ export default function ServiceDetail() {
                             </Link>
                             <Link href="/pricing" className="btn-secondary ml-3">
                                 View Our Pricing
-                            </Link>
+                                </Link>
                         </div>
                     </div>
                 </section>
             </div>
 
-            <style jsx>{`
-                .page-wrapper {
+                <style jsx>{`
+                    .page-wrapper {
                     padding-top: 30px;
-                }
-                
+                    }
+
                 .service-tag {
                     display: inline-block;
                     background-color: #FF7701;
@@ -313,8 +313,8 @@ export default function ServiceDetail() {
                     font-weight: 600;
                     font-size: 14px;
                     margin-bottom: 20px;
-                }
-                
+                    }
+
                 .main-heading {
                     font-size: 42px;
                     font-weight: 700;
@@ -325,10 +325,10 @@ export default function ServiceDetail() {
                 .subtitle {
                     font-size: 18px;
                     line-height: 1.6;
-                    max-width: 800px;
+                        max-width: 800px;
                     margin: 0 auto 30px;
-                }
-                
+                    }
+
                 .category-navigation {
                     margin: 30px 0;
                 }
@@ -349,8 +349,8 @@ export default function ServiceDetail() {
                     font-size: 16px;
                     cursor: pointer;
                     transition: all 0.3s ease;
-                }
-                
+                    }
+
                 .category-tab:hover {
                     background: #eee;
                 }
@@ -388,8 +388,8 @@ export default function ServiceDetail() {
                     padding: 30px;
                     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
                     margin-bottom: 40px;
-                }
-                
+                    }
+
                 .category-title {
                     font-size: 24px;
                     font-weight: 600;
@@ -441,8 +441,8 @@ export default function ServiceDetail() {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                     gap: 25px;
-                }
-                
+                        }
+
                 .service-card {
                     height: 100%;
                 }
@@ -457,8 +457,8 @@ export default function ServiceDetail() {
                     overflow: hidden;
                     box-shadow: 0 5px 15px rgba(255, 119, 1, 0.2);
                     transition: all 0.3s ease;
-                }
-                
+                    }
+
                 .service-card-inner:hover {
                     transform: translateY(-5px);
                     box-shadow: 0 8px 25px rgba(255, 119, 1, 0.3);
@@ -480,7 +480,7 @@ export default function ServiceDetail() {
                     background: rgba(255, 255, 255, 0.2);
                     padding: 6px 12px;
                     border-radius: 30px;
-                    color: white;
+                        color: white;
                     font-size: 14px;
                     font-weight: 500;
                     transition: all 0.3s ease;
@@ -492,7 +492,7 @@ export default function ServiceDetail() {
                 
                 .feature-image {
                     max-width: 90%;
-                    margin: 40px auto;
+                        margin: 40px auto;
                     border-radius: 12px;
                     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
                 }
@@ -516,8 +516,8 @@ export default function ServiceDetail() {
                     font-weight: 700;
                     color: #FF7701;
                     margin-bottom: 20px;
-                }
-                
+                    }
+
                 .detail-content h4 {
                     font-size: 20px;
                     font-weight: 600;
@@ -572,8 +572,8 @@ export default function ServiceDetail() {
                 .process-steps {
                     max-width: 800px;
                     margin: 40px auto;
-                }
-                
+                    }
+
                 .process-step {
                     display: flex;
                     margin-bottom: 30px;
@@ -646,8 +646,8 @@ export default function ServiceDetail() {
                     background: #FF5500;
                     transform: translateY(-3px);
                     box-shadow: 0 5px 15px rgba(255, 119, 1, 0.3);
-                }
-                
+                    }
+
                 .btn-secondary {
                     display: inline-block;
                     background: white;
@@ -727,8 +727,8 @@ export default function ServiceDetail() {
                     .process-step:not(:last-child):after {
                         display: none;
                     }
-                }
-            `}</style>
+                    }
+                `}</style>
         </Layout>
     );
 }

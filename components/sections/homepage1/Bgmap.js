@@ -13,10 +13,10 @@ export default function Bgmap({ coordinates }) {
         lon + delta, // max_lon
         lat + delta  // max_lat
     ].join(',');
-
+    
     return (
         <section className="map-premium-section" data-aos="fade-up">
-            <div className="container">
+                <div className="container">
                 <div className="section-premium-header">
                     <h2 className="section-premium-title">Our Service Area</h2>
                     <p className="section-premium-subtitle">
@@ -25,12 +25,12 @@ export default function Bgmap({ coordinates }) {
                 </div>
                 
                 <div className="map-premium-container">
-                    <iframe
+                        <iframe 
                         className="map-premium"
                         src={`https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik`}
-                        allowFullScreen
-                        loading="lazy"
-                    />
+                            allowFullScreen 
+                            loading="lazy" 
+                        />
                     
                     <div className="map-premium-overlay">
                         <div className="map-premium-content">

@@ -839,7 +839,7 @@ input[type="submit"]:disabled:hover,
 }
 
 .layout-premium-footer a {
-  color: #b0b0b0;
+  color: #fff;
   transition: color 0.3s ease;
 }
 

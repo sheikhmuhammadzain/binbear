@@ -74,8 +74,8 @@ export default function RecyclePage() {
         <Layout>
             {/* Hero Section */}
             <section className="recycle-hero">
-                <div className="container">
-                    <div className="row align-items-center">
+                    <div className="container">
+                        <div className="row align-items-center">
                         <div className="col-lg-6">
                             <div className="hero-content">
                                 <span className="hero-badge">ENVIRONMENTAL RESPONSIBILITY</span>
@@ -88,9 +88,9 @@ export default function RecyclePage() {
                                     <Link href="/Booking" className="btn btn-outline">
                                         Schedule Pickup
                                     </Link>
-                                </div>
                             </div>
-                        </div>
+                                    </div>
+                                </div>
                         <div className="col-lg-6">
                             <div className="hero-image">
                                 <img 
@@ -101,16 +101,16 @@ export default function RecyclePage() {
                                 <div className="stats-card">
                                     <div className="stats-icon">
                                         <FontAwesomeIcon icon={faRecycle} />
-                                    </div>
+                            </div>
                                     <div className="stats-content">
                                         <h3>60%+</h3>
                                         <p>Items Recycled</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </div>
+                        </div>
+                    </div>
+</div>
+                                           </div>
             </section>
 
             {/* Stats Section */}
@@ -121,13 +121,13 @@ export default function RecyclePage() {
                             <div key={index} className="stat-box">
                                 <div className="stat-icon">
                                     <FontAwesomeIcon icon={stat.icon} />
-                                </div>
+</div>
                                 <div className="stat-number">{stat.number}</div>
                                 <div className="stat-label">{stat.label}</div>
-                            </div>
+                                        </div>
                         ))}
-                    </div>
-                </div>
+                                </div>
+                            </div>
             </section>
 
             {/* Services Section */}
@@ -136,20 +136,20 @@ export default function RecyclePage() {
                     <div className="section-header">
                         <h2 className="section-title">How We Help You Recycle</h2>
                         <p className="section-subtitle">Not all junk needs to go to waste. Usable items can be repurposed, sold, or donated. Once you've handled what you can, BinBear is here to help with the rest.</p>
-                    </div>
-                    
+</div>
+                          
                     <div className="services-grid">
                         {recyclingServices.map((service, index) => (
                             <div key={index} className="service-card">
                                 <div className="service-icon">
                                     <FontAwesomeIcon icon={service.icon} />
-                                </div>
+                                        </div>
                                 <h3 className="service-title">{service.title}</h3>
                                 <p className="service-description">{service.description}</p>
-                            </div>
+                                </div>
                         ))}
-                    </div>
-                </div>
+                            </div>
+</div>
             </section>
 
             {/* Info Tabs Section */}
@@ -158,7 +158,7 @@ export default function RecyclePage() {
                     <div className="section-header">
                         <h2 className="section-title">Recycling Education</h2>
                         <p className="section-subtitle">Learn how BinBear helps make recycling accessible and efficient</p>
-                    </div>
+                              </div>
                     
                     <div className="tabs-container">
                         <div className="tabs-navigation">
@@ -172,8 +172,8 @@ export default function RecyclePage() {
                                     <span>{topic.title}</span>
                                 </button>
                             ))}
-                        </div>
-                        
+</div>
+                          
                         <div className="tab-content-container">
                             {recyclingTopics.map((topic) => (
                                 <div 
@@ -183,7 +183,7 @@ export default function RecyclePage() {
                                     <div className="tab-content-inner">
                                         <h3>{topic.title}</h3>
                                         <p>{topic.content}</p>
-                                    </div>
+                                   </div>
                                     <div className="tab-image">
                                         <img 
                                             src={`/assets/imgs/page/about/img-${topic.id}.png`} 
@@ -191,12 +191,12 @@ export default function RecyclePage() {
                                             onError={(e) => {e.target.src = "/assets/imgs/page/about/img-1.png"}}
                                             className="img-fluid rounded"
                                         />
-                                    </div>
                                 </div>
+                            </div>
                             ))}
-                        </div>
-                    </div>
-                </div>
+</div>
+                                         </div>
+                                </div>
             </section>
 
             {/* Process Section */}
@@ -205,42 +205,42 @@ export default function RecyclePage() {
                     <div className="section-header">
                         <h2 className="section-title">Our Recycling Process</h2>
                         <p className="section-subtitle">How we ensure maximum recycling and minimum waste</p>
-                    </div>
-                    
+</div>
+                          
                     <div className="process-steps">
                         <div className="process-step">
                             <div className="step-number">1</div>
                             <div className="step-content">
                                 <h3>Collection</h3>
                                 <p>Our team arrives at your location and carefully collects all your unwanted items</p>
+                                </div>
                             </div>
-                        </div>
-                        
+
                         <div className="process-step">
                             <div className="step-number">2</div>
                             <div className="step-content">
                                 <h3>Sorting</h3>
                                 <p>Items are transported to our facility where they're sorted into categories</p>
                             </div>
-                        </div>
-                        
+</div>
+                          
                         <div className="process-step">
                             <div className="step-number">3</div>
                             <div className="step-content">
                                 <h3>Processing</h3>
                                 <p>Materials are processed appropriately based on their composition and recyclability</p>
+                                </div>
                             </div>
-                        </div>
-                        
+
                         <div className="process-step">
                             <div className="step-number">4</div>
                             <div className="step-content">
                                 <h3>Recycling</h3>
                                 <p>Recyclable materials are sent to specialized facilities for conversion into new products</p>
+</div>
+                                             </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
             </section>
 
             {/* CTA Section */}
@@ -446,8 +446,8 @@ export default function RecyclePage() {
                 }
 
                 .stats-container {
-                    display: flex;
-                    justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
                     flex-wrap: wrap;
                 }
 
@@ -559,11 +559,11 @@ export default function RecyclePage() {
                 }
 
                 .tab-button {
-                    padding: 12px 20px;
+    padding: 12px 20px;
                     background: none;
                     border: 2px solid #eee;
                     border-radius: 30px;
-                    font-size: 16px;
+    font-size: 16px;
                     font-weight: 600;
                     color: #666;
                     cursor: pointer;
@@ -831,9 +831,9 @@ export default function RecyclePage() {
                     .cta-subtitle {
                         font-size: 18px;
                     }
-                }
+}
 
-                @media (max-width: 576px) {
+@media (max-width: 576px) {
                     .services-grid {
                         grid-template-columns: 1fr;
                     }
@@ -861,7 +861,7 @@ export default function RecyclePage() {
                     }
                 }
             `}</style>
-        </Layout>
+            </Layout>
     );
 }
 

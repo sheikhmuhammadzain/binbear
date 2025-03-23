@@ -72,7 +72,7 @@ export default function History() {
     ];
 
     return (
-        <Layout>
+             <Layout>
             <div className="history-page">
                 {/* Hero Section */}
                 <section className="hero-section">
@@ -81,11 +81,11 @@ export default function History() {
                             <div className="hero-badge">OUR STORY</div>
                             <h1 className="hero-title">The BinBear Journey</h1>
                             <p className="hero-subtitle">From humble beginnings to becoming a nationwide leader in junk removal, our story is one of growth, innovation, and unwavering commitment to service excellence.</p>
-                        </div>
-                    </div>
+          </div>
+        </div>
                     <div className="hero-overlay"></div>
-                </section>
-                
+</section>
+
                 {/* Stats Section */}
                 <section className="stats-section">
                     <div className="container">
@@ -94,7 +94,7 @@ export default function History() {
                                 <div key={index} className="stat-box">
                                     <div className="stat-icon">
                                         <FontAwesomeIcon icon={stat.icon} />
-                                    </div>
+                                 </div>
                                     <div className="stat-number">{stat.number}</div>
                                     <div className="stat-label">{stat.label}</div>
                                 </div>
@@ -122,12 +122,12 @@ export default function History() {
                                             <img src={event.image} alt={event.title} className="timeline-image" />
                                             <h3 className="timeline-title">{event.title}</h3>
                                             <p className="timeline-description">{event.description}</p>
-                                        </div>
-                                    </div>
                                 </div>
-                            ))}
+                            </div>
                         </div>
-                    </div>
+                            ))}
+                               </div>
+                            </div>
                 </section>
 
                 {/* Mission & Vision Section */}
@@ -170,7 +170,7 @@ export default function History() {
                                                 <li><span className="check-icon"><FontAwesomeIcon icon={faCheck} /></span> Maximize recycling and donation opportunities</li>
                                                 <li><span className="check-icon"><FontAwesomeIcon icon={faCheck} /></span> Treat every customer with respect and care</li>
                                             </ul>
-                                        </div>
+                                </div>
                                     )}
                                     
                                     {activeTab === 'vision' && (
@@ -181,17 +181,17 @@ export default function History() {
                                                 <div className="vision-goal">
                                                     <div className="goal-icon"><FontAwesomeIcon icon={faLeaf} /></div>
                                                     <div className="goal-text">Environmental Leadership</div>
-                                                </div>
+                               </div>
                                                 <div className="vision-goal">
                                                     <div className="goal-icon"><FontAwesomeIcon icon={faStar} /></div>
                                                     <div className="goal-text">Service Excellence</div>
-                                                </div>
+                            </div>
                                                 <div className="vision-goal">
                                                     <div className="goal-icon"><FontAwesomeIcon icon={faHandshake} /></div>
                                                     <div className="goal-text">Community Impact</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                        </div>
+                    </div>
+                                     </div>
                                     )}
                                     
                                     {activeTab === 'values' && (
@@ -205,21 +205,21 @@ export default function History() {
                                                         <div className="value-text">
                                                             <h4>{value.title}</h4>
                                                             <p>{value.description}</p>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
                                         </div>
+                                        </div>
+                                                ))}
+                                        </div>
+</div>
                                     )}
-                                </div>
                             </div>
-                        </div>
-                    </div>
+                          </div>
+                        </div>   
+              </div>
                 </section>
 
                 {/* Team Section */}
                 <section className="team-section">
-                    <div className="container">
+                <div className="container">
                         <div className="section-header">
                             <h2 className="section-title">Our Leadership Team</h2>
                             <p className="section-subtitle">Meet the people who drive our success</p>
@@ -229,43 +229,43 @@ export default function History() {
                             <div className="team-member">
                                 <div className="member-image">
                                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Leadership Team Member" />
-                                </div>
+               </div>
                                 <div className="member-info">
                                     <h3>John Smith</h3>
                                     <p>Chief Executive Officer</p>
-                                </div>
-                            </div>
-                            
+    </div>
+</div>
+
                             <div className="team-member">
                                 <div className="member-image">
                                     <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Leadership Team Member" />
-                                </div>
+                </div>
                                 <div className="member-info">
                                     <h3>Sarah Johnson</h3>
                                     <p>Chief Operations Officer</p>
-                                </div>
-                            </div>
+                </div>
+            </div>
                             
                             <div className="team-member">
                                 <div className="member-image">
                                     <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Leadership Team Member" />
-                                </div>
+                </div>
                                 <div className="member-info">
                                     <h3>Michael Davis</h3>
                                     <p>Chief Technology Officer</p>
-                                </div>
-                            </div>
+                </div>
+            </div>
                             
                             <div className="team-member">
                                 <div className="member-image">
                                     <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Leadership Team Member" />
-                                </div>
+                </div>
                                 <div className="member-info">
                                     <h3>Jennifer Wilson</h3>
                                     <p>Chief Marketing Officer</p>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+            </div>
+</div>
                     </div>
                 </section>
 
@@ -276,14 +276,14 @@ export default function History() {
                             <div className="cta-content">
                                 <h2>Join Our Story</h2>
                                 <p>Become part of the BinBear journey as we continue to grow and shape the future of junk removal</p>
-                            </div>
+                                </div>
                             <div className="cta-buttons">
                                 <Link href="/contact" className="cta-button primary">Contact Us</Link>
                                 <Link href="/careers" className="cta-button secondary">Explore Careers</Link>
                             </div>
-                        </div>
-                    </div>
-                </section>
+                               </div>
+                </div>
+            </section>
             </div>
 
             <style jsx>{`
@@ -654,7 +654,7 @@ export default function History() {
                 .vision-goal {
                     flex: 1;
                     min-width: 120px;
-                    text-align: center;
+  text-align: center;
                     padding: 20px;
                     background-color: #f9f9f9;
                     border-radius: 8px;
@@ -667,7 +667,7 @@ export default function History() {
                 }
 
                 .goal-text {
-                    font-size: 16px;
+  font-size: 16px;
                     font-weight: 600;
                     color: #444;
                 }
@@ -713,7 +713,7 @@ export default function History() {
                 }
 
                 .value-text p {
-                    font-size: 14px;
+    font-size: 14px;
                     color: #666;
                     line-height: 1.6;
                     margin: 0;
@@ -752,7 +752,7 @@ export default function History() {
 
                 .member-info {
                     padding: 20px;
-                    text-align: center;
+        text-align: center;
                 }
 
                 .member-info h3 {
@@ -763,7 +763,7 @@ export default function History() {
                 }
 
                 .member-info p {
-                    font-size: 16px;
+            font-size: 16px;
                     color: #FF7701;
                     margin: 0;
                 }
@@ -777,8 +777,8 @@ export default function History() {
                     background: linear-gradient(135deg, #FF7701, #FF5500);
                     border-radius: 12px;
                     padding: 60px;
-                    color: white;
-                    text-align: center;
+        color: white;
+        text-align: center;
                     box-shadow: 0 10px 30px rgba(255, 119, 1, 0.2);
                 }
 
@@ -827,7 +827,7 @@ export default function History() {
 
                 .cta-button.secondary {
                     background-color: transparent;
-                    color: white;
+        color: white;
                     border: 2px solid white;
                 }
 
@@ -838,7 +838,7 @@ export default function History() {
                 }
 
                 /* Responsive Styles */
-                @media (max-width: 1024px) {
+    @media (max-width: 1024px) {
                     .team-grid {
                         grid-template-columns: repeat(2, 1fr);
                     }
@@ -872,7 +872,7 @@ export default function History() {
                     }
                 }
 
-                @media (max-width: 768px) {
+  @media (max-width: 768px) {
                     .hero-title {
                         font-size: 36px;
                     }
@@ -900,7 +900,7 @@ export default function History() {
                     }
                     
                     .timeline-body {
-                        width: 100%;
+    width: 100%;
                         margin-left: 60px;
                     }
                     
@@ -957,6 +957,6 @@ export default function History() {
                     }
                 }
             `}</style>
-        </Layout>
+            </Layout>
     );
 }
