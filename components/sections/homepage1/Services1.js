@@ -65,46 +65,10 @@ export default function Services1() {
                             </Link>
                         </div>
                     </div>
-
-                    <div className="service-cards-premium" data-aos="fade-up">
-                        <Swiper
-                            modules={[Autoplay, Pagination, Navigation]}
-                            slidesPerView={1}
-                            spaceBetween={30}
-                            loop={true}
-                            autoplay={{
-                                delay: 3000,
-                                disableOnInteraction: false,
-                            }}
-                            pagination={{
-                                clickable: true,
-                                el: '.swiper-pagination-services',
-                            }}
-                            breakpoints={{
-                                320: {
-                                    slidesPerView: 1,
-                                    spaceBetween: 10,
-                                },
-                                575: {
-                                    slidesPerView: 1,
-                                    spaceBetween: 10,
-                                },
-                                767: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 20,
-                                },
-                                991: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 20,
-                                },
-                                1199: {
-                                    slidesPerView: 3,
-                                    spaceBetween: 30,
-                                },
-                            }}
-                            className="swiper-wrapper"
-                        >
-                            <SwiperSlide>
+              
+                    <div className="service-cards-static" data-aos="fade-up">
+                        <div className="row">
+                            <div className="col-lg-4 col-md-6 mb-4">
                                 <div className="card-premium">
                                     <div className="card-premium-image">
                                         <img src="/assets/imgs/page/blog-single/step1.png" alt="Click Book Online" />
@@ -114,8 +78,9 @@ export default function Services1() {
                                         <p className="card-premium-text">Click book online & provide us with your information</p>
                                     </div>
                                 </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
+                            </div>
+                            
+                            <div className="col-lg-4 col-md-6 mb-4">
                                 <div className="card-premium">
                                     <div className="card-premium-image">
                                         <img src="/assets/imgs/page/blog-single/step2.png" alt="Use Our Calculator" />
@@ -125,8 +90,9 @@ export default function Services1() {
                                         <p className="card-premium-text">Use our proprietary calculator to choose your items</p>
                                     </div>
                                 </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
+                            </div>
+                            
+                            <div className="col-lg-4 col-md-6 mb-4">
                                 <div className="card-premium">
                                     <div className="card-premium-image">
                                         <img src="/assets/imgs/page/blog-single/step3.png" alt="Choose a Date for Pickup" />
@@ -136,20 +102,25 @@ export default function Services1() {
                                         <p className="card-premium-text">Choose a Date for Pickup</p>
                                     </div>
                                 </div>
-                            </SwiperSlide>
-                        </Swiper>
-                        <div className="swiper-pagination swiper-pagination-services"></div>
+                            </div>
+                        </div>
+                        
+                        <div className="text-center mt-4">
+                            <Link href="/Booking" className="btn-premium btn-premium-primary btn-lg">
+                                Get Started Now
+                            </Link>
+                        </div>
                     </div>
                     
-                    <div className="row align-items-end mt-3">
+                    {/* <div className="row align-items-end mt-3">
                         <div className="col-12">
                             <p className="disclaimer-text" data-aos="fade-up">
                                 Disclaimer: If you a input the first differs greatly from new information you have provided, your price of service may
                                 increase 10%-20%
                             </p>
                         </div>
-                    </div>
-                </div>
+                    </div> */}
+                </div>  
             </section>
 
             <style jsx>{`
@@ -274,10 +245,9 @@ export default function Services1() {
                     margin-bottom: 0;
                 }
                 
-                .service-cards-premium {
+                .service-cards-static {
                     margin-top: 40px;
                     position: relative;
-                    padding-bottom: 40px;
                 }
                 
                 .card-premium {
@@ -329,26 +299,6 @@ export default function Services1() {
                     margin-bottom: 0;
                 }
                 
-                .swiper-pagination-services {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    text-align: center;
-                }
-                
-                .swiper-pagination-services .swiper-pagination-bullet {
-                    width: 8px;
-                    height: 8px;
-                    background: #ddd;
-                    opacity: 1;
-                    margin: 0 4px;
-                }
-                
-                .swiper-pagination-services .swiper-pagination-bullet-active {
-                    background: #FF7F00;
-                }
-                
                 .btn-premium {
                     display: inline-flex;
                     align-items: center;
@@ -370,6 +320,12 @@ export default function Services1() {
                     transform: translateY(-2px);
                     box-shadow: 0 6px 15px rgba(255, 127, 0, 0.4);
                     color: #212121;
+                }
+                
+                .btn-lg {
+                    padding: 15px 30px;
+                    font-size: 16px;
+                    font-weight: 700;
                 }
                 
                 .disclaimer-text {
@@ -470,7 +426,7 @@ export default function Services1() {
                         padding: 10px 20px;
                         font-size: 14px;
                     }
-                }
+                }    
             `}</style>
         </>
     );

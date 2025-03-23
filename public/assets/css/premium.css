@@ -87,7 +87,7 @@ input[type="submit"]:hover,
 a.btn:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
-  color: var(--text-dark);
+  color: var(--text-dark) !important;
 }
 
 .btn:hover::before, 
@@ -297,6 +297,7 @@ input[type="submit"]:disabled:hover,
 .btn-premium:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 15px rgba(255, 127, 0, 0.4), 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: white !important;
 }
 
 .btn-premium:active {
@@ -323,10 +324,12 @@ input[type="submit"]:disabled:hover,
 .btn-premium-secondary {
   background: linear-gradient(135deg, #333333, #1a1a1a);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 .btn-premium-secondary:hover {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3), 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: white !important;
 }
 
 .btn-premium-outline {

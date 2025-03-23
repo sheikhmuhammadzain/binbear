@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 
-export default function WelcomePopup({ closePopup }) {
-    // Log when popup is rendered
+export default function WelcomePopup({ closeModal }) {
     useEffect(() => {
-        console.log('WelcomePopup rendered');
         // Prevent scrolling when popup is shown
         document.body.style.overflow = 'hidden';
         
@@ -14,16 +12,10 @@ export default function WelcomePopup({ closePopup }) {
         };
     }, []);
 
-    // Function to reset popup for testing
-    const resetPopup = () => {
-        sessionStorage.removeItem('hasSeenPopup');
-        window.location.reload();
-    };
-
     return (
         <div className="popup-overlay">
             <div className="popup-container">
-                <button className="close-button" onClick={closePopup}>×</button>
+                <button className="close-button" onClick={closeModal}>×</button>
                 
                 <div className="popup-content">
                     <h2 className="popup-title">What is Your Time Worth?</h2>

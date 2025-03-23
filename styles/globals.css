@@ -1,0 +1,166 @@
+/* Global styles to improve responsiveness */
+:root {
+  --primary-color: #FF7F00;
+  --primary-dark: #FF5E00;
+  --primary-light: #FFA64D;
+  --secondary-color: #1a1a1a;
+  --text-color: #333333;
+  --light-text: #777777;
+  --white: #ffffff;
+  --light-bg: #f5f7fa;
+  --border-color: #e0e0e0;
+  --container-max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--text-color);
+  line-height: 1.5;
+  background-color: #ffffff;
+  font-size: 16px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Container fixes */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Responsive Images */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Full width sections */
+.section-full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* Fix potential horizontal scrollbar issues */
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+  flex-wrap: wrap;
+}
+
+/* Fix for mobile navigation */
+.mobile-menu-active {
+  overflow: hidden;
+}
+
+/* Responsive typography */
+h1, .h1 { font-size: 2.25rem; }
+h2, .h2 { font-size: 1.875rem; }
+h3, .h3 { font-size: 1.5rem; }
+h4, .h4 { font-size: 1.25rem; }
+h5, .h5 { font-size: 1.125rem; }
+h6, .h6 { font-size: 1rem; }
+
+/* Media Queries */
+@media (max-width: 1199px) {
+  :root {
+    --container-max-width: 960px;
+  }
+  
+  h1, .h1 { font-size: 2rem; }
+  h2, .h2 { font-size: 1.75rem; }
+  h3, .h3 { font-size: 1.4rem; }
+}
+
+@media (max-width: 991px) {
+  :root {
+    --container-max-width: 720px;
+  }
+  
+  h1, .h1 { font-size: 1.875rem; }
+  h2, .h2 { font-size: 1.625rem; }
+  h3, .h3 { font-size: 1.3rem; }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --container-max-width: 540px;
+  }
+  
+  h1, .h1 { font-size: 1.75rem; }
+  h2, .h2 { font-size: 1.5rem; }
+  h3, .h3 { font-size: 1.25rem; }
+  
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --container-max-width: 100%;
+  }
+  
+  h1, .h1 { font-size: 1.625rem; }
+  h2, .h2 { font-size: 1.375rem; }
+  h3, .h3 { font-size: 1.125rem; }
+}
+
+/* Fix for Next.js Image component */
+.next-image-container {
+  width: 100%;
+  position: relative;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-1 { margin-top: 0.25rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.pt-0 { padding-top: 0; }
+.pb-0 { padding-bottom: 0; }
+.pt-1 { padding-top: 0.25rem; }
+.pb-1 { padding-bottom: 0.25rem; }
+.pt-2 { padding-top: 0.5rem; }
+.pb-2 { padding-bottom: 0.5rem; }
+.pt-3 { padding-top: 1rem; }
+.pb-3 { padding-bottom: 1rem; }
+.pt-4 { padding-top: 1.5rem; }
+.pb-4 { padding-bottom: 1.5rem; }
+.pt-5 { padding-top: 3rem; }
+.pb-5 { padding-bottom: 3rem; } 

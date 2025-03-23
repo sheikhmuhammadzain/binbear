@@ -53,8 +53,8 @@ export default function Hero1Slider() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                  </div>
+                           </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -86,7 +86,7 @@ export default function Hero1Slider() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                   </div>
                         </div>
                     </div>
                 </SwiperSlide>
@@ -239,7 +239,7 @@ export default function Hero1Slider() {
                 .btn-premium-primary:hover {
                     transform: translateY(-3px);
                     box-shadow: 0 8px 20px rgba(255, 127, 0, 0.5);
-                    color: white;
+                    color: white !important;
                 }
                 
                 .btn-premium-secondary {
@@ -253,7 +253,7 @@ export default function Hero1Slider() {
                 .btn-premium-secondary:hover {
                     transform: translateY(-3px);
                     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-                    color: white;
+                    color: white !important;
                     background: rgba(255, 255, 255, 0.25);
                 }
                 

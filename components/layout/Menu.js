@@ -114,26 +114,7 @@ export default function Menu() {
                 {/* "More" Menu */}
                
                 {/* "Premium UI" Menu */}
-                <li className="has-children">
-                    <Link
-                        className={`menu-item ${isActive("/premium-ui") || isActive("/button-showcase") || isActive("/card-showcase") ? "active" : ""}`}
-                        href="/premium-ui"
-                        style={{ color: "white" }}
-                    >
-                        Premium UI
-                    </Link>
-                    <ul className="sub-menu">
-                        <li>
-                            <Link href="/premium-ui" className="menu-link">Overview</Link>
-                        </li>
-                        <li>
-                            <Link href="/button-showcase" className="menu-link">Button Showcase</Link>
-                        </li>
-                        <li>
-                            <Link href="/card-showcase" className="menu-link">Card Showcase</Link>
-                        </li>
-                    </ul>
-                </li>
+           
             </ul>
 
             {/* Mobile menu toggle button */}

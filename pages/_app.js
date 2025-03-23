@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import "../public/assets/css/style.css"
 import "../public/assets/css/premium.css"
 import "../public/assets/css/full-width.css"
-import "../public/ast/globals.css"
+import "../styles/globals.css"
 import 'swiper/css';
 // import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,7 +14,7 @@ import Head from "next/head";
 function MyApp({ Component, pageProps }) {
     const [loading, setLoading] = useState(true);
     const [premiumStylesLoaded, setPremiumStylesLoaded] = useState(false);
-    
+
     useEffect(() => {
         // Set loading state
         setTimeout(() => {
@@ -605,11 +605,11 @@ function MyApp({ Component, pageProps }) {
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
             </Head>
             
-            {!loading ? (
+        {!loading ? (
                 <Component {...pageProps} premiumStylesLoaded={premiumStylesLoaded} />
-            ) : (
-                <Preloader />
-            )}
+        ) : (
+            <Preloader />
+        )}
         </>
     );
 }

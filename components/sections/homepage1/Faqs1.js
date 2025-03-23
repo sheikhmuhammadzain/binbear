@@ -1,7 +1,18 @@
 import Accordion from "@/components/elements/Accordion";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Faqs1() {
+    const [activeIndex, setActiveIndex] = useState(null);
+    
+    const toggleFaq = (index) => {
+        if (activeIndex === index) {
+            setActiveIndex(null);
+        } else {
+            setActiveIndex(index);
+        }
+    };
+    
     return (
         <>
             <section className="section-premium bg-faqs">
@@ -16,8 +27,8 @@ export default function Faqs1() {
                     <div className="row">
                         <div className="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="100">
                             <div className="faqs-premium">
-                                <div className="faq-premium">
-                                    <div className="faq-premium-question">
+                                <div className={`faq-premium ${activeIndex === 0 ? 'active' : ''}`}>
+                                    <div className="faq-premium-question" onClick={() => toggleFaq(0)}>
                                         <h3>How much does junk removal cost?</h3>
                                         <span className="faq-premium-icon">+</span>
                                     </div>
@@ -26,8 +37,8 @@ export default function Faqs1() {
                                     </div>
                                 </div>
                                 
-                                <div className="faq-premium">
-                                    <div className="faq-premium-question">
+                                <div className={`faq-premium ${activeIndex === 1 ? 'active' : ''}`}>
+                                    <div className="faq-premium-question" onClick={() => toggleFaq(1)}>
                                         <h3>What items do you take?</h3>
                                         <span className="faq-premium-icon">+</span>
                                     </div>
@@ -36,8 +47,8 @@ export default function Faqs1() {
                                     </div>
                                 </div>
                                 
-                                <div className="faq-premium">
-                                    <div className="faq-premium-question">
+                                <div className={`faq-premium ${activeIndex === 2 ? 'active' : ''}`}>
+                                    <div className="faq-premium-question" onClick={() => toggleFaq(2)}>
                                         <h3>How quickly can you come for pickup?</h3>
                                         <span className="faq-premium-icon">+</span>
                                     </div>
@@ -46,8 +57,8 @@ export default function Faqs1() {
                                     </div>
                                 </div>
                                 
-                                <div className="faq-premium">
-                                    <div className="faq-premium-question">
+                                <div className={`faq-premium ${activeIndex === 3 ? 'active' : ''}`}>
+                                    <div className="faq-premium-question" onClick={() => toggleFaq(3)}>
                                         <h3>Are you environmentally friendly?</h3>
                                         <span className="faq-premium-icon">+</span>
                                     </div>
@@ -66,7 +77,7 @@ export default function Faqs1() {
                     </div>
                 </div>
             </section>
-            
+
             <style jsx>{`
                 .section-premium {
                     padding: 70px 0;
@@ -202,30 +213,6 @@ export default function Faqs1() {
                     }
                 }
             `}</style>
-            
-            <script jsx>{`
-                document.addEventListener('DOMContentLoaded', function() {
-                    const faqItems = document.querySelectorAll('.faq-premium');
-                    
-                    faqItems.forEach(item => {
-                        const question = item.querySelector('.faq-premium-question');
-                        
-                        question.addEventListener('click', () => {
-                            const isActive = item.classList.contains('active');
-                            
-                            // Close all FAQs
-                            faqItems.forEach(faq => {
-                                faq.classList.remove('active');
-                            });
-                            
-                            // If the clicked FAQ wasn't active, open it
-                            if (!isActive) {
-                                item.classList.add('active');
-                            }
-                        });
-                    });
-                });
-            `}</script>
         </>
     )
 }

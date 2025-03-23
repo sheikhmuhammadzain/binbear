@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const Footer = () => {
     const [showBookingButton, setShowBookingButton] = useState(false);
     const [isSubscribed, setIsSubscribed] = useState(false);
-    
+
     useEffect(() => {
         // Check if zip code was entered
         const hasEnteredZip = sessionStorage.getItem('hasEnteredZip');
@@ -30,13 +31,13 @@ const Footer = () => {
                             <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                 <div className="footer-logo mb-4">
                                     <Link href="/" className="logo-link">
-                                        <img src="/assets/imgs/logo-light.png" alt="BinBear" width={180} />
+                                        <Image src="/img/logo.png" alt="BinBear" width={80} height={60} />
                                     </Link>
                                 </div>
                                 <p className="footer-desc mb-4">
                                     BinBear provides premium waste management services for residential and commercial properties. Our mission is to make waste disposal easy, efficient, and environmentally friendly.
                                 </p>
-                                <div className="social-links">
+                                {/* <div className="social-links">
                                     <a href="#" className="social-link">
                                         <i className="fab fa-facebook-f"></i>
                                     </a>
@@ -49,9 +50,9 @@ const Footer = () => {
                                     <a href="#" className="social-link">
                                         <i className="fab fa-linkedin-in"></i>
                                     </a>
-                                </div>
+                                </div> */}
                             </div>
-                            
+
                             <div className="col-lg-2 col-md-6 mb-4 mb-lg-0">
                                 <h4 className="footer-title">Services</h4>
                                 <ul className="footer-links">
@@ -133,8 +134,14 @@ const Footer = () => {
             </footer>
 
             <style jsx>{`
+                .layout-premium-footer {
+                    background-color: #212121;
+                    color: white;
+                    padding-top: 60px;
+                }
+                
                 .footer-top {
-                    padding: 60px 0 30px;
+                    padding: 0 0 30px;
                 }
                 
                 .footer-logo {
@@ -219,6 +226,15 @@ const Footer = () => {
                     position: relative;
                 }
                 
+                .form-premium-input {
+                    width: 100%;
+                    padding: 12px 15px;
+                    border-radius: 6px;
+                    border: none;
+                    font-size: 14px;
+                    transition: all 0.3s ease;
+                }
+                
                 .newsletter-form .form-premium-input {
                     padding-right: 120px;
                     background-color: rgba(255, 255, 255, 0.1);
@@ -233,6 +249,7 @@ const Footer = () => {
                 .newsletter-form .form-premium-input:focus {
                     background-color: rgba(255, 255, 255, 0.15);
                     border-color: rgba(255, 255, 255, 0.3);
+                    outline: none;
                 }
                 
                 .newsletter-form .btn-premium {
@@ -241,6 +258,22 @@ const Footer = () => {
                     top: 5px;
                     padding: 8px 15px;
                     font-size: 14px;
+                    background-color: #FF7F00;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                
+                .newsletter-form .btn-premium:hover {
+                    background-color: #e67600;
+                }
+                
+                .divider-premium {
+                    height: 1px;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    margin: 10px 0;
                 }
                 
                 .footer-bottom {
@@ -280,9 +313,40 @@ const Footer = () => {
                     box-shadow: 0 5px 15px rgba(255, 127, 0, 0.4);
                 }
                 
+                .alert-premium {
+                    padding: 12px 15px;
+                    border-radius: 6px;
+                    margin-bottom: 20px;
+                    font-size: 14px;
+                }
+                
+                .alert-premium-success {
+                    background-color: rgba(25, 135, 84, 0.2);
+                    color: #198754;
+                    border: 1px solid rgba(25, 135, 84, 0.3);
+                }
+                
+                .btn-premium-lg {
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 12px 24px;
+                    background-color: #FF7F00;
+                    color: white;
+                    font-weight: 600;
+                    border-radius: 6px;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                }
+                
+                .btn-premium-lg:hover {
+                    background-color: #e67600;
+                    transform: translateY(-3px);
+                    color: white;
+                }
+                
                 @media (max-width: 991px) {
                     .footer-top {
-                        padding: 50px 0 20px;
+                        padding: 0 0 20px;
                     }
                 }
                 
@@ -304,7 +368,7 @@ const Footer = () => {
                 
                 @media (max-width: 576px) {
                     .footer-top {
-                        padding: 40px 0 20px;
+                        padding: 0 0 20px;
                     }
                     
                     .footer-title {
