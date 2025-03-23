@@ -121,7 +121,7 @@ const ItemSelection = () => {
     return (
         <Layout>
             <div className="item-selection-wrapper">
-                {/* Header */}
+                    {/* Header */}
                 <header className="header">
                     <Link href="/choose-service" className="back-button">
                         <FontAwesomeIcon icon={faChevronLeft} />
@@ -175,7 +175,7 @@ const ItemSelection = () => {
                         </div>
                         <div className="category-title">Tables & Dressers</div>
                     </div>
-                    
+
                     <div className={`category-card ${activeCategory === 2 ? 'active' : ''}`} onClick={() => setActiveCategory(2)}>
                         <div className="category-image-container">
                             <Image 
@@ -198,9 +198,9 @@ const ItemSelection = () => {
                                 height={100}
                                 style={{ objectFit: 'contain' }}
                             />
-                        </div>
+                                            </div>
                         <div className="category-title">Appliances</div>
-                    </div>
+                                            </div>
 
                     <div className={`category-card ${activeCategory === 4 ? 'active' : ''}`} onClick={() => setActiveCategory(4)}>
                         <div className="category-image-container">
@@ -211,9 +211,9 @@ const ItemSelection = () => {
                                 height={100}
                                 style={{ objectFit: 'contain' }}
                             />
-                        </div>
+                                        </div>
                         <div className="category-title">Yard Equipment</div>
-                    </div>
+                                </div>
 
                     <div className={`category-card ${activeCategory === 5 ? 'active' : ''}`} onClick={() => setActiveCategory(5)}>
                         <div className="category-image-container">
@@ -244,45 +244,45 @@ const ItemSelection = () => {
                 <div className="items-list">
                     {itemCategories[activeCategory].items.map((item, index) => (
                         <div key={index} className="item-row">
-                            <div className="item-info">
+                                            <div className="item-info">
                                 <span className="item-radio"></span>
-                                <span className="item-name">{item.name}</span>
-                            </div>
-                            <div className="item-controls">
-                                <button
+                                                <span className="item-name">{item.name}</span>
+                                            </div>
+                                            <div className="item-controls">
+                                                <button
                                     className="control-btn decrease"
-                                    onClick={() => updateItemCount(item.name, -1)}
+                                                    onClick={() => updateItemCount(item.name, -1)}
                                     disabled={!selectedItems[item.name]}
-                                >
-                                    −
-                                </button>
-                                <span className="item-count">
-                                    {selectedItems[item.name] || 0}
-                                </span>
-                                <button
+                                                >
+                                                    −
+                                                </button>
+                                                <span className="item-count">
+                                                    {selectedItems[item.name] || 0}
+                                                </span>
+                                                <button
                                     className="control-btn increase"
-                                    onClick={() => updateItemCount(item.name, 1)}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                                                    onClick={() => updateItemCount(item.name, 1)}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                    </div>
 
-                {/* Bottom CTA */}
-                <div className="bottom-cta">
+                    {/* Bottom CTA */}
+                    <div className="bottom-cta">
                     <Link href="/construction-cleanup" className="book-now-btn">
-                        Book Now & Save $20!*
+                                Book Now & Save $20!*
                     </Link>
                     <p className="cta-note">* excludes jobs $99 and under</p>
                     <Link href="/pickup" className="pick-up-btn">
                         Pick These Up
-                    </Link>
-                </div>
+                        </Link>
+                    </div>
 
-                {/* Styles */}
-                <style jsx>{`
+                    {/* Styles */}
+                    <style jsx>{`
                     .item-selection-wrapper {
                         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                         background-color: #f5f5f5;
@@ -291,11 +291,11 @@ const ItemSelection = () => {
                         display: flex;
                         flex-direction: column;
                         max-width: 700px;
-                        margin: 0 auto;
+                            margin: 0 auto;
                         border: 1px solid #FF7701;
-                    }
+                        }
 
-                    /* Header */
+                        /* Header */
                     .header {
                         background-color: #FF7701;
                         color: white;
@@ -306,9 +306,9 @@ const ItemSelection = () => {
                     }
 
                     .header-center {
-                        display: flex;
+                            display: flex;
                         flex-direction: column;
-                        align-items: center;
+                            align-items: center;
                     }
 
                     .crown-icon {
@@ -323,9 +323,9 @@ const ItemSelection = () => {
                     .back-button, .close-button {
                         color: white;
                         font-size: 18px;
-                        background: none;
-                        border: none;
-                        cursor: pointer;
+                            background: none;
+                            border: none;
+                            cursor: pointer;
                     }
 
                     /* Title Section */
@@ -420,7 +420,7 @@ const ItemSelection = () => {
                     .category-title {
                         font-size: 14px;
                         font-weight: bold;
-                        color: #333;
+                            color: #333;
                         text-align: center;
                         margin-bottom: 5px;
                     }
@@ -435,13 +435,13 @@ const ItemSelection = () => {
                         .category-card {
                             width: 100%;
                         }
-                    }
+                        }
 
-                    /* Estimate Section */
-                    .estimate-section {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
+                        /* Estimate Section */
+                        .estimate-section {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
                         padding: 10px 15px;
                         background-color: #f0f0f0;
                         border-top: 1px solid #e0e0e0;
@@ -449,44 +449,44 @@ const ItemSelection = () => {
                     }
 
                     .estimate-amount {
-                        font-size: 16px;
+                            font-size: 16px;
                         font-weight: bold;
-                        color: #333;
-                    }
+                            color: #333;
+                        }
 
                     .price {
                         color: #FF7701;
                         margin-left: 5px;
                     }
 
-                    .clear-items {
+                        .clear-items {
                         background-color: #ff9800;
                         color: white;
                         border: none;
-                        border-radius: 4px;
+                            border-radius: 4px;
                         padding: 6px 12px;
                         font-size: 14px;
-                        cursor: pointer;
+                            cursor: pointer;
                     }
 
                     /* Items List */
                     .items-list {
                         flex: 1;
-                        overflow-y: auto;
+                            overflow-y: auto;
                         padding: 10px 15px;
-                    }
+                        }
 
-                    .item-row {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
+                        .item-row {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
                         padding: 5px 0;
                         border-bottom: 1px solid #e0e0e0;
-                    }
+                        }
 
-                    .item-info {
-                        display: flex;
-                        align-items: center;
+                        .item-info {
+                            display: flex;
+                            align-items: center;
                     }
 
                     .item-radio {
@@ -497,24 +497,24 @@ const ItemSelection = () => {
                         margin-right: 10px;
                     }
 
-                    .item-name {
+                        .item-name {
                         font-size: 14px;
                         color: #333;
-                    }
+                        }
 
-                    .item-controls {
-                        display: flex;
-                        align-items: center;
-                    }
+                        .item-controls {
+                            display: flex;
+                            align-items: center;
+                        }
 
-                    .control-btn {
-                        width: 24px;
-                        height: 24px;
+                        .control-btn {
+                            width: 24px;
+                            height: 24px;
                         border-radius: 4px;
                         border: none;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
                         font-size: 16px;
                         font-weight: bold;
                         cursor: pointer;
@@ -522,41 +522,41 @@ const ItemSelection = () => {
 
                     .decrease {
                         background-color: #f0f0f0;
-                        color: #333;
-                    }
+                            color: #333;
+                        }
 
                     .increase {
                         background-color: #FF7701;
                         color: white;
-                    }
+                        }
 
-                    .item-count {
+                        .item-count {
                         width: 30px;
-                        text-align: center;
+                            text-align: center;
                         font-size: 14px;
-                    }
+                        }
 
                     /* Bottom CTA */
-                    .bottom-cta {
+                        .bottom-cta {
                         background-color: #FF7701;
                         padding: 15px;
-                        text-align: center;
-                    }
+                            text-align: center;
+                        }
 
-                    .book-now-btn {
+                        .book-now-btn {
                         display: block;
-                        width: 100%;
+                            width: 100%;
                         background-color: #ffffff;
                         color: #FF7701;
                         font-size: 18px;
-                        font-weight: bold;
+                            font-weight: bold;
                         padding: 12px;
-                        border-radius: 4px;
+                            border-radius: 4px;
                         margin-bottom: 8px;
                         text-decoration: none;
-                    }
+                        }
 
-                    .cta-note {
+                        .cta-note {
                         font-size: 12px;
                         color: white;
                         margin: 5px 0 10px;
@@ -564,7 +564,7 @@ const ItemSelection = () => {
 
                     .pick-up-btn {
                         display: block;
-                        width: 100%;
+                                width: 100%;
                         background-color: #4caf50;
                         color: white;
                         font-size: 18px;
@@ -572,8 +572,8 @@ const ItemSelection = () => {
                         padding: 12px;
                         border-radius: 4px;
                         text-decoration: none;
-                    }
-                `}</style>
+                        }
+                    `}</style>
             </div>
         </Layout>
     );

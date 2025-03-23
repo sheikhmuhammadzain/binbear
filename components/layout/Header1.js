@@ -65,7 +65,7 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                         <div className="header-left">
                             <div className="header-logo">
                                 <Link className="d-flex" href="/">
-                                    <Image src="/img/logo.png" alt="BinBear" width={80} height={44} />
+                                    <Image src="/img/bear.png.png" alt="BinBear" width={100} height={44} />
                                 </Link>
                             </div>
                             <div className="header-nav">

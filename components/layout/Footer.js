@@ -25,14 +25,14 @@ const Footer = () => {
     return (
         <>
             <footer className="layout-premium-footer">
-                <div className="container">
+                    <div className="container">
                     <div className="footer-top">
                         <div className="row">
                             <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
                                 <div className="footer-logo mb-4">
                                     <Link href="/" className="logo-link">
-                                        <Image src="/img/logo.png" alt="BinBear" width={80} height={60} />
-                                    </Link>
+                                        <Image src="/img/bear.png.png" alt="BinBear" width={100} height={60} />
+                                </Link>
                                 </div>
                                 <p className="footer-desc mb-4">
                                     BinBear provides premium waste management services for residential and commercial properties. Our mission is to make waste disposal easy, efficient, and environmentally friendly.
@@ -96,7 +96,7 @@ const Footer = () => {
                                     ) : (
                                         <div className="alert-premium alert-premium-success">
                                             Thank you for subscribing!
-                                        </div>
+                            </div>
                                     )}
                                 </div>
                             </div>
