@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
     const [isScrolled, setIsScrolled] = useState(false)
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     
     useEffect(() => {
         const handleScroll = () => {
@@ -20,6 +21,12 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
             window.removeEventListener('scroll', handleScroll)
         }
     }, [])
+
+    const toggleMobileMenu = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setMobileMenuOpen(!mobileMenuOpen);
+    }
 
     return (
         <>
@@ -72,7 +79,11 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                                 <nav className="nav-main-menu d-none d-xl-block">
                                     <Menu />
                                 </nav>
-                                <div className="burger-icon burger-icon-white" onClick={handleMobileMenuOpen}>
+                                <div 
+                                    id="mobileBurgerMenu" 
+                                    className={`burger-icon burger-icon-white ${mobileMenuOpen ? 'active' : ''}`}
+                                    onClick={toggleMobileMenu}
+                                >
                                     <span className="burger-icon-top" />
                                     <span className="burger-icon-mid" />
                                     <span className="burger-icon-bottom" />
@@ -90,6 +101,51 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                                     </Link>
                                 </div>
                             )}
+                        </div>
+                    </div>
+                </div>
+                
+                {/* Mobile Dropdown Menu */}
+                <div className={`mobile-dropdown-menu ${mobileMenuOpen ? 'open' : ''}`}>
+                    <div className="container">
+                        <div className="mobile-menu-links">
+                            <div className="dropdown-section">
+                                <h5>What We Do</h5>
+                                <ul>
+                                    <li><Link href="/Residential">Residential</Link></li>
+                                    <li><Link href="/Commercial">Commercial</Link></li>
+                                    <li><Link href="/Item-we-take">Items We Take</Link></li>
+                                    <li><Link href="/Dumpster-Rental">Dumpster Rental</Link></li>
+                                    <li><Link href="/history">Our History</Link></li>
+                                </ul>
+                            </div>
+                            
+                            <div className="dropdown-section">
+                                <h5>How It Works</h5>
+                                <ul>
+                                    <li><Link href="/Residential">Residential</Link></li>
+                                    <li><Link href="/Commercial">Commercial</Link></li>
+                                    <li><Link href="/Estimateprice">Estimate Pricing</Link></li>
+                                </ul>
+                            </div>
+                            
+                            <div className="dropdown-section">
+                                <h5>Pricing</h5>
+                                <ul>
+                                    <li><Link href="/Estimateprice">Book Online</Link></li>
+                                    <li><Link href="/jk-removal-price">Junk Removal</Link></li>
+                                    <li><Link href="/Dumpster-Rental">Dumpster Rental</Link></li>
+                                </ul>
+                            </div>
+                            
+                            <div className="dropdown-section">
+                                <h5>Quick Links</h5>
+                                <ul>
+                                    <li><Link href="/about">About Us</Link></li>
+                                    <li><Link href="/contact">Contact</Link></li>
+                                    <li><Link href="/Booking">Book Now</Link></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,7 +210,10 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                     border-radius: 6px;
                     transition: all 0.3s ease;
                     text-align: center;
-                    white-space: nowrap;
+                    white-space: nowrap !important;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    min-width: 120px;
                     
                     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
                 }
@@ -190,6 +249,8 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                     height: 18px;
                     position: relative;
                     margin-left: 15px;
+                    z-index: 1001;
+                    transition: transform 0.3s ease;
                 }
                 
                 .burger-icon span {
@@ -215,10 +276,91 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                 .burger-icon-bottom {
                     top: 16px;
                 }
+                
+                .burger-icon.active .burger-icon-top {
+                    transform: rotate(45deg);
+                    top: 8px;
+                }
+                
+                .burger-icon.active .burger-icon-mid {
+                    opacity: 0;
+                }
+                
+                .burger-icon.active .burger-icon-bottom {
+                    transform: rotate(-45deg);
+                    top: 8px;
+                }
+                
+                /* Mobile Dropdown Menu */
+                .mobile-dropdown-menu {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    background-color: #121212;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.5s ease;
+                    z-index: 1000;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                }
+                
+                .mobile-dropdown-menu.open {
+                    max-height: 1000px;
+                }
+                
+                .mobile-menu-links {
+                    display: flex;
+                    flex-wrap: wrap;
+                    padding: 25px 15px;
+                }
+                
+                .dropdown-section {
+                    flex: 1 0 50%;
+                    min-width: 250px;
+                    padding: 0 15px 20px;
+                }
+                
+                .dropdown-section h5 {
+                    color: #FF7701;
+                    font-size: 18px;
+                    margin-bottom: 12px;
+                    padding-bottom: 8px;
+                    border-bottom: 1px solid rgba(255,255,255,0.1);
+                }
+                
+                .dropdown-section ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                }
+                
+                .dropdown-section ul li {
+                    margin-bottom: 10px;
+                    white-space: nowrap !important;
+                    color: #fff !important;
+                }
+                
+                .dropdown-section ul li a {
+                    color: #fff !important;
+                    text-decoration: none;
+                    font-size: 15px;
+                    transition: color 0.2s ease;
+                    display: block;
+                    padding: 5px 0;
+                }
+                
+                .dropdown-section ul li a:hover {
+                    color: #FF7701;
+                }
 
                 @media (max-width: 991px) {
                     .header-logo {
                         margin-right: 10px;
+                    }
+                    
+                    .dropdown-section {
+                        flex: 1 0 100%;
                     }
                 }
 
@@ -231,6 +373,7 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                         padding: 8px 16px;
                         min-width: 100px;
                         font-size: 14px;
+                        white-space: nowrap !important;
                     }
                     
                     .main-header {
@@ -239,6 +382,15 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                     
                     .phone-icon, .email-icon {
                         margin-right: 8px;
+                    }
+                    
+                    .dropdown-section {
+                        padding-bottom: 15px;
+                    }
+                    
+                    .dropdown-section h5 {
+                        font-size: 16px;
+                        margin-bottom: 8px;
                     }
                 }
                 
@@ -259,6 +411,12 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                     
                     .header-logo {
                         margin-right: 5px;
+                    }
+                }
+                
+                @media (min-width: 1200px) {
+                    .mobile-dropdown-menu {
+                        display: none;
                     }
                 }
             `}</style>

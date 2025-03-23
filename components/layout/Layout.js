@@ -6,14 +6,12 @@ import Header1 from './Header1'
 import Header2 from './Header2'
 import HeaderNewsletter from "./HeaderNewsletter"
 import PageHead from './PageHead'
-import Sidebar from './Sidebar'
 import WelcomePopup from '../WelcomePopup'
 import { useRouter } from 'next/router'
 
 export default function Layout({ headerStyle, footerStyle, headTitle, children, topBarStyle }) {
     const router = useRouter();
     const [scroll, setScroll] = useState(0)
-    const [openClass, setOpenClass] = useState('');
     const [hideBookNow, setHideBookNow] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
     const [pageLoaded, setPageLoaded] = useState(false);
@@ -87,16 +85,6 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
         sessionStorage.setItem('hasSeenPopup', 'true');
     };
 
-    const handleMobileMenuOpen = () => {
-        document.body.classList.add("mobile-menu-active");
-        setOpenClass("sidebar-visible");
-    }
-
-    const handleMobileMenuClose = () => {
-        document.body.classList.remove("mobile-menu-active");
-        setOpenClass("");
-    }
-
     useEffect(() => {
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
@@ -117,63 +105,38 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
 
     return (
         <>
-            <PageHead headTitle={headTitle} />
-            
-            <div className={openClass && "body-overlay-1"} onClick={handleMobileMenuClose}></div>
-
             <div id="wrapper">
-                {headerStyle === 2 ? (
-                    <Header2 
-                        scroll={scroll}
-                        handleMobileMenuOpen={handleMobileMenuOpen}
-                        hideBookNow={hideBookNow}
-                    />
+                <PageHead headTitle={headTitle} />
+
+                {headerStyle === "headerStyle2" ? (
+                    <Header2 scroll={scroll} hideBookNow={hideBookNow} />
+                ) : headerStyle === "headernewsletter" ? (
+                    <HeaderNewsletter />
                 ) : (
-                    <Header1
-                        scroll={scroll}
-                        handleMobileMenuOpen={handleMobileMenuOpen}
-                        hideBookNow={hideBookNow}
-                    />
+                    <Header1 scroll={scroll} hideBookNow={hideBookNow} />
                 )}
 
-                <Sidebar openClass={openClass} handleMobileMenuClose={handleMobileMenuClose} />
-                
                 <main className="main">
                     {children}
                 </main>
 
-                {showPopup && pageLoaded && <WelcomePopup closeModal={closeWelcomePopup} />}
+                {footerStyle === "footerNewsletter" ? <FooterNewsletter /> : <Footer />}
 
-                {footerStyle === 2 ? <FooterNewsletter/> : <Footer/>}
+                <BackToTop />
                 
-                <BackToTop/>
+                {showPopup && <WelcomePopup onClose={closeWelcomePopup} />}
             </div>
-
+            
             <style jsx>{`
-                .body-overlay-1 {
-                    position: fixed;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(0, 0, 0, 0.3);
-                    z-index: 9999;
-                    top: 0;
-                    left: 0;
-                }
-                
                 #wrapper {
-                    display: flex;
-                    flex-direction: column;
-                    min-height: 100vh;
+                    position: relative;
+                    width: 100%;
+                    overflow-x: hidden;
                 }
                 
                 .main {
-                    flex: 1;
-                }
-                
-                @media (max-width: 992px) {
-                    .main {
-                        margin-top: 0;
-                    }
+                    margin-bottom: 0;
+                    position: relative;
                 }
             `}</style>
         </>

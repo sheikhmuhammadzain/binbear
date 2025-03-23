@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const Sidebar = ({ hideBookNow }) => {
+const Sidebar = ({ hideBookNow, handleMobileMenuClose }) => {
     const [isActive, setIsActive] = useState({
         status: false,
         key: "",
@@ -28,7 +28,7 @@ const Sidebar = ({ hideBookNow }) => {
                     <div className="mobile-header-content-area">
                         <div className="mobile-logo">
                             <Link href="/" className="d-flex">
-                                <img src="/assets/imgs/logo.png" alt="BinBear" />
+                                <img src="/img/bear.png.png" alt="BinBear" />
                             </Link>
                         </div>
                         
@@ -44,7 +44,7 @@ const Sidebar = ({ hideBookNow }) => {
                             </div>
                         )}
                         
-                        <div className="burger-icon burger-icon-white">
+                        <div className="burger-icon burger-icon-white" onClick={handleMobileMenuClose}>
                             <span className="burger-icon-top"></span>
                             <span className="burger-icon-mid"></span>
                             <span className="burger-icon-bottom"></span>
@@ -63,28 +63,28 @@ const Sidebar = ({ hideBookNow }) => {
                                             </Link>
                                             <ul className={isActive.key == 1 ? "sidebar-submenu d-block" : "sidebar-submenu d-none"}>
                                                 <li>
-                                                    <Link href="/services/residential" className="sidebar-menu-link">
+                                                    <Link href="/Residential" className="sidebar-menu-link">
                                                         Residential
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/services/commercial" className="sidebar-menu-link">
+                                                    <Link href="/Commercial" className="sidebar-menu-link">
                                                         Commercial
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/services/recycling" className="sidebar-menu-link">
-                                                        Recycling
+                                                    <Link href="/Item-we-take" className="sidebar-menu-link">
+                                                        Items We Take
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/services/dumpster-rental" className="sidebar-menu-link">
+                                                    <Link href="/Dumpster-Rental" className="sidebar-menu-link">
                                                         Dumpster Rental
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/services/junk-removal" className="sidebar-menu-link">
-                                                        Junk Removal
+                                                    <Link href="/history" className="sidebar-menu-link">
+                                                        Our History
                                                     </Link>
                                                 </li>
                                             </ul>
@@ -166,18 +166,21 @@ const Sidebar = ({ hideBookNow }) => {
                 .mobile-header-active {
                     position: fixed;
                     top: 0;
-                    left: 0;
-                    width: 320px;
-                    height: 100vh;
-                    z-index: 999;
-                    background-color: #fff;
-                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-                    transform: translateX(-100%);
-                    transition: transform 0.3s ease;
+                    right: -100%;
+                    width: 80%;
+                    max-width: 320px;
+                    height: 100%;
+                    z-index: 9999;
+                    background-color: #000;
+                    color: #fff;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                    transition: right 0.3s ease;
                 }
                 
-                .mobile-header-active.sidebar-visible {
-                    transform: translateX(0);
+                #wrapper.sidebar-visible .mobile-header-active {
+                    right: 0;
+                    display: block !important;
+                    visibility: visible !important;
                 }
                 
                 .mobile-header-wrapper-inner {
@@ -186,84 +189,86 @@ const Sidebar = ({ hideBookNow }) => {
                 }
                 
                 .mobile-header-content-area {
-                    padding: 20px;
+                    padding: 15px;
                 }
                 
                 .mobile-logo {
-                    padding: 10px 0;
-                    text-align: center;
-                    border-bottom: 1px solid #eee;
                     margin-bottom: 20px;
+                    text-align: center;
                 }
                 
                 .mobile-logo img {
                     max-width: 150px;
+                    height: auto;
                 }
                 
                 .burger-icon {
                     position: absolute;
-                    top: 20px;
-                    right: 20px;
+                    top: 15px;
+                    right: 15px;
+                    width: 24px;
+                    height: 24px;
                     cursor: pointer;
-                    width: 30px;
-                    height: 30px;
                 }
                 
                 .burger-icon span {
                     display: block;
-                    width: 100%;
+                    position: absolute;
                     height: 2px;
-                    background-color: #333;
-                    margin: 6px 0;
-                    transition: all 0.3s ease;
+                    width: 100%;
+                    background: white;
+                    opacity: 1;
+                    left: 0;
+                    transform: rotate(0deg);
+                    transition: .25s ease-in-out;
+                }
+                
+                .burger-icon-top {
+                    top: 0px;
+                    transform: rotate(45deg) !important;
+                    top: 10px !important;
+                }
+                
+                .burger-icon-mid {
+                    opacity: 0 !important;
+                }
+                
+                .burger-icon-bottom {
+                    top: 20px;
+                    transform: rotate(-45deg) !important;
+                    top: 10px !important;
                 }
                 
                 .mobile-menu {
-                    list-style: none;
                     padding: 0;
-                    margin: 0;
+                    list-style: none;
                 }
                 
                 .mobile-menu li {
                     position: relative;
-                    border-bottom: 1px solid #eee;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 }
                 
                 .mobile-menu li a {
                     display: block;
                     padding: 12px 0;
-                    color: #333;
-                    font-weight: 500;
-                    transition: all 0.3s ease;
-                }
-                
-                .mobile-menu li.active > a {
-                    color: #FF7F00;
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 16px;
                 }
                 
                 .menu-expand {
                     position: absolute;
                     right: 0;
-                    top: 12px;
+                    top: 6px;
+                    padding: 5px;
                     cursor: pointer;
-                    width: 30px;
-                    height: 30px;
-                    text-align: center;
-                    line-height: 30px;
-                    font-size: 18px;
-                    transition: all 0.3s ease;
-                }
-                
-                .mobile-menu li.active .menu-expand i {
-                    transform: rotate(180deg);
+                    color: #fff;
                 }
                 
                 .sidebar-submenu {
+                    padding-left: 15px;
                     list-style: none;
-                    padding: 0 0 0 15px;
-                    margin: 0;
-                    overflow: hidden;
-                    transition: all 0.3s ease;
                 }
                 
                 .sidebar-submenu li {
@@ -271,31 +276,18 @@ const Sidebar = ({ hideBookNow }) => {
                 }
                 
                 .sidebar-menu-link {
+                    color: #ccc !important;
                     font-size: 14px !important;
-                    padding: 8px 0 !important;
-                    color: #666 !important;
-                }
-                
-                .sidebar-menu-link:hover {
-                    color: #FF7F00 !important;
-                    padding-left: 5px !important;
                 }
                 
                 .btn-brand {
-                    background-color: #FF7F00;
-                    border-color: #FF7F00;
-                    padding: 10px 25px;
+                    background: linear-gradient(45deg, #FF7F00, #FFA64D);
+                    color: white;
+                    padding: 8px 16px;
                     border-radius: 5px;
-                    font-weight: 600;
-                    transition: all 0.3s ease;
-                }
-                
-                .btn-shadow-brand {
-                    box-shadow: 0 5px 15px rgba(255, 127, 0, 0.3);
-                }
-                
-                .hover-up:hover {
-                    transform: translateY(-5px);
+                    text-decoration: none;
+                    font-weight: bold;
+                    display: inline-block;
                 }
             `}</style>
         </>
