@@ -21,8 +21,8 @@ const itemCategories = [
         ]
     },
     {
-        title: 'Tables & Dressers',
-        image: '/assets/imgs/asset 0.png',
+        title: 'Tables & Dresserss',
+        image: '/assets/imgs/table.png',
         items: [
             { name: 'Coffee Table', basePrice: 25 },
             { name: 'End Table', basePrice: 20 },
@@ -32,7 +32,7 @@ const itemCategories = [
     },
     {
         title: 'Electronics',
-        image: '/assets/imgs/asset 8.png',
+        image: '/assets/imgs/microwave.png',
         items: [
             { name: 'TV (under 40")', basePrice: 30 },
             { name: 'TV (40-60")', basePrice: 45 },
@@ -128,7 +128,7 @@ const ItemSelection = () => {
                     </Link>
                     <div className="header-center">
                         <div className="crown-icon">👑</div>
-                        <div className="phone-number">(888) 888-JUNK</div>
+                        <div className="phone-number">(888) 888-BIN BEAR</div>
                     </div>
                     <Link href="/" className="close-button">
                         <FontAwesomeIcon icon={faTimes} />
@@ -166,7 +166,7 @@ const ItemSelection = () => {
                     <div className={`category-card ${activeCategory === 1 ? 'active' : ''}`} onClick={() => setActiveCategory(1)}>
                         <div className="category-image-container">
                             <Image 
-                                src="/assets/imgs/asset 0.png"
+                                src="/assets/imgs/table.png"
                                 alt="Tables & Dressers"
                                 width={120}
                                 height={100}
@@ -179,7 +179,7 @@ const ItemSelection = () => {
                     <div className={`category-card ${activeCategory === 2 ? 'active' : ''}`} onClick={() => setActiveCategory(2)}>
                         <div className="category-image-container">
                             <Image 
-                                src="/assets/imgs/asset 8.png"
+                                src="/assets/imgs/lcd.png"
                                 alt="Electronics"
                                 width={120}
                                 height={100}
