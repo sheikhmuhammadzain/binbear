@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 
-export default function WelcomePopup({ closeModal }) {
+export default function WelcomePopup({ onClose }) {
     useEffect(() => {
         // Prevent scrolling when popup is shown
         document.body.style.overflow = 'hidden';
@@ -15,14 +15,14 @@ export default function WelcomePopup({ closeModal }) {
     return (
         <div className="popup-overlay">
             <div className="popup-container">
-                <button className="close-button" onClick={closeModal}>×</button>
+                <button className="close-button" onClick={onClose}>×</button>
                 
                 <div className="popup-content">
                     <h2 className="popup-title">What is Your Time Worth?</h2>
                     
                     <div className="popup-image-wrapper">
                         <img 
-                            src="/popcardimage.png" 
+                            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80" 
                             alt="Take back your time" 
                             className="popup-main-image"
                             loading="eager"
@@ -60,7 +60,7 @@ export default function WelcomePopup({ closeModal }) {
                 }
                 
                 .popup-container {
-                    background-color: #ed1c24;
+                    background-color: #FF7701;
                     width: 90%;
                     max-width: 550px;
                     border-radius: 8px;
@@ -99,6 +99,11 @@ export default function WelcomePopup({ closeModal }) {
                     height: 30px;
                     line-height: 30px;
                     text-align: center;
+                    transition: transform 0.2s ease;
+                }
+
+                .close-button:hover {
+                    transform: scale(1.1);
                 }
                 
                 .popup-title {
@@ -113,10 +118,13 @@ export default function WelcomePopup({ closeModal }) {
                 .popup-image-wrapper {
                     margin: 0 -20px;
                     position: relative;
+                    border-radius: 8px;
+                    overflow: hidden;
                 }
                 
                 .popup-main-image {
                     display: block;
+                    object-fit: cover;
                 }
                 
                 .popup-description {
@@ -128,8 +136,8 @@ export default function WelcomePopup({ closeModal }) {
                 
                 .popup-button {
                     display: inline-block;
-                    background: linear-gradient(to bottom, #FF7F00, #FF5E00);
-                    color: white;
+                    background: white;
+                    color: #FF7701;
                     padding: 14px 28px;
                     border-radius: 30px;
                     font-weight: bold;
@@ -143,6 +151,7 @@ export default function WelcomePopup({ closeModal }) {
                 .popup-button:hover {
                     transform: translateY(-3px);
                     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                    background: #f8f8f8;
                 }
                 
                 @media (max-width: 768px) {

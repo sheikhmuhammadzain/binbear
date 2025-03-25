@@ -43,17 +43,7 @@ function ServiceCards() {
             <button className="contact-btn">Select Service</button>
           </div>
 
-          <div className="service-card" onClick={handleDumpsterRentalClick}>
-            <img src="/assets/imgs/page/service-detail/img2.png" alt="Dumpster Rental" className="service-image" />
-            <h3>Dumpster Rental</h3>
-            <ul>
-              <li>Multiple dumpster sizes available</li>
-              <li>Flexible rental periods</li>
-              <li>Convenient delivery and pickup</li>
-              <li>Perfect for DIY projects</li>
-            </ul>
-            <button className="contact-btn">Select Service</button>
-          </div>
+       
 
           <div className="service-card" onClick={handleConstructionClick}>
             <img
@@ -85,6 +75,17 @@ function ServiceCards() {
               <button className="contact-btn">Contact us</button>
             </Link>
           </div>
+          <div className="service-card" onClick={handleDumpsterRentalClick}>
+            <img src="/assets/imgs/page/service-detail/img2.png" alt="Dumpster Rental" className="service-image" />
+            <h3>Dumpster Rental</h3>
+            <ul>
+              <li>Multiple dumpster sizes available</li>
+              <li>Flexible rental periods</li>
+              <li>Convenient delivery and pickup</li>
+              <li>Perfect for DIY projects</li>
+            </ul>
+            <button className="contact-btn">Select Service</button>
+          </div>
         </div>
 
         {/* Back Button */}
@@ -115,7 +116,7 @@ function ServiceCards() {
           
           .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
           }
