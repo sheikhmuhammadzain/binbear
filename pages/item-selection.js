@@ -272,7 +272,7 @@ const ItemSelection = () => {
 
                     {/* Bottom CTA */}
                     <div className="bottom-cta">
-                    <Link href="/construction-cleanup" className="book-now-btn">
+                    <Link href="/ScheduleDumpster" className="book-now-btn">
                                 Book Now & Save $20!*
                     </Link>
                     <p className="cta-note">* excludes jobs $99 and under</p>

@@ -47,7 +47,7 @@ function ConstructionCleanup() {
                   <li>Hot Tub Disposal</li>
                 </ul>
               </div>
-              <Link href="/ScheduleDumpster">
+              <Link href="/item-selection">
                 <button className="action-button">
                   Add My Items
                 </button>

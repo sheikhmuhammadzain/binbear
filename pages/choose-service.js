@@ -7,15 +7,15 @@ function ServiceCards() {
   const router = useRouter();
 
   const handleJunkHaulingClick = () => {
-    router.push("/junk-hauling"); // Create this page for junk hauling options
+    router.push("/construction-cleanup"); // Create this page for junk hauling options
   };
   
-  const handleDumpsterRentalClick = () => {
-    router.push("/Dumpster-Rental"); // New dumpster rental page
+  const handleConstructionClick = () => {
+    router.push("/construction-contact"); // Redirect to construction contact form page
   };
 
-  const handleConstructionClick = () => {
-    router.push("/construction-cleanup"); // Create this page for construction cleanup
+  const handleDumpsterRentalClick = () => {
+    router.push("/Dumpster-Rental"); // New dumpster rental page
   };
 
   const contactInfo = {
@@ -43,8 +43,6 @@ function ServiceCards() {
             <button className="contact-btn">Select Service</button>
           </div>
 
-       
-
           <div className="service-card" onClick={handleConstructionClick}>
             <img
               src="/assets/imgs/page/blog-single/bagi.png"
@@ -53,26 +51,24 @@ function ServiceCards() {
             />
             <h3>Post Construction Cleanup & Hauling</h3>
             <ul>
-              <li>
-                Get an estimate by truck load for your construction cleanup needs.
-              </li>
-              <li>
-                Contact us: {contactInfo.phone}<br />
-                Email: {contactInfo.email}<br />
-                Text: {contactInfo.text}
-              </li>
+              <li>Get an estimate by truck load for your construction cleanup needs.</li>
+              <li>Contact us: {contactInfo.phone}</li>
+              <li>Email: {contactInfo.email}</li>
+              <li>Text: {contactInfo.text}</li>
             </ul>
-            <button>Get Estimate</button>
+            <button>Contact Us</button>
           </div>
 
           <div className="service-card">
             <img src="/assets/imgs/page/blog-single/bagi.png" alt="Apartment Valet" className="service-image" />
             <h3>Apartment Trash Valet</h3>
             <ul>
-              <li>Contact us:<br />Phone: (815) 246-2327 (BINBEAR)<br />Email: quote@Binbearjunk.com<br />Website: BinBearJunk.com</li>
+              <li>Contact us: {contactInfo.phone}</li>
+              <li>Email: quote@Binbearjunk.com</li>
+              <li>Website: BinBearJunk.com</li>
             </ul>
-            <Link href="/ScheduleDumpster">
-              <button className="contact-btn">Contact us</button>
+            <Link href="/price-estimate">
+              <button className="contact-btn">Get Estimate</button>
             </Link>
           </div>
           <div className="service-card" onClick={handleDumpsterRentalClick}>
@@ -116,7 +112,7 @@ function ServiceCards() {
           
           .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
           }
@@ -131,6 +127,8 @@ function ServiceCards() {
             display: flex;
             flex-direction: column;
             height: 100%;
+            align-items: center;
+            text-align: center;
           }
 
           .service-card:hover {
@@ -143,25 +141,35 @@ function ServiceCards() {
           }
 
           .service-card ul {
+            width: 100%;
             text-align: left;
             font-size: 14px;
             padding-left: 20px;
             flex-grow: 1;
-            margin-bottom: 0;
+            margin-bottom: 15px;
+            list-style-type: disc;
+            color: #555;
+          }
+
+          .service-card li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            text-align: left;
           }
 
           .service-card button {
             background-color: #FF7701;
             color: white;
             border: none;
-            padding: 0.75rem;
+            padding: 12px 15px;
             border-radius: 6px;
-            font-size: 0.875rem;
+            font-size: 15px;
             font-weight: 500;
             cursor: pointer;
             width: 100%;
             transition: all 0.2s ease;
             margin-top: auto;
+            max-width: 220px;
           }
 
           .service-card button:hover {
@@ -174,27 +182,26 @@ function ServiceCards() {
             height: 180px;
             object-fit: cover;
             border-radius: 4px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
           }
 
           h3 {
             font-size: 20px;
             color: #333;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             font-weight: 600;
-          }
-
-          li {
-            margin-bottom: 8px;
-            color: #666;
-            line-height: 1.5;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
 
           .back-button {
             display: block;
             margin: 0 auto;
             padding: 12px 24px;
-            color: #333;
+            color: white;
             background-color: #f5f5f5;
             border: 1px solid #ddd;
             border-radius: 5px;

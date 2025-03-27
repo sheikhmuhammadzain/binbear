@@ -386,22 +386,30 @@ export default function History() {
                 /* Stats Section */
                 .stats-section {
                     padding: 60px 0;
-                    background-color: #FF7701;
+                    background: linear-gradient(135deg, #FF7701, #FF5500);
                     color: white;
+                    box-shadow: 0 5px 15px rgba(255, 119, 1, 0.2);
                 }
 
                 .stats-container {
                     display: flex;
                     justify-content: space-between;
                     flex-wrap: wrap;
+                    max-width: 1100px;
+                    margin: 0 auto;
                 }
 
                 .stat-box {
                     flex: 1;
-                    min-width: 10px;
+                    min-width: 220px;
                     text-align: center;
-                    padding: 30px 20px;
+                    padding: 40px 20px;
                     position: relative;
+                    transition: transform 0.3s ease;
+                }
+
+                .stat-box:hover {
+                    transform: translateY(-5px);
                 }
 
                 .stat-box:not(:last-child):after {
@@ -416,8 +424,14 @@ export default function History() {
                 }
 
                 .stat-icon {
-                    font-size: 10px;
+                    font-size: 36px;
                     margin-bottom: 15px;
+                    color: white;
+                }
+
+                .stat-icon svg {
+                    width: 36px;
+                    height: 36px;
                 }
 
                 .stat-number {
@@ -574,15 +588,16 @@ export default function History() {
                 }
 
                 .tab-button {
-                    padding: 12px 20px;
+                    padding: 12px 24px;
                     font-size: 16px;
                     font-weight: 600;
                     background: none;
                     border: none;
-                    color: #fff;
+                    color: #666;
                     cursor: pointer;
                     transition: all 0.3s ease;
                     position: relative;
+                    border-radius: 4px 4px 0 0;
                 }
 
                 .tab-button:after {
@@ -598,11 +613,17 @@ export default function History() {
                 }
 
                 .tab-button.active {
-                    color: black;
+                    color: #FF7701;
+                    font-weight: 700;
                 }
 
                 .tab-button.active:after {
                     transform: scaleX(1);
+                }
+
+                .tab-button:hover {
+                    color: #FF7701;
+                    background-color: rgba(255, 119, 1, 0.05);
                 }
 
                 .tab-title {
@@ -632,17 +653,42 @@ export default function History() {
                     color: #444;
                 }
 
+                .value-icon {
+                    font-size: 28px;
+                    color: #FF7701;
+                    flex-shrink: 0;
+                    width: 60px;
+                    height: 60px;
+                    background-color: rgba(255, 119, 1, 0.1);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 4px 10px rgba(255, 119, 1, 0.2);
+                }
+
+                .value-icon svg {
+                    width: 28px;
+                    height: 28px;
+                }
+
                 .check-icon {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 24px;
-                    height: 24px;
+                    width: 28px;
+                    height: 28px;
                     background-color: #FF7701;
                     color: white;
                     border-radius: 50%;
                     margin-right: 15px;
-                    font-size: 12px;
+                    font-size: 14px;
+                    box-shadow: 0 2px 5px rgba(255, 119, 1, 0.3);
+                }
+
+                .check-icon svg {
+                    width: 14px;
+                    height: 14px;
                 }
 
                 .vision-goals {
@@ -661,9 +707,14 @@ export default function History() {
                 }
 
                 .goal-icon {
-                    font-size: 28px;
+                    font-size: 36px;
                     color: #FF7701;
-                    margin-bottom: 10px;
+                    margin-bottom: 15px;
+                }
+
+                .goal-icon svg {
+                    width: 36px;
+                    height: 36px;
                 }
 
                 .goal-text {
@@ -692,19 +743,6 @@ export default function History() {
                     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
                 }
 
-                .value-icon {
-                    font-size: 24px;
-                    color: #FF7701;
-                    flex-shrink: 0;
-                    width: 50px;
-                    height: 50px;
-                    background-color: rgba(255, 119, 1, 0.1);
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-
                 .value-text h4 {
                     font-size: 18px;
                     font-weight: 700;
@@ -729,6 +767,8 @@ export default function History() {
                     display: grid;
                     grid-template-columns: repeat(4, 1fr);
                     gap: 30px;
+                    max-width: 1100px;
+                    margin: 0 auto;
                 }
 
                 .team-member {
@@ -744,61 +784,98 @@ export default function History() {
                     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
                 }
 
+                .member-image {
+                    position: relative;
+                    height: 0;
+                    padding-bottom: 100%; /* Creates a square aspect ratio */
+                    overflow: hidden;
+                }
+
                 .member-image img {
                     width: 100%;
-                    height: auto;
-                    display: block;
+                    height: 100%;
+                    object-fit: cover;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transition: transform 0.5s ease;
+                }
+
+                .team-member:hover .member-image img {
+                    transform: scale(1.05);
                 }
 
                 .member-info {
-                    padding: 20px;
-        text-align: center;
+                    padding: 25px 20px;
+                    text-align: center;
+                    border-top: 3px solid #FF7701;
                 }
 
                 .member-info h3 {
                     font-size: 20px;
                     font-weight: 700;
                     color: #333;
-                    margin-bottom: 5px;
+                    margin-bottom: 8px;
                 }
 
                 .member-info p {
-            font-size: 16px;
+                    font-size: 16px;
                     color: #FF7701;
                     margin: 0;
+                    font-weight: 600;
                 }
 
                 /* CTA Section */
                 .cta-section {
                     padding: 80px 0;
+                    background-color: #f9f9f9;
                 }
 
                 .cta-box {
                     background: linear-gradient(135deg, #FF7701, #FF5500);
-                    border-radius: 12px;
+                    border-radius: 15px;
                     padding: 60px;
-        color: white;
-        text-align: center;
-                    box-shadow: 0 10px 30px rgba(255, 119, 1, 0.2);
+                    color: white;
+                    text-align: center;
+                    box-shadow: 0 15px 40px rgba(255, 119, 1, 0.3);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .cta-box:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+                    z-index: 1;
                 }
 
                 .cta-content {
+                    position: relative;
+                    z-index: 2;
                     max-width: 600px;
                     margin: 0 auto 40px;
                 }
 
                 .cta-content h2 {
                     font-size: 36px;
-                    font-weight: 700;
+                    font-weight: 800;
                     margin-bottom: 15px;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
 
                 .cta-content p {
                     font-size: 18px;
                     opacity: 0.9;
+                    line-height: 1.6;
                 }
 
                 .cta-buttons {
+                    position: relative;
+                    z-index: 2;
                     display: flex;
                     justify-content: center;
                     gap: 20px;
@@ -812,6 +889,7 @@ export default function History() {
                     font-weight: 600;
                     text-decoration: none;
                     transition: all 0.3s ease;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                 }
 
                 .cta-button.primary {
@@ -827,7 +905,7 @@ export default function History() {
 
                 .cta-button.secondary {
                     background-color: transparent;
-        color: white;
+                    color: white;
                     border: 2px solid white;
                 }
 
@@ -838,9 +916,10 @@ export default function History() {
                 }
 
                 /* Responsive Styles */
-    @media (max-width: 1024px) {
+                @media (max-width: 1024px) {
                     .team-grid {
                         grid-template-columns: repeat(2, 1fr);
+                        gap: 20px;
                     }
                     
                     .stats-container {
@@ -850,12 +929,6 @@ export default function History() {
                     .stat-box {
                         flex: 0 0 50%;
                         margin-bottom: 30px;
-                        svg{
-                            color: #fff;
-                            font-size: 10px;
-                            height: 10px;
-                            width: 10px;
-                        }
                     }
                     
                     .stat-box:nth-child(even):after {
@@ -872,7 +945,7 @@ export default function History() {
                     }
                 }
 
-  @media (max-width: 768px) {
+                @media (max-width: 768px) {
                     .hero-title {
                         font-size: 36px;
                     }
@@ -900,7 +973,7 @@ export default function History() {
                     }
                     
                     .timeline-body {
-    width: 100%;
+                        width: 100%;
                         margin-left: 60px;
                     }
                     
@@ -911,6 +984,21 @@ export default function History() {
                     .cta-content h2 {
                         font-size: 28px;
                     }
+
+                    .value-item {
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                    }
+
+                    .value-icon {
+                        margin-bottom: 15px;
+                    }
+
+                    .stat-icon svg {
+                        width: 30px;
+                        height: 30px;
+                    }
                 }
 
                 @media (max-width: 576px) {
@@ -920,6 +1008,7 @@ export default function History() {
                     
                     .stat-box {
                         flex: 0 0 100%;
+                        padding: 25px 15px;
                     }
                     
                     .hero-section {
@@ -942,6 +1031,7 @@ export default function History() {
                     .tab-button {
                         border-bottom: 1px solid #eee;
                         text-align: left;
+                        padding: 15px;
                     }
                     
                     .tab-button:after {
@@ -955,7 +1045,92 @@ export default function History() {
                     .timeline-image {
                         height: 150px;
                     }
+
+                    .stat-number {
+                        font-size: 32px;
+                    }
+
+                    .stat-label {
+                        font-size: 14px;
+                    }
+
+                    .stat-icon {
+                        font-size: 28px;
+                    }
+
+                    .stat-icon svg {
+                        width: 28px;
+                        height: 28px;
+                    }
+
+                    .mission-list li {
+                        font-size: 14px;
+                    }
+
+                    .check-icon {
+                        width: 24px;
+                        height: 24px;
+                    }
+
+                    .vision-goals {
+                        flex-direction: column;
+                    }
+
+                    .vision-goal {
+                        margin-bottom: 15px;
+                    }
+
+                    .value-text h4 {
+                        font-size: 16px;
+                    }
+
+                    .value-text p {
+                        font-size: 14px;
+                    }
                 }
+
+                /* Animations */
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+
+                @keyframes scaleIn {
+                    from { transform: scale(0.9); opacity: 0; }
+                    to { transform: scale(1); opacity: 1; }
+                }
+
+                .hero-content, .section-header, .stat-box, .team-member, 
+                .timeline-item, .mission-image, .mission-content,
+                .value-item, .cta-box {
+                    animation: fadeIn 0.8s ease forwards;
+                }
+
+                .hero-badge, .stat-number, .timeline-year, .goal-icon, .value-icon {
+                    animation: scaleIn 0.6s ease forwards;
+                }
+
+                /* Add staggered animation delay for items in a sequence */
+                .stat-box:nth-child(1) { animation-delay: 0.1s; }
+                .stat-box:nth-child(2) { animation-delay: 0.2s; }
+                .stat-box:nth-child(3) { animation-delay: 0.3s; }
+                .stat-box:nth-child(4) { animation-delay: 0.4s; }
+
+                .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+                .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+                .timeline-item:nth-child(3) { animation-delay: 0.5s; }
+                .timeline-item:nth-child(4) { animation-delay: 0.7s; }
+                .timeline-item:nth-child(5) { animation-delay: 0.9s; }
+
+                .team-member:nth-child(1) { animation-delay: 0.1s; }
+                .team-member:nth-child(2) { animation-delay: 0.2s; }
+                .team-member:nth-child(3) { animation-delay: 0.3s; }
+                .team-member:nth-child(4) { animation-delay: 0.4s; }
+
+                .value-item:nth-child(1) { animation-delay: 0.1s; }
+                .value-item:nth-child(2) { animation-delay: 0.3s; }
+                .value-item:nth-child(3) { animation-delay: 0.5s; }
+                .value-item:nth-child(4) { animation-delay: 0.7s; }
             `}</style>
             </Layout>
     );

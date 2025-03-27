@@ -15,8 +15,9 @@ export default function Services1() {
                         </p>
                     </div>
                     
-                    <div className="row align-items-center">
-                        <div className="col-lg-8 col-md-8 mb-30" data-aos="fade-right">
+                    {/* Mobile View - Vertical Steps */}
+                    <div className="row align-items-center d-md-none">
+                        <div className="col-12 mb-30" data-aos="fade-up">
                             <div className="steps-premium">
                                 <div className="step-premium">
                                     <div className="step-premium-content">
@@ -37,36 +38,36 @@ export default function Services1() {
                                     </div>
                                 </div>
                             </div>
+                            <div className="text-center mt-4">
+                                <Link
+                                    className="btn-premium btn-premium-primary"
+                                    href="Booking"
+                                >
+                                    <svg
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        aria-hidden="true"
+                                        width="24"
+                                        height="24"
+                                        style={{ marginRight: '10px' }}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"
+                                        ></path>
+                                    </svg>
+                                    Get a Quote
+                                </Link>
+                            </div>
                         </div>
-                        
-                        <div className="col-lg-4 col-md-4 mb-30 text-md-end text-start" data-aos="fade-left">
-  <Link
-                                className="btn-premium btn-premium-primary"
-    href="Booking"
-  >
-    <svg
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-                                    width="24"
-                                    height="24"
-                                    style={{ marginRight: '10px' }}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"
-      ></path>
-    </svg>
-    Get a Quote
-  </Link>
-</div>
                     </div>
               
-                    <div className="service-cards-static" data-aos="fade-up">
+                    {/* Desktop View - Card Grid */}
+                    <div className="service-cards-static d-none d-md-block" data-aos="fade-up">
                         <div className="row">
                             <div className="col-lg-4 col-md-6 mb-4">
                                 <div className="card-premium">
@@ -99,11 +100,11 @@ export default function Services1() {
                                     </div>
                                     <div className="card-premium-content">
                                         <h3 className="card-premium-title">3. Choose a Date for Pickup</h3>
-                                        <p className="card-premium-text">Choose a Date for Pickup</p>
-</div>
+                                        <p className="card-premium-text">Select a convenient date for your junk removal service</p>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                           
                         <div className="text-center mt-4">
                             <Link href="/Booking" className="btn-premium btn-premium-primary btn-lg">
@@ -111,15 +112,6 @@ export default function Services1() {
                             </Link>
                         </div>
                     </div>
-                    
-                    {/* <div className="row align-items-end mt-3">
-                        <div className="col-12">
-                            <p className="disclaimer-text" data-aos="fade-up">
-                                Disclaimer: If you a input the first differs greatly from new information you have provided, your price of service may
-                                increase 10%-20%
-                            </p>
-                        </div>
-                    </div> */}
                 </div>
             </section>
   

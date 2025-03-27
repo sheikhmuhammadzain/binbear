@@ -91,260 +91,279 @@ export default function Booking() {
     return (
         <Layout>
             <section className="section box-login">
-                <div className="row align-items-center m-0">
-                    <div
-                        className="col-lg-6"
-                        style={{
-                            marginBottom: "150px",
-                            marginLeft: isMobile ? "0px" : "400px", // Adjust left margin on mobile
-                            marginRight: isMobile ? "0px" : "0", // Adjust right margin on mobile
-                        }}
-                    >
-                        <div className="box-login-left">
-                            <h2
-                                className="color-brand-2 mb-10 wow animate__animated animate__fadeIn"
-                                style={{ marginLeft: isMobile ? "0px" : "70px" }}
-                            >
-                                Booking Now
-                            </h2>
-                            <p
-                                className="font-md color-grey-500 wow animate__animated animate__fadeIn"
-                                style={{ marginLeft: isMobile ? "10px" : "70px" }}
-                            >
-                                Access to all features. No credit card required.
-                            </p>
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-lg-6 col-md-8 col-sm-12">
+                            <div className="box-login-content text-center">
+                                <h2 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
+                                    Booking Now
+                                </h2>
+                                <p className="font-md color-grey-500 mb-30 wow animate__animated animate__fadeIn">
+                                    Access to all features. No credit card required.
+                                </p>
 
-                            <div className="box-form-login wow animate__animated animate__fadeIn">
-                                {step === 1 ? (
-                                    // Step 1: ZIP Code Form
-                                    <form
-                                        onSubmit={handleZipSubmit}
-                                        style={{
-                                            maxWidth: "400px",
-                                            margin: "20px auto",
-                                            textAlign: "center",
-                                            position: "relative",
-                                        }}
-                                    >
-                                        <label
-                                            htmlFor="zip-code"
-                                            style={{
-                                                display: "block",
-                                                marginBottom: "10px",
-                                                fontSize: "16px",
-                                            }}
-                                        >
-                                            Enter Your ZIP Code
-                                        </label>
+                                <div className="box-form-login wow animate__animated animate__fadeIn">
+                                    {step === 1 ? (
+                                        // Step 1: ZIP Code Form
+                                        <form onSubmit={handleZipSubmit} className="zip-form">
+                                            <label htmlFor="zip-code" className="form-label">
+                                                Enter Your ZIP Code
+                                            </label>
 
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                flexWrap: "wrap",
-                                                gap: "10px",
-                                                alignItems: "center",
-                                                justifyContent: "flex-start",
-                                            }}
-                                        >
-                                            <input
-                                                type="text"
-                                                id="zip-code"
-                                                placeholder="ZIP Code"
-                                                className="zip-code-input"
-                                                value={zipCode}
-                                                onChange={handleZipCodeChange}
-                                                style={{
-                                                    flex: "1",
-                                                    minWidth: "250px",
-                                                    maxWidth: "500px",
-                                                    padding: "10px",
-                                                    fontSize: "16px",
-                                                    border: "1px solid #ccc",
-                                                    borderRadius: "4px",
-                                                    height: "50px",
-                                                }}
-                                            />
-                                            <button
-                                                type="submit"
-                                                style={{
-                                                    height: "50px",
-                                                    padding: "10px",
-                                                    backgroundColor: "#FF7F00",
-                                                    color: "white",
-                                                    border: "none",
-                                                    borderRadius: "4px",
-                                                    cursor: "pointer",
-                                                    minWidth: "100px",
-                                                    maxWidth: "150px",
-                                                    flexShrink: 0,
-                                                    marginRight: isMobile ? "65px" : "0", // Adjust right margin on mobile
-                                                    fontWeight: "bold",
-                                                }}
-                                            >
-                                                Check Coverage
-                                            </button>
-                                        </div>
-
-                                        {/* Conditional Message Rendering */}
-                                        <p
-                                            style={{
-                                                marginTop: "20px",
-                                                fontSize: "16px",
-                                                color: message.includes("Good news") ? "green" : "#ff4d4f",
-                                                textAlign: "center",
-                                            }}
-                                        >
-                                            {message}
-                                        </p>
-                                    </form>
-                                ) : (
-                                    // Step 2: Email Validation Form
-                                    <form
-                                        onSubmit={handleEmailSubmit}
-                                        style={{
-                                            maxWidth: "400px",
-                                            margin: "20px auto",
-                                            textAlign: "center",
-                                            position: "relative",
-                                            animation: "fadeIn 0.5s",
-                                        }}
-                                    >
-                                        <div style={{ marginBottom: "15px", textAlign: "center" }}>
-                                            <p style={{ color: "green", fontWeight: "bold", fontSize: "18px" }}>
-                                                Great news! We service your area.
-                                            </p>
-                                            <p style={{ marginTop: "10px", color: "#555" }}>
-                                                Please enter your email to continue.
-                                            </p>
-                                        </div>
-
-                                        <label
-                                            htmlFor="email"
-                                            style={{
-                                                display: "block",
-                                                marginBottom: "10px",
-                                                fontSize: "16px",
-                                                textAlign: "left",
-                                            }}
-                                        >
-                                            Your Email Address
-                                        </label>
-
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                gap: "10px",
-                                            }}
-                                        >
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                placeholder="email@example.com"
-                                                value={email}
-                                                onChange={handleEmailChange}
-                                                style={{
-                                                    width: "100%",
-                                                    padding: "10px",
-                                                    fontSize: "16px",
-                                                    border: emailError ? "1px solid #ff4d4f" : "1px solid #ccc",
-                                                    borderRadius: "4px",
-                                                    height: "50px",
-                                                }}
-                                            />
-                                            
-                                            {emailError && (
-                                                <p
-                                                    style={{
-                                                        margin: "0",
-                                                        fontSize: "14px",
-                                                        color: "#ff4d4f",
-                                                        textAlign: "left",
-                                                    }}
-                                                >
-                                                    {emailError}
-                                                </p>
-                                            )}
-
-                                            <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setStep(1)}
-                                                    style={{
-                                                        height: "50px",
-                                                        padding: "10px",
-                                                        backgroundColor: "#f5f5f5",
-                                                        color: "#333",
-                                                        border: "1px solid #ccc",
-                                                        borderRadius: "4px",
-                                                        cursor: "pointer",
-                                                        flex: "1",
-                                                    }}
-                                                >
-                                                    Back
-                                                </button>
-                                                <button
-                                                    type="submit"
-                                                    style={{
-                                                        height: "50px",
-                                                        padding: "10px",
-                                                        backgroundColor: "#FF7F00",
-                                                        color: "white",
-                                                        border: "none",
-                                                        borderRadius: "4px",
-                                                        cursor: "pointer",
-                                                        flex: "2",
-                                                        fontWeight: "bold",
-                                                    }}
-                                                >
-                                                    Continue
+                                            <div className="input-group-wrapper">
+                                                <input
+                                                    type="text"
+                                                    id="zip-code"
+                                                    placeholder="ZIP Code"
+                                                    className="zip-code-input"
+                                                    value={zipCode}
+                                                    onChange={handleZipCodeChange}
+                                                />
+                                                <button type="submit" className="zip-submit-btn">
+                                                    Check Coverage
                                                 </button>
                                             </div>
 
-                                            <p style={{ 
-                                                fontSize: "12px", 
-                                                color: "#666", 
-                                                marginTop: "15px",
-                                                textAlign: "center" 
-                                            }}>
-                                                We respect your privacy and will only use your email to contact you about our services.
+                                            {/* Conditional Message Rendering */}
+                                            <p className={`message ${message.includes("Good news") ? "success" : "error"}`}>
+                                                {message}
                                             </p>
-                                        </div>
-                                    </form>
-                                )}
+                                        </form>
+                                    ) : (
+                                        // Step 2: Email Validation Form
+                                        <form onSubmit={handleEmailSubmit} className="email-form">
+                                            <div className="success-message">
+                                                <p className="success-headline">
+                                                    Great news! We service your area.
+                                                </p>
+                                                <p className="success-subtitle">
+                                                    Please enter your email to continue.
+                                                </p>
+                                            </div>
+
+                                            <label htmlFor="email" className="form-label text-left">
+                                                Your Email Address
+                                            </label>
+
+                                            <div className="email-input-container">
+                                                <input
+                                                    type="email"
+                                                    id="email"
+                                                    placeholder="email@example.com"
+                                                    value={email}
+                                                    onChange={handleEmailChange}
+                                                    className={emailError ? "error-input" : ""}
+                                                />
+                                                
+                                                {emailError && (
+                                                    <p className="error-message">
+                                                        {emailError}
+                                                    </p>
+                                                )}
+
+                                                <div className="button-group">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setStep(1)}
+                                                        className="back-btn"
+                                                    >
+                                                        Back
+                                                    </button>
+                                                    <button
+                                                        type="submit"
+                                                        className="continue-btn"
+                                                    >
+                                                        Continue
+                                                    </button>
+                                                </div>
+
+                                                <p className="privacy-note">
+                                                    We respect your privacy and will only use your email to contact you about our services.
+                                                </p>
+                                            </div>
+                                        </form>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <style jsx>{`
-                @media (max-width: 768px) {
-                    .box-login-left {
-                        text-align: center; /* Center the content */
-                    }
-
-                    .zip-code-input {
-                        width: 100%; /* Make input and button full width */
-                        max-width: 400px; /* Adjust max width for small screens */
-                        margin: 0px; /* Center the input and button */
-                    }
-                    
-                    button {  
-                        justify-content: center;
-                        align-items: center;
-                        width: 100%; /* Make input and button full width */
-                        max-width: 400px; /* Adjust max width for small screens */
-                        margin-left: 30%; /* Center the input and button */
-                    }
-
-                    .box-form-login {
-                        margin-left: 0;
-                    }
+                .section.box-login {
+                    padding: 80px 0;
+                }
+                
+                .box-login-content {
+                    max-width: 500px;
+                    margin: 0 auto;
+                    padding: 20px;
+                }
+                
+                .form-label {
+                    display: block;
+                    margin-bottom: 15px;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                
+                .zip-form, .email-form {
+                    max-width: 450px;
+                    margin: 0 auto;
+                    text-align: center;
+                }
+                
+                .input-group-wrapper {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    justify-content: center;
+                    margin-bottom: 20px;
+                }
+                
+                .zip-code-input {
+                    flex: 1;
+                    min-width: 200px;
+                    padding: 12px 15px;
+                    font-size: 16px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    height: 50px;
+                }
+                
+                .zip-submit-btn {
+                    height: 50px;
+                    padding: 12px 20px;
+                    background-color: #FF7F00;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    min-width: 150px;
+                }
+                
+                .message {
+                    margin-top: 20px;
+                    font-size: 16px;
+                    text-align: center;
+                }
+                
+                .success {
+                    color: green;
+                }
+                
+                .error {
+                    color: #ff4d4f;
+                }
+                
+                .email-input-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                }
+                
+                .email-input-container input {
+                    width: 100%;
+                    padding: 12px 15px;
+                    font-size: 16px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    height: 50px;
+                }
+                
+                .error-input {
+                    border: 1px solid #ff4d4f !important;
+                }
+                
+                .error-message {
+                    margin: 0;
+                    font-size: 14px;
+                    color: #ff4d4f;
+                    text-align: left;
+                }
+                
+                .button-group {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 10px;
+                }
+                
+                .back-btn {
+                    height: 50px;
+                    padding: 12px 15px;
+                    background-color: #f5f5f5;
+                    color: #333;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    flex: 1;
+                    font-weight: 500;
+                }
+                
+                .continue-btn {
+                    height: 50px;
+                    padding: 12px 15px;
+                    background-color: #FF7F00;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    flex: 2;
+                    font-weight: bold;
+                }
+                
+                .success-message {
+                    margin-bottom: 20px;
+                    text-align: center;
+                }
+                
+                .success-headline {
+                    color: green;
+                    font-weight: bold;
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                }
+                
+                .success-subtitle {
+                    color: #555;
+                    margin-top: 0;
+                }
+                
+                .privacy-note {
+                    font-size: 12px;
+                    color: #666;
+                    margin-top: 15px;
+                    text-align: center;
+                }
+                
+                .text-left {
+                    text-align: left;
                 }
                 
                 @keyframes fadeIn {
                     from { opacity: 0; transform: translateY(10px); }
                     to { opacity: 1; transform: translateY(0); }
+                }
+                
+                @media (max-width: 768px) {
+                    .input-group-wrapper {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+                    
+                    .zip-code-input, .zip-submit-btn {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                    
+                    .button-group {
+                        flex-direction: column;
+                    }
+                    
+                    .back-btn, .continue-btn {
+                        width: 100%;
+                    }
                 }
             `}</style>
         </Layout>
