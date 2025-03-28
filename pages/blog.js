@@ -31,7 +31,9 @@ export default function Blog() {
             <div className="row">
               {/* Left Side - Main Featured Article */}
               <div className="col-lg-8">
-                <FeaturedArticle article={featuredArticle} />
+                <div className="featured-article-wrapper">
+                  <FeaturedArticle article={featuredArticle} />
+                </div>
               </div>
               
               {/* Right Side - Stacked Recent Posts */}
@@ -216,6 +218,20 @@ export default function Blog() {
           padding-top: 20px;
         }
         
+        .featured-article-wrapper {
+          height: 100%;
+        }
+        
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        
+        .row > [class*="col-"] {
+          display: flex;
+          flex-direction: column;
+        }
+        
         .main-featured-article {
           background-color: #fff;
           border-radius: 8px;
@@ -281,25 +297,24 @@ export default function Blog() {
         
         /* Stacked Posts */
         .stacked-posts {
-          margin-bottom: 40px;
-          height: 100%;
           display: flex;
           flex-direction: column;
+          height: 100%;
+          padding-bottom: 5px;
         }
         
         .stacked-post-item {
-          margin-bottom: 15px;
-          border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-          position: relative;
           flex: 1;
+          margin-bottom: 15px;
+          min-height: 110px;
+        }
+        
+        .stacked-post-item:last-child {
+          margin-bottom: 0;
         }
         
         .stacked-image-container {
-          position: relative;
-          overflow: hidden;
-          height: 138px;
+          height: 100%;
         }
         
         .stacked-image-container img {
@@ -439,33 +454,19 @@ export default function Blog() {
         
         /* Pagination Controls */
         .topics-pagination {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 15px;
-          margin-top: 30px;
+          display: none;
         }
         
         .topics-pagination-prev, .topics-pagination-next {
-          background-color: rgba(0, 0, 0, 0.2);
-          border: none;
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
+          display: none;
         }
         
         .topics-pagination-prev:hover, .topics-pagination-next:hover {
-          background-color: rgba(0, 0, 0, 0.4);
+          display: none;
         }
         
         .topics-pagination-text {
-          font-size: 14px;
-          color: white;
+          display: none;
         }
         
         /* Sidebar */

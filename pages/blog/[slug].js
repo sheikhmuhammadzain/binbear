@@ -354,17 +354,22 @@ export default function BlogPost() {
         
         .back-to-blog {
           display: inline-block;
-          background-color: #f0f0f0;
-          color: #666;
-          padding: 10px 20px;
-          border-radius: 4px;
+          background-color: #FF7701;
+          color: white;
+          padding: 12px 24px;
+          border-radius: 50px;
+          font-size: 16px;
+          font-weight: 600;
           text-decoration: none;
           transition: all 0.3s ease;
+          box-shadow: 0 4px 8px rgba(255, 119, 1, 0.3);
         }
         
         .back-to-blog:hover {
-          background-color: #FF7701;
+          background-color: #e05e00;
           color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 12px rgba(255, 119, 1, 0.4);
         }
         
         /* Loading */

@@ -4,7 +4,7 @@ export const featuredArticle = {
   title: "Self-Storage Units And Junk Removal",
   slug: "self-storage-junk-removal",
   description: "Many people turn to storage units when they're overwhelmed by clutter, but often end up forgetting these units and paying fees for items they don't even use anymore.",
-  image: "https://images.unsplash.com/photo-1600623471616-8c1966c91ff6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  image: "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   content: `
     <p>When storage facility managers discover junk left behind by old tenants, the task of getting everything loaded up and hauled away usually falls on them. Even if there is an auction not everything always goes. Eventually, self-storage facility owners or managers must deal with defaulted leases, discarded junk, and items that went unsold at auction.</p>
     
@@ -72,7 +72,7 @@ export const recentArticles = [
     title: "Spring Has Sprung: Your Guide to Freshening Up for the Season",
     slug: "spring-freshening-guide",
     description: "When winter fades and spring arrives, it's the perfect time to refresh your home and garden with these practical tips.",
-    image: "https://images.unsplash.com/photo-1465408953385-7c4627c29435?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
     content: `
       <h2>Spring Renewal Starts With Decluttering</h2>
       <p>Before the deep cleaning begins, removing accumulated winter clutter creates the foundation for a truly refreshed home. Start by identifying seasonal items that can be stored until next winter.</p>
@@ -159,7 +159,7 @@ export const topicsData = [
     id: "spring-has-sprung",
     title: "Spring Has Sprung: Your Guide to Freshen...",
     slug: "spring-freshening-guide",
-    image: "https://images.unsplash.com/photo-1465408953385-7c4627c29435?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
   },
   {
     id: "decluttering-projects",
@@ -177,7 +177,7 @@ export const topicsData = [
     id: "home-renovation-trends",
     title: "2023's Biggest Home Renovation Trends",
     slug: "home-renovation-trends",
-    image: "https://images.unsplash.com/photo-1693520999631-6dfd6dcd24a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=763&q=80"
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
   },
   {
     id: "martin-luther-king",
@@ -189,13 +189,13 @@ export const topicsData = [
     id: "new-year-tips",
     title: "How to Ring in the New Year — With and W...",
     slug: "new-year-tips",
-    image: "https://images.unsplash.com/photo-1577971294142-a6c50f9cd848?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    image: "https://images.unsplash.com/photo-1533922922960-9fceb9ef4733?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
   },
   {
     id: "holiday-survival",
     title: "Celebrating (and Surviving) the Holiday ...",
     slug: "holiday-survival",
-    image: "https://images.unsplash.com/photo-1607262807149-dba541c80c18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    image: "https://images.unsplash.com/photo-1533922922960-9fceb9ef4733?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
   },
   {
     id: "holiday-cheer",

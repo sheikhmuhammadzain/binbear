@@ -49,6 +49,51 @@ const TopicsSection = ({ topics }) => {
               </svg>
             </button>
           </div>
+
+          {/* Add styles directly in the component */}
+          <style jsx>{`
+            .topics-pagination {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 15px;
+              margin-top: 30px;
+              padding: 15px 0;
+              background-color: rgba(0, 0, 0, 0.1);
+              border-radius: 50px;
+              max-width: 300px;
+              margin-left: auto;
+              margin-right: auto;
+            }
+            
+            .topics-pagination-prev, .topics-pagination-next {
+              background-color: rgba(0, 0, 0, 0.3);
+              border: none;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+            }
+            
+            .topics-pagination-prev:hover, .topics-pagination-next:hover {
+              background-color: rgba(0, 0, 0, 0.5);
+            }
+            
+            .topics-pagination-prev:disabled, .topics-pagination-next:disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+            }
+            
+            .topics-pagination-text {
+              font-size: 16px;
+              font-weight: 600;
+              color: white;
+            }
+          `}</style>
         </div>
       </div>
     </div>
