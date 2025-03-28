@@ -32,6 +32,7 @@ export default function FooterNewsletter() {
                                 <h6 className="mb-10 color-brand-1">Company</h6>
                                 <ul className="menu-footer">
                                     <li><Link href="/about">About us</Link></li>
+                                    <li><Link href="/blog">Blog</Link></li>
                                     <li><Link href="/comingsoon">Event</Link></li>
                                     <li><Link href="#">Apply Locally</Link></li>
                                     <li><Link href="#">Neighbory</Link></li>

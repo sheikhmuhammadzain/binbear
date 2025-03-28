@@ -51,6 +51,7 @@ export default function HeaderNewsletter({ handleMobileMenuOpen }) {
                                 <nav className="nav-main-menu d-none d-sm-block">
                                     <ul className="main-menu">
                                         <li><Link className="active" href="/">Home</Link></li>
+                                        <li><Link href="/blog">Blog</Link></li>
                                         <li><Link href="/about">About Us</Link></li>
                                         <li><Link href="/contact">Contact</Link></li>
                                     </ul>

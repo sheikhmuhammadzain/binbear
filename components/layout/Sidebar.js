@@ -140,6 +140,11 @@ const Sidebar = ({ hideBookNow, handleMobileMenuClose }) => {
                                             </ul>
                                         </li>
                                         <li>
+                                            <Link href="/blog" className="sidebar-menu-link">
+                                                Blog
+                                            </Link>
+                                        </li>
+                                        <li>
                                             <Link href="/about" className="sidebar-menu-link">
                                                 About
                                             </Link>

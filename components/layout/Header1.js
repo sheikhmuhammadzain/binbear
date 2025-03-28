@@ -160,6 +160,7 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                                 <h5>Quick Links</h5>
                                 <ul>
                                     <li><Link href="/about">About Us</Link></li>
+                                    <li><Link href="/blog">Blog</Link></li>
                                     <li><Link href="/contact">Contact</Link></li>
                                     <li><Link href="/Booking">Book Now</Link></li>
                                 </ul>

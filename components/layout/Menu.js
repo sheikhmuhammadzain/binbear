@@ -61,6 +61,17 @@ export default function Menu() {
                     </ul>
                 </li>
 
+                {/* Blog Menu Item */}
+                <li>
+                    <Link
+                        className={`menu-item ${isActive("/blog")}`}
+                        href="/blog"
+                        style={{ color: "white" }}
+                    >
+                        Blog
+                    </Link>
+                </li>
+
                 {/* "How it Works" Menu */}
                 <li className="has-children">
                     <Link
