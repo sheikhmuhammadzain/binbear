@@ -215,7 +215,6 @@ export default function Blog() {
         /* Featured Content Grid Section */
         .featured-grid-section {
           margin-bottom: 50px;
-          padding-top: 20px;
         }
         
         .featured-article-wrapper {
@@ -254,7 +253,6 @@ export default function Blog() {
         }
         
         .featured-content {
-          padding: 20px;
         }
         
         .featured-title {
@@ -408,12 +406,14 @@ export default function Blog() {
           overflow: hidden;
           height: 110px;
           width: 120px;
+          border-radius: 10px;
           flex-shrink: 0;
         }
         
         .topics-card-image img {
           width: 100%;
           height: 100%;
+          border-radius: 10px;
           object-fit: cover;
         }
         
@@ -816,7 +816,6 @@ export default function Blog() {
           }
           
           .featured-content {
-            padding-top: 20px;
           }
           
           .stacked-post-item {

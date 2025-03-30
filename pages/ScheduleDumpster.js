@@ -19,6 +19,7 @@ export default function ScheduleDumpster() {
         email: "",
         phone: "",
         date: "",
+        time: "",
         couponCode: "",
     });
 
@@ -41,6 +42,7 @@ export default function ScheduleDumpster() {
         if (!formData.email) newErrors.email = "Email address is required.";
         if (!formData.phone) newErrors.phone = "Phone number is required.";
         if (!formData.date) newErrors.date = "Please select a date.";
+        if (!formData.time) newErrors.time = "Please select a time.";
         
         // Make coupon code optional
         // if (!formData.couponCode) newErrors.couponCode = "Coupon code is required.";
@@ -78,6 +80,17 @@ export default function ScheduleDumpster() {
             }));
         }
     };
+
+    // Generate time slots from 8:00 AM to 6:00 PM
+    const timeSlots = [];
+    for (let hour = 8; hour <= 18; hour++) {
+        const hourFormatted = hour > 12 ? hour - 12 : hour;
+        const amPm = hour >= 12 ? 'PM' : 'AM';
+        timeSlots.push(`${hourFormatted}:00 ${amPm}`);
+        if (hour < 18) {
+            timeSlots.push(`${hourFormatted}:30 ${amPm}`);
+        }
+    }
 
     return (
         <Layout>
@@ -241,28 +254,46 @@ export default function ScheduleDumpster() {
                         </div>
                     </div>
 
-                    {/* Date Picker */}
-                    <div style={{ marginBottom: "20px" }}>
-                        <select
-                            value={formData.date}
-                            onChange={(e) => handleChange("date", e.target.value)}
-                            style={{
-                                width: "100%",
-                                padding: "10px",
-                                border: errors.date ? "1px solid red" : "1px solid #ccc",
-                                borderRadius: "5px",
-                            }}
-                        >
-                            <option value="">Select a Date</option>
-                            <option value="2024-12-01">December 1, 2024</option>
-                            <option value="2024-12-02">December 2, 2024</option>
-                            <option value="2024-12-03">December 3, 2024</option>
-                            <option value="2024-12-04">December 4, 2024</option>
-                            <option value="2024-12-05">December 5, 2024</option>
-                        </select>
-                        {errors.date && (
-                            <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.date}</p>
-                        )}
+                    {/* Date and Time Picker */}
+                    <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+                        <div style={{ flex: 1 }}>
+                            <input
+                                type="date"
+                                value={formData.date}
+                                onChange={(e) => handleChange("date", e.target.value)}
+                                style={{
+                                    width: "100%",
+                                    padding: "10px",
+                                    border: errors.date ? "1px solid red" : "1px solid #ccc",
+                                    borderRadius: "5px",
+                                }}
+                            />
+                            {errors.date && (
+                                <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.date}</p>
+                            )}
+                        </div>
+                        <div style={{ flex: 1 }}>
+                            <select
+                                value={formData.time}
+                                onChange={(e) => handleChange("time", e.target.value)}
+                                style={{
+                                    width: "100%",
+                                    padding: "10px",
+                                    border: errors.time ? "1px solid red" : "1px solid #ccc",
+                                    borderRadius: "5px",
+                                }}
+                            >
+                                <option value="">Select a Time</option>
+                                {timeSlots.map((timeSlot, index) => (
+                                    <option key={index} value={timeSlot}>
+                                        {timeSlot}
+                                    </option>
+                                ))}
+                            </select>
+                            {errors.time && (
+                                <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.time}</p>
+                            )}
+                        </div>
                     </div>
 
                     {/* Coupon Code */}

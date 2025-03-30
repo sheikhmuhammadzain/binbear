@@ -9,9 +9,22 @@ export default function ConstructionContact() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
     const [images, setImages] = useState([]);
     const [formStatus, setFormStatus] = useState(""); // For success/error messages
     const fileInputRef = useRef(null);
+
+    // Generate time slots from 8:00 AM to 6:00 PM
+    const timeSlots = [];
+    for (let hour = 8; hour <= 18; hour++) {
+        const hourFormatted = hour > 12 ? hour - 12 : hour;
+        const amPm = hour >= 12 ? 'PM' : 'AM';
+        timeSlots.push(`${hourFormatted}:00 ${amPm}`);
+        if (hour < 18) {
+            timeSlots.push(`${hourFormatted}:30 ${amPm}`);
+        }
+    }
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
@@ -47,7 +60,7 @@ export default function ConstructionContact() {
         e.preventDefault();
         
         // Form validation
-        if (!name || !email || !phone || !message) {
+        if (!name || !email || !phone || !message || !date || !time) {
             setFormStatus("Please fill in all required fields.");
             return;
         }
@@ -62,6 +75,8 @@ export default function ConstructionContact() {
             setEmail("");
             setPhone("");
             setMessage("");
+            setDate("");
+            setTime("");
             setImages([]);
             // Navigate back or to a thank you page
             router.push("/thank-you"); // Create this page or change to an existing one
@@ -178,6 +193,35 @@ export default function ConstructionContact() {
                                                                     onChange={(e) => setPhone(e.target.value)}
                                                                     required
                                                                 />
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-6">
+                                                            <div className="form-group">
+                                                                <input 
+                                                                    className="form-control" 
+                                                                    type="date" 
+                                                                    placeholder="Preferred date *" 
+                                                                    value={date}
+                                                                    onChange={(e) => setDate(e.target.value)}
+                                                                    required
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-6">
+                                                            <div className="form-group">
+                                                                <select 
+                                                                    className="form-control" 
+                                                                    value={time}
+                                                                    onChange={(e) => setTime(e.target.value)}
+                                                                    required
+                                                                >
+                                                                    <option value="">Select a time *</option>
+                                                                    {timeSlots.map((timeSlot, index) => (
+                                                                        <option key={index} value={timeSlot}>
+                                                                            {timeSlot}
+                                                                        </option>
+                                                                    ))}
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-12">

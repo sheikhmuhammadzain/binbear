@@ -18,7 +18,7 @@ const FeaturedArticle = ({ article }) => {
           {article.description}
         </p>
         <div className="button-container">
-          <Link href={`/blog/${article.slug}`} className="read-more-btn">
+          <Link href={`/blog/${article.slug}`} className="btn">
             Read More
           </Link>
         </div>
@@ -47,7 +47,6 @@ const FeaturedArticle = ({ article }) => {
           flex-grow: 1;
           display: flex;
           flex-direction: column;
-          padding: 25px;
         }
         
         .featured-title {
@@ -66,11 +65,12 @@ const FeaturedArticle = ({ article }) => {
         
         .button-container {
           margin-top: auto;
+
         }
         
         .read-more-btn {
           display: inline-block;
-          background-color: #26A566;
+          background-color: #26A566 !important;
           color: white;
           padding: 10px 20px;
           border-radius: 4px;

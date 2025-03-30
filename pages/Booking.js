@@ -96,93 +96,93 @@ export default function Booking() {
                         <div className="col-lg-6 col-md-8 col-sm-12">
                             <div className="box-login-content text-center">
                                 <h2 className="color-brand-2 mb-10 wow animate__animated animate__fadeIn">
-                                    Booking Now
-                                </h2>
+                                Booking Now
+                            </h2>
                                 <p className="font-md color-grey-500 mb-30 wow animate__animated animate__fadeIn">
-                                    Access to all features. No credit card required.
-                                </p>
+                                Access to all features. No credit card required.
+                            </p>
 
-                                <div className="box-form-login wow animate__animated animate__fadeIn">
-                                    {step === 1 ? (
-                                        // Step 1: ZIP Code Form
+                            <div className="box-form-login wow animate__animated animate__fadeIn">
+                                {step === 1 ? (
+                                    // Step 1: ZIP Code Form
                                         <form onSubmit={handleZipSubmit} className="zip-form">
                                             <label htmlFor="zip-code" className="form-label">
-                                                Enter Your ZIP Code
-                                            </label>
+                                            Enter Your ZIP Code
+                                        </label>
 
                                             <div className="input-group-wrapper">
-                                                <input
-                                                    type="text"
-                                                    id="zip-code"
-                                                    placeholder="ZIP Code"
-                                                    className="zip-code-input"
-                                                    value={zipCode}
-                                                    onChange={handleZipCodeChange}
+                                            <input
+                                                type="text"
+                                                id="zip-code"
+                                                placeholder="ZIP Code"
+                                                className="zip-code-input"
+                                                value={zipCode}
+                                                onChange={handleZipCodeChange}
                                                 />
                                                 <button type="submit" className="zip-submit-btn">
-                                                    Check Coverage
-                                                </button>
-                                            </div>
+                                                Check Coverage
+                                            </button>
+                                        </div>
 
-                                            {/* Conditional Message Rendering */}
+                                        {/* Conditional Message Rendering */}
                                             <p className={`message ${message.includes("Good news") ? "success" : "error"}`}>
-                                                {message}
-                                            </p>
-                                        </form>
-                                    ) : (
-                                        // Step 2: Email Validation Form
+                                            {message}
+                                        </p>
+                                    </form>
+                                ) : (
+                                    // Step 2: Email Validation Form
                                         <form onSubmit={handleEmailSubmit} className="email-form">
                                             <div className="success-message">
                                                 <p className="success-headline">
-                                                    Great news! We service your area.
-                                                </p>
+                                                Great news! We service your area.
+                                            </p>
                                                 <p className="success-subtitle">
-                                                    Please enter your email to continue.
-                                                </p>
-                                            </div>
+                                                Please enter your email to continue.
+                                            </p>
+                                        </div>
 
                                             <label htmlFor="email" className="form-label text-left">
-                                                Your Email Address
-                                            </label>
+                                            Your Email Address
+                                        </label>
 
                                             <div className="email-input-container">
-                                                <input
-                                                    type="email"
-                                                    id="email"
-                                                    placeholder="email@example.com"
-                                                    value={email}
-                                                    onChange={handleEmailChange}
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                placeholder="email@example.com"
+                                                value={email}
+                                                onChange={handleEmailChange}
                                                     className={emailError ? "error-input" : ""}
-                                                />
-                                                
-                                                {emailError && (
+                                            />
+                                            
+                                            {emailError && (
                                                     <p className="error-message">
-                                                        {emailError}
-                                                    </p>
-                                                )}
+                                                    {emailError}
+                                                </p>
+                                            )}
 
                                                 <div className="button-group">
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => setStep(1)}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setStep(1)}
                                                         className="back-btn"
-                                                    >
-                                                        Back
-                                                    </button>
-                                                    <button
-                                                        type="submit"
+                                                >
+                                                    Back
+                                                </button>
+                                                <button
+                                                    type="submit"
                                                         className="continue-btn"
-                                                    >
-                                                        Continue
-                                                    </button>
-                                                </div>
+                                                >
+                                                    Continue
+                                                </button>
+                                            </div>
 
                                                 <p className="privacy-note">
-                                                    We respect your privacy and will only use your email to contact you about our services.
-                                                </p>
-                                            </div>
-                                        </form>
-                                    )}
+                                                We respect your privacy and will only use your email to contact you about our services.
+                                            </p>
+                                        </div>
+                                    </form>
+                                )}
                                 </div>
                             </div>
                         </div>
@@ -219,9 +219,9 @@ export default function Booking() {
                     gap: 10px;
                     justify-content: center;
                     margin-bottom: 20px;
-                }
-                
-                .zip-code-input {
+                    }
+
+                    .zip-code-input {
                     flex: 1;
                     min-width: 200px;
                     padding: 12px 15px;

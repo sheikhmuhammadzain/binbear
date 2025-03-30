@@ -165,6 +165,7 @@ function ConstructionCleanup() {
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
           transition: transform 0.2s ease, box-shadow 0.2s ease;
           height: 100%;
+          display: flex;
         }
 
         .card:hover {
@@ -174,7 +175,7 @@ function ConstructionCleanup() {
 
         .card-inner {
           padding: 20px;
-          height: 100%;
+          width: 100%;
           display: flex;
           flex-direction: column;
         }
@@ -184,6 +185,7 @@ function ConstructionCleanup() {
           grid-template-columns: repeat(3, 1fr);
           gap: 10px;
           margin-bottom: 15px;
+          height: 105px;
         }
 
         .item-icon {
@@ -195,6 +197,10 @@ function ConstructionCleanup() {
           margin-bottom: 15px;
           padding: 0.5rem;
           text-align: center;
+          height: 105px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
 
         .small-trucks {
@@ -234,11 +240,17 @@ function ConstructionCleanup() {
           text-align: center;
           margin: 10px 0;
           font-weight: 600;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .recommended-section {
           flex: 1;
           margin: 10px 0 20px;
+          display: flex;
+          flex-direction: column;
         }
 
         .recommended-section h3 {
@@ -251,20 +263,24 @@ function ConstructionCleanup() {
         .recommended-section ul {
           list-style: none;
           padding: 0;
-          color: #666;
+          margin: 0;
+          flex: 1;
         }
 
         .recommended-section li {
           margin-bottom: 8px;
-          font-size: 14px;
-          display: flex;
-          align-items: center;
-          gap: 6px;
+          color: #555;
+          position: relative;
+          padding-left: 24px;
+          line-height: 1.4;
         }
 
-        .recommended-section li::before {
+        .recommended-section li:before {
           content: "✓";
           color: #FF7701;
+          position: absolute;
+          left: 0;
+          top: 0;
           font-weight: bold;
         }
 
@@ -272,14 +288,15 @@ function ConstructionCleanup() {
           background-color: #FF7701;
           color: white;
           border: none;
-          padding: 10px;
           border-radius: 4px;
+          padding: 12px;
           font-size: 16px;
           font-weight: 500;
           cursor: pointer;
           width: 100%;
-          transition: all 0.2s ease;
+          transition: background-color 0.2s ease;
           margin-top: auto;
+          height: 45px;
         }
 
         .action-button:hover {
@@ -289,16 +306,20 @@ function ConstructionCleanup() {
         @media (max-width: 768px) {
           .cards-container {
             grid-template-columns: 1fr;
-            max-width: 400px;
           }
-
+          
           .main-title {
             font-size: 24px;
-            margin-top: 30px;
           }
-
-          .back-button {
-            top: -25px;
+          
+          .card-title {
+            height: auto;
+            min-height: 50px;
+          }
+          
+          .icons-grid, .truck-illustration {
+            height: auto;
+            min-height: 80px;
           }
         }
 

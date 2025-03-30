@@ -28,7 +28,6 @@ function ServiceCards() {
     <Layout>
       <div className="service-selection-container">
         <h1 className="page-title">Choose a Service</h1>
-        <p className="page-description">Select the service you need from BinBear</p>
         
         <div className="cards-container">
           <div className="service-card" onClick={handleJunkHaulingClick}>
@@ -56,7 +55,7 @@ function ServiceCards() {
               <li>Email: {contactInfo.email}</li>
               <li>Text: {contactInfo.text}</li>
             </ul>
-            <button>Contact Us</button>
+            <button className="contact-btn">Get Estimate</button>
           </div>
 
           <div className="service-card">
@@ -91,7 +90,7 @@ function ServiceCards() {
 
         <style jsx>{`
           .service-selection-container {
-            padding: 40px 20px;
+            padding: 0 20px;
             max-width: 1200px;
             margin: 0 auto;
           }
@@ -99,14 +98,12 @@ function ServiceCards() {
           .page-title {
             text-align: center;
             color: #333;
-            margin-bottom: 16px;
             font-size: 32px;
-          }
+            }
           
           .page-description {
             text-align: center;
             color: #666;
-            margin-bottom: 40px;
             font-size: 18px;
           }
           
@@ -127,8 +124,6 @@ function ServiceCards() {
             display: flex;
             flex-direction: column;
             height: 100%;
-            align-items: center;
-            text-align: center;
           }
 
           .service-card:hover {
@@ -140,13 +135,31 @@ function ServiceCards() {
             margin-bottom: 12px;
           }
 
+          .service-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+          }
+
+          .service-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+            min-height: 50px;
+            text-align: left;
+            width: 100%;
+          }
+
           .service-card ul {
             width: 100%;
             text-align: left;
             font-size: 14px;
             padding-left: 20px;
             flex-grow: 1;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             list-style-type: disc;
             color: #555;
           }
@@ -157,7 +170,7 @@ function ServiceCards() {
             text-align: left;
           }
 
-          .service-card button {
+          .service-card button, .contact-btn {
             background-color: #FF7701;
             color: white;
             border: none;
@@ -169,32 +182,12 @@ function ServiceCards() {
             width: 100%;
             transition: all 0.2s ease;
             margin-top: auto;
-            max-width: 220px;
+            height: 45px;
           }
 
-          .service-card button:hover {
+          .service-card button:hover, .contact-btn:hover {
             background-color: #e66901;
             transform: translateY(-1px);
-          }
-
-          .service-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 15px;
-          }
-
-          h3 {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 600;
-            text-align: center;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
           }
 
           .back-button {
@@ -217,14 +210,9 @@ function ServiceCards() {
           .contact-btn {
             background-color: #FF7701;
             color: white;
-            font-size: 16px;
+            font-size: 15px;
             transition: background-color 0.3s ease;
             width: 100%;
-            margin-top: 10px;
-          }
-
-          .contact-btn:hover {
-            background-color: #e66901;
           }
           
           @media (max-width: 768px) {

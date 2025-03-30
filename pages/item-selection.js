@@ -21,7 +21,7 @@ const itemCategories = [
         ]
     },
     {
-        title: 'Tables & Dresserss',
+        title: 'Tables & Dressers',
         image: '/assets/imgs/table.png',
         items: [
             { name: 'Coffee Table', basePrice: 25 },
@@ -66,19 +66,83 @@ const itemCategories = [
             { name: 'Toilet', basePrice: 35 },
             { name: 'Sink', basePrice: 25 },
         ]
+    },
+    {
+        title: 'Office Furniture',
+        image: '/assets/imgs/chair.png',
+        items: [
+            { name: 'Office Chair', basePrice: 25 },
+            { name: 'Desk', basePrice: 40 },
+            { name: 'Filing Cabinet', basePrice: 30 },
+            { name: 'Bookshelf', basePrice: 35 }
+        ]
+    },
+    {
+        title: 'Mattresses',
+        image: '/assets/imgs/mattress.png',
+        items: [
+            { name: 'Twin Mattress', basePrice: 40 },
+            { name: 'Queen Mattress', basePrice: 60 },
+            { name: 'King Mattress', basePrice: 80 },
+            { name: 'Box Spring', basePrice: 30 }
+        ]
+    },
+    {
+        title: 'Exercise Equipment',
+        image: '/assets/imgs/treadmill.png',
+        items: [
+            { name: 'Treadmill', basePrice: 80 },
+            { name: 'Exercise Bike', basePrice: 50 },
+            { name: 'Weight Bench', basePrice: 40 },
+            { name: 'Free Weights', basePrice: 25 }
+        ]
+    },
+    {
+        title: 'Outdoor Furniture',
+        image: '/assets/imgs/patio.png',
+        items: [
+            { name: 'Patio Table', basePrice: 35 },
+            { name: 'Patio Chair', basePrice: 20 },
+            { name: 'Outdoor Umbrella', basePrice: 25 },
+            { name: 'Grill', basePrice: 40 }
+        ]
+    },
+    {
+        title: 'Kitchen Items',
+        image: '/assets/imgs/kitchen.png',
+        items: [
+            { name: 'Small Appliances', basePrice: 15 },
+            { name: 'Dishes & Cookware', basePrice: 20 },
+            { name: 'Kitchen Island', basePrice: 50 },
+            { name: 'Bar Stools', basePrice: 25 }
+        ]
+    },
+    {
+        title: 'Storage Items',
+        image: '/assets/imgs/storage.png',
+        items: [
+            { name: 'Plastic Bins', basePrice: 15 },
+            { name: 'Wardrobe', basePrice: 45 },
+            { name: 'Storage Rack', basePrice: 30 },
+            { name: 'Trunk/Chest', basePrice: 25 }
+        ]
     }
 ];
 
-// Create a price lookup map for efficiency
-const itemPrices = itemCategories.flatMap(cat => cat.items).reduce((acc, item) => {
-    acc[item.name] = item.basePrice;
-    return acc;
-}, {});
+// Create a flat price map from all categories
+const itemPrices = {};
+itemCategories.forEach(category => {
+    category.items.forEach(item => {
+        itemPrices[item.name] = item.basePrice;
+    });
+});
 
 const ItemSelection = () => {
     const [estimate, setEstimate] = useState(0);
     const [selectedItems, setSelectedItems] = useState({});
     const [activeCategory, setActiveCategory] = useState(0);
+    const [categoryScrollIndex, setCategoryScrollIndex] = useState(0);
+    const visibleCategories = 5; // Number of categories visible at once
 
     // Update item count and recalculate estimate
     const updateItemCount = (itemName, increment) => {
@@ -118,6 +182,19 @@ const ItemSelection = () => {
         setActiveCategory((prev) => (prev === 0 ? prev : prev - 1));
     };
 
+    // Navigate the category slider
+    const scrollCategoriesLeft = () => {
+        if (categoryScrollIndex > 0) {
+            setCategoryScrollIndex(prev => prev - 1);
+        }
+    };
+
+    const scrollCategoriesRight = () => {
+        if (categoryScrollIndex < itemCategories.length - visibleCategories) {
+            setCategoryScrollIndex(prev => prev + 1);
+        }
+    };
+
     return (
         <Layout>
             <div className="item-selection-wrapper">
@@ -148,85 +225,49 @@ const ItemSelection = () => {
                     </div>
                 </div>
 
-                {/* Category Grid */}
-                <div className="category-grid">
-                    <div className={`category-card ${activeCategory === 0 ? 'active' : ''}`} onClick={() => setActiveCategory(0)}>
-                        <div className="category-image-container">
-                            <Image 
-                                src="/assets/imgs/sofa.png"
-                                alt="Couches & Chairs"
-                                width={120}
-                                height={100}
-                                style={{ objectFit: 'contain' }}
-                            />
+                {/* Category Slider */}
+                <div className="category-slider-container">
+                    <button 
+                        className={`slider-nav-button slider-prev ${categoryScrollIndex === 0 ? 'disabled' : ''}`} 
+                        onClick={scrollCategoriesLeft}
+                        disabled={categoryScrollIndex === 0}
+                    >
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                    </button>
+                    
+                    <div className="category-slider">
+                        <div 
+                            className="category-slider-track" 
+                            style={{ transform: `translateX(-${categoryScrollIndex * 20}%)` }}
+                        >
+                            {itemCategories.map((category, index) => (
+                                <div 
+                                    key={index} 
+                                    className={`category-card ${activeCategory === index ? 'active' : ''}`} 
+                                    onClick={() => setActiveCategory(index)}
+                                >
+                                    <div className="category-image-container">
+                                        <Image 
+                                            src={category.image}
+                                            alt={category.title}
+                                            width={120}
+                                            height={100}
+                                            style={{ objectFit: 'contain' }}
+                                        />
+                                    </div>
+                                    <div className="category-title">{category.title}</div>
+                                </div>
+                            ))}
                         </div>
-                        <div className="category-title">Couches & Chairs</div>
                     </div>
                     
-                    <div className={`category-card ${activeCategory === 1 ? 'active' : ''}`} onClick={() => setActiveCategory(1)}>
-                        <div className="category-image-container">
-                            <Image 
-                                src="/assets/imgs/table.png"
-                                alt="Tables & Dressers"
-                                width={120}
-                                height={100}
-                                style={{ objectFit: 'contain' }}
-                            />
-                        </div>
-                        <div className="category-title">Tables & Dressers</div>
-                    </div>
-
-                    <div className={`category-card ${activeCategory === 2 ? 'active' : ''}`} onClick={() => setActiveCategory(2)}>
-                        <div className="category-image-container">
-                            <Image 
-                                src="/assets/imgs/lcd.png"
-                                alt="Electronics"
-                                width={120}
-                                height={100}
-                                style={{ objectFit: 'contain' }}
-                            />
-                        </div>
-                        <div className="category-title">Electronics</div>
-                    </div>
-
-                    <div className={`category-card ${activeCategory === 3 ? 'active' : ''}`} onClick={() => setActiveCategory(3)}>
-                        <div className="category-image-container">
-                            <Image 
-                                src="/assets/imgs/washing.png"
-                                alt="Appliances"
-                                width={120}
-                                height={100}
-                                style={{ objectFit: 'contain' }}
-                            />
-                                            </div>
-                        <div className="category-title">Appliances</div>
-                                            </div>
-
-                    <div className={`category-card ${activeCategory === 4 ? 'active' : ''}`} onClick={() => setActiveCategory(4)}>
-                        <div className="category-image-container">
-                            <Image 
-                                src="/assets/imgs/cycle.png"
-                                alt="Yard Equipment"
-                                width={120}
-                                height={100}
-                                style={{ objectFit: 'contain' }}
-                            />
-                                        </div>
-                        <div className="category-title">Yard Equipment</div>
-                                </div>
-
-                    <div className={`category-card ${activeCategory === 5 ? 'active' : ''}`} onClick={() => setActiveCategory(5)}>
-                        <div className="category-image-container">
-                            <Image 
-                                src="/assets/imgs/bath.png"
-                                alt="Bathroom Fixtures"
-                                width={120}
-                                height={100}
-                                style={{ objectFit: 'contain' }}
-                            />
-                        </div>
-                        <div className="category-title">Bathroom Fixtures</div>
-                    </div>
+                    <button 
+                        className={`slider-nav-button slider-next ${categoryScrollIndex >= itemCategories.length - visibleCategories ? 'disabled' : ''}`} 
+                        onClick={scrollCategoriesRight}
+                        disabled={categoryScrollIndex >= itemCategories.length - visibleCategories}
+                    >
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
                 </div>
 
                 {/* Estimate Section */}
@@ -272,13 +313,20 @@ const ItemSelection = () => {
 
                     {/* Bottom CTA */}
                     <div className="bottom-cta">
-                    <Link href="/ScheduleDumpster" className="book-now-btn">
-                                Book Now & Save $20!*
-                    </Link>
-                    <p className="cta-note">* excludes jobs $99 and under</p>
-                    <Link href="/pickup" className="pick-up-btn">
-                        Pick These Up
-                        </Link>
+                        <div className="cta-container">
+                            <div className="cta-text">
+                                <h3>Book Now & Save $20!*</h3>
+                                <p className="cta-note">* excludes jobs $99 and under</p>
+                            </div>
+                            <div className="cta-buttons">
+                                <Link href="/ScheduleDumpster" className="book-now-btn">
+                                    Book Now
+                                </Link>
+                                <Link href="/pickup" className="pick-up-btn">
+                                    Pick These Up
+                                </Link>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Styles */}
@@ -302,7 +350,7 @@ const ItemSelection = () => {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        padding: 10px 15px;
+                        padding: 0 15px;
                     }
 
                     .header-center {
@@ -340,6 +388,7 @@ const ItemSelection = () => {
                         font-size: 22px;
                         margin: 0 0 5px 0;
                         font-weight: bold;
+                        color: white;
                     }
 
                     .swipe-instruction {
@@ -378,202 +427,311 @@ const ItemSelection = () => {
                         font-weight: bold;
                     }
 
-                    /* Category Grid */
-                    .category-grid {
+                    /* Category Slider */
+                    .category-slider-container {
+                        position: relative;
                         display: flex;
-                        flex-wrap: wrap;
-                        justify-content: space-around;
-                        padding: 10px;
-                        background-color: white;
+                        align-items: center;
+                        margin: 20px 0;
+                        padding: 0 10px;
+                        max-width: 100%;
+                    }
+
+                    .category-slider {
+                        overflow: hidden;
+                        width: 100%;
+                        padding: 10px 0;
+                    }
+
+                    .category-slider-track {
+                        display: flex;
+                        transition: transform 0.3s ease;
                     }
 
                     .category-card {
-                        width: 31%;
-                        margin-bottom: 15px;
+                        flex: 0 0 20%;
+                        min-width: 20%;
+                        box-sizing: border-box;
+                        padding: 10px;
+                        border: 2px solid transparent;
+                        border-radius: 12px;
                         cursor: pointer;
-                        transition: transform 0.3s ease;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
+                        transition: all 0.2s ease;
+                        text-align: center;
                     }
 
                     .category-card.active {
-                        border: 2px solid #4caf50;
-                        border-radius: 8px;
-                        background-color: rgba(76, 175, 80, 0.1);
+                        border-color: #4CAF50;
                     }
 
                     .category-image-container {
-                        width: 95%;
-                        height: 120px;
-                        border-radius: 5px;
-                        overflow: hidden;
-                        margin-bottom: 5px;
-                        background-color: #fff;
-                        border: 2px solid #4caf50;
+                        width: 100%;
+                        height: 110px;
                         display: flex;
-                        align-items: center;
                         justify-content: center;
-                        padding: 5px;
+                        align-items: center;
+                        background-color: #f9f9f9;
+                        border-radius: 8px;
+                        margin-bottom: 8px;
                     }
 
                     .category-title {
                         font-size: 14px;
-                        font-weight: bold;
-                            color: #333;
-                        text-align: center;
-                        margin-bottom: 5px;
+                        font-weight: 500;
+                        color: #333;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .slider-nav-button {
+                        background: #FF7701;
+                        color: white;
+                        border: none;
+                        width: 36px;
+                        height: 36px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        z-index: 10;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+                        transition: all 0.2s ease;
+                    }
+
+                    .slider-nav-button:hover {
+                        background: #e66901;
+                        transform: scale(1.05);
+                    }
+
+                    .slider-nav-button.disabled {
+                        background: #ccc;
+                        cursor: not-allowed;
+                    }
+
+                    .slider-prev {
+                        margin-right: 10px;
+                    }
+
+                    .slider-next {
+                        margin-left: 10px;
                     }
 
                     @media (max-width: 768px) {
                         .category-card {
-                            width: 48%;
+                            flex: 0 0 25%;
+                            min-width: 25%;
+                        }
+
+                        .category-slider-track {
+                            transform: translateX(-${categoryScrollIndex * 25}%) !important;
                         }
                     }
 
-                    @media (max-width: 480px) {
+                    @media (max-width: 576px) {
                         .category-card {
-                            width: 100%;
-                        }
+                            flex: 0 0 33.333%;
+                            min-width: 33.333%;
                         }
 
-                        /* Estimate Section */
-                        .estimate-section {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                        padding: 10px 15px;
-                        background-color: #f0f0f0;
-                        border-top: 1px solid #e0e0e0;
-                        border-bottom: 1px solid #e0e0e0;
+                        .category-slider-track {
+                            transform: translateX(-${categoryScrollIndex * 33.333}%) !important;
+                        }
                     }
 
-                    .estimate-amount {
-                            font-size: 16px;
-                        font-weight: bold;
-                            color: #333;
-                        }
+                    /* Estimate Section */
+                    .estimate-section {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    padding: 10px 15px;
+                    background-color: #f0f0f0;
+                    border-top: 1px solid #e0e0e0;
+                    border-bottom: 1px solid #e0e0e0;
+                }
 
-                    .price {
-                        color: #FF7701;
-                        margin-left: 5px;
-                        }
-
-                        .clear-items {
-                        background-color: #ff9800;
-                        color: white;
-                        border: none;
-                            border-radius: 4px;
-                        padding: 6px 12px;
-                        font-size: 14px;
-                            cursor: pointer;
-                    }
-
-                    /* Items List */
-                    .items-list {
-                        flex: 1;
-                            overflow-y: auto;
-                        padding: 10px 15px;
-                        }
-
-                        .item-row {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                        padding: 5px 0;
-                        border-bottom: 1px solid #e0e0e0;
-                        }
-
-                        .item-info {
-                            display: flex;
-                            align-items: center;
-                    }
-
-                    .item-radio {
-                        width: 15px;
-                        height: 15px;
-                        border: 1px solid #ccc;
-                        border-radius: 50%;
-                        margin-right: 10px;
-                    }
-
-                        .item-name {
-                        font-size: 14px;
-                        color: #333;
-                        }
-
-                        .item-controls {
-                            display: flex;
-                            align-items: center;
-                        }
-
-                        .control-btn {
-                            width: 24px;
-                            height: 24px;
-                        border-radius: 4px;
-                        border: none;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
+                .estimate-amount {
                         font-size: 16px;
-                        font-weight: bold;
-                        cursor: pointer;
+                    font-weight: bold;
+                        color: #333;
                     }
 
-                    .decrease {
-                        background-color: #f0f0f0;
-                            color: #333;
-                        }
-
-                    .increase {
-                        background-color: #FF7701;
-                        color: white;
-                        }
-
-                        .item-count {
-                        width: 30px;
-                            text-align: center;
-                        font-size: 14px;
-                        }
-
-                    /* Bottom CTA */
-                        .bottom-cta {
-                        background-color: #FF7701;
-                        padding: 15px;
-                            text-align: center;
-                        }
-
-                        .book-now-btn {
-                        display: block;
-                            width: 100%;
-                        background-color: #ffffff;
-                        color: #FF7701;
-                        font-size: 18px;
-                            font-weight: bold;
-                        padding: 12px;
-                            border-radius: 4px;
-                        margin-bottom: 8px;
-                        text-decoration: none;
-                        }
-
-                        .cta-note {
-                        font-size: 12px;
-                        color: white;
-                        margin: 5px 0 10px;
+                .price {
+                    color: #FF7701;
+                    margin-left: 5px;
                     }
 
-                    .pick-up-btn {
-                        display: block;
-                                width: 100%;
-                        background-color: #4caf50;
-                        color: white;
-                        font-size: 18px;
-                        font-weight: bold;
-                        padding: 12px;
+                    .clear-items {
+                    background-color: #ff9800;
+                    color: white;
+                    border: none;
                         border-radius: 4px;
-                        text-decoration: none;
-                        }
-                    `}</style>
+                    padding: 6px 12px;
+                    font-size: 14px;
+                        cursor: pointer;
+                }
+
+                /* Items List */
+                .items-list {
+                    flex: 1;
+                        overflow-y: auto;
+                    padding: 10px 15px;
+                    }
+
+                    .item-row {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    padding: 5px 0;
+                    border-bottom: 1px solid #e0e0e0;
+                    }
+
+                    .item-info {
+                        display: flex;
+                        align-items: center;
+                }
+
+                .item-radio {
+                    width: 15px;
+                    height: 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+
+                    .item-name {
+                    font-size: 14px;
+                    color: #333;
+                    }
+
+                    .item-controls {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .control-btn {
+                        width: 24px;
+                        height: 24px;
+                    border-radius: 4px;
+                    border: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    font-size: 16px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
+                .decrease {
+                    background-color: #f0f0f0;
+                        color: #333;
+                    }
+
+                .increase {
+                    background-color: #FF7701;
+                    color: white;
+                    }
+
+                    .item-count {
+                    width: 30px;
+                        text-align: center;
+                    font-size: 14px;
+                    }
+
+                /* Bottom CTA */
+                    .bottom-cta {
+                    background-color: #FF7701;
+                    padding: 15px;
+                    width: 100%;
+                }
+
+                .cta-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    max-width: 700px;
+                    margin: 0 auto;
+                }
+
+                .cta-text {
+                    flex: 1;
+                    text-align: left;
+                }
+
+                .cta-text h3 {
+                    font-size: 20px;
+                    color: white;
+                    margin: 0;
+                    font-weight: bold;
+                }
+
+                .cta-note {
+                    font-size: 12px;
+                    color: white;
+                    margin: 5px 0 0;
+                }
+
+                .cta-buttons {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .book-now-btn {
+                    background-color: #ffffff;
+                    color: #FF7701;
+                    font-size: 16px;
+                    font-weight: bold;
+                    padding: 10px 15px;
+                    border-radius: 4px;
+                    text-decoration: none;
+                    display: inline-block;
+                    text-align: center;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    transition: all 0.2s ease;
+                }
+
+                .book-now-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                }
+
+                .pick-up-btn {
+                    background-color: #4caf50;
+                    color: white;
+                    font-size: 16px;
+                    font-weight: bold;
+                    padding: 10px 15px;
+                    border-radius: 4px;
+                    text-decoration: none;
+                    display: inline-block;
+                    text-align: center;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    transition: all 0.2s ease;
+                }
+
+                .pick-up-btn:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                }
+
+                @media (max-width: 576px) {
+                    .cta-container {
+                        flex-direction: column;
+                        gap: 15px;
+                    }
+                    
+                    .cta-text {
+                        text-align: center;
+                    }
+                    
+                    .cta-buttons {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                }
+                `}</style>
             </div>
         </Layout>
     );

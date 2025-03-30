@@ -50,8 +50,16 @@ img {
 .img-fluid {
   max-width: 100%;
   height: auto;
+  border-radius: 10px;
 }
 
+.cta-button {
+  border-radius: 10px;
+  color: #fff;
+  &:hover{
+    color:black
+  }
+}
 /* Full width sections */
 .section-full-width {
   width: 100vw;
@@ -72,6 +80,22 @@ img {
 /* Fix for mobile navigation */
 .mobile-menu-active {
   overflow: hidden;
+}
+.book-now-btn{
+  border-radius: 10px;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  color: #fff;
+  &:hover{
+    color:black
+  }
+}
+.pick-up-btn{
+  border-radius: 10px;
+  color: #fff;
+  &:hover{
+    color:black
+  }
 }
 
 /* Responsive typography */
