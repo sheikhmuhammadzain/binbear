@@ -4,17 +4,32 @@ import { useRouter } from "next/router";
 
 export default function PriceEstimate() {
   const router = useRouter();
-  const [priceRange, setPriceRange] = useState(500);
+  const [unitCount, setUnitCount] = useState(5);
   const [loading, setLoading] = useState(false);
 
   const handleRangeChange = (e) => {
-    setPriceRange(e.target.value);
+    setUnitCount(parseInt(e.target.value));
+  };
+
+  const handleInputChange = (e) => {
+    let value = parseInt(e.target.value);
+    
+    // Handle validation
+    if (isNaN(value)) {
+      value = 1;
+    } else if (value < 1) {
+      value = 1;
+    } else if (value > 30) {
+      value = 30;
+    }
+    
+    setUnitCount(value);
   };
 
   const handleSaveEstimate = () => {
     setLoading(true);
-    // Save the price range to session storage to potentially use it later
-    sessionStorage.setItem("estimatedPrice", priceRange);
+    // Save the unit count to session storage to potentially use it later
+    sessionStorage.setItem("estimatedUnits", unitCount);
     
     // Redirect to the scheduling page
     setTimeout(() => {
@@ -30,34 +45,43 @@ export default function PriceEstimate() {
     <Layout>
       <div className="price-estimate-container">
         <div className="estimate-header">
-          <h1>Set Your Budget</h1>
-          <p>Use the slider to set your estimated budget for construction cleanup services</p>
+          <h1>Select Number of Units</h1>
+          <p>Use the slider or input field to specify how many units you need for construction cleanup services</p>
         </div>
 
         <div className="estimate-card">
           <div className="price-display">
-            <span className="price-label">Your Budget:</span>
-            <span className="price-value">${priceRange}</span>
+            <span className="price-label">Your Units:</span>
+            <div className="unit-input-container">
+              <input 
+                type="number" 
+                min="1" 
+                max="30"
+                value={unitCount}
+                onChange={handleInputChange}
+                className="unit-input"
+              />
+            </div>
           </div>
 
           <div className="slider-container">
             <input
               type="range"
-              min="200"
-              max="2000"
-              step="50"
-              value={priceRange}
+              min="1"
+              max="30"
+              step="1"
+              value={unitCount}
               onChange={handleRangeChange}
               className="price-slider"
             />
             <div className="price-range-labels">
-              <span>$200</span>
-              <span>$2000</span>
+              <span>1 Unit</span>
+              <span>30 Units</span>
             </div>
           </div>
 
           <div className="price-description">
-            <p>This estimate helps us understand your budget for construction cleanup services. Our team will work with you to provide service options within your price range.</p>
+            <p>Please specify the number of units you need for your construction cleanup services. You can adjust using the slider or directly enter a number. Our team will coordinate the delivery and pickup of your requested units.</p>
           </div>
 
           <div className="estimate-actions">
@@ -111,6 +135,9 @@ export default function PriceEstimate() {
         .price-display {
           text-align: center;
           margin-bottom: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .price-label {
@@ -119,10 +146,24 @@ export default function PriceEstimate() {
           margin-right: 10px;
         }
 
-        .price-value {
-          font-size: 40px;
+        .unit-input-container {
+          display: inline-block;
+        }
+
+        .unit-input {
+          font-size: 32px;
           font-weight: 700;
           color: #FF7701;
+          width: 80px;
+          text-align: center;
+          border: 2px solid #FF7701;
+          border-radius: 5px;
+          padding: 5px;
+        }
+
+        .unit-input:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(255, 119, 1, 0.3);
         }
 
         .slider-container {
@@ -165,7 +206,7 @@ export default function PriceEstimate() {
         .price-slider::-webkit-slider-runnable-track {
           height: 8px;
           border-radius: 4px;
-          background: linear-gradient(to right, #f0f0f0 ${props => (parseInt(priceRange) - 200) / 18}%, #FF7701 0);
+          background: linear-gradient(to right, #f0f0f0 ${props => (unitCount - 1) / 29 * 100}%, #FF7701 0);
         }
 
         .price-range-labels {
@@ -249,16 +290,13 @@ export default function PriceEstimate() {
             padding: 20px;
           }
 
-          .price-value {
-            font-size: 32px;
-          }
-
-          .estimate-actions {
+          .price-display {
             flex-direction: column;
           }
 
-          .back-button, .save-button {
-            width: 100%;
+          .price-label {
+            margin-right: 0;
+            margin-bottom: 10px;
           }
         }
       `}</style>

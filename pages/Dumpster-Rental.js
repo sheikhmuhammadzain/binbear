@@ -81,8 +81,7 @@ export default function DumpsterRental() {
     return (
             <Layout>
             <div className="dumpster-rental-container">
-                <h1 className="page-title">Dumpster Rental</h1>
-                <p className="page-description">Select your preferred dumpster size and schedule your delivery</p>
+                
                 
                 {/* Dumpster Size Selection */}
                 <section className="selection-section">
