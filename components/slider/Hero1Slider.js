@@ -22,11 +22,11 @@ export default function Hero1Slider() {
                     clickable: true,
                     el: '.swiper-pagination-banner'
                 }}
-                className="swiper-wrapper hero-swiper-fullwidth"
+                className="swiper-wrapper hero-swiper"
             >
                 <SwiperSlide>
                     <div className="banner-premium" style={{ backgroundImage: 'url(assets/imgs/page/homepage1/banner.png)' }}>
-                        <div className="container">
+                        <div className="container site-container">
                             <div className="row align-items-center">
                                 <div className="col-lg-12">
                                     <div className="banner-premium-content" data-aos="fade-up">
@@ -53,13 +53,13 @@ export default function Hero1Slider() {
                                         </div>
                                     </div>
                                 </div>
-                                  </div>
-                           </div>
+                            </div>
+                        </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="banner-premium" style={{ backgroundImage: 'url(assets/imgs/page/homepage1/banner-2.png)' }}>
-                        <div className="container">
+                        <div className="container site-container">
                             <div className="row align-items-center">
                                 <div className="col-lg-12">
                                     <div className="banner-premium-content" data-aos="fade-up">
@@ -86,7 +86,7 @@ export default function Hero1Slider() {
                                         </div>
                                     </div>
                                 </div>
-                                   </div>
+                            </div>
                         </div>
                     </div>
                 </SwiperSlide>
@@ -94,19 +94,28 @@ export default function Hero1Slider() {
             <div className="swiper-pagination swiper-pagination-banner" />
             
             <style jsx global>{`
-                .hero-swiper-fullwidth {
-                    width: 100vw !important;
-                    margin: 0 !important;
+                .site-container {
+                    max-width: 1320px;
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+                
+                .hero-swiper {
+                    width: 100%;
+                    margin: 0;
                     position: relative;
                     overflow: hidden;
                 }
                 
                 .swiper-wrapper {
-                    width: 100% !important;
+                    width: 100%;
                 }
                 
                 .swiper-slide {
-                    width: 100vw !important;
+                    width: 100%;
                 }
             `}</style>
             
@@ -115,11 +124,11 @@ export default function Hero1Slider() {
                     position: relative;
                     background-size: cover;
                     background-position: center;
-                    min-height: 600px;
+                    min-height: 430px;
                     display: flex;
                     align-items: center;
-                    padding: 80px 0;
-                    width: 100vw !important;
+                    padding: 30px 0 60px;
+                    width: 100%;
                 }
                 
                 .banner-premium::before {
@@ -155,10 +164,10 @@ export default function Hero1Slider() {
                     background: linear-gradient(45deg, #FF7F00, #FFA64D);
                     color: #fff;
                     font-weight: 700;
-                    padding: 8px 18px;
+                    padding: 5px 14px;
                     border-radius: 30px;
-                    margin-bottom: 20px;
-                    font-size: 15px;
+                    margin-bottom: 10px;
+                    font-size: 13px;
                     box-shadow: 0 5px 12px rgba(255, 127, 0, 0.3);
                     animation: pulse 2s infinite;
                 }
@@ -176,18 +185,18 @@ export default function Hero1Slider() {
                 }
                 
                 .banner-premium-title {
-                    font-size: 48px;
+                    font-size: 30px;
                     font-weight: 800;
                     line-height: 1.2;
-                    margin-bottom: 20px;
+                    margin-bottom: 10px;
                     color: white;
                     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
                 }
                 
                 .banner-premium-text {
-                    font-size: 18px;
-                    line-height: 1.6;
-                    margin-bottom: 30px;
+                    font-size: 15px;
+                    line-height: 1.4;
+                    margin-bottom: 15px;
                     color: rgba(255, 255, 255, 0.95);
                     max-width: 580px;
                     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -195,7 +204,7 @@ export default function Hero1Slider() {
                 
                 .banner-premium-buttons {
                     display: flex;
-                    gap: 15px;
+                    gap: 12px;
                     flex-wrap: wrap;
                 }
                 
@@ -203,10 +212,10 @@ export default function Hero1Slider() {
                     display: inline-flex;
                     align-items: center;
                     gap: 8px;
-                    padding: 15px 30px;
+                    padding: 10px 20px;
                     border-radius: 8px;
                     font-weight: 700;
-                    font-size: 16px;
+                    font-size: 14px;
                     transition: all 0.3s ease;
                     position: relative;
                     overflow: hidden;
@@ -259,7 +268,7 @@ export default function Hero1Slider() {
                 
                 .swiper-pagination-banner {
                     position: absolute;
-                    bottom: 30px;
+                    bottom: 10px;
                     left: 0;
                     width: 100%;
                     text-align: center;

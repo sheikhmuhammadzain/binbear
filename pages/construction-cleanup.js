@@ -99,13 +99,13 @@ function ConstructionCleanup() {
         .container {
           max-width: 1000px;
           margin: 0 auto;
-          padding: 20px;
-          min-height: calc(100vh - 350px);
+          padding: 10px 20px 20px;
+          min-height: calc(100vh - 300px);
         }
 
         .page-header {
           text-align: center;
-          margin-bottom: 30px;
+          margin-bottom: 15px;
           position: relative;
         }
 
@@ -129,10 +129,10 @@ function ConstructionCleanup() {
         }
 
         .main-title {
-          font-size: 28px;
+          font-size: 24px;
           font-weight: 600;
           color: #333;
-          margin-bottom: 10px;
+          margin-bottom: 8px;
         }
 
         .location {
@@ -152,7 +152,7 @@ function ConstructionCleanup() {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 20px;
-          padding: 10px;
+          padding: 0 10px;
           max-width: 900px;
           margin: 0 auto;
         }
@@ -174,7 +174,7 @@ function ConstructionCleanup() {
         }
 
         .card-inner {
-          padding: 20px;
+          padding: 15px;
           width: 100%;
           display: flex;
           flex-direction: column;
@@ -183,21 +183,21 @@ function ConstructionCleanup() {
         .icons-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
-          margin-bottom: 15px;
-          height: 105px;
+          gap: 6px;
+          margin-bottom: 12px;
+          height: 90px;
         }
 
         .item-icon {
-          font-size: 24px;
+          font-size: 22px;
           text-align: center;
         }
 
         .truck-illustration {
-          margin-bottom: 15px;
+          margin-bottom: 12px;
           padding: 0.5rem;
           text-align: center;
-          height: 105px;
+          height: 90px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -206,14 +206,14 @@ function ConstructionCleanup() {
         .small-trucks {
           display: flex;
           flex-direction: column;
-          gap: 10px;
-          margin-bottom: 10px;
+          gap: 8px;
+          margin-bottom: 8px;
         }
 
         .truck-row {
           display: flex;
           justify-content: center;
-          gap: 12px;
+          gap: 10px;
         }
 
         .small-truck {
@@ -221,8 +221,8 @@ function ConstructionCleanup() {
         }
 
         .equals-sign {
-          font-size: 18px;
-          margin: 8px 0;
+          font-size: 16px;
+          margin: 4px 0;
           color: #333;
           text-align: center;
           font-weight: 500;
@@ -236,11 +236,11 @@ function ConstructionCleanup() {
 
         .card-title {
           color: #333;
-          font-size: 20px;
+          font-size: 18px;
           text-align: center;
-          margin: 10px 0;
+          margin: 8px 0;
           font-weight: 600;
-          height: 60px;
+          height: 40px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -248,15 +248,15 @@ function ConstructionCleanup() {
 
         .recommended-section {
           flex: 1;
-          margin: 10px 0 20px;
+          margin: 8px 0 15px;
           display: flex;
           flex-direction: column;
         }
 
         .recommended-section h3 {
           color: #333;
-          margin-bottom: 10px;
-          font-size: 16px;
+          margin-bottom: 8px;
+          font-size: 15px;
           font-weight: 600;
         }
 
@@ -268,11 +268,12 @@ function ConstructionCleanup() {
         }
 
         .recommended-section li {
-          margin-bottom: 8px;
+          margin-bottom: 6px;
           color: #555;
           position: relative;
-          padding-left: 24px;
-          line-height: 1.4;
+          padding-left: 20px;
+          line-height: 1.3;
+          font-size: 14px;
         }
 
         .recommended-section li:before {
@@ -289,14 +290,14 @@ function ConstructionCleanup() {
           color: white;
           border: none;
           border-radius: 4px;
-          padding: 12px;
-          font-size: 16px;
+          padding: 10px;
+          font-size: 15px;
           font-weight: 500;
           cursor: pointer;
           width: 100%;
           transition: background-color 0.2s ease;
           margin-top: auto;
-          height: 45px;
+          height: 40px;
         }
 
         .action-button:hover {
@@ -309,39 +310,39 @@ function ConstructionCleanup() {
           }
           
           .main-title {
-            font-size: 24px;
+            font-size: 22px;
           }
           
           .card-title {
             height: auto;
-            min-height: 50px;
+            min-height: 40px;
           }
           
           .icons-grid, .truck-illustration {
             height: auto;
-            min-height: 80px;
+            min-height: 70px;
           }
         }
 
         @media (max-width: 480px) {
           .container {
-            padding: 15px 10px;
+            padding: 10px;
           }
           
           .card-inner {
-            padding: 15px;
+            padding: 12px;
           }
 
           .icons-grid {
-            gap: 8px;
+            gap: 6px;
           }
 
           .item-icon {
-            font-size: 20px;
+            font-size: 18px;
           }
 
           .card-title {
-            font-size: 18px;
+            font-size: 16px;
           }
 
           .recommended-section li {

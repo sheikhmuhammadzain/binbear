@@ -6,6 +6,7 @@ export default function PriceEstimate() {
   const router = useRouter();
   const [unitCount, setUnitCount] = useState(5);
   const [loading, setLoading] = useState(false);
+  const pricePerUnit = 40; // Price per unit - $40
 
   const handleRangeChange = (e) => {
     setUnitCount(parseInt(e.target.value));
@@ -14,13 +15,11 @@ export default function PriceEstimate() {
   const handleInputChange = (e) => {
     let value = parseInt(e.target.value);
     
-    // Handle validation
+    // Handle validation - only enforce minimum
     if (isNaN(value)) {
       value = 1;
     } else if (value < 1) {
       value = 1;
-    } else if (value > 30) {
-      value = 30;
     }
     
     setUnitCount(value);
@@ -30,6 +29,7 @@ export default function PriceEstimate() {
     setLoading(true);
     // Save the unit count to session storage to potentially use it later
     sessionStorage.setItem("estimatedUnits", unitCount);
+    sessionStorage.setItem("estimatedPrice", unitCount * pricePerUnit);
     
     // Redirect to the scheduling page
     setTimeout(() => {
@@ -51,16 +51,24 @@ export default function PriceEstimate() {
 
         <div className="estimate-card">
           <div className="price-display">
-            <span className="price-label">Your Units:</span>
-            <div className="unit-input-container">
-              <input 
-                type="number" 
-                min="1" 
-                max="30"
-                value={unitCount}
-                onChange={handleInputChange}
-                className="unit-input"
-              />
+            <div className="units-section">
+              <span className="display-label">Your Units:</span>
+              <div className="unit-input-container">
+                <input 
+                  type="number" 
+                  min="1"
+                  value={unitCount}
+                  onChange={handleInputChange}
+                  className="unit-input"
+                />
+              </div>
+              <div className="per-unit-price">
+                ${pricePerUnit} per unit
+              </div>
+            </div>
+            <div className="price-section">
+              <span className="display-label">Estimated Price:</span>
+              <div className="total-price">${unitCount * pricePerUnit}</div>
             </div>
           </div>
 
@@ -68,20 +76,20 @@ export default function PriceEstimate() {
             <input
               type="range"
               min="1"
-              max="30"
+              max="100"
               step="1"
-              value={unitCount}
+              value={unitCount > 100 ? 100 : unitCount}
               onChange={handleRangeChange}
               className="price-slider"
             />
             <div className="price-range-labels">
               <span>1 Unit</span>
-              <span>30 Units</span>
+              <span>100+ Units</span>
             </div>
           </div>
 
           <div className="price-description">
-            <p>Please specify the number of units you need for your construction cleanup services. You can adjust using the slider or directly enter a number. Our team will coordinate the delivery and pickup of your requested units.</p>
+            <p>Please specify the number of units you need for your construction cleanup services. You can adjust using the slider or directly enter any number. Our team will coordinate the delivery and pickup of your requested units.</p>
           </div>
 
           <div className="estimate-actions">
@@ -133,17 +141,35 @@ export default function PriceEstimate() {
         }
 
         .price-display {
-          text-align: center;
-          margin-bottom: 30px;
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          justify-content: center;
+          margin-bottom: 30px;
+          padding: 0 10px;
         }
 
-        .price-label {
+        .units-section, .price-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .display-label {
           font-size: 18px;
           color: #555;
-          margin-right: 10px;
+          margin-bottom: 8px;
+        }
+
+        .per-unit-price {
+          font-size: 14px;
+          color: #777;
+          margin-top: 5px;
+        }
+
+        .total-price {
+          font-size: 32px;
+          font-weight: 700;
+          color: #FF7701;
         }
 
         .unit-input-container {
@@ -154,7 +180,7 @@ export default function PriceEstimate() {
           font-size: 32px;
           font-weight: 700;
           color: #FF7701;
-          width: 80px;
+          width: 100px;
           text-align: center;
           border: 2px solid #FF7701;
           border-radius: 5px;
@@ -206,7 +232,7 @@ export default function PriceEstimate() {
         .price-slider::-webkit-slider-runnable-track {
           height: 8px;
           border-radius: 4px;
-          background: linear-gradient(to right, #f0f0f0 ${props => (unitCount - 1) / 29 * 100}%, #FF7701 0);
+          background: linear-gradient(to right, #f0f0f0 ${props => Math.min((unitCount - 1) / 99 * 100, 100)}%, #FF7701 0);
         }
 
         .price-range-labels {
@@ -292,11 +318,7 @@ export default function PriceEstimate() {
 
           .price-display {
             flex-direction: column;
-          }
-
-          .price-label {
-            margin-right: 0;
-            margin-bottom: 10px;
+            gap: 20px;
           }
         }
       `}</style>

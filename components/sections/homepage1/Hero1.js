@@ -11,7 +11,7 @@ export default function Hero1() {
                 </div>
                 
                 {/* Premium floating features */}
-                <div className="container">
+                <div className="container site-container">
                     <div className="hero-premium-features">
                         <div className="row">
                             <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -47,16 +47,22 @@ export default function Hero1() {
             </section>
             
             <style jsx>{`
+                /* Global container styles */
+                .site-container {
+                    max-width: 1320px;
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+            
                 .hero-premium {
                     position: relative;
                     padding-bottom: 90px;
                     overflow: hidden;
-                    width: 100vw;
+                    width: 100%;
                     background: #ffffff;
-                    margin-left: -50vw;
-                    margin-right: -50vw;
-                    left: 50%;
-                    right: 50%;
                 }
                 
                 .box-swiper {
@@ -75,11 +81,7 @@ export default function Hero1() {
                     position: relative;
                     margin-top: -70px;
                     z-index: 10;
-                    padding: 0 15px;
                     width: 100%;
-                    max-width: 1320px;
-                    margin-left: auto;
-                    margin-right: auto;
                 }
                 
                 .feature-premium {

@@ -32,7 +32,7 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
         <>
             <header className={`header sticky-bar ${scroll ? "stick" : ""}`}>
                 <div className="box-bar bg-grey-900" style={{backgroundColor: 'black'}}>
-                    <div className="container">
+                    <div className="container site-container">
                         <div className="row align-items-center">
                             <div className="col-lg-7 col-md-8 col-sm-7 col-7">
                                 <Link className="phone-icon mr-30" href="tel:+01-246-357">
@@ -69,7 +69,7 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                     </div>
                 </div>
                 
-                <div className="container">
+                <div className="container site-container">
                     <div className="main-header">
                         <div className="header-left">
                             <div className="header-logo">

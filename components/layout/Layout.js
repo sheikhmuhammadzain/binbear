@@ -34,7 +34,7 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
             setPageLoaded(true);
         }, 200);
         
-        const hideOnPages = ['/item-estimate', '/Booking', '/choose-service'];
+        const hideOnPages = ['/item-estimate', '/Booking', '/choose-service', '/item-selection'];
         const shouldHide = hideOnPages.includes(router.pathname);
         setHideBookNow(shouldHide);
 
@@ -117,7 +117,9 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
                 )}
 
                 <main className="main">
-                    {children}
+                    <div className="site-content">
+                        {children}
+                    </div>
                 </main>
 
                 {footerStyle === "footerNewsletter" ? <FooterNewsletter /> : <Footer />}
@@ -137,6 +139,29 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
                 .main {
                     margin-bottom: 0;
                     position: relative;
+                }
+
+                .site-content {
+                    width: 100%;
+                    overflow-x: hidden;
+                }
+
+                :global(.site-container) {
+                    max-width: 1320px;
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+
+                :global(.container) {
+                    max-width: 1320px;
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    padding-left: 15px;
+                    padding-right: 15px;
                 }
             `}</style>
         </>

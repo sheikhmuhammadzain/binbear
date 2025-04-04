@@ -8,7 +8,7 @@ export default function Howitwork1() {
             <section className="section-premium bg-worldmap">
                 <div className="container">
                     <div className="section-premium-header" data-aos="fade-up">
-                        <img className="mb-10" src="/img/bear.png.png" width={120} height={48} alt="BinBear Logo" />
+                       
                         <h2 className="section-premium-title">You just book, and we take care of rest!</h2>
                         <h4 className="section-premium-subtitle">We make Junk Removal Easy</h4>
                         <p className="section-premium-description">

@@ -28,7 +28,7 @@ export default function ConstructionContact() {
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-        
+
         if (files.length > 5) {
             setFormStatus("You can upload a maximum of 5 images.");
             return;
@@ -58,7 +58,7 @@ export default function ConstructionContact() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         // Form validation
         if (!name || !email || !phone || !message || !date || !time) {
             setFormStatus("Please fill in all required fields.");
@@ -68,7 +68,7 @@ export default function ConstructionContact() {
         // Here you would typically send the data to your server
         // For now, we'll just simulate a success response
         setFormStatus("Your request has been submitted. We'll contact you soon!");
-        
+
         // Reset form after success (simulating server response)
         setTimeout(() => {
             setName("");
@@ -102,24 +102,24 @@ export default function ConstructionContact() {
                                 </p>
                             </div>
                         </div>
-                        
+
                         <div className="row justify-content-center">
                             <div className="col-xl-10">
                                 <div className="box-contact-form">
                                     <div className="row">
                                         <div className="col-xl-6 col-lg-6">
-                                            <div className="contact-form-left" style={{backgroundColor: 'black'}}>
+                                            <div className="contact-form-left" style={{ backgroundColor: 'black' }}>
                                                 <h3 className="color-white mb-15 wow animate__animated animate__fadeIn">Request an Estimate</h3>
                                                 <p className="font-md color-white mb-30 wow animate__animated animate__fadeIn">
                                                     Upload 4-5 photos of your construction site to help us provide an accurate estimate.
                                                 </p>
-                                                
+
                                                 <div className="image-upload-container mb-30">
                                                     <div className="upload-box" onClick={triggerFileInput}>
-                                                        <input 
-                                                            type="file" 
-                                                            multiple 
-                                                            accept="image/*" 
+                                                        <input
+                                                            type="file"
+                                                            multiple
+                                                            accept="image/*"
                                                             onChange={handleImageChange}
                                                             ref={fileInputRef}
                                                             style={{ display: 'none' }}
@@ -133,7 +133,7 @@ export default function ConstructionContact() {
                                                         <p className="upload-hint">(Max 5 images)</p>
                                                     </div>
                                                 </div>
-                                                
+
                                                 {images.length > 0 && (
                                                     <div className="image-previews">
                                                         <h4 className="color-white mb-15">Uploaded Images</h4>
@@ -141,8 +141,8 @@ export default function ConstructionContact() {
                                                             {images.map((image, index) => (
                                                                 <div key={index} className="preview-item">
                                                                     <img src={image.preview} alt={`Upload ${index + 1}`} />
-                                                                    <button 
-                                                                        className="remove-btn" 
+                                                                    <button
+                                                                        className="remove-btn"
                                                                         onClick={() => removeImage(index)}
                                                                         type="button"
                                                                     >
@@ -161,59 +161,84 @@ export default function ConstructionContact() {
                                                     <div className="row wow animate__animated animate__fadeIn">
                                                         <div className="col-lg-12">
                                                             <div className="form-group">
-                                                                <input 
-                                                                    className="form-control" 
-                                                                    type="text" 
-                                                                    placeholder="Your name *" 
+                                                                <input
+                                                                    type="text"
+                                                                    placeholder="Your name *"
                                                                     value={name}
                                                                     onChange={(e) => setName(e.target.value)}
                                                                     required
+                                                                    style={{
+                                                                        width: "100%",
+                                                                        padding: "10px",
+                                                                        border: name ? "1px solid #ccc" : "1px solid black",
+                                                                        borderRadius: "5px",
+                                                                    }}
                                                                 />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-12">
                                                             <div className="form-group">
-                                                                <input 
-                                                                    className="form-control" 
-                                                                    type="email" 
-                                                                    placeholder="Your email *" 
+                                                                <input
+                                                                    type="email"
+                                                                    placeholder="Your email *"
                                                                     value={email}
                                                                     onChange={(e) => setEmail(e.target.value)}
                                                                     required
+                                                                    style={{
+                                                                        width: "100%",
+                                                                        padding: "10px",
+                                                                        border: email ? "1px solid #ccc" : "1px solid black",
+                                                                        borderRadius: "5px",
+                                                                    }}
                                                                 />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-12">
                                                             <div className="form-group">
-                                                                <input 
-                                                                    className="form-control" 
-                                                                    type="text" 
-                                                                    placeholder="Your phone number *" 
+                                                                <input
+                                                                    type="text"
+                                                                    placeholder="Your phone number *"
                                                                     value={phone}
                                                                     onChange={(e) => setPhone(e.target.value)}
                                                                     required
+                                                                    style={{
+                                                                        width: "100%",
+                                                                        padding: "10px",
+                                                                        border: phone ? "1px solid #ccc" : "1px solid black",
+                                                                        borderRadius: "5px",
+                                                                    }}
                                                                 />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-6">
                                                             <div className="form-group">
-                                                                <input 
-                                                                    className="form-control" 
-                                                                    type="date" 
-                                                                    placeholder="Preferred date *" 
+                                                                <input
+                                                                    type="date"
+                                                                    placeholder="Preferred date *"
                                                                     value={date}
                                                                     onChange={(e) => setDate(e.target.value)}
                                                                     required
+                                                                    style={{
+                                                                        width: "100%",
+                                                                        padding: "10px",
+                                                                        border: date ? "1px solid #ccc" : "1px solid black",
+                                                                        borderRadius: "5px",
+                                                                    }}
                                                                 />
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-6">
                                                             <div className="form-group">
-                                                                <select 
-                                                                    className="form-control" 
+                                                                <select
                                                                     value={time}
                                                                     onChange={(e) => setTime(e.target.value)}
                                                                     required
+                                                                    style={{
+                                                                        width: "100%",
+                                                                        padding: "10px",
+                                                                        border: time ? "1px solid #ccc" : "1px solid black",
+                                                                        borderRadius: "5px",
+                                                                    }}
                                                                 >
                                                                     <option value="">Select a time *</option>
                                                                     {timeSlots.map((timeSlot, index) => (
@@ -226,17 +251,22 @@ export default function ConstructionContact() {
                                                         </div>
                                                         <div className="col-lg-12">
                                                             <div className="form-group">
-                                                                <textarea 
-                                                                    className="form-control" 
-                                                                    placeholder="Project details (size, type of debris, timeline, etc.) *" 
+                                                                <textarea
+                                                                    placeholder="Project details (size, type of debris, timeline, etc.) *"
                                                                     rows={6}
                                                                     value={message}
                                                                     onChange={(e) => setMessage(e.target.value)}
                                                                     required
+                                                                    style={{
+                                                                        width: "100%",
+                                                                        padding: "10px",
+                                                                        border: message ? "1px solid #ccc" : "1px solid black",
+                                                                        borderRadius: "5px",
+                                                                    }}
                                                                 />
                                                             </div>
                                                         </div>
-                                                        
+
                                                         {formStatus && (
                                                             <div className="col-lg-12 mb-15">
                                                                 <div className={`alert ${formStatus.includes("submitted") ? "alert-success" : "alert-danger"}`}>
@@ -244,27 +274,39 @@ export default function ConstructionContact() {
                                                                 </div>
                                                             </div>
                                                         )}
-                                                        
+
                                                         <div className="col-lg-12">
-                                                            <button 
-                                                                type="submit" 
-                                                                className="btn btn-brand-1-big"
-                                                                style={{ 
-                                                                    backgroundColor: '#FF7F00', 
-                                                                    color: 'white',
-                                                                    width: '100%',
-                                                                    marginTop: '10px'
+                                                            <button
+                                                                type="submit"
+                                                                style={{
+                                                                    width: "100%",
+                                                                    padding: "13px 20px",
+                                                                    backgroundColor: "#FF7F00",
+                                                                    color: "#fff",
+                                                                    border: "none",
+                                                                    borderRadius: "5px",
+                                                                    cursor: "pointer",
+                                                                    fontSize: "16px",
+                                                                    fontWeight: "bold",
+                                                                    marginTop: "10px"
                                                                 }}
                                                             >
                                                                 Submit Request
                                                             </button>
                                                         </div>
-                                                        
+
                                                         <div className="col-lg-12 mt-20 text-center">
-                                                            <button 
-                                                                type="button" 
-                                                                className="btn btn-link btn-brand-1-big" 
+                                                            <button
+                                                                type="button"
                                                                 onClick={() => router.back()}
+                                                                style={{
+                                                                    marginTop: "20px",
+                                                                    color: "black",
+                                                                    border: "none",
+                                                                    background: "none",
+                                                                    cursor: "pointer",
+                                                                    fontSize: "16px",
+                                                                }}
                                                             >
                                                                 ← Back to services
                                                             </button>
