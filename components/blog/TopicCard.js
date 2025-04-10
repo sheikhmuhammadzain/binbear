@@ -14,7 +14,7 @@ const TopicCard = ({ topic }) => {
         <h4 className="topics-card-title">{topic.title}</h4>
         <Link href={`/blog/${topic.slug}`} className="topics-read-more-btn">
           Read More
-        </Link>
+      </Link>
       </div>
       
       <style jsx>{`

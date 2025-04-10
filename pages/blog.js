@@ -788,26 +788,33 @@ export default function Blog() {
           padding: 30px 20px;
           display: flex;
           flex-direction: column;
+          color: white;
           justify-content: center;
           height: 100%;
+          h4{
+            color: white;
+          }
         }
         
         .estimator-content h4 {
           font-size: 18px;
           margin-bottom: 15px;
           font-weight: 600;
+          color: white;
         }
         
         .estimator-content h2 {
           font-size: 36px;
           margin-bottom: 20px;
           font-weight: 700;
+          color: white;
         }
         
         .estimator-content p {
           color: white;
           margin-bottom: 25px;
           line-height: 1.6;
+          
           font-size: 18px;
           max-width: 500px;
         }
