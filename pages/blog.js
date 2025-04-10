@@ -1,13 +1,82 @@
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FeaturedArticle from "@/components/blog/FeaturedArticle";
 import RecentArticleItem from "@/components/blog/RecentArticleItem";
 import TopicsSection from "@/components/blog/TopicsSection";
-import { featuredArticle, recentArticles, topicsData } from "@/data/blogData";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { fetchAllBlogs, fetchFeaturedBlogs, fetchPopularBlogs, transformBlogData } from "@/util/blogApi";
+// Keeping the static data as fallback
+import { featuredArticle as fallbackFeaturedArticle, recentArticles as fallbackRecentArticles, topicsData as fallbackTopicsData } from "@/data/blogData";
 
 export default function Blog() {
   const [activePage, setActivePage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [featuredArticle, setFeaturedArticle] = useState(fallbackFeaturedArticle);
+  const [recentArticles, setRecentArticles] = useState(fallbackRecentArticles);
+  const [topicsData, setTopicsData] = useState(fallbackTopicsData);
+  
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch all blogs
+        const blogs = await fetchAllBlogs();
+        
+        if (blogs && blogs.length > 0) {
+          // Transform the API data to match our application format
+          const transformedBlogs = blogs.map(blog => transformBlogData(blog));
+          
+          // Get featured blogs for the main featured article
+          const featuredBlogs = transformedBlogs.filter(blog => blog.is_featured === "Yes");
+          
+          // Set the featured article (first featured blog or first blog if no featured)
+          setFeaturedArticle(featuredBlogs.length > 0 ? featuredBlogs[0] : transformedBlogs[0]);
+          
+          // Try to get popular blogs for the recent articles section
+          try {
+            const popularBlogsData = await fetchPopularBlogs();
+            if (popularBlogsData && popularBlogsData.length > 0) {
+              // Get featured article ID for filtering
+              const featuredId = featuredBlogs.length > 0 ? featuredBlogs[0].id : (transformedBlogs.length > 0 ? transformedBlogs[0].id : null);
+              
+              // Transform and exclude the featured article if it's in the popular blogs
+              const popularTransformed = popularBlogsData
+                .map(blog => transformBlogData(blog))
+                .filter(blog => featuredId === null || blog.id !== featuredId)
+                .slice(0, 3); // Limit to 3 popular articles
+              
+              setRecentArticles(popularTransformed);
+            } else {
+              // Fallback to filtering from all blogs if popular endpoint returns empty
+              const recentBlogsData = transformedBlogs
+                .filter(blog => blog.id !== (featuredBlogs.length > 0 ? featuredBlogs[0].id : transformedBlogs[0].id))
+                .slice(0, 3); // Limit to 3 recent articles
+              setRecentArticles(recentBlogsData);
+            }
+          } catch (error) {
+            console.error("Error fetching popular blogs:", error);
+            // Fallback to recent from all blogs
+            const recentBlogsData = transformedBlogs
+              .filter(blog => blog.id !== (featuredBlogs.length > 0 ? featuredBlogs[0].id : transformedBlogs[0].id))
+              .slice(0, 3); // Limit to 3 recent articles
+            setRecentArticles(recentBlogsData);
+          }
+          
+          // Set topics data (all blogs for now)
+          setTopicsData(transformedBlogs);
+        }
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+        // Fallback to static data is already set as initial state
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchBlogData();
+  }, []);
   
   // Handle pagination click
   const handlePageClick = (page) => {
@@ -25,43 +94,49 @@ export default function Blog() {
           </div>
         </div>
         
-        {/* Featured Content Grid Section */}
-        <div className="featured-grid-section">
-          <div className="container">
-            <div className="row">
-              {/* Left Side - Main Featured Article */}
-              <div className="col-lg-8">
-                <div className="featured-article-wrapper">
-                  <FeaturedArticle article={featuredArticle} />
-                </div>
-              </div>
-              
-              {/* Right Side - Stacked Recent Posts */}
-              <div className="col-lg-4">
-                <div className="stacked-posts">
-                  <h3 className="section-title">Most Recent</h3>
+        {loading ? (
+          <LoadingSpinner message="Loading blog content..." />
+        ) : (
+          <>
+            {/* Featured Content Grid Section */}
+            <div className="featured-grid-section">
+              <div className="container">
+                <div className="row">
+                  {/* Left Side - Main Featured Article */}
+                  <div className="col-lg-8">
+                    <div className="featured-article-wrapper">
+                      <FeaturedArticle article={featuredArticle} />
+                    </div>
+                  </div>
                   
-                  {recentArticles.map(article => (
-                    <RecentArticleItem key={article.id} article={article} />
-                  ))}
+                  {/* Right Side - Stacked Recent Posts */}
+                  <div className="col-lg-4">
+                    <div className="stacked-posts">
+                      <h3 className="section-title">Most Recent</h3>
+                      
+                      {recentArticles.map(article => (
+                        <RecentArticleItem key={article.id} article={article} />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Blog Content Area */}
-        <div className="blog-content-area">
-          <div className="container">
-            <div className="row">
-              {/* Main Blog Posts */}
-              <div className="col-lg-12 blog-main-column">
-                {/* Topics Section */}
-                <TopicsSection topics={topicsData} />
+            {/* Blog Content Area */}
+            <div className="blog-content-area">
+              <div className="container">
+                <div className="row">
+                  {/* Main Blog Posts */}
+                  <div className="col-lg-12 blog-main-column">
+                    {/* Topics Section */}
+                    <TopicsSection topics={topicsData} />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
         
         {/* Pricing Estimator Section (Full Width) */}
         <div className="pricing-estimator-container">
@@ -192,6 +267,30 @@ export default function Blog() {
       <style jsx>{`
         .blog-page-wrapper {
           padding: 40px 0;
+        }
+        
+        /* Loading Styles */
+        .loading-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 400px;
+        }
+        
+        .spinner {
+          border: 4px solid rgba(0, 0, 0, 0.1);
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border-left-color: #FF7701;
+          animation: spin 1s ease infinite;
+          margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
         
         /* CTA Banner */
@@ -391,65 +490,29 @@ export default function Blog() {
           margin-bottom: 20px;
         }
         
+        /* Remove conflicting card styles from blog.js since they're now defined in the component */
         .topics-card {
-          background-color: #fff;
-          border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-          height: 100%;
-          display: flex;
-          flex-direction: row;
+          /* Styles moved to TopicCard.js component */
         }
         
         .topics-card-image {
-          position: relative;
-          overflow: hidden;
-          height: 110px;
-          width: 120px;
-          border-radius: 10px;
-          flex-shrink: 0;
+          /* Styles moved to TopicCard.js component */
         }
         
         .topics-card-image img {
-          width: 100%;
-          height: 100%;
-          border-radius: 10px;
-          object-fit: cover;
+          /* Styles moved to TopicCard.js component */
         }
         
         .topics-card-content {
-          padding: 15px 12px;
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+          /* Styles moved to TopicCard.js component */
         }
         
         .topics-card-title {
-          color: #333;
-          font-size: 14px;
-          font-weight: 600;
-          margin-bottom: 10px;
-          line-height: 1.3;
+          /* Styles moved to TopicCard.js component */
         }
         
         .topics-read-more-btn {
-          display: inline-block;
-          background-color: #26A566;
-          color: white;
-          padding: 6px 12px;
-          border-radius: 4px;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 13px;
-          transition: background-color 0.3s ease;
-          text-align: center;
-          align-self: flex-start;
-        }
-        
-        .topics-read-more-btn:hover {
-          background-color: #FF7701;
-          color: white;
+          /* Styles moved to TopicCard.js component */
         }
         
         /* Pagination Controls */

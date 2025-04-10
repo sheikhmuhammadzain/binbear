@@ -1,30 +1,88 @@
 import Layout from "@/components/layout/Layout";
 import { useRouter } from "next/router";
-import { getBlogBySlug, recentArticles } from "@/data/blogData";
+import { useState, useEffect } from "react";
+import { fetchAllBlogs, transformBlogData } from "@/util/blogApi";
+import { getBlogBySlug as getStaticBlogBySlug, recentArticles as staticRecentArticles } from "@/data/blogData";
 import Link from "next/link";
 import RecentArticleItem from "@/components/blog/RecentArticleItem";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function BlogPost() {
   const router = useRouter();
   const { slug } = router.query;
+  const [loading, setLoading] = useState(true);
+  const [blogPost, setBlogPost] = useState(null);
+  const [recentArticles, setRecentArticles] = useState([]);
+  
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      // If slug is not available yet, return
+      if (!slug) return;
+      
+      try {
+        setLoading(true);
+        
+        // Check if the slug is in the format "blog-{id}"
+        const idMatch = slug.match(/^blog-(\d+)$/);
+        
+        if (idMatch) {
+          // This is a slug from the API, fetch all blogs and find by ID
+          const blogId = parseInt(idMatch[1]);
+          const allBlogs = await fetchAllBlogs();
+          
+          if (allBlogs && allBlogs.length > 0) {
+            // Find the specific blog
+            const blog = allBlogs.find(b => b.id === blogId);
+            
+            if (blog) {
+              // Transform the blog data to match our application format
+              setBlogPost(transformBlogData(blog));
+              
+              // Set other recent articles
+              const otherBlogs = allBlogs
+                .filter(b => b.id !== blogId)
+                .slice(0, 3)
+                .map(transformBlogData);
+              
+              setRecentArticles(otherBlogs);
+            } else {
+              // If blog not found in API, try to get it from static data
+              const staticBlog = getStaticBlogBySlug(slug);
+              setBlogPost(staticBlog);
+              setRecentArticles(staticRecentArticles.filter(a => a.slug !== slug).slice(0, 3));
+            }
+          }
+        } else {
+          // This is a slug from static data
+          const staticBlog = getStaticBlogBySlug(slug);
+          setBlogPost(staticBlog);
+          setRecentArticles(staticRecentArticles.filter(a => a.slug !== slug).slice(0, 3));
+        }
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+        
+        // Fallback to static data
+        const staticBlog = getStaticBlogBySlug(slug);
+        setBlogPost(staticBlog);
+        setRecentArticles(staticRecentArticles.filter(a => a.slug !== slug).slice(0, 3));
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchBlogData();
+  }, [slug]);
   
   // If the page is still loading or slug not available
-  if (router.isFallback || !slug) {
+  if (router.isFallback || loading) {
     return (
       <Layout>
         <div className="container">
-          <div className="loading-container">
-            <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
+          <LoadingSpinner message="Loading blog post..." />
         </div>
       </Layout>
     );
   }
-  
-  // Get blog data based on slug
-  const blogPost = getBlogBySlug(slug);
   
   // If blog post not found
   if (!blogPost) {
@@ -42,10 +100,6 @@ export default function BlogPost() {
       </Layout>
     );
   }
-  
-  const otherRecentArticles = recentArticles
-    .filter(article => article.slug !== slug)
-    .slice(0, 3);
 
   return (
     <Layout>
@@ -116,7 +170,7 @@ export default function BlogPost() {
                   
                   <div className="sidebar-widget recent-posts">
                     <h3 className="widget-title">Recent Posts</h3>
-                    {otherRecentArticles.map(article => (
+                    {recentArticles.map(article => (
                       <RecentArticleItem key={article.id} article={article} />
                     ))}
                   </div>
@@ -372,12 +426,29 @@ export default function BlogPost() {
           box-shadow: 0 6px 12px rgba(255, 119, 1, 0.4);
         }
         
-        /* Loading */
+        /* Loading Styles */
         .loading-container {
           display: flex;
-          justify-content: center;
+          flex-direction: column;
           align-items: center;
-          height: 400px;
+          justify-content: center;
+          min-height: 400px;
+          margin: 50px 0;
+        }
+        
+        .spinner {
+          border: 4px solid rgba(0, 0, 0, 0.1);
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border-left-color: #FF7701;
+          animation: spin 1s ease infinite;
+          margin-bottom: 15px;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
         
         /* Not Found */

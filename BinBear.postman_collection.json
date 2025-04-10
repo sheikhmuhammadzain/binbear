@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "3debfa23-bb35-493e-b2b0-e14584e7a43b",
+		"name": "BinBear",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33769479",
+		"_collection_link": "https://fillinix-solutions-894624.postman.co/workspace/Fillinx~f03189ee-02db-45d7-991f-082ff943ce56/collection/33769479-3debfa23-bb35-493e-b2b0-e14584e7a43b?action=share&source=collection_link&creator=33769479"
+	},
+	"item": [
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{live_url}}blogs",
+							"host": [
+								"{{live_url}}blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}blogs/1",
+							"host": [
+								"{{local_url}}blogs"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Popular",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}blog/is-popular",
+							"host": [
+								"{{local_url}}blog"
+							],
+							"path": [
+								"is-popular"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Coupon",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}coupons",
+							"host": [
+								"{{local_url}}coupons"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local_url",
+			"value": "localhost:8000/api/",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "551|37aJZcn94lu3cH9qSL1IQyb7N9HvKW6Zgx9oIsRu00b8f597",
+			"type": "string"
+		},
+		{
+			"key": "live_url",
+			"value": "https://binbear.njnylimo.us/public/api/",
+			"type": "string"
+		}
+	]
+}
