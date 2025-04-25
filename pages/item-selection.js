@@ -28,10 +28,15 @@ const ItemSelection = () => {
                     const transformedCategories = result.data.map(category => {
                         const imageUrl = category.image ? `https://binbear.njnylimo.us/public${category.image}` : '/assets/imgs/microwave.png';
                         console.log('Category image URL:', imageUrl); // Debug log
+                        console.log('Category children:', category.children); // Debug log for children
+                        
+                        // Ensure category.children exists and is an array
+                        const children = Array.isArray(category.children) ? category.children : [];
+                        
                         return {
                             title: category.name,
                             image: imageUrl,
-                            items: category.children.map(child => {
+                            items: children.map(child => {
                                 return {
                                     name: child.name,
                                     basePrice: parseInt(child.price, 10) || 0
@@ -103,6 +108,8 @@ const ItemSelection = () => {
 
     const handleCategoryClick = (index) => {
         setActiveCategory(index);
+        console.log('Clicked category:', index, itemCategories[index]);
+        console.log('Items in category:', itemCategories[index]?.items);
     };
 
     // Show loading state while fetching data
@@ -141,7 +148,7 @@ const ItemSelection = () => {
     }
 
     // If no categories or no items in the active category
-    if (!itemCategories.length || !itemCategories[activeCategory]?.items?.length) {
+    if (!itemCategories.length) {
         return (
             <Layout>
                 <div className="error-container">
@@ -268,33 +275,40 @@ const ItemSelection = () => {
 
                 {/* Items List (Scrollable Area) */}
                 <div className="items-list-container">
-                    {itemCategories[activeCategory]?.items?.map((item, index) => (
-                        <div key={`${activeCategory}-${index}`} className="item-row">
-                            <div className="item-info">
-                                <span className="item-name">{item.name}</span>
+                    {itemCategories[activeCategory]?.items?.length > 0 ? (
+                        itemCategories[activeCategory].items.map((item, index) => (
+                            <div key={`${activeCategory}-${index}`} className="item-row">
+                                <div className="item-info">
+                                    <span className="item-name">{item.name}</span>
+                                </div>
+                                <div className="item-controls">
+                                    <button
+                                        className="control-btn decrease"
+                                        onClick={() => updateItemCount(item.name, -1)}
+                                        disabled={!selectedItems[item.name]}
+                                        aria-label={`Decrease ${item.name} count`}
+                                    >
+                                        –
+                                    </button>
+                                    <span className="item-count" aria-live="polite">
+                                        {selectedItems[item.name] || 0}
+                                    </span>
+                                    <button
+                                        className="control-btn increase"
+                                        onClick={() => updateItemCount(item.name, 1)}
+                                        aria-label={`Increase ${item.name} count`}
+                                    >
+                                        +
+                                    </button>
+                                </div>
                             </div>
-                            <div className="item-controls">
-                                <button
-                                    className="control-btn decrease"
-                                    onClick={() => updateItemCount(item.name, -1)}
-                                    disabled={!selectedItems[item.name]}
-                                    aria-label={`Decrease ${item.name} count`}
-                                >
-                                    –
-                                </button>
-                                <span className="item-count" aria-live="polite">
-                                    {selectedItems[item.name] || 0}
-                                </span>
-                                <button
-                                    className="control-btn increase"
-                                    onClick={() => updateItemCount(item.name, 1)}
-                                    aria-label={`Increase ${item.name} count`}
-                                >
-                                    +
-                                </button>
-                            </div>
+                        ))
+                    ) : (
+                        <div className="no-items-message">
+                            <p>No items available in this category.</p>
+                            <p>Please select a different category or check back later.</p>
                         </div>
-                    ))}
+                    )}
                 </div>
 
                 {/* Bottom CTA (Fixed) */}
@@ -355,6 +369,16 @@ const ItemSelection = () => {
                 .location-info { display: flex; align-items: center; font-size: 11px; color: #555; text-align: right; white-space: nowrap; }
                 .location-pin { margin-right: 3px; font-size: 10px; }
                 .my-items-link { color: #FF7701; text-decoration: none; display: flex; align-items: center; margin-left: 8px; font-weight: 500; }
+
+                /* No Items Message */
+                .no-items-message {
+                    padding: 30px 20px;
+                    text-align: center;
+                    color: #666;
+                }
+                .no-items-message p {
+                    margin: 5px 0;
+                }
 
                 /* --- MODIFIED: Item Count Badge --- */
                 .item-count-badge {
