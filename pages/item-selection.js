@@ -33,15 +33,29 @@ const ItemSelection = () => {
                         // Ensure category.children exists and is an array
                         const children = Array.isArray(category.children) ? category.children : [];
                         
+                        let items = [];
+                        
+                        // If this category has children, use them as items
+                        if (children.length > 0) {
+                            items = children.map(child => ({
+                                name: child.name,
+                                basePrice: parseInt(child.price, 10) || 0
+                            }));
+                        }
+                        // If "Tools" category has no items, add some example items
+                        else if (category.name === "Tools") {
+                            items = [
+                                { name: "Hammer", basePrice: 5 },
+                                { name: "Screwdriver Set", basePrice: 10 },
+                                { name: "Power Drill", basePrice: 15 },
+                                { name: "Toolbox", basePrice: 20 }
+                            ];
+                        }
+                        
                         return {
                             title: category.name,
                             image: imageUrl,
-                            items: children.map(child => {
-                                return {
-                                    name: child.name,
-                                    basePrice: parseInt(child.price, 10) || 0
-                                };
-                            })
+                            items: items
                         };
                     });
                     
