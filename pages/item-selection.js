@@ -1,149 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Layout from "@/components/layout/Layout";
 
-// Define item categories and price map outside the component for performance
-const itemCategories = [
-    // ... (Keep your itemCategories array exactly as it was) ...
-    {
-        title: 'Couches & Chairs',
-        image: '/assets/imgs/sofa.png',
-        items: [
-            { name: 'Chair', basePrice: 20 },
-            { name: 'Recliner', basePrice: 30 },
-            { name: 'Couch w/ sleeper-recliner', basePrice: 50 },
-            { name: 'Sectional (2 piece)', basePrice: 75 },
-            { name: 'Sectional (3 piece)', basePrice: 100 },
-            { name: 'Couch/Sofa', basePrice: 40 },
-            { name: 'Loveseat', basePrice: 40 }
-        ]
-    },
-    {
-        title: 'Tables & Dressers',
-        image: '/assets/imgs/table.png',
-        items: [
-            { name: 'Coffee Table', basePrice: 25 },
-            { name: 'End Table', basePrice: 20 },
-            { name: 'Dining Table', basePrice: 40 },
-            { name: 'Dresser', basePrice: 35 }
-        ]
-    },
-    {
-        title: 'Electronics',
-        image: '/assets/imgs/microwave.png',
-        items: [
-            { name: 'TV (under 40")', basePrice: 30 },
-            { name: 'TV (40-60")', basePrice: 45 },
-            { name: 'TV (over 60")', basePrice: 60 }
-        ]
-    },
-    {
-        title: 'Appliances',
-        image: '/assets/imgs/washing.png',
-        items: [
-            { name: 'Refrigerator', basePrice: 65 },
-            { name: 'Washer/Dryer', basePrice: 50 },
-            { name: 'Dishwasher', basePrice: 45 },
-            { name: 'Microwave', basePrice: 25 }
-        ]
-    },
-    {
-        title: 'Yard Equipment',
-        image: '/assets/imgs/cycle.png',
-        items: [
-            { name: 'Lawn Mower', basePrice: 35 },
-            { name: 'Bicycle', basePrice: 30 },
-            { name: 'Yard Tools', basePrice: 20 },
-        ]
-    },
-    {
-        title: 'Bathroom Fixtures',
-        image: '/assets/imgs/bath.png',
-        items: [
-            { name: 'Bath Tub', basePrice: 60 },
-            { name: 'Toilet', basePrice: 35 },
-            { name: 'Sink', basePrice: 25 },
-        ]
-    },
-    {
-        title: 'Office Furniture',
-        image: '/assets/imgs/chair.png',
-        items: [
-            { name: 'Office Chair', basePrice: 25 },
-            { name: 'Desk', basePrice: 40 },
-            { name: 'Filing Cabinet', basePrice: 30 },
-            { name: 'Bookshelf', basePrice: 35 }
-        ]
-    },
-    {
-        title: 'Mattresses',
-        image: '/assets/imgs/mattress.png',
-        items: [
-            { name: 'Twin Mattress', basePrice: 40 },
-            { name: 'Queen Mattress', basePrice: 60 },
-            { name: 'King Mattress', basePrice: 80 },
-            { name: 'Box Spring', basePrice: 30 }
-        ]
-    },
-    {
-        title: 'Exercise Equipment',
-        image: '/assets/imgs/treadmill.png',
-        items: [
-            { name: 'Treadmill', basePrice: 80 },
-            { name: 'Exercise Bike', basePrice: 50 },
-            { name: 'Weight Bench', basePrice: 40 },
-            { name: 'Free Weights', basePrice: 25 }
-        ]
-    },
-    {
-        title: 'Outdoor Furniture',
-        image: '/assets/imgs/patio.png',
-        items: [
-            { name: 'Patio Table', basePrice: 35 },
-            { name: 'Patio Chair', basePrice: 20 },
-            { name: 'Outdoor Umbrella', basePrice: 25 },
-            { name: 'Grill', basePrice: 40 }
-        ]
-    },
-    {
-        title: 'Kitchen Items',
-        image: '/assets/imgs/kitchen.png',
-        items: [
-            { name: 'Small Appliances', basePrice: 15 },
-            { name: 'Dishes & Cookware', basePrice: 20 },
-            { name: 'Kitchen Island', basePrice: 50 },
-            { name: 'Bar Stools', basePrice: 25 }
-        ]
-    },
-    {
-        title: 'Storage Items',
-        image: '/assets/imgs/storage.png',
-        items: [
-            { name: 'Plastic Bins', basePrice: 15 },
-            { name: 'Wardrobe', basePrice: 45 },
-            { name: 'Storage Rack', basePrice: 30 },
-            { name: 'Trunk/Chest', basePrice: 25 }
-        ]
-    }
-];
-
-// Create a flat price map from all categories
-const itemPrices = {};
-itemCategories.forEach(category => {
-    category.items.forEach(item => {
-        itemPrices[item.name] = item.basePrice;
-    });
-});
-
 const ItemSelection = () => {
     const [estimate, setEstimate] = useState(0);
     const [selectedItems, setSelectedItems] = useState({});
     const [activeCategory, setActiveCategory] = useState(0);
     const [categoryScrollIndex, setCategoryScrollIndex] = useState(0);
+    const [itemCategories, setItemCategories] = useState([]);
+    const [itemPrices, setItemPrices] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     const visibleCategories = 5; // Adjust if needed based on final card size
+
+    // Fetch categories from API
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                setIsLoading(true);
+                const response = await fetch('https://binbear.njnylimo.us/public/api/allCategories');
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Transform API data to match component's expected format
+                    const transformedCategories = result.data.map(category => {
+                        const imageUrl = category.image ? `https://binbear.njnylimo.us/public${category.image}` : '/assets/imgs/microwave.png';
+                        console.log('Category image URL:', imageUrl); // Debug log
+                        return {
+                            title: category.name,
+                            image: imageUrl,
+                            items: category.children.map(child => {
+                                return {
+                                    name: child.name,
+                                    basePrice: parseInt(child.price, 10) || 0
+                                };
+                            })
+                        };
+                    });
+                    
+                    setItemCategories(transformedCategories);
+                    
+                    // Create a flat price map from all categories
+                    const prices = {};
+                    transformedCategories.forEach(category => {
+                        category.items.forEach(item => {
+                            prices[item.name] = item.basePrice;
+                        });
+                    });
+                    setItemPrices(prices);
+                }
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        
+        fetchCategories();
+    }, []);
 
     const updateItemCount = (itemName, increment) => {
         setSelectedItems(prev => {
@@ -188,6 +104,72 @@ const ItemSelection = () => {
     const handleCategoryClick = (index) => {
         setActiveCategory(index);
     };
+
+    // Show loading state while fetching data
+    if (isLoading) {
+        return (
+            <Layout>
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p>Loading items...</p>
+                </div>
+                <style jsx>{`
+                    .loading-container {
+                        height: 100vh;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #ffffff;
+                    }
+                    .loading-spinner {
+                        border: 4px solid #f3f3f3;
+                        border-top: 4px solid #FF7701;
+                        border-radius: 50%;
+                        width: 40px;
+                        height: 40px;
+                        animation: spin 1s linear infinite;
+                        margin-bottom: 20px;
+                    }
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                `}</style>
+            </Layout>
+        );
+    }
+
+    // If no categories or no items in the active category
+    if (!itemCategories.length || !itemCategories[activeCategory]?.items?.length) {
+        return (
+            <Layout>
+                <div className="error-container">
+                    <p>No items available at this time. Please check back later.</p>
+                    <Link href="/" className="return-home-btn">Return Home</Link>
+                </div>
+                <style jsx>{`
+                    .error-container {
+                        height: 100vh;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 20px;
+                        text-align: center;
+                    }
+                    .return-home-btn {
+                        margin-top: 20px;
+                        background-color: #FF7701;
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 6px;
+                        text-decoration: none;
+                    }
+                `}</style>
+            </Layout>
+        );
+    }
 
     return (
         <Layout>
@@ -252,6 +234,11 @@ const ItemSelection = () => {
                                             width={70}
                                             height={60}
                                             style={{ objectFit: 'contain' }}
+                                            onError={(e) => {
+                                                // Fall back to a default image on error
+                                                e.target.src = '/assets/imgs/microwave.png';
+                                            }}
+                                            unoptimized={true}
                                         />
                                     </div>
                                     <div className="category-title">{category.title}</div>
@@ -281,7 +268,7 @@ const ItemSelection = () => {
 
                 {/* Items List (Scrollable Area) */}
                 <div className="items-list-container">
-                    {itemCategories[activeCategory].items.map((item, index) => (
+                    {itemCategories[activeCategory]?.items?.map((item, index) => (
                         <div key={`${activeCategory}-${index}`} className="item-row">
                             <div className="item-info">
                                 <span className="item-name">{item.name}</span>

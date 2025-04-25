@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [],
+    domains: ['binbear.njnylimo.us'],
     unoptimized: process.env.NODE_ENV === 'development',
   },
 }
