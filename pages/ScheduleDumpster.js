@@ -1,15 +1,179 @@
 import Layout from "@/components/layout/Layout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Bgmap from "@/components/sections/homepage1/Bgmap";
 
 export default function ScheduleDumpster() {
     const router = useRouter();
     
+    // Fetch coupons when component mounts
+    useEffect(() => {
+        const fetchCoupons = async () => {
+            try {
+                const response = await fetch('https://binbear.njnylimo.us/public/api/coupons');
+                const result = await response.json();
+                
+                if (result.success) {
+                    setCoupons(result.data);
+                    console.log('Coupons loaded:', result.data);
+                }
+            } catch (error) {
+                console.error('Error fetching coupons:', error);
+            }
+        };
+        
+        fetchCoupons();
+    }, []);
+
+    const verifyCoupon = () => {
+        const couponCode = formData.couponCode.trim();
+        if (!couponCode) {
+            setCouponMessage("Please enter a coupon code");
+            setCouponStatus("error");
+            return;
+        }
+
+        setIsVerifyingCoupon(true);
+        setCouponMessage("");
+        setSelectedCoupon(null);
+
+        // Find the coupon in our loaded coupons array
+        setTimeout(() => {
+            const foundCoupon = coupons.find(coupon => 
+                coupon.name.toUpperCase() === couponCode.toUpperCase());
+            
+            if (foundCoupon) {
+                // Check if coupon is still valid
+                const today = new Date();
+                const validFrom = new Date(foundCoupon.valid_from);
+                const validTill = new Date(foundCoupon.valid_till);
+                
+                if (foundCoupon.status !== "Active") {
+                    setCouponMessage("This coupon is not active");
+                    setCouponStatus("error");
+                } else if (today < validFrom) {
+                    setCouponMessage(`This coupon is not valid yet. Valid from ${validFrom.toLocaleDateString()}.`);
+                    setCouponStatus("error");
+                } else if (today > validTill) {
+                    setCouponMessage(`This coupon has expired. It was valid until ${validTill.toLocaleDateString()}.`);
+                    setCouponStatus("error");
+                } else {
+                    setSelectedCoupon(foundCoupon);
+                    setCouponMessage("Coupon applied successfully!");
+                    setCouponStatus("success");
+                }
+            } else {
+                setCouponMessage("Invalid coupon code");
+                setCouponStatus("error");
+            }
+            
+            setIsVerifyingCoupon(false);
+        }, 1000); // Simulate network delay
+    };
+
     const handlemyClick = (e) => {
         e.preventDefault();
+        setIsSubmitting(true);
+
         if (validateForm()) {
-            router.push("/FinalBooking");
+            // Extract city, state, zip from address if possible
+            const addressParts = formData.address.split(',');
+            let city = '';
+            let state = '';
+            let zipCode = '';
+            
+            // Try to extract zip code (assuming it's the last part with numbers)
+            const zipMatch = formData.address.match(/\b\d{5}(?:-\d{4})?\b|[A-Z]\d[A-Z]\s?\d[A-Z]\d/i);
+            if (zipMatch) {
+                zipCode = zipMatch[0];
+            }
+            
+            // Try to get city and state from address parts
+            if (addressParts.length > 2) {
+                // Typical format: Street, City, State ZIP
+                city = addressParts[addressParts.length - 2]?.trim() || '';
+                // Extract state from the last part (before zip if present)
+                const stateZipPart = addressParts[addressParts.length - 1]?.trim() || '';
+                state = stateZipPart.split(' ')[0] || '';
+            }
+
+            // Prepare data for API submission
+            const bookingData = {
+                service_name: "Junk Removal", // Default service name
+                service_option: "Full Load", // Default option
+                name: formData.firstName,
+                address: formData.address,
+                email: formData.email,
+                phone_number: formData.phone,
+                date: formData.date,
+                time: formData.time,
+                full_pickup_truck_load: "yes", // Default to yes
+                half_pickup_truck_load: "no",
+                price: selectedCoupon ? 
+                    (selectedCoupon.discount_type === "Percentage" ? 
+                        (200 * (1 - selectedCoupon.discount_value/100)).toString() : 
+                        (200 - selectedCoupon.discount_value).toString()) : 
+                    "200", // Default price
+                units: "1", // Default units
+                estimated_price: selectedCoupon ? 
+                    (selectedCoupon.discount_type === "Percentage" ? 
+                        (200 * (1 - selectedCoupon.discount_value/100)).toString() : 
+                        (200 - selectedCoupon.discount_value).toString()) : 
+                    "200", // Same as price for now
+                dumpster_size: "10 Yard", // Default dumpster size
+                city: city,
+                state: state,
+                zip_code: zipCode,
+                detail: "", // No details by default
+                details: [
+                    {
+                        category_id: 1, // Default category
+                        subcategory_id: 2 // Default subcategory
+                    }
+                ]
+            };
+
+            // Submit the data to API
+            submitBooking(bookingData);
+        } else {
+            setIsSubmitting(false);
+        }
+    };
+
+    const submitBooking = async (bookingData) => {
+        try {
+            const response = await fetch('https://binbear.njnylimo.us/public/api/bookings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bookingData)
+            });
+
+            const result = await response.json();
+            
+            if (response.ok) {
+                console.log('Booking successful:', result);
+                // Store the booking data in localStorage or context for the next page
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('bookingData', JSON.stringify(bookingData));
+                    localStorage.setItem('bookingResponse', JSON.stringify(result));
+                }
+                
+                // Redirect to confirmation page
+                router.push({
+                    pathname: "/FinalBooking",
+                    query: { bookingSuccess: true }
+                });
+            } else {
+                setSubmissionError('Booking failed: ' + (result.message || 'Unknown error'));
+                console.error('Booking failed:', result);
+                setIsSubmitting(false);
+            }
+        } catch (error) {
+            setSubmissionError('Network error. Please try again.');
+            console.error('Error submitting booking:', error);
+            setIsSubmitting(false);
         }
     };
 
@@ -23,10 +187,18 @@ export default function ScheduleDumpster() {
         couponCode: "",
     });
 
+    const [coupons, setCoupons] = useState([]);
+    const [selectedCoupon, setSelectedCoupon] = useState(null);
+    const [couponMessage, setCouponMessage] = useState("");
+    const [couponStatus, setCouponStatus] = useState(""); // "success", "error", or ""
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submissionError, setSubmissionError] = useState("");
+
     const [errors, setErrors] = useState({});
     const [addressSuggestions, setAddressSuggestions] = useState([]);
     const [showTooltip, setShowTooltip] = useState(false);
     const [isVerifying, setIsVerifying] = useState(false);
+    const [isVerifyingCoupon, setIsVerifyingCoupon] = useState(false);
 
     const handleChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
@@ -297,7 +469,85 @@ export default function ScheduleDumpster() {
                     </div>
 
                     {/* Coupon Code */}
-          
+                    <div style={{ marginBottom: "20px" }}>
+                        <div style={{ display: "flex", gap: "10px" }}>
+                            <input
+                                type="text"
+                                placeholder="Enter Coupon Code"
+                                value={formData.couponCode}
+                                onChange={(e) => handleChange("couponCode", e.target.value.toUpperCase())}
+                                style={{
+                                    flex: 1,
+                                    padding: "10px",
+                                    border: errors.couponCode ? "1px solid red" : "1px solid #ccc",
+                                    borderRadius: "5px",
+                                }}
+                            />
+                            <button
+                                type="button"
+                                disabled={!formData.couponCode || isVerifyingCoupon}
+                                onClick={verifyCoupon}
+                                style={{
+                                    padding: "10px 15px",
+                                    backgroundColor: "#FF7F00",
+                                    color: "#fff",
+                                    border: "none",
+                                    borderRadius: "5px",
+                                    cursor: formData.couponCode && !isVerifyingCoupon ? "pointer" : "not-allowed",
+                                    opacity: formData.couponCode && !isVerifyingCoupon ? 1 : 0.7,
+                                }}
+                            >
+                                {isVerifyingCoupon ? "Verifying..." : "Apply"}
+                            </button>
+                        </div>
+                        {errors.couponCode && (
+                            <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.couponCode}</p>
+                        )}
+                        {couponMessage && (
+                            <div 
+                                style={{ 
+                                    marginTop: "10px", 
+                                    padding: "10px", 
+                                    borderRadius: "5px", 
+                                    backgroundColor: couponStatus === "success" ? "#e6f7e6" : "#fce4e4",
+                                    color: couponStatus === "success" ? "#2c662d" : "#cc0033",
+                                    border: couponStatus === "success" ? "1px solid #c3e6cb" : "1px solid #f5c6cb",
+                                }}
+                            >
+                                {couponMessage}
+                            </div>
+                        )}
+                        {selectedCoupon && (
+                            <div style={{ marginTop: "10px", padding: "10px", borderRadius: "5px", backgroundColor: "#fff8e6", border: "1px solid #ffe5b4" }}>
+                                <h4 style={{ margin: "0 0 5px 0", color: "#FF7F00" }}>{selectedCoupon.name}</h4>
+                                <p style={{ margin: "0 0 5px 0", fontSize: "14px" }}>
+                                    {selectedCoupon.discount_type === "Percentage" 
+                                        ? `${selectedCoupon.discount_value}% off your order` 
+                                        : `$${selectedCoupon.discount_value} off your order`}
+                                </p>
+                                <p style={{ margin: "0", fontSize: "12px", color: "#666" }}>
+                                    Valid until {new Date(selectedCoupon.valid_till).toLocaleDateString()}
+                                </p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Submission Error Message */}
+                    {submissionError && (
+                        <div 
+                            style={{ 
+                                marginBottom: "15px", 
+                                padding: "10px", 
+                                backgroundColor: "#fce4e4",
+                                color: "#cc0033",
+                                border: "1px solid #f5c6cb",
+                                borderRadius: "5px",
+                                textAlign: "left"
+                            }}
+                        >
+                            {submissionError}
+                        </div>
+                    )}
 
                     {/* Next Button */}
                     <div
@@ -317,13 +567,16 @@ export default function ScheduleDumpster() {
                                 color: "#fff",
                                 border: "none",
                                 borderRadius: "5px",
-                                cursor: "pointer",
+                                cursor: isSubmitting ? "not-allowed" : "pointer",
                                 fontSize: "16px",
                                 fontWeight: "bold",
+                                opacity: isSubmitting ? 0.7 : 1,
+                                position: "relative"
                             }}
                             onClick={handlemyClick}
+                            disabled={isSubmitting}
                         >
-                            Next
+                            {isSubmitting ? "Submitting..." : "Next"}
                         </button>
                     </div>
                 </form>
