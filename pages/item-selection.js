@@ -281,6 +281,7 @@ const ItemSelection = () => {
                             <div key={`${activeCategory}-${index}`} className="item-row">
                                 <div className="item-info">
                                     <span className="item-name">{item.name}</span>
+                                    <span className="item-price">${item.basePrice}</span>
                                 </div>
                                 <div className="item-controls">
                                     <button
@@ -456,7 +457,8 @@ const ItemSelection = () => {
                 .item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
                 .item-row:last-child { border-bottom: none; }
                 .item-info { display: flex; align-items: center; margin-right: 10px; }
-                .item-name { font-size: 13px; color: #333; line-height: 1.4; }
+                .item-name { font-size: 13px; color: #333; line-height: 1.4; margin-right: 8px; }
+                .item-price { font-size: 13px; color: #FF7701; font-weight: 600; }
                 .item-controls { display: flex; align-items: center; flex-shrink: 0; }
                 .control-btn { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #e0e0e0; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 400; cursor: pointer; transition: all 0.15s ease; line-height: 1; }
                 .decrease { background-color: #f8f8f8; color: #777; margin-right: 8px; }
