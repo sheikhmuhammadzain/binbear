@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Layout from "@/components/layout/Layout";
+import { useRouter } from 'next/router';
 
 const ItemSelection = () => {
     const [estimate, setEstimate] = useState(0);
@@ -14,6 +15,7 @@ const ItemSelection = () => {
     const [itemPrices, setItemPrices] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const visibleCategories = 5; // Adjust if needed based on final card size
+    const router = useRouter();
 
     // Fetch categories from API
     useEffect(() => {
@@ -35,11 +37,13 @@ const ItemSelection = () => {
                         
                         // Map children to items or use empty array
                         const items = children.map(child => ({
+                            id: child.id, // Store subcategory ID
                             name: child.name,
                             basePrice: parseInt(child.price, 10) || 0
                         }));
                         
                         return {
+                            id: category.id, // Store category ID
                             title: category.name,
                             image: imageUrl,
                             items: items
@@ -67,20 +71,25 @@ const ItemSelection = () => {
         fetchCategories();
     }, []);
 
-    const updateItemCount = (itemName, increment) => {
+    const updateItemCount = (itemName, itemId, categoryId, increment) => {
         setSelectedItems(prev => {
-            const currentCount = prev[itemName] || 0;
+            const currentCount = prev[itemName]?.count || 0;
             const newCount = Math.max(0, currentCount + increment);
             const newItems = { ...prev };
 
             if (newCount === 0) {
                 delete newItems[itemName];
             } else {
-                newItems[itemName] = newCount;
+                newItems[itemName] = {
+                    count: newCount,
+                    categoryId: categoryId,
+                    subcategoryId: itemId,
+                    price: itemPrices[itemName] || 0
+                };
             }
 
-            const newEstimate = Object.entries(newItems).reduce((sum, [name, count]) => {
-                return sum + (itemPrices[name] * count);
+            const newEstimate = Object.values(newItems).reduce((sum, item) => {
+                return sum + (item.price * item.count);
             }, 0);
             setEstimate(newEstimate);
 
@@ -111,6 +120,30 @@ const ItemSelection = () => {
         setActiveCategory(index);
         console.log('Clicked category:', index, itemCategories[index]);
         console.log('Items in category:', itemCategories[index]?.items);
+    };
+
+    const handleBookNow = () => {
+        // Save selected items and their details to localStorage
+        if (Object.keys(selectedItems).length > 0) {
+            // Find the first selected item to use as main category/subcategory
+            const firstItem = Object.values(selectedItems)[0];
+            const details = Object.entries(selectedItems).map(([name, item]) => ({
+                category_id: item.categoryId,
+                subcategory_id: item.subcategoryId
+            }));
+            
+            // Store selected items data
+            localStorage.setItem('selectedItems', JSON.stringify({
+                items: selectedItems,
+                totalEstimate: estimate,
+                details: details,
+                // Use the first item's category/subcategory as default
+                mainCategoryId: firstItem.categoryId,
+                mainSubcategoryId: firstItem.subcategoryId
+            }));
+        }
+        
+        router.push('/ScheduleDumpster');
     };
 
     // Show loading state while fetching data
@@ -206,7 +239,7 @@ const ItemSelection = () => {
                             <span className="location-pin">📍</span>
                             <span>Chicago West (60009)</span>
                             <Link href="/my-items" className="my-items-link">
-                                My Items <span className="item-count-badge">{Object.values(selectedItems).reduce((a, b) => a + b, 0)}</span>
+                                My Items <span className="item-count-badge">{Object.values(selectedItems).reduce((a, b) => a + (b.count || 0), 0)}</span>
                             </Link>
                         </div>
                     </div>
@@ -286,18 +319,28 @@ const ItemSelection = () => {
                                 <div className="item-controls">
                                     <button
                                         className="control-btn decrease"
-                                        onClick={() => updateItemCount(item.name, -1)}
+                                        onClick={() => updateItemCount(
+                                            item.name, 
+                                            item.id, 
+                                            itemCategories[activeCategory].id, 
+                                            -1
+                                        )}
                                         disabled={!selectedItems[item.name]}
                                         aria-label={`Decrease ${item.name} count`}
                                     >
                                         –
                                     </button>
                                     <span className="item-count" aria-live="polite">
-                                        {selectedItems[item.name] || 0}
+                                        {selectedItems[item.name]?.count || 0}
                                     </span>
                                     <button
                                         className="control-btn increase"
-                                        onClick={() => updateItemCount(item.name, 1)}
+                                        onClick={() => updateItemCount(
+                                            item.name, 
+                                            item.id, 
+                                            itemCategories[activeCategory].id, 
+                                            1
+                                        )}
                                         aria-label={`Increase ${item.name} count`}
                                     >
                                         +
@@ -320,9 +363,9 @@ const ItemSelection = () => {
                         <p className="cta-note">* excludes jobs $99 and under</p>
                     </div>
                     <div className="cta-buttons">
-                         <Link href="/ScheduleDumpster" className="cta-btn book-now-btn">
+                         <button onClick={handleBookNow} className="cta-btn book-now-btn">
                              Book Now
-                         </Link>
+                         </button>
                         <Link href="/pickup" className="cta-btn pick-up-btn">
                             Pick These Up
                         </Link>
@@ -474,7 +517,7 @@ const ItemSelection = () => {
                 .cta-text h3 { font-size: 16px; margin: 0; font-weight: 600; line-height: 1.2; }
                 .cta-note { font-size: 10px; margin: 2px 0 0; opacity: 0.9; }
                 .cta-buttons { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-                .cta-btn { font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 6px; text-decoration: none; text-align: center; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); transition: all 0.2s ease; border: none; }
+                .cta-btn { font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 6px; text-decoration: none; text-align: center; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); transition: all 0.2s ease; border: none; cursor: pointer; }
                 .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); }
                 .book-now-btn { background-color: #ffffff; color: #FF7701; }
                 .pick-up-btn { background-color: #4CAF50; color: white; }

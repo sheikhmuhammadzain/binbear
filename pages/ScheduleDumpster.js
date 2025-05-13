@@ -23,6 +23,20 @@ export default function ScheduleDumpster() {
         };
         
         fetchCoupons();
+        
+        // Load selected items data from localStorage if available
+        if (typeof window !== 'undefined') {
+            const selectedItemsData = localStorage.getItem('selectedItems');
+            if (selectedItemsData) {
+                try {
+                    const parsedData = JSON.parse(selectedItemsData);
+                    setSelectedItemsData(parsedData);
+                    console.log('Loaded selected items data:', parsedData);
+                } catch (error) {
+                    console.error('Error parsing selected items data:', error);
+                }
+            }
+        }
     }, []);
 
     const verifyCoupon = () => {
@@ -97,38 +111,53 @@ export default function ScheduleDumpster() {
                 state = stateZipPart.split(' ')[0] || '';
             }
 
-            // Prepare data for API submission
+            // Calculate the base price from selected items or use default
+            let basePrice = 200; // Default price
+            let totalUnits = 2; // Default units
+            
+            // If we have selected items data, use it for price and details
+            if (selectedItemsData && selectedItemsData.totalEstimate > 0) {
+                basePrice = selectedItemsData.totalEstimate;
+                // If the price is less than the minimum, set to minimum
+                if (basePrice < 200) basePrice = 200;
+            }
+            
+            // Apply coupon discount if available
+            let finalPrice = basePrice;
+            if (selectedCoupon) {
+                if (selectedCoupon.discount_type === "Percentage") {
+                    finalPrice = basePrice * (1 - selectedCoupon.discount_value/100);
+                } else {
+                    finalPrice = basePrice - selectedCoupon.discount_value;
+                }
+                // Ensure price doesn't go below minimum
+                if (finalPrice < 0) finalPrice = 0;
+            }
+
+            // Prepare data for API submission using the exact structure required
             const bookingData = {
-                service_name: "Junk Removal", // Default service name
-                service_option: "Full Load", // Default option
+                service_name: "Junk Removal",
+                service_option: "Full Load",
                 name: formData.firstName,
                 address: formData.address,
                 email: formData.email,
                 phone_number: formData.phone,
                 date: formData.date,
                 time: formData.time,
-                full_pickup_truck_load: "yes", // Default to yes
+                full_pickup_truck_load: "yes", 
                 half_pickup_truck_load: "no",
-                price: selectedCoupon ? 
-                    (selectedCoupon.discount_type === "Percentage" ? 
-                        (200 * (1 - selectedCoupon.discount_value/100)).toString() : 
-                        (200 - selectedCoupon.discount_value).toString()) : 
-                    "200", // Default price
-                units: "1", // Default units
-                estimated_price: selectedCoupon ? 
-                    (selectedCoupon.discount_type === "Percentage" ? 
-                        (200 * (1 - selectedCoupon.discount_value/100)).toString() : 
-                        (200 - selectedCoupon.discount_value).toString()) : 
-                    "200", // Same as price for now
-                dumpster_size: "10 Yard", // Default dumpster size
+                price: finalPrice.toString(),
+                units: totalUnits.toString(),
+                estimated_price: finalPrice.toString(),
+                dumpster_size: "10 Yard",
                 city: city,
                 state: state,
                 zip_code: zipCode,
-                detail: "", // No details by default
-                details: [
+                detail: "",
+                details: selectedItemsData?.details || [
                     {
-                        category_id: 1, // Default category
-                        subcategory_id: 2 // Default subcategory
+                        category_id: 4,
+                        subcategory_id: 7
                     }
                 ]
             };
@@ -158,6 +187,8 @@ export default function ScheduleDumpster() {
                 if (typeof window !== 'undefined') {
                     localStorage.setItem('bookingData', JSON.stringify(bookingData));
                     localStorage.setItem('bookingResponse', JSON.stringify(result));
+                    // Clear the selected items data as it's now been processed
+                    localStorage.removeItem('selectedItems');
                 }
                 
                 // Redirect to confirmation page
@@ -193,6 +224,7 @@ export default function ScheduleDumpster() {
     const [couponStatus, setCouponStatus] = useState(""); // "success", "error", or ""
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionError, setSubmissionError] = useState("");
+    const [selectedItemsData, setSelectedItemsData] = useState(null);
 
     const [errors, setErrors] = useState({});
     const [addressSuggestions, setAddressSuggestions] = useState([]);
@@ -467,6 +499,23 @@ export default function ScheduleDumpster() {
                             )}
                         </div>
                     </div>
+
+                    {/* Selected Items Summary (if any) */}
+                    {selectedItemsData && (
+                        <div style={{ marginBottom: "20px", textAlign: "left", padding: "10px", backgroundColor: "#f9f9f9", borderRadius: "5px" }}>
+                            <h5 style={{ margin: "0 0 10px 0", fontSize: "16px", color: "#333" }}>Selected Items:</h5>
+                            <ul style={{ margin: 0, padding: "0 0 0 20px" }}>
+                                {Object.entries(selectedItemsData.items).map(([name, item], index) => (
+                                    <li key={index} style={{ marginBottom: "5px", fontSize: "14px" }}>
+                                        {name} x{item.count} - ${item.price * item.count}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div style={{ marginTop: "10px", fontWeight: "bold", color: "#FF7701" }}>
+                                Total: ${selectedItemsData.totalEstimate}
+                            </div>
+                        </div>
+                    )}
 
                     {/* Coupon Code */}
                     <div style={{ marginBottom: "20px" }}>
