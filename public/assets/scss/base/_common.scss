@@ -460,13 +460,13 @@ h6 {
 .bg-11 {
     background-color: $background-bg-11 !important;
 }
-a {
-    color: white;
-    text-decoration: none;
-    &:hover {
-        color: $color-success;
-    }
-}
+// a {
+//     color: white;
+//     text-decoration: none;
+//     &:hover {
+//         color: $color-success;
+//     }
+// }
 @media (min-width: 1400px) {
     .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
         max-width: 1410px;
