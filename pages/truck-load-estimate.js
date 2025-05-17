@@ -34,6 +34,21 @@ export default function TruckLoadEstimate() {
     const estimate = calculateTotal();
     const fillPercentage = calculateTruckFillPercentage();
 
+    const handleBookIt = () => {
+        if (estimate.min === 0) return;
+
+        const truckLoadBookingInput = {
+            type: 'truckLoad',
+            quantities: quantities,
+            estimatePrice: estimate.min
+        };
+
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('pendingBookingDetails', JSON.stringify(truckLoadBookingInput));
+        }
+        router.push('/ScheduleDumpster');
+    };
+
     return (
         <Layout>
             <div className="container mt-4 mb-4">
@@ -243,7 +258,7 @@ export default function TruckLoadEstimate() {
                         gap: "15px"
                     }}>
                     <button 
-                            onClick={() => router.push('/ScheduleDumpster')}
+                            onClick={handleBookIt}
                             disabled={estimate.min === 0}
                             className="book-button"
                             style={{

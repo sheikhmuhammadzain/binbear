@@ -23,14 +23,14 @@ export default function BookNowButton() {
         <>
             {hasScrolled && (
                 <div className="sticky-container">
-                    {/* Image Above the Button */}
-                    <div className="image-container">
+                    {/* Image Above the Button - REMOVED */}
+                    {/* <div className=\"image-container\">
                         <img 
-                            src="/img/logo.png" 
-                            alt="Discount Offer"
-                            className="promo-image"
+                            src=\"/img/logo.png\" 
+                            alt=\"Discount Offer\"
+                            className=\"promo-image\"
                         />
-                    </div>
+                    </div> */}
 
                     {/* Book Now Button */}
                     <Link href="/Booking" className="book-now-btn"style={{backgroundColor:' #FF7F00',  width: '150px', height: '50px',justifyContent:'center',alignItems:'center',display:'flex',right: '20px'}}>
@@ -54,17 +54,17 @@ export default function BookNowButton() {
                     border-radius: 10px;
                 }
 
-                /* Image Styling */
-                .image-container {
+                /* Image Styling - REMOVED AS PER REQUEST */
+                /* .image-container {
                     display: flex;
                     justify-content: center;
-                    margin-bottom: 8px; /* Space between image and button */
+                    margin-bottom: 8px; 
                 }
 
                 .promo-image {
-                    max-width: 100px; /* Adjust image size */
+                    max-width: 100px; 
                     height: auto;
-                }
+                } */
 
                 /* Book Now Button */
                 .book-now-btn {
@@ -92,10 +92,6 @@ export default function BookNowButton() {
                     .sticky-container {
                         bottom: 15px;
                         right: 15px;
-                    }
-
-                    .promo-image {
-                        max-width: 80px;
                     }
 
                     .book-now-btn {

@@ -125,22 +125,27 @@ const ItemSelection = () => {
     const handleBookNow = () => {
         // Save selected items and their details to localStorage
         if (Object.keys(selectedItems).length > 0) {
-            // Find the first selected item to use as main category/subcategory
-            const firstItem = Object.values(selectedItems)[0];
-            const details = Object.entries(selectedItems).map(([name, item]) => ({
+            const firstItem = Object.values(selectedItems)[0]; // Still needed for category/subcategory if used directly
+            const detailsApiArray = Object.values(selectedItems).map(item => ({
                 category_id: item.categoryId,
                 subcategory_id: item.subcategoryId
             }));
             
-            // Store selected items data
-            localStorage.setItem('selectedItems', JSON.stringify({
-                items: selectedItems,
-                totalEstimate: estimate,
-                details: details,
-                // Use the first item's category/subcategory as default
-                mainCategoryId: firstItem.categoryId,
-                mainSubcategoryId: firstItem.subcategoryId
-            }));
+            const itemSelectionBookingInput = {
+                type: 'itemSelection',
+                items: selectedItems, // Full selectedItems map: { itemName: { count, categoryId, subcategoryId, price } }
+                totalEstimate: estimate, // Calculated total price
+                detailsApiArray: detailsApiArray // Array for API: [{ category_id, subcategory_id }, ...]
+            };
+            
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('pendingBookingDetails', JSON.stringify(itemSelectionBookingInput));
+            }
+        } else {
+            // If no items selected, clear any pending booking details to avoid conflicts
+            if (typeof window !== 'undefined') {
+                localStorage.removeItem('pendingBookingDetails');
+            }
         }
         
         router.push('/ScheduleDumpster');

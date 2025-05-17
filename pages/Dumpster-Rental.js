@@ -67,15 +67,25 @@ export default function DumpsterRental() {
             return;
         }
         
-        // Store selected options in localStorage or could use query parameters
-        localStorage.setItem('dumpsterRental', JSON.stringify({
-            size: selectedSize,
-            date: selectedDate,
+        const selectedDumpsterDetails = dumpsterSizes.find(ds => ds.id === selectedSize);
+        if (!selectedDumpsterDetails) {
+            alert('Selected dumpster details not found. Please re-select.');
+            return;
+        }
+
+        const dumpsterRentalBookingInput = {
+            type: 'dumpsterRental',
+            dumpsterDetails: selectedDumpsterDetails, // Contains name, price, dimensions, etc.
+            date: selectedDate.toISOString().split('T')[0], // Format date as YYYY-MM-DD
             time: selectedTime,
             serviceType: isDropOff ? 'dropoff' : 'pickup'
-        }));
+        };
         
-        router.push('/schedule-dumpster');
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('pendingBookingDetails', JSON.stringify(dumpsterRentalBookingInput));
+        }
+        
+        router.push('/ScheduleDumpster'); // Corrected path
     };
     
     return (

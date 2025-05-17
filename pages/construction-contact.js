@@ -56,31 +56,80 @@ export default function ConstructionContact() {
         setImages(newImages);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setFormStatus("Submitting...");
 
-        // Form validation
         if (!name || !email || !phone || !message || !date || !time) {
             setFormStatus("Please fill in all required fields.");
             return;
         }
 
-        // Here you would typically send the data to your server
-        // For now, we'll just simulate a success response
-        setFormStatus("Your request has been submitted. We'll contact you soon!");
+        const bookingData = {
+            service_name: "Construction Cleanup Estimate Request",
+            service_option: "Custom Quote Required",
+            name: name,
+            address: null, // Not collected on this form
+            email: email,
+            phone_number: phone,
+            date: date,
+            time: time,
+            full_pickup_truck_load: null, // Not applicable for this estimate request type
+            half_pickup_truck_load: null, // Not applicable for this estimate request type
+            price: "0", // Estimate request, price to be determined
+            units: "1", // Default or could be null
+            estimated_price: "0", // Estimate request, price to be determined
+            dumpster_size: null, // Not specified here
+            city: null, // Not collected on this form
+            state: null, // Not collected on this form
+            zip_code: null, // Not collected on this form
+            detail: message, // User's project details
+            details: [], // No itemized sub-details for this type of request
+            // Images are not sent here. You'll need a separate mechanism for image uploads.
+            // For example, you could upload images to a service, get URLs,
+            // and then potentially send those URLs in the 'detail' field or a custom field if the API supports it.
+        };
 
-        // Reset form after success (simulating server response)
-        setTimeout(() => {
-            setName("");
-            setEmail("");
-            setPhone("");
-            setMessage("");
-            setDate("");
-            setTime("");
-            setImages([]);
-            // Navigate back or to a thank you page
-            router.push("/thank-you"); // Create this page or change to an existing one
-        }, 3000);
+        try {
+            const response = await fetch('https://binbear.njnylimo.us/public/api/bookings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bookingData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setFormStatus("Your estimate request has been submitted successfully! We'll contact you soon.");
+                console.log(result);
+                // Reset form
+                setName("");
+                setEmail("");
+                setPhone("");
+                setMessage("");
+                setDate("");
+                setTime("");
+                images.forEach(img => URL.revokeObjectURL(img.preview)); // Clean up all preview URLs
+                setImages([]);
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = ""; // Attempt to clear the file input
+                }
+                
+                // Optional: Redirect after a delay
+                setTimeout(() => {
+                     // router.push("/thank-you-estimate"); // Example: redirect to a specific thank you page
+                }, 3000);
+
+            } else {
+                setFormStatus(`Error: ${result.message || 'Failed to submit request. Please try again.'}`);
+                console.error("API Error:", result);
+            }
+        } catch (error) {
+            console.error("Network or submission error:", error);
+            setFormStatus("Network error. Please check your connection and try again.");
+        }
     };
 
     const triggerFileInput = () => {

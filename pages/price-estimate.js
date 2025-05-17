@@ -27,13 +27,23 @@ export default function PriceEstimate() {
 
   const handleSaveEstimate = () => {
     setLoading(true);
-    // Save the unit count to session storage to potentially use it later
-    sessionStorage.setItem("estimatedUnits", unitCount);
-    sessionStorage.setItem("estimatedPrice", unitCount * pricePerUnit);
+    const estimatedPrice = unitCount * pricePerUnit;
+
+    const unitEstimateBookingInput = {
+      type: 'unitEstimate',
+      units: unitCount,
+      estimatedPrice: estimatedPrice,
+      pricePerUnit: pricePerUnit
+    };
+
+    if (typeof window !== 'undefined') {
+        localStorage.setItem('pendingBookingDetails', JSON.stringify(unitEstimateBookingInput));
+    }
     
     // Redirect to the scheduling page
     setTimeout(() => {
       router.push("/ScheduleDumpster");
+      // setLoading(false); // Not strictly needed if navigating away
     }, 500); // Small delay for better UX
   };
 

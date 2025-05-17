@@ -5,6 +5,7 @@ import Bgmap from "@/components/sections/homepage1/Bgmap";
 
 export default function ScheduleDumpster() {
     const router = useRouter();
+    const [pendingBookingInput, setPendingBookingInput] = useState(null);
     
     // Fetch coupons when component mounts
     useEffect(() => {
@@ -24,16 +25,16 @@ export default function ScheduleDumpster() {
         
         fetchCoupons();
         
-        // Load selected items data from localStorage if available
+        // Load pending booking input from localStorage if available
         if (typeof window !== 'undefined') {
-            const selectedItemsData = localStorage.getItem('selectedItems');
-            if (selectedItemsData) {
+            const bookingDetailsString = localStorage.getItem('pendingBookingDetails');
+            if (bookingDetailsString) {
                 try {
-                    const parsedData = JSON.parse(selectedItemsData);
-                    setSelectedItemsData(parsedData);
-                    console.log('Loaded selected items data:', parsedData);
+                    const parsedData = JSON.parse(bookingDetailsString);
+                    setPendingBookingInput(parsedData);
+                    console.log('Loaded pending booking input:', parsedData);
                 } catch (error) {
-                    console.error('Error parsing selected items data:', error);
+                    console.error('Error parsing pending booking input:', error);
                 }
             }
         }
@@ -96,33 +97,88 @@ export default function ScheduleDumpster() {
             let state = '';
             let zipCode = '';
             
-            // Try to extract zip code (assuming it's the last part with numbers)
             const zipMatch = formData.address.match(/\b\d{5}(?:-\d{4})?\b|[A-Z]\d[A-Z]\s?\d[A-Z]\d/i);
             if (zipMatch) {
                 zipCode = zipMatch[0];
             }
             
-            // Try to get city and state from address parts
             if (addressParts.length > 2) {
-                // Typical format: Street, City, State ZIP
                 city = addressParts[addressParts.length - 2]?.trim() || '';
-                // Extract state from the last part (before zip if present)
                 const stateZipPart = addressParts[addressParts.length - 1]?.trim() || '';
                 state = stateZipPart.split(' ')[0] || '';
             }
 
-            // Calculate the base price from selected items or use default
-            let basePrice = 200; // Default price
-            let totalUnits = 2; // Default units
-            
-            // If we have selected items data, use it for price and details
-            if (selectedItemsData && selectedItemsData.totalEstimate > 0) {
-                basePrice = selectedItemsData.totalEstimate;
-                // If the price is less than the minimum, set to minimum
-                if (basePrice < 200) basePrice = 200;
+            let basePrice = 200; // Default base price
+            let bookingApiDetailsArray = [{ category_id: 4, subcategory_id: 7 }]; // Default API details
+            let service_name_val = "Junk Removal";
+            let service_option_val = "Full Load";
+            let units_val = "2";
+            let full_pickup_truck_load_val = "yes";
+            let half_pickup_truck_load_val = "no";
+            let dumpster_size_val = "10 Yard";
+            let apiDetailField = "";
+
+            if (pendingBookingInput) {
+                if (pendingBookingInput.type === 'itemSelection') {
+                    service_name_val = "Junk Removal (Items)";
+                    if (pendingBookingInput.totalEstimate > 0) {
+                        basePrice = pendingBookingInput.totalEstimate;
+                    }
+                    if (basePrice < 200 && Object.keys(pendingBookingInput.items || {}).length > 0) basePrice = 200;
+                    bookingApiDetailsArray = pendingBookingInput.detailsApiArray || [{ category_id: 4, subcategory_id: 7 }];
+                    apiDetailField = "Booked via Item Selection.";
+                } else if (pendingBookingInput.type === 'truckLoad') {
+                    basePrice = pendingBookingInput.estimatePrice;
+                     if (basePrice === 0 && (pendingBookingInput.quantities.full > 0 || pendingBookingInput.quantities.half > 0)) {
+                        basePrice = (pendingBookingInput.quantities.full * 429) + (pendingBookingInput.quantities.half * 229);
+                    }
+                    service_name_val = "Truck Bed Load";
+                    service_option_val = `${pendingBookingInput.quantities.full} Full, ${pendingBookingInput.quantities.half} Half Truck(s)`;
+                    units_val = (pendingBookingInput.quantities.full + pendingBookingInput.quantities.half * 0.5).toString();
+                    full_pickup_truck_load_val = pendingBookingInput.quantities.full.toString();
+                    half_pickup_truck_load_val = pendingBookingInput.quantities.half.toString();
+                    dumpster_size_val = "N/A - Truck Load";
+                    bookingApiDetailsArray = []; 
+                    apiDetailField = "Booked via Truck Load Estimator.";
+                } else if (pendingBookingInput.type === 'unitEstimate') {
+                    basePrice = pendingBookingInput.estimatedPrice;
+                    // Ensure base price for unit estimate is not zero if units are selected
+                    if (basePrice === 0 && pendingBookingInput.units > 0) {
+                         // This might happen if pricePerUnit was 0, recalculate to be safe
+                        basePrice = pendingBookingInput.units * (pendingBookingInput.pricePerUnit || 40); 
+                    }
+                     // Optional: ensure a minimum price for unit-based service too
+                    // if (basePrice < 50 && pendingBookingInput.units > 0) basePrice = 50; 
+
+                    service_name_val = "Construction Unit Service";
+                    service_option_val = `${pendingBookingInput.units} Unit(s) @ $${pendingBookingInput.pricePerUnit}/unit`;
+                    units_val = pendingBookingInput.units.toString();
+                    full_pickup_truck_load_val = null; // Not applicable
+                    half_pickup_truck_load_val = null; // Not applicable
+                    dumpster_size_val = `${pendingBookingInput.units} Units Requested`; // Or could be N/A
+                    bookingApiDetailsArray = []; // No itemized details for unit estimate
+                    apiDetailField = `Booked via Price Estimator: ${pendingBookingInput.units} units.`;
+                } else if (pendingBookingInput.type === 'dumpsterRental') {
+                    const { dumpsterDetails, date, time, serviceType } = pendingBookingInput;
+                    const priceString = dumpsterDetails.price.replace(/[^\d.-]/g, ''); // Remove non-numeric characters like '$'
+                    basePrice = parseFloat(priceString) || 0;
+
+                    service_name_val = "Dumpster Rental";
+                    service_option_val = `${dumpsterDetails.name} - ${serviceType === 'dropoff' ? 'Drop-off' : 'Pick-up'}`;
+                    units_val = "1"; // Typically one dumpster is rented
+                    full_pickup_truck_load_val = null; // Not applicable
+                    half_pickup_truck_load_val = null; // Not applicable
+                    dumpster_size_val = dumpsterDetails.name; // e.g., "Small (10 yard)"
+                    bookingApiDetailsArray = []; // No itemized details for dumpster rental
+                    
+                    // Override date and time from form with data from Dumpster-Rental page
+                    formData.date = date; 
+                    formData.time = time;
+
+                    apiDetailField = `Dumpster: ${dumpsterDetails.name}, Service: ${serviceType}, Dimensions: ${dumpsterDetails.dimensions}.`;
+                }
             }
             
-            // Apply coupon discount if available
             let finalPrice = basePrice;
             if (selectedCoupon) {
                 if (selectedCoupon.discount_type === "Percentage") {
@@ -130,39 +186,31 @@ export default function ScheduleDumpster() {
                 } else {
                     finalPrice = basePrice - selectedCoupon.discount_value;
                 }
-                // Ensure price doesn't go below minimum
-                if (finalPrice < 0) finalPrice = 0;
+                if (finalPrice < 0) finalPrice = 0; // Price cannot be negative
             }
 
-            // Prepare data for API submission using the exact structure required
             const bookingData = {
-                service_name: "Junk Removal",
-                service_option: "Full Load",
+                service_name: service_name_val,
+                service_option: service_option_val,
                 name: formData.firstName,
                 address: formData.address,
                 email: formData.email,
                 phone_number: formData.phone,
                 date: formData.date,
                 time: formData.time,
-                full_pickup_truck_load: "yes", 
-                half_pickup_truck_load: "no",
-                price: finalPrice.toString(),
-                units: totalUnits.toString(),
-                estimated_price: finalPrice.toString(),
-                dumpster_size: "10 Yard",
+                full_pickup_truck_load: full_pickup_truck_load_val,
+                half_pickup_truck_load: half_pickup_truck_load_val,
+                price: finalPrice.toFixed(2).toString(), // Ensure two decimal places
+                units: units_val,
+                estimated_price: basePrice.toFixed(2).toString(), // Store pre-coupon price as estimated
+                dumpster_size: dumpster_size_val,
                 city: city,
                 state: state,
                 zip_code: zipCode,
-                detail: "",
-                details: selectedItemsData?.details || [
-                    {
-                        category_id: 4,
-                        subcategory_id: 7
-                    }
-                ]
+                detail: apiDetailField,
+                details: bookingApiDetailsArray
             };
 
-            // Submit the data to API
             submitBooking(bookingData);
         } else {
             setIsSubmitting(false);
@@ -183,15 +231,12 @@ export default function ScheduleDumpster() {
             
             if (response.ok) {
                 console.log('Booking successful:', result);
-                // Store the booking data in localStorage or context for the next page
                 if (typeof window !== 'undefined') {
                     localStorage.setItem('bookingData', JSON.stringify(bookingData));
                     localStorage.setItem('bookingResponse', JSON.stringify(result));
-                    // Clear the selected items data as it's now been processed
-                    localStorage.removeItem('selectedItems');
+                    localStorage.removeItem('pendingBookingDetails'); // Clear the consolidated input
                 }
                 
-                // Redirect to confirmation page
                 router.push({
                     pathname: "/FinalBooking",
                     query: { bookingSuccess: true }
@@ -224,7 +269,6 @@ export default function ScheduleDumpster() {
     const [couponStatus, setCouponStatus] = useState(""); // "success", "error", or ""
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionError, setSubmissionError] = useState("");
-    const [selectedItemsData, setSelectedItemsData] = useState(null);
 
     const [errors, setErrors] = useState({});
     const [addressSuggestions, setAddressSuggestions] = useState([]);
@@ -234,13 +278,11 @@ export default function ScheduleDumpster() {
 
     const handleChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
-        setErrors({ ...errors, [field]: "" }); // Clear error when the field is updated
+        setErrors({ ...errors, [field]: "" }); 
     };
 
     const validateForm = () => {
         const newErrors = {};
-
-        // Validation for each field
         if (!formData.firstName) newErrors.firstName = "First name is required.";
         if (!formData.address) newErrors.address = "Address is required.";
         if (!formData.email) newErrors.email = "Email address is required.";
@@ -248,9 +290,6 @@ export default function ScheduleDumpster() {
         if (!formData.date) newErrors.date = "Please select a date.";
         if (!formData.time) newErrors.time = "Please select a time.";
         
-        // Make coupon code optional
-        // if (!formData.couponCode) newErrors.couponCode = "Coupon code is required.";
-
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return false;
@@ -261,7 +300,6 @@ export default function ScheduleDumpster() {
     const verifyAddress = async (address) => {
         setIsVerifying(true);
         try {
-            // Using OpenStreetMap Nominatim API (free)
             const response = await fetch(
                 `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=5`
             );
@@ -276,7 +314,6 @@ export default function ScheduleDumpster() {
     const selectAddress = (address) => {
         handleChange("address", address.display_name);
         setAddressSuggestions([]);
-        // Update map coordinates if needed
         if (address.lat && address.lon) {
             setFormData(prev => ({
                 ...prev,
@@ -285,7 +322,6 @@ export default function ScheduleDumpster() {
         }
     };
 
-    // Generate time slots from 8:00 AM to 6:00 PM
     const timeSlots = [];
     for (let hour = 8; hour <= 18; hour++) {
         const hourFormatted = hour > 12 ? hour - 12 : hour;
@@ -307,7 +343,7 @@ export default function ScheduleDumpster() {
                     position: "relative",
                 }}
             >
-                <h4 style={{ marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}>Schedule Your Dumpster</h4>
+                <h4 style={{ marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}>Schedule Your Dumpster/Service</h4>
 
                 <form
                     style={{
@@ -500,20 +536,51 @@ export default function ScheduleDumpster() {
                         </div>
                     </div>
 
-                    {/* Selected Items Summary (if any) */}
-                    {selectedItemsData && (
+                    {/* Booking Input Summary */}
+                    {pendingBookingInput && pendingBookingInput.type === 'itemSelection' && (
                         <div style={{ marginBottom: "20px", textAlign: "left", padding: "10px", backgroundColor: "#f9f9f9", borderRadius: "5px" }}>
                             <h5 style={{ margin: "0 0 10px 0", fontSize: "16px", color: "#333" }}>Selected Items:</h5>
-                            <ul style={{ margin: 0, padding: "0 0 0 20px" }}>
-                                {Object.entries(selectedItemsData.items).map(([name, item], index) => (
+                            <ul style={{ margin: 0, padding: "0 0 0 20px", listStyleType: "disc" }}>
+                                {Object.entries(pendingBookingInput.items).map(([name, itemData], index) => (
                                     <li key={index} style={{ marginBottom: "5px", fontSize: "14px" }}>
-                                        {name} x{item.count} - ${item.price * item.count}
+                                        {name} x{itemData.count} - ${(itemData.price * itemData.count).toFixed(2)}
                                     </li>
                                 ))}
                             </ul>
                             <div style={{ marginTop: "10px", fontWeight: "bold", color: "#FF7701" }}>
-                                Total: ${selectedItemsData.totalEstimate}
+                                Subtotal: ${pendingBookingInput.totalEstimate.toFixed(2)}
                             </div>
+                        </div>
+                    )}
+                    {pendingBookingInput && pendingBookingInput.type === 'truckLoad' && (
+                        <div style={{ marginBottom: "20px", textAlign: "left", padding: "10px", backgroundColor: "#f9f9f9", borderRadius: "5px" }}>
+                            <h5 style={{ margin: "0 0 10px 0", fontSize: "16px", color: "#333" }}>Truck Load Details:</h5>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}>Full Pickup Truck Loads: {pendingBookingInput.quantities.full}</p>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}>Half Pickup Truck Loads: {pendingBookingInput.quantities.half}</p>
+                            <div style={{ marginTop: "10px", fontWeight: "bold", color: "#FF7701" }}>
+                                Estimated Price (before coupon): ${pendingBookingInput.estimatePrice.toFixed(2)}
+                            </div>
+                        </div>
+                    )}
+                    {pendingBookingInput && pendingBookingInput.type === 'unitEstimate' && (
+                        <div style={{ marginBottom: "20px", textAlign: "left", padding: "10px", backgroundColor: "#f9f9f9", borderRadius: "5px" }}>
+                            <h5 style={{ margin: "0 0 10px 0", fontSize: "16px", color: "#333" }}>Unit Estimate Details:</h5>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}>Number of Units: {pendingBookingInput.units}</p>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}>Price Per Unit: ${pendingBookingInput.pricePerUnit.toFixed(2)}</p>
+                            <div style={{ marginTop: "10px", fontWeight: "bold", color: "#FF7701" }}>
+                                Estimated Price (before coupon): ${pendingBookingInput.estimatedPrice.toFixed(2)}
+                            </div>
+                        </div>
+                    )}
+                    {pendingBookingInput && pendingBookingInput.type === 'dumpsterRental' && (
+                        <div style={{ marginBottom: "20px", textAlign: "left", padding: "10px", backgroundColor: "#f9f9f9", borderRadius: "5px" }}>
+                            <h5 style={{ margin: "0 0 10px 0", fontSize: "16px", color: "#333" }}>Dumpster Rental Details:</h5>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}><strong>Size:</strong> {pendingBookingInput.dumpsterDetails.name}</p>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}><strong>Price:</strong> {pendingBookingInput.dumpsterDetails.price}</p>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}><strong>Dimensions:</strong> {pendingBookingInput.dumpsterDetails.dimensions}</p>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}><strong>Service Date:</strong> {new Date(pendingBookingInput.date).toLocaleDateString()}</p>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}><strong>Service Time:</strong> {pendingBookingInput.time}</p>
+                            <p style={{ margin: "5px 0", fontSize: "14px" }}><strong>Service Type:</strong> {pendingBookingInput.serviceType === 'dropoff' ? 'Drop-off' : 'Pick-up'}</p>
                         </div>
                     )}
 
@@ -625,7 +692,7 @@ export default function ScheduleDumpster() {
                             onClick={handlemyClick}
                             disabled={isSubmitting}
                         >
-                            {isSubmitting ? "Submitting..." : "Next"}
+                            {isSubmitting ? "Submitting..." : "Confirm & Book"}
                         </button>
                     </div>
                 </form>

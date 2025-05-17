@@ -124,14 +124,14 @@ const Footer = () => {
                     </div>
                 </div>
                 
-                {showBookingButton && (
-                    <div className="booking-button-container">
-                        <Link href="/booking" className="btn-premium btn-premium-lg">
-                            <i className="fas fa-calendar-alt me-2"></i>
+                {/* {showBookingButton && (
+                    <div className=\"booking-button-container\">
+                        <Link href=\"/booking\" className=\"btn-premium btn-premium-lg\">
+                            <i className=\"fas fa-calendar-alt me-2\"></i>
                             Book Now
                         </Link>
                     </div>
-                )}
+                )} */}
             </footer>
 
             <style jsx>{`
@@ -303,7 +303,7 @@ const Footer = () => {
                     color: #FF7F00;
                 }
                 
-                .booking-button-container {
+                /* .booking-button-container {
                     position: fixed;
                     bottom: 30px;
                     right: 30px;
@@ -312,7 +312,7 @@ const Footer = () => {
                 
                 .booking-button-container .btn-premium {
                     box-shadow: 0 5px 15px rgba(255, 127, 0, 0.4);
-                }
+                } */
                 
                 .alert-premium {
                     padding: 12px 15px;
@@ -361,10 +361,10 @@ const Footer = () => {
                         text-align: center;
                     }
                     
-                    .booking-button-container {
+                    /* .booking-button-container {
                         bottom: 20px;
                         right: 20px;
-                    }
+                    } */
                 }
                 
                 @media (max-width: 576px) {
