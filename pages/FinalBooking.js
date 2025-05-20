@@ -22,20 +22,51 @@ const CheckoutForm = () => {
   const [paymentStatus, setPaymentStatus] = useState("");
   const [bookingDetails, setBookingDetails] = useState(null);
   const [totalAmount, setTotalAmount] = useState(0); // Amount in cents
+  const [clientSecret, setClientSecret] = useState(""); // Added for Payment Intent
 
   useEffect(() => {
     // Load booking details from localStorage to display and determine amount
     if (typeof window !== 'undefined') {
-        const storedDetails = localStorage.getItem('bookingData'); // Assuming bookingData has final price
+        const storedDetails = localStorage.getItem('bookingData');
         if (storedDetails) {
             try {
                 const parsedDetails = JSON.parse(storedDetails);
                 setBookingDetails(parsedDetails);
-                // Extract and set the final price. Ensure it's in cents.
-                // This is an EXAMPLE: Your actual price might be in a different field or need calculation.
                 const priceInDollars = parseFloat(parsedDetails.price); 
                 if (!isNaN(priceInDollars)) {
-                    setTotalAmount(Math.round(priceInDollars * 100));
+                    const amountInCents = Math.round(priceInDollars * 100);
+                    setTotalAmount(amountInCents);
+
+                    // Fetch client secret once totalAmount is known
+                    if (amountInCents >= 50) { // Stripe minimum amount
+                        const fetchClientSecret = async () => {
+                            try {
+                                const response = await fetch('https://binbear.njnylimo.us/public/api/payment-key-generate', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    // Ensure price is a string with two decimal places as per example
+                                    body: JSON.stringify({ 
+                                        items: [{ price: (amountInCents / 100).toFixed(2) }],
+                                        currency: parsedDetails.currency || 'usd' // Use currency from booking or default to USD
+                                    }),
+                                });
+                                const data = await response.json();
+                                if (data.success && data.data && data.data.payment_intent_id) {
+                                    setClientSecret(data.data.payment_intent_id);
+                                } else {
+                                    console.error("Failed to fetch client secret:", data.message || "Unknown error");
+                                    setError("Error: Could not initialize payment. " + (data.message || ""));
+                                }
+                            } catch (apiError) {
+                                console.error("API error fetching client secret:", apiError);
+                                setError("Error: Could not connect to payment service.");
+                            }
+                        };
+                        fetchClientSecret();
+                    } else if (amountInCents > 0) {
+                         setError("Error: Booking amount is below the minimum processing limit.");
+                    }
+
                 } else {
                     console.error("Could not parse price from bookingData");
                     setError("Error: Could not determine booking amount.");
@@ -48,7 +79,7 @@ const CheckoutForm = () => {
              setError("Error: No booking details found to proceed with payment.");
         }
     }
-  }, []);
+  }, []); // Ensure dependencies are correct if any external vars are used inside
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,8 +88,13 @@ const CheckoutForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!totalAmount || totalAmount < 50) { // Stripe has minimum amount requirements (e.g. 50 cents)
+    if (!totalAmount || totalAmount < 50) {
         setError("Invalid booking amount. Cannot process payment.");
+        return;
+    }
+    if (!clientSecret) {
+        setError("Payment cannot be initialized. Missing client secret. Please refresh and try again.");
+        setProcessing(false);
         return;
     }
     setProcessing(true);
@@ -66,7 +102,6 @@ const CheckoutForm = () => {
     setPaymentStatus("");
 
     if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
       setError("Stripe.js has not loaded. Please try again shortly.");
       setProcessing(false);
       return;
@@ -74,8 +109,10 @@ const CheckoutForm = () => {
 
     const cardElement = elements.getElement(CardElement);
 
-    const { error: paymentMethodError, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
+    const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(
+        clientSecret,
+        {
+            payment_method: {
       card: cardElement,
       billing_details: {
         name: formData.nameOnCard,
@@ -83,31 +120,92 @@ const CheckoutForm = () => {
           postal_code: formData.billingZip,
         },
       },
-    });
+            },
+            // You can add `receipt_email: bookingDetails?.email` here if you want Stripe to send a receipt,
+            // though your backend /process-payment might also handle this.
+        }
+    );
 
-    if (paymentMethodError) {
-      setError(paymentMethodError.message);
+    if (confirmError) {
+      setError(confirmError.message || "An unexpected error occurred during payment confirmation.");
       setProcessing(false);
       return;
     }
 
-    // TODO: Send paymentMethod.id AND totalAmount to your backend
-    console.log("[PaymentMethod]", paymentMethod, "Amount (cents):", totalAmount);
-    // The backend should verify this amount against the booking details stored securely.
-    // const response = await fetch('/api/create-payment-intent', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ 
-    //       paymentMethodId: paymentMethod.id, 
-    //       amount: totalAmount, // Send the dynamically determined amount
-    //       currency: 'usd' // Or your desired currency
-    //   }), 
-    // });
-    // ... rest of backend integration logic ...
-    
-    setPaymentStatus(`Payment method created (ID: ${paymentMethod.id}). Amount: $${(totalAmount/100).toFixed(2)}. Integrate backend for actual payment.`);
+    // Handle successful payment confirmation
+    if (paymentIntent && paymentIntent.status === 'succeeded') {
+      setPaymentStatus(`Payment confirmed (ID: ${paymentIntent.id}). Finalizing booking...`);
+      
+      // Send relevant paymentIntent data and booking details to your /process-payment endpoint
+      try {
+        const processPaymentPayload = {
+            payment_data: {
+                id: paymentIntent.id,
+                object: paymentIntent.object || 'payment_intent',
+                amount: paymentIntent.amount, // in cents
+                currency: paymentIntent.currency,
+                status: paymentIntent.status,
+                client_secret: paymentIntent.client_secret, // Include client_secret
+                payment_method: paymentIntent.payment_method,
+                // Add other fields from your example as needed, checking if they exist on paymentIntent
+                amount_details: paymentIntent.amount_details || { tip: {} },
+                automatic_payment_methods: paymentIntent.automatic_payment_methods,
+                canceled_at: paymentIntent.canceled_at,
+                cancellation_reason: paymentIntent.cancellation_reason,
+                capture_method: paymentIntent.capture_method || 'automatic_async',
+                confirmation_method: paymentIntent.confirmation_method || 'automatic',
+                created: paymentIntent.created || Math.floor(Date.now() / 1000),
+                description: paymentIntent.description || `Booking for ${bookingDetails?.service_name || 'Service'}`,
+                last_payment_error: paymentIntent.last_payment_error,
+                livemode: paymentIntent.livemode || false,
+                next_action: paymentIntent.next_action,
+                payment_method_configuration_details: paymentIntent.payment_method_configuration_details,
+                payment_method_types: paymentIntent.payment_method_types || ['card'],
+                processing: paymentIntent.processing,
+                receipt_email: paymentIntent.receipt_email,
+                setup_future_usage: paymentIntent.setup_future_usage, 
+                shipping: paymentIntent.shipping,
+                source: paymentIntent.source,
+            },
+            email: bookingDetails?.email || `${formData.nameOnCard.split(' ').join('.').toLowerCase()}@example.com`, // Placeholder if no email in bookingData
+            product_name: `${bookingDetails?.service_name || 'Selected Service'} - ${bookingDetails?.service_option || 'Selected Option'}`,
+            price: (paymentIntent.amount / 100), // Price in main currency unit (e.g., dollars, euros)
+            interval: bookingDetails?.interval || "one-time" // Or from bookingDetails if it's a subscription
+        };
+
+        const response = await fetch('https://binbear.njnylimo.us/public/api/process-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(processPaymentPayload), 
+        });
+        
+        const responseData = await response.json();
+
+        if (response.ok && responseData.success) { // Check your backend's success condition
+          setPaymentStatus("Booking successfully processed! Redirecting...");
+          localStorage.setItem('bookingConfirmationDetails', JSON.stringify(responseData)); // Save confirmation for next page
+          localStorage.removeItem('bookingData'); // Clear sensitive booking data
+          router.push("/BookingConfirmationPage"); // Redirect to your confirmation page
+        } else {
+          setError(responseData.message || "Failed to process booking with our system. Please contact support.");
+          setPaymentStatus("Payment was successful, but there was an issue finalizing your booking. Reference: " + paymentIntent.id);
+        }
+
+      } catch (backendError) {
+        console.error("Error calling /process-payment:", backendError);
+        setError("An error occurred while finalizing your booking with our system. Payment ID: " + paymentIntent.id);
+        setPaymentStatus("Payment successful, but a system error occurred. Please contact support with payment ID: " + paymentIntent.id);
+      }
+    } else if (paymentIntent && paymentIntent.status === 'requires_action') {
+      setError("Further action is required to complete your payment (e.g., 3D Secure). Please follow the prompts from Stripe.");
+      // Stripe.js will often handle 3D Secure by opening a modal. 
+      // You might not need to do much here unless you have specific UI requirements for it.
+    } else {
+      // Some other error occurred
+      setError(paymentIntent?.last_payment_error?.message || "Payment failed. Please check your card details and try again, or use a different card.");
+    }
+
     setProcessing(false);
-    // On actual success from backend: router.push("/BookingConfirmationPage"); 
   };
   
   const cardElementOptions = {

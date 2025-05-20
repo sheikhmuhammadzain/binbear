@@ -84,15 +84,15 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                             </div>
                         </div>
                         <div className="header-right">
-                            <div
-                                id="mobileBurgerMenu"
+                                <div 
+                                    id="mobileBurgerMenu" 
                                 className={`burger-icon burger-icon-white d-xl-none ${mobileMenuOpen ? 'active' : ''}`}
-                                onClick={toggleMobileMenu}
-                            >
-                                <span className="burger-icon-top" />
-                                <span className="burger-icon-mid" />
-                                <span className="burger-icon-bottom" />
-                            </div>
+                                    onClick={toggleMobileMenu}
+                                >
+                                    <span className="burger-icon-top" />
+                                    <span className="burger-icon-mid" />
+                                    <span className="burger-icon-bottom" />
+                                </div>
                             {!hideBookNow && (
                                 <div className="book-now-container">
                                     <Link 
