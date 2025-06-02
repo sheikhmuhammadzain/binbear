@@ -7,6 +7,8 @@ const BookingConfirmationPage = () => {
     const router = useRouter();
     const [confirmationDetails, setConfirmationDetails] = useState(null);
     const [error, setError] = useState(null);
+    const [isProcessingPaymentRecord, setIsProcessingPaymentRecord] = useState(false);
+    const [paymentRecordProcessed, setPaymentRecordProcessed] = useState(false);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -22,21 +24,102 @@ const BookingConfirmationPage = () => {
                     setError("Could not load booking confirmation details properly.");
                 }
             } else {
-                // setError("No booking confirmation details found. If you just booked, there might be a slight delay or issue.");
-                // For development, let's assume a structure if nothing is found, so the page renders something.
-                // In production, you might want a different fallback or error message.
                 console.warn("No booking confirmation details found in localStorage.");
+                // setError("No booking confirmation details found. If you just booked, there might be a slight delay or issue.");
             }
         }
     }, []);
 
-    const renderDetailItem = (label, value) => {
-        if (!value) return null;
+    useEffect(() => {
+        // ADDED CONSOLE LOGS FOR DEBUGGING
+        console.log("Debug: confirmationDetails:", confirmationDetails);
+        console.log("Debug: paymentRecordProcessed:", paymentRecordProcessed);
+        console.log("Debug: isProcessingPaymentRecord:", isProcessingPaymentRecord);
+        if (confirmationDetails && confirmationDetails.payment_data) { // Log payment_data status if available
+             console.log("Debug: confirmationDetails.payment_data.status:", confirmationDetails.payment_data.status);
+        }
+         if (confirmationDetails) { // Log other relevant fields if confirmationDetails exists
+            console.log("Debug: confirmationDetails.email:", confirmationDetails.email);
+            console.log("Debug: confirmationDetails.product_name:", confirmationDetails.product_name);
+            console.log("Debug: confirmationDetails.price:", confirmationDetails.price);
+            console.log("Debug: confirmationDetails.interval:", confirmationDetails.interval);
+        }
+
+        if (confirmationDetails && 
+            confirmationDetails.payment_data && 
+            confirmationDetails.payment_data.status === 'succeeded' && 
+            !paymentRecordProcessed && 
+            !isProcessingPaymentRecord) {
+
+            // Check for all required fields in the structure you provided
+            if (confirmationDetails.email && 
+                confirmationDetails.product_name && 
+                typeof confirmationDetails.price !== 'undefined' && 
+                confirmationDetails.interval) {
+                
+                setIsProcessingPaymentRecord(true);
+                
+                const payload = {
+                    payment_data: confirmationDetails.payment_data,
+                    email: confirmationDetails.email,
+                    product_name: confirmationDetails.product_name,
+                    price: confirmationDetails.price, // Ensure this is the correct numeric value (e.g., 147 for €147)
+                    interval: confirmationDetails.interval
+                };
+
+                console.log("Payload being sent to /process-payment:", payload);
+
+                fetch('https://binbear.njnylimo.us/public/api/process-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(errData => {
+                            throw new Error(errData.message || `HTTP error! status: ${response.status}`);
+                        }).catch(() => {
+                             throw new Error(`HTTP error! status: ${response.status}`);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Payment data successfully sent to process-payment API:', data);
+                    setPaymentRecordProcessed(true); 
+                })
+                .catch(apiError => {
+                    console.error('Error posting to process-payment API:', apiError);
+                    setError(prevError => prevError ? `${prevError}\\nError recording payment: ${apiError.message}` : `Error recording payment: ${apiError.message}`);
+                })
+                .finally(() => {
+                    setIsProcessingPaymentRecord(false);
+                });
+            } else {
+                console.warn('Missing required fields in confirmationDetails to call process-payment API. Needed: payment_data, email, product_name, price, interval. Data:', confirmationDetails);
+                // Optionally set an error message for the user if critical data is missing
+                // setError("Could not record payment details: essential information missing.");
+            }
+        }
+    }, [confirmationDetails, paymentRecordProcessed, isProcessingPaymentRecord, setError]);
+
+    const renderDetailItem = (label, value, isPlaceholder = false) => {
+        if (!value && !isPlaceholder) return null;
         return (
-            <p className="detail-item">
-                <strong>{label}:</strong> <span>{typeof value === 'object' ? JSON.stringify(value, null, 2) : value}</span>
+            <p className={`detail-item ${isPlaceholder ? 'placeholder-text' : ''}`}>
+                <strong>{label}:</strong> <span>{value || (isPlaceholder ? 'Will be updated shortly' : 'N/A')}</span>
             </p>
         );
+    };
+
+    // Helper to safely access nested properties
+    const getNestedValue = (obj, path, defaultValue = null) => {
+        if (!obj || !path) return defaultValue;
+        const value = path.split('.').reduce((acc, part) => acc && acc[part], obj);
+        return value === undefined ? defaultValue : value;
     };
 
     return (
@@ -53,33 +136,32 @@ const BookingConfirmationPage = () => {
 
                     {error && <p className="error-message">{error}</p>}
 
-                    {confirmationDetails && confirmationDetails.data ? (
+                    {confirmationDetails ? (
                         <div className="details-section">
                             <h2 className="details-title">Booking Summary</h2>
-                            {/* Assuming 'data' object from your /process-payment response structure */}
-                            {/* Modify these based on the actual structure of `processPaymentData.data` */}
-                            {renderDetailItem("Confirmation ID", confirmationDetails.data.payment_intent_id || confirmationDetails.data.id)}
-                            {renderDetailItem("Service", confirmationDetails.product_name)}
-                            {/* The 'data' object from payment-key-generate had payment_intent_id, which looks like client_secret. */}
-                            {/* The /process-payment response has a 'payment_data' object which contains the PI details. */}
-                            {confirmationDetails.payment_data && (
-                                <>
-                                    {renderDetailItem("Payment Status", confirmationDetails.payment_data.status)}
-                                    {renderDetailItem("Amount Paid", `$${(confirmationDetails.payment_data.amount / 100).toFixed(2)} ${confirmationDetails.payment_data.currency.toUpperCase()}`)}
-                                </>
+                            
+                            {/* Stripe Payment Details (from existing logic) */}
+                            {renderDetailItem("Confirmation ID", getNestedValue(confirmationDetails, 'data.payment_intent_id') || getNestedValue(confirmationDetails, 'payment_data.id') || getNestedValue(confirmationDetails, 'id'))}
+                            {renderDetailItem("Service", getNestedValue(confirmationDetails, 'product_name') || getNestedValue(confirmationDetails, 'data.service_description'))}
+                            
+                            {getNestedValue(confirmationDetails, 'payment_data.status') && renderDetailItem("Payment Status", getNestedValue(confirmationDetails, 'payment_data.status'))}
+                            {getNestedValue(confirmationDetails, 'payment_data.amount') && renderDetailItem("Amount Paid", `$${(getNestedValue(confirmationDetails, 'payment_data.amount') / 100).toFixed(2)} ${getNestedValue(confirmationDetails, 'payment_data.currency', '').toUpperCase()}`)}
+
+                            {/* Jobber Specific Details - these might come from data passed before Stripe, or enriched if the page is reloaded/visited later */}
+                            {renderDetailItem("Scheduled Time", confirmationDetails.pickup_time ? new Date(confirmationDetails.pickup_time).toLocaleString() : getNestedValue(confirmationDetails, 'data.pickup_time') ? new Date(getNestedValue(confirmationDetails, 'data.pickup_time')).toLocaleString() : null, !confirmationDetails.pickup_time && !getNestedValue(confirmationDetails, 'data.pickup_time'))}
+                            {renderDetailItem("Jobber Client ID", getNestedValue(confirmationDetails, 'jobber_client_id') || getNestedValue(confirmationDetails, 'data.jobber_client_id'))}
+                            {renderDetailItem("Jobber Quote ID", getNestedValue(confirmationDetails, 'job_quote_id') || getNestedValue(confirmationDetails, 'data.job_quote_id'))}
+                            {/* These details are usually confirmed/created after the webhook */}
+                            {renderDetailItem("Jobber Job ID", getNestedValue(confirmationDetails, 'jobber_job_id') || getNestedValue(confirmationDetails, 'data.jobber_job_id'), true)}
+                            {renderDetailItem("Assigned Technician", getNestedValue(confirmationDetails, 'jobber_assigned_employee') || getNestedValue(confirmationDetails, 'data.jobber_assigned_employee'), true)}
+
+
+                            {confirmationDetails.message && !getNestedValue(confirmationDetails, 'data') && (
+                                <p className="detail-item note">{confirmationDetails.message}</p>
                             )}
-                            {/* If your backend's response `processPaymentData` directly has more user-friendly fields under `data`, display them */}
-                            {/* Example: {renderDetailItem("Booking Date", confirmationDetails.data.booking_date)} */}
-                            {/* Example: {renderDetailItem("Service Type", confirmationDetails.data.service_type)} */}
-                             <p className="detail-item note">You will receive an email confirmation shortly with all the details.</p>
+                            
+                            <p className="detail-item note">You will receive an email confirmation shortly with all the details, including final job information.</p>
                         </div>
-                    ) : confirmationDetails && confirmationDetails.message ? (
-                        // Fallback if structure is just { success: true, message: "...", data: { ... } }
-                         <div className="details-section">
-                             <h2 className="details-title">Booking Status</h2>
-                             <p>{confirmationDetails.message}</p>
-                             {confirmationDetails.data && confirmationDetails.data.payment_intent_id && renderDetailItem("Payment ID", confirmationDetails.data.payment_intent_id)}
-                         </div>
                     ) : (
                         <p>Loading confirmation details or no details to display.</p>
                     )}
@@ -170,6 +252,10 @@ const BookingConfirmationPage = () => {
                 }
                 .detail-item span {
                     word-break: break-word;
+                }
+                .detail-item.placeholder-text span {
+                    color: #777;
+                    font-style: italic;
                 }
                 .detail-item.note {
                     font-style: italic;
