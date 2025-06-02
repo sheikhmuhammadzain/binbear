@@ -107,10 +107,15 @@ const BookingConfirmationPage = () => {
     }, [confirmationDetails, paymentRecordProcessed, isProcessingPaymentRecord, setError]);
 
     const renderDetailItem = (label, value, isPlaceholder = false) => {
-        if (!value && !isPlaceholder) return null;
+        if (!value && !isPlaceholder) return null; 
+        
+        const displayValue = value || (isPlaceholder ? 'Will be updated shortly' : 'N/A');
+        // Apply placeholder style only if it IS a placeholder AND the value is currently missing.
+        const className = `detail-item ${isPlaceholder && !value ? 'placeholder-text' : ''}`; 
+
         return (
-            <p className={`detail-item ${isPlaceholder ? 'placeholder-text' : ''}`}>
-                <strong>{label}:</strong> <span>{value || (isPlaceholder ? 'Will be updated shortly' : 'N/A')}</span>
+            <p className={className}>
+                <strong>{label}:</strong> <span>{displayValue}</span>
             </p>
         );
     };
@@ -152,7 +157,21 @@ const BookingConfirmationPage = () => {
                             {renderDetailItem("Jobber Client ID", getNestedValue(confirmationDetails, 'jobber_client_id') || getNestedValue(confirmationDetails, 'data.jobber_client_id'))}
                             {renderDetailItem("Jobber Quote ID", getNestedValue(confirmationDetails, 'job_quote_id') || getNestedValue(confirmationDetails, 'data.job_quote_id'))}
                             {/* These details are usually confirmed/created after the webhook */}
-                            {renderDetailItem("Jobber Job ID", getNestedValue(confirmationDetails, 'jobber_job_id') || getNestedValue(confirmationDetails, 'data.jobber_job_id'), true)}
+                            {(() => {
+                                const finalJobId = getNestedValue(confirmationDetails, 'jobber_job_id') || getNestedValue(confirmationDetails, 'data.jobber_job_id');
+                                const draftJobId = getNestedValue(confirmationDetails, 'jobber_draft_job_id') || getNestedValue(confirmationDetails, 'data.jobber_draft_job_id');
+                                let jobDisplayValue = null;
+                                let jobIsPlaceholder = true; // Assume placeholder unless a value is found
+
+                                if (finalJobId) {
+                                    jobDisplayValue = finalJobId;
+                                    jobIsPlaceholder = false;
+                                } else if (draftJobId) {
+                                    jobDisplayValue = `${draftJobId} (Draft)`; // Indicate it's a draft
+                                    jobIsPlaceholder = false;
+                                }
+                                return renderDetailItem("Jobber Job ID", jobDisplayValue, jobIsPlaceholder);
+                            })()}
                             {renderDetailItem("Assigned Technician", getNestedValue(confirmationDetails, 'jobber_assigned_employee') || getNestedValue(confirmationDetails, 'data.jobber_assigned_employee'), true)}
 
 
@@ -161,7 +180,7 @@ const BookingConfirmationPage = () => {
                             )}
                             
                             <p className="detail-item note">You will receive an email confirmation shortly with all the details, including final job information.</p>
-                        </div>
+                         </div>
                     ) : (
                         <p>Loading confirmation details or no details to display.</p>
                     )}
