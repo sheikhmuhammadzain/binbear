@@ -31,7 +31,7 @@ export default function Hero1Slider() {
                                 <div className="col-lg-12">
                                     <div className="banner-premium-content" data-aos="fade-up">
                                         <span className="banner-premium-badge">Junk Removal Solutions</span>
-                                        <h1 className="banner-premium-title">Click Schedule Pickup<br className="d-none d-lg-block" />Junk Removal Made Effortless In 3 Steps!</h1>
+                                        <h1 className="banner-premium-title">Click Schedule Pickup Junk Removal Made Effortless In 3 Steps!</h1>
                                         <p className="banner-premium-text">
                                             At BinBear, we make junk removal effortless. Whether it's a single item or a full property cleanout, binbear is here to handle every step!
                                         </p>
@@ -64,7 +64,7 @@ export default function Hero1Slider() {
                                 <div className="col-lg-12">
                                     <div className="banner-premium-content" data-aos="fade-up">
                                         <span className="banner-premium-badge">Junk Removal Solutions</span>
-                                        <h1 className="banner-premium-title">Click Schedule Pickup<br className="d-none d-lg-block" />Junk Removal Made Effortless In 3 Steps!</h1>
+                                        <h1 className="banner-premium-title">Click Schedule Pickup Junk Removal Made Effortless In 3 Steps!</h1>
                                         <p className="banner-premium-text">
                                             At BinBear, we make junk removal effortless. Whether it's a single item or a full property cleanout, binbear is here to handle every step!
                                         </p>
@@ -187,10 +187,11 @@ export default function Hero1Slider() {
                 .banner-premium-title {
                     font-size: 30px;
                     font-weight: 800;
-                    line-height: 1.2;
-                    margin-bottom: 10px;
+                    line-height: 1.3;
+                    margin-bottom: 15px;
                     color: white;
                     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+                    word-spacing: 2px;
                 }
                 
                 .banner-premium-text {
@@ -204,22 +205,25 @@ export default function Hero1Slider() {
                 
                 .banner-premium-buttons {
                     display: flex;
-                    gap: 12px;
+                    gap: 15px;
                     flex-wrap: wrap;
+                    margin-top: 20px;
                 }
                 
                 .btn-premium {
                     display: inline-flex;
                     align-items: center;
+                    justify-content: center;
                     gap: 8px;
-                    padding: 10px 20px;
+                    padding: 12px 24px;
                     border-radius: 8px;
                     font-weight: 700;
-                    font-size: 14px;
+                    font-size: 15px;
                     transition: all 0.3s ease;
                     position: relative;
                     overflow: hidden;
                     z-index: 1;
+                    min-width: 160px;
                 }
                 
                 .btn-premium::before {
@@ -248,128 +252,149 @@ export default function Hero1Slider() {
                 .btn-premium-primary:hover {
                     transform: translateY(-3px);
                     box-shadow: 0 8px 20px rgba(255, 127, 0, 0.5);
-                    color: white !important;
                 }
                 
                 .btn-premium-secondary {
-                    background: rgba(255, 255, 255, 0.15);
-                    backdrop-filter: blur(8px);
+                    background-color: #333;
                     color: white;
-                    border: 1px solid rgba(255, 255, 255, 0.2);
-                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
                 }
                 
                 .btn-premium-secondary:hover {
+                    background-color: #222;
                     transform: translateY(-3px);
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-                    color: white !important;
-                    background: rgba(255, 255, 255, 0.25);
+                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
                 }
                 
                 .swiper-pagination-banner {
                     position: absolute;
-                    bottom: 10px;
-                    left: 0;
-                    width: 100%;
-                    text-align: center;
-                    z-index: 10;
+                    bottom: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    display: flex;
+                    gap: 10px;
+                    z-index: 5;
                 }
                 
                 .swiper-pagination-banner .swiper-pagination-bullet {
-                    width: 12px;
-                    height: 12px;
-                    background: rgba(255, 255, 255, 0.5);
-                    opacity: 1;
-                    margin: 0 5px;
+                    width: 10px;
+                    height: 10px;
+                    background-color: rgba(255, 255, 255, 0.5);
+                    border-radius: 50%;
+                    cursor: pointer;
                     transition: all 0.3s ease;
+                    outline: none;
                 }
                 
                 .swiper-pagination-banner .swiper-pagination-bullet-active {
-                    background: #FF7F00;
+                    background-color: #FF7F00;
                     width: 25px;
-                    border-radius: 10px;
-                }
-                
-                @media (max-width: 1200px) {
-                    .banner-premium {
-                        min-height: 550px;
-                    }
-                    
-                    .banner-premium-title {
-                        font-size: 40px;
-                    }
+                    border-radius: 5px;
                 }
                 
                 @media (max-width: 992px) {
                     .banner-premium {
-                        min-height: 500px;
-                        padding: 70px 0;
+                        min-height: 400px;
+                        padding: 40px 0 60px;
+                    }
+                    
+                    .banner-premium-content {
+                        max-width: 580px;
                     }
                     
                     .banner-premium-title {
-                        font-size: 36px;
+                        font-size: 26px;
+                        line-height: 1.3;
                     }
                     
                     .banner-premium-text {
-                        font-size: 16px;
+                        font-size: 15px;
+                        max-width: 520px;
                     }
                     
                     .btn-premium {
-                        padding: 14px 25px;
-                        font-size: 15px;
+                        padding: 9px 18px;
                     }
                 }
-                
-                @media (max-width: 768px) {
+
+                @media (max-width: 767px) {
                     .banner-premium {
-                        min-height: 450px;
-                        padding: 60px 0;
+                        min-height: 380px;
+                        padding: 30px 0 50px;
+                    }
+
+                    .banner-premium-content {
+                        max-width: 100%;
+                        text-align: center;
+                        padding: 0 15px;
+                    }
+
+                    .banner-premium-title {
+                        font-size: 24px;
+                        line-height: 1.3;
+                        margin-bottom: 15px;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .banner-premium-text {
+                        font-size: 15px;
+                        max-width: 90%;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-bottom: 20px;
+                    }
+
+                    .banner-premium-buttons {
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 15px;
+                        width: 100%;
                     }
                     
-                    .banner-premium-title {
-                        font-size: 32px;
+                    .btn-premium {
+                        width: 80%;
+                        justify-content: center;
+                    }
+                }
+
+                @media (max-width: 576px) {
+                    .banner-premium {
+                        min-height: 350px;
+                        padding-top: 20px;
                     }
                     
                     .banner-premium-badge {
-                        font-size: 14px;
-                        padding: 7px 16px;
-                        margin-bottom: 15px;
-                    }
-                    
-                    .banner-premium-text {
-                        margin-bottom: 25px;
-                    }
-                }
-                
-                @media (max-width: 576px) {
-                    .banner-premium {
-                        min-height: 400px;
-                        padding: 50px 0;
+                        font-size: 12px;
+                        padding: 4px 12px;
                     }
                     
                     .banner-premium-title {
-                        font-size: 28px;
+                        font-size: 20px;
+                        line-height: 1.4;
+                        margin-bottom: 12px;
+                    }
+
+                    .banner-premium-text {
+                        font-size: 13px;
+                        line-height: 1.5;
                         margin-bottom: 15px;
                     }
-                    
-                    .banner-premium-text {
-                        font-size: 15px;
-                        margin-bottom: 20px;
-                    }
-                    
+
                     .btn-premium {
-                        padding: 12px 22px;
-                        font-size: 14px;
-                        width: 100%;
-                        justify-content: center;
+                        padding: 8px 16px;
+                        font-size: 13px;
+                        width: 90%;
                     }
                     
-                    .banner-premium-buttons {
-                        flex-direction: column;
-                        width: 100%;
+                    .swiper-pagination-banner {
+                        bottom: 15px;
                     }
                 }
             `}</style>
         </>
     )
 }
+
+
+
+

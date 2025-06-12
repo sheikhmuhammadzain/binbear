@@ -1,4 +1,4 @@
-/* Global styles to improve responsiveness */
+@import "tailwindcss";/* Global styles to improve responsiveness */
 :root {
   --primary-color: #FF7F00;
   --primary-dark: #FF5E00;

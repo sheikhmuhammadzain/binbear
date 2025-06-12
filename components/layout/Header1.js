@@ -214,7 +214,10 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
 
                 .header-right {
                     display: flex;
-                    align-items: center;
+                    flex-direction: row-reverse;
+                    align-items: flex-start;
+                    gap: 22px;
+                    
                 }
 
                 .book-now-container {
