@@ -69,7 +69,7 @@ const BookingConfirmationPage = () => {
 
                 console.log("Payload being sent to /process-payment:", payload);
 
-                fetch('https://binbear.njnylimo.us/public/api/process-payment', {
+                fetch('https://backend.binbearjunk.com/api/process-payment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

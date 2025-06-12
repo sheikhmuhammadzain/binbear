@@ -22,7 +22,7 @@ const ItemSelection = () => {
         const fetchCategories = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch('https://binbear.njnylimo.us/public/api/allCategories');
+                const response = await fetch('https://backend.binbearjunk.com/api/allCategories');
                 const result = await response.json();
                 
                 if (result.success) {

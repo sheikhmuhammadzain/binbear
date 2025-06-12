@@ -11,7 +11,7 @@ export default function ScheduleDumpster() {
     useEffect(() => {
         const fetchCoupons = async () => {
             try {
-                const response = await fetch('https://binbear.njnylimo.us/public/api/coupons');
+                const response = await fetch('https://backend.binbearjunk.com/api/coupons');
                 const result = await response.json();
                 
                 if (result.success) {
@@ -219,7 +219,7 @@ export default function ScheduleDumpster() {
 
     const submitBooking = async (bookingData) => {
         try {
-            const response = await fetch('https://binbear.njnylimo.us/public/api/bookings', {
+            const response = await fetch('https://backend.binbearjunk.com/api/bookings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

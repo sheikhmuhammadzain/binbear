@@ -41,7 +41,7 @@ const CheckoutForm = () => {
                     if (amountInCents >= 50) { // Stripe minimum amount
                         const fetchClientSecret = async () => {
                             try {
-                                const response = await fetch('https://binbear.njnylimo.us/public/api/payment-key-generate', {
+                                const response = await fetch('https://backend.binbearjunk.com/api/payment-key-generate', {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
                                     // Ensure price is a string with two decimal places as per example
@@ -173,7 +173,7 @@ const CheckoutForm = () => {
             interval: bookingDetails?.interval || "one-time" // Or from bookingDetails if it's a subscription
         };
 
-        const response = await fetch('https://binbear.njnylimo.us/public/api/process-payment', {
+        const response = await fetch('https://backend.binbearjunk.com/api/process-payment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(processPaymentPayload), 

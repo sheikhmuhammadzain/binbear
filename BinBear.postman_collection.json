@@ -115,7 +115,7 @@
 		},
 		{
 			"key": "live_url",
-			"value": "https://binbear.njnylimo.us/public/api/",
+			"value": "https://backend.binbearjunk.com/api/",
 			"type": "string"
 		}
 	]

@@ -91,7 +91,7 @@ export default function ConstructionContact() {
         };
 
         try {
-            const response = await fetch('https://binbear.njnylimo.us/public/api/bookings', {
+            const response = await fetch('https://backend.binbearjunk.com/api/bookings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
