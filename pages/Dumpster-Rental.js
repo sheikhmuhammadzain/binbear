@@ -14,52 +14,81 @@ export default function DumpsterRental() {
     const [selectedTime, setSelectedTime] = useState(null)
     const [isDropOff, setIsDropOff] = useState(true)
     const [inViewport, setInViewport] = useState(false)
+    const [dumpsterSizes, setDumpsterSizes] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        const fetchPrices = async () => {
+            try {
+                const response = await fetch('https://backend.binbearjunk.com/api/getPrice')
+                const data = await response.json()
+
+                if (data.success) {
+                    // Find prices from the API response
+                    const smallPrice = data.data.find(item => item.name === "drumpster_size_small_price")?.value || "50"
+                    const mediumPrice = data.data.find(item => item.name === "drumpster_size_medium_price")?.value || "100"
+                    const largePrice = data.data.find(item => item.name === "drumpster_size_large_price")?.value || "150"
+
+                    // Update dumpster sizes with fetched prices
+                    setDumpsterSizes([
+                        {
+                            id: 'small',
+                            name: 'Small (10 yard)',
+                            description: 'Good for small projects, renovation debris, or yard waste',
+                            dimensions: '12ft L x 8ft W x 3.5ft H',
+                            price: `$${smallPrice}`,
+                            image: 'img/dustbin.png'
+                        },
+                        {
+                            id: 'medium',
+                            name: 'Medium (20 yard)',
+                            description: 'Perfect for home remodels, larger cleanouts, or construction projects',
+                            dimensions: '16ft L x 8ft W x 4.5ft H',
+                            price: `$${mediumPrice}`,
+                            image: 'img/dustbin.png'
+                        },
+                        {
+                            id: 'large',
+                            name: 'Large (30 yard)',
+                            description: 'Ideal for major renovations, new construction, or commercial projects',
+                            dimensions: '20ft L x 8ft W x 5.5ft H',
+                            price: `$${largePrice}`,
+                            image: 'img/dustbin.png'
+                        }
+                    ])
+                } else {
+                    setError("Failed to fetch prices")
+                }
+            } catch (err) {
+                setError("Error fetching prices")
+                console.error("Error fetching prices:", err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchPrices()
+    }, [])
 
     const handleScroll = () => {
         const elements = document.getElementsByClassName('counterUp')
         if (elements.length > 0) {
-        const element = elements[0]
-        const rect = element.getBoundingClientRect();
-        const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight
-        if (isInViewport && !inViewport) {
-            setInViewport(true);
-        }
+            const element = elements[0]
+            const rect = element.getBoundingClientRect();
+            const isInViewport = rect.top >= 0 && rect.bottom <= window.innerHeight
+            if (isInViewport && !inViewport) {
+                setInViewport(true);
+            }
         }
     }
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
         return () => {
-        window.removeEventListener('scroll', handleScroll)
+            window.removeEventListener('scroll', handleScroll)
         }
     }, [])
-    
-    const dumpsterSizes = [
-        {
-            id: 'small',
-            name: 'Small (10 yard)',
-            description: 'Good for small projects, renovation debris, or yard waste',
-            dimensions: '12ft L x 8ft W x 3.5ft H',
-            price: '$299',
-            image: 'img/dustbin.png'
-        },
-        {
-            id: 'medium',
-            name: 'Medium (20 yard)',
-            description: 'Perfect for home remodels, larger cleanouts, or construction projects',
-            dimensions: '16ft L x 8ft W x 4.5ft H',
-            price: '$399',
-            image: 'img/dustbin.png'
-        },
-        {
-            id: 'large',
-            name: 'Large (30 yard)',
-            description: 'Ideal for major renovations, new construction, or commercial projects',
-            dimensions: '20ft L x 8ft W x 5.5ft H',
-            price: '$499',
-            image: 'img/dustbin.png'
-        }
-    ];
 
     const handleNext = () => {
         if (!selectedSize || !selectedDate || !selectedTime) {
@@ -96,26 +125,36 @@ export default function DumpsterRental() {
                 {/* Dumpster Size Selection */}
                 <section className="selection-section">
                     <h2>Choose Dumpster Size</h2>
-                    <div className="dumpster-sizes">
-                        {dumpsterSizes.map((size) => (
-                            <div 
-                                key={size.id}
-                                className={`dumpster-card dumpster-${size.id} ${selectedSize === size.id ? 'selected' : ''}`}
-                                onClick={() => setSelectedSize(size.id)}
-                            >
-                                <div className="image-container">
-                                    <img src={size.image} alt={size.name} className="dumpster-image" />
+                    {loading ? (
+                        <div className="loading-container">
+                            <p>Loading dumpster prices...</p>
+                        </div>
+                    ) : error ? (
+                        <div className="error-container">
+                            <p>Error loading prices. Please try again later.</p>
+                        </div>
+                    ) : (
+                                <div className="dumpster-sizes">
+                                    {dumpsterSizes.map((size) => (
+                                        <div
+                                            key={size.id}
+                                            className={`dumpster-card dumpster-${size.id} ${selectedSize === size.id ? 'selected' : ''}`}
+                                            onClick={() => setSelectedSize(size.id)}
+                                        >
+                                            <div className="image-container">
+                                                <img src={size.image} alt={size.name} className="dumpster-image" />
+                                            </div>
+                                            <div className="card-content">
+                                                <h3>{size.name}</h3>
+                                                <p className="price">{size.price}</p>
+                                                <p className="description">{size.description}</p>
+                                                <p className="dimensions"><strong>Dimensions:</strong> {size.dimensions}</p>
+                                            </div>
+                                            <div className="selection-indicator"></div>
+                                        </div>
+                                    ))}
                                 </div>
-                                <div className="card-content">
-                                    <h3>{size.name}</h3>
-                                    <p className="price">{size.price}</p>
-                                    <p className="description">{size.description}</p>
-                                    <p className="dimensions"><strong>Dimensions:</strong> {size.dimensions}</p>
-                                </div>
-                                <div className="selection-indicator"></div>
-                            </div>
-                        ))}
-                    </div>
+                    )}
                 </section>
                 
                 {/* Date Selection */}
@@ -220,6 +259,19 @@ export default function DumpsterRental() {
                     border-bottom: 2px solid #FF7701;
                     padding-bottom: 10px;
                     display: inline-block;
+                }
+                
+                .loading-container,
+                .error-container {
+                    background-color: #fff;
+                    border-radius: 8px;
+                    padding: 20px;
+                    text-align: center;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+
+                .error-container {
+                    color: #d9534f;
                 }
                 
                 .dumpster-sizes {

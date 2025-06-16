@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://binbear.njnylimo.us/public/api';
+const API_BASE_URL = 'https://backend.binbearjunk.com/api';
 
 /**
  * Fetches all valid zip codes from the API
