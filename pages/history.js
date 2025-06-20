@@ -37,7 +37,7 @@ export default function History() {
             year: "2022",
             title: "Nationwide Expansion",
             description: "BinBear now operates in over 150 locations across the country, maintaining our commitment to quality service and environmental responsibility.",
-            image: "https://images.unsplash.com/photo-1530939027401-ab39a71fb8b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            image: "https://plus.unsplash.com/premium_photo-1670517733844-f3b8fd6de86c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bmF0aW9ufGVufDB8fDB8fHww"
         }
     ];
     
@@ -217,57 +217,7 @@ export default function History() {
               </div>
                 </section>
 
-                {/* Team Section */}
-                <section className="team-section">
-                <div className="container">
-                        <div className="section-header">
-                            <h2 className="section-title">Our Leadership Team</h2>
-                            <p className="section-subtitle">Meet the people who drive our success</p>
-                        </div>
-                        
-                        <div className="team-grid">
-                            <div className="team-member">
-                                <div className="member-image">
-                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Leadership Team Member" />
-               </div>
-                                <div className="member-info">
-                                    <h3>John Smith</h3>
-                                    <p>Chief Executive Officer</p>
-    </div>
-</div>
 
-                            <div className="team-member">
-                                <div className="member-image">
-                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Leadership Team Member" />
-                </div>
-                                <div className="member-info">
-                                    <h3>Sarah Johnson</h3>
-                                    <p>Chief Operations Officer</p>
-                </div>
-            </div>
-                            
-                            <div className="team-member">
-                                <div className="member-image">
-                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Leadership Team Member" />
-                </div>
-                                <div className="member-info">
-                                    <h3>Michael Davis</h3>
-                                    <p>Chief Technology Officer</p>
-                </div>
-            </div>
-                            
-                            <div className="team-member">
-                                <div className="member-image">
-                                    <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Leadership Team Member" />
-                </div>
-                                <div className="member-info">
-                                    <h3>Jennifer Wilson</h3>
-                                    <p>Chief Marketing Officer</p>
-                </div>
-            </div>
-</div>
-                    </div>
-                </section>
 
                 {/* CTA Section */}
                 <section className="cta-section">
@@ -278,8 +228,8 @@ export default function History() {
                                 <p>Become part of the BinBear journey as we continue to grow and shape the future of junk removal</p>
                                 </div>
                             <div className="cta-buttons">
-                                <Link href="/contact" className="cta-button primary">Contact Us</Link>
-                                <Link href="/careers" className="cta-button secondary">Explore Careers</Link>
+                                <Link href="/contact" className="cta-button primary outline">Contact Us</Link>
+
                             </div>
                                </div>
                 </div>
@@ -424,14 +374,22 @@ export default function History() {
                 }
 
                 .stat-icon {
-                    font-size: 36px;
+                    font-size: 48px;
                     margin-bottom: 15px;
                     color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 60px;
+                    height: 60px;
+                    margin: 0 auto 15px;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
                 }
 
                 .stat-icon svg {
-                    width: 36px;
-                    height: 36px;
+                    width: 48px;
+                    height: 48px;
                 }
 
                 .stat-number {
@@ -582,22 +540,24 @@ export default function History() {
 
                 .tab-navigation {
                     display: flex;
-                    margin-bottom: 30px;
-                    gap: 20px;
-                    border-bottom: 2px solid #eee;
+                    margin-bottom: 40px;
+                    gap: 15px;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
                 }
 
                 .tab-button {
-                    padding: 12px 24px;
+                    padding: 15px 30px;
                     font-size: 16px;
                     font-weight: 600;
-                    background: none;
-                    border: none;
+                    background-color: #f8f9fa;
+                    border: 2px solid #e9ecef;
                     color: #666;
                     cursor: pointer;
                     transition: all 0.3s ease;
                     position: relative;
-                    border-radius: 4px 4px 0 0;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 }
 
                 .tab-button:after {
@@ -610,20 +570,29 @@ export default function History() {
                     background-color: #FF7701;
                     transform: scaleX(0);
                     transition: transform 0.3s ease;
+                    border-radius: 0 0 6px 6px;
                 }
 
                 .tab-button.active {
-                    color: #FF7701;
-                    font-weight: 700;
+                    color: white;
+                    font-weight: 800;
+                    background-color: #FF7701;
+                    border: 2px solid #FF7701;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(255, 119, 1, 0.3);
                 }
 
                 .tab-button.active:after {
                     transform: scaleX(1);
+                    background-color: #FF5500;
                 }
 
                 .tab-button:hover {
                     color: #FF7701;
-                    background-color: rgba(255, 119, 1, 0.05);
+                    background-color: rgba(255, 119, 1, 0.1);
+                    border-color: #FF7701;
+                    transform: translateY(-1px);
+                    box-shadow: 0 3px 8px rgba(255, 119, 1, 0.2);
                 }
 
                 .tab-title {
@@ -654,7 +623,7 @@ export default function History() {
                 }
 
                 .value-icon {
-                    font-size: 28px;
+                    font-size: 32px;
                     color: #FF7701;
                     flex-shrink: 0;
                     width: 60px;
@@ -668,27 +637,30 @@ export default function History() {
                 }
 
                 .value-icon svg {
-                    width: 28px;
-                    height: 28px;
+                    width: 32px;
+                    height: 32px;
                 }
 
                 .check-icon {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 28px;
-                    height: 28px;
-                    background-color: #FF7701;
+                    width: 35px;
+                    height: 35px;
+                    background: linear-gradient(135deg, #FF7701, #FF5500);
                     color: white;
                     border-radius: 50%;
                     margin-right: 15px;
-                    font-size: 14px;
-                    box-shadow: 0 2px 5px rgba(255, 119, 1, 0.3);
+                    font-size: 18px;
+                    box-shadow: 0 3px 8px rgba(255, 119, 1, 0.4);
+                    flex-shrink: 0;
+                    border: 2px solid white;
                 }
 
                 .check-icon svg {
-                    width: 14px;
-                    height: 14px;
+                    width: 18px;
+                    height: 18px;
+                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
                 }
 
                 .vision-goals {
@@ -707,14 +679,22 @@ export default function History() {
                 }
 
                 .goal-icon {
-                    font-size: 36px;
+                    font-size: 40px;
                     color: #FF7701;
                     margin-bottom: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 60px;
+                    height: 60px;
+                    margin: 0 auto 15px;
+                    background-color: rgba(255, 119, 1, 0.1);
+                    border-radius: 50%;
                 }
 
                 .goal-icon svg {
-                    width: 36px;
-                    height: 36px;
+                    width: 40px;
+                    height: 40px;
                 }
 
                 .goal-text {
@@ -995,9 +975,15 @@ export default function History() {
                         margin-bottom: 15px;
                     }
 
+                    .stat-icon {
+                        width: 50px;
+                        height: 50px;
+                        font-size: 40px;
+                    }
+
                     .stat-icon svg {
-                        width: 30px;
-                        height: 30px;
+                        width: 40px;
+                        height: 40px;
                     }
                 }
 
@@ -1025,17 +1011,21 @@ export default function History() {
                     
                     .tab-navigation {
                         flex-direction: column;
-                        border-bottom: none;
+                        gap: 10px;
                     }
                     
                     .tab-button {
-                        border-bottom: 1px solid #eee;
-                        text-align: left;
-                        padding: 15px;
+                        text-align: center;
+                        padding: 12px 20px;
+                        margin-bottom: 10px;
                     }
                     
-                    .tab-button:after {
-                        display: none;
+                    .tab-button.active {
+                        transform: none;
+                    }
+                    
+                    .tab-button:hover {
+                        transform: none;
                     }
                     
                     .cta-buttons {
@@ -1055,12 +1045,14 @@ export default function History() {
                     }
 
                     .stat-icon {
-                        font-size: 28px;
+                        font-size: 36px;
+                        width: 45px;
+                        height: 45px;
                     }
 
                     .stat-icon svg {
-                        width: 28px;
-                        height: 28px;
+                        width: 36px;
+                        height: 36px;
                     }
 
                     .mission-list li {
@@ -1068,8 +1060,15 @@ export default function History() {
                     }
 
                     .check-icon {
-                        width: 24px;
-                        height: 24px;
+                        width: 30px;
+                        height: 30px;
+                        font-size: 15px;
+                        margin-right: 12px;
+                    }
+
+                    .check-icon svg {
+                        width: 15px;
+                        height: 15px;
                     }
 
                     .vision-goals {

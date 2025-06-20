@@ -13,11 +13,11 @@ export default function Info3() {
                                     <p className="font-sm color-grey-900 wow animate__animated animate__fadeIn">We are
                                         professional in ocean freight with more than 12 years of experience and have shipped
                                         more than 100k shipments.</p>
-                                    <div className="mt-30"><Link className="btn btn-link font-sm color-brand-2" href="#">View
+                                    <div className="mt-30"><a className="btn btn-link font-sm color-brand-2">View
                                         Details<span>
                                             <svg className="w-6 h-6 icon-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                            </svg></span></Link></div>
+                                            </svg></span></a></div>
                                 </div>
                             </div>
                         </div>

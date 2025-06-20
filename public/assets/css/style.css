@@ -3043,8 +3043,9 @@ iframe {
 }
 
 .box-bar {
-  padding: 13px 0px;
+  padding: 10px 0px;
   color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .box-bar .icon-socials {
   display: inline-block;
@@ -3063,25 +3064,36 @@ iframe {
 }
 
 .phone-icon {
-  display: inline-block;
-  padding: 0px 0px 0px 0px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 15px 8px 0;
   color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 25px;
 }
 .phone-icon svg {
   color: #FEC201;
   height: 16px;
-  margin-right: 10px;
+  width: 16px;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 
 .email-icon {
-  display: inline-block;
-  padding: 0px 0px 0px 0px;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 0;
   color: #fff;
+  text-decoration: none;
+  font-size: 14px;
 }
 .email-icon svg {
   color: #FEC201;
   height: 16px;
-  margin-right: 10px;
+  width: 16px;
+  margin-right: 8px;
+  flex-shrink: 0;
 }
 
 .header-style-2 .main-header .header-left .header-nav {
@@ -7586,18 +7598,25 @@ a.color-brand-2:hover {
     display: none;
   }
   .box-bar .phone-icon {
-    overflow: hidden;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px !important;
+    overflow: visible;
+    width: auto;
+    height: auto;
+    margin-right: 15px !important;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
   }
   .box-topbar-newsletter.box-bar .phone-icon, .box-topbar-newsletter.box-bar .email-icon {
     width: auto;
+    font-size: 12px;
   }
   .box-bar .email-icon {
-    overflow: hidden;
-    width: 20px;
-    height: 20px;
+    overflow: visible;
+    width: auto;
+    height: auto;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
   }
   .box-get-quote {
     flex-wrap: wrap;

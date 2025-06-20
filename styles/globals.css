@@ -29,7 +29,7 @@ body {
   line-height: 1.5;
   background-color: #ffffff;
   font-size: 16px;
-  overflow: clip; /* Restoring this from a previous state that didn't break the page */
+  overflow-x: hidden; /* Prevent horizontal scroll while allowing vertical scroll */
 }
 
 img {
@@ -80,6 +80,64 @@ img {
 /* Fix for mobile navigation */
 .mobile-menu-active {
   overflow: hidden;
+}
+
+/* AOS Animation Fixes - Prevent scrollbar issues */
+.aos-init {
+  pointer-events: none;
+}
+
+.aos-animate {
+  pointer-events: auto;
+}
+
+/* Prevent layout shifts during AOS animations */
+[data-aos] {
+  transition-property: transform, opacity !important;
+  will-change: transform, opacity;
+}
+
+/* Fix double scrollbar issues caused by animations */
+html.aos-animate {
+  overflow-x: hidden !important;
+}
+
+/* Stabilize animated elements to prevent layout jumps */
+.wow, [data-aos] {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Fix WOW.js conflicts - Make all WOW elements immediately visible */
+.wow {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  animation-fill-mode: none !important;
+}
+
+/* Override any problematic animate.css animations that cause layout shifts */
+.animate__animated {
+  animation-fill-mode: none !important;
+  animation-duration: 0s !important;
+}
+
+/* Prevent any layout shifts from fade animations */
+.animate__fadeIn,
+.animate__fadeInUp,
+.animate__fadeInDown,
+.animate__fadeInLeft,
+.animate__fadeInRight {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* Ensure stable layout during page load */
+.animate__animated.animate__fadeIn {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 .book-now-btn{
   border-radius: 10px;

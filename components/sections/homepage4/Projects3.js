@@ -12,11 +12,12 @@ export default function Projects3() {
                             <p className="font-md color-gray-700 wow animate__animated animate__fadeIn">Check out some of the
                                 projects we've completed with our amazing partners</p>
                         </div>
-                        <div className="col-lg-4 col-md-4 mb-30 text-md-end text-start"><Link className="btn btn-brand-1 hover-up" href="#"style={{backgroundColor:'orange'}}>
+                        <div className="col-lg-4 col-md-4 mb-30 text-md-end text-start"><a className="btn btn-brand-1 hover-up" style={{ backgroundColor: 'orange' }}>
+                            All Projects
                             <svg className="mr-10" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25">
                                 </path>
-                            </svg>View All Projects</Link></div>
+                            </svg></a></div>
                     </div>
                     <div className="mt-35">
                         <div className="box-swiper">

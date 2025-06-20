@@ -134,6 +134,7 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
                     position: relative;
                     width: 100%;
                     overflow-x: hidden;
+                    min-height: 100vh;
                 }
                 
                 .main {

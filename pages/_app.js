@@ -49,8 +49,39 @@ function MyApp({ Component, pageProps }) {
                 duration: 800,
                 once: true,
                 easing: 'ease-out-cubic',
-                offset: 100
+                offset: 100,
+                disable: 'mobile', // Disable on mobile to prevent scrollbar issues
+                debounceDelay: 50, // Throttle scroll events
+                throttleDelay: 99, // Throttle resize events
+                disableMutationObserver: false, // Keep mutation observer
+                useClassNames: false,
+                initClassName: 'aos-init',
+                animatedClassName: 'aos-animate'
             });
+
+            // Fix WOW.js conflicts - Convert WOW classes to AOS or make them immediately visible
+            setTimeout(() => {
+                const wowElements = document.querySelectorAll('.wow');
+                wowElements.forEach(element => {
+                    // Make WOW elements immediately visible to prevent layout issues
+                    element.style.visibility = 'visible';
+                    element.style.opacity = '1';
+                    element.style.transform = 'none';
+
+                    // Add AOS attributes for future animations
+                    if (!element.hasAttribute('data-aos')) {
+                        element.setAttribute('data-aos', 'fade-up');
+                        element.setAttribute('data-aos-duration', '600');
+                        element.setAttribute('data-aos-once', 'true');
+                    }
+
+                    // Remove conflicting WOW classes
+                    element.classList.remove('wow');
+                });
+
+                // Refresh AOS to pick up new elements
+                AOS.refresh();
+            }, 100);
             
             // Load premium buttons script
             const premiumButtonsScript = document.createElement('script');

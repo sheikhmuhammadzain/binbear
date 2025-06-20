@@ -1,5 +1,5 @@
 export default function Bgmap({ coordinates }) {
-    const defaultLocation = "37.15364135542302,-83.76408938441998"; // Latitude, Longitude
+    const defaultLocation = "33.155373,-96.818733"; // Latitude, Longitude
     const location = coordinates || defaultLocation;
     
     // Split the location into latitude and longitude

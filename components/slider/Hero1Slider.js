@@ -30,10 +30,10 @@ export default function Hero1Slider() {
                             <div className="row align-items-center">
                                 <div className="col-lg-12">
                                     <div className="banner-premium-content" data-aos="fade-up">
-                                        <span className="banner-premium-badge">Junk Removal Solutions</span>
-                                        <h1 className="banner-premium-title">Click Schedule Pickup Junk Removal Made Effortless In 3 Steps!</h1>
+                                        <span className="banner-premium-badge">BinBear Junk Removal</span>
+                                        <h1 className="banner-premium-title">Fast, Reliable, and Affordable Junk Removal</h1>
                                         <p className="banner-premium-text">
-                                            At BinBear, we make junk removal effortless. Whether it's a single item or a full property cleanout, binbear is here to handle every step!
+                                            We are here to help you get rid of your junk. No job is too big or too small for our team of experts.
                                         </p>
                                         <div className="banner-premium-buttons">
                                             <Link className="btn-premium btn-premium-primary" href="/Booking">
@@ -63,10 +63,10 @@ export default function Hero1Slider() {
                             <div className="row align-items-center">
                                 <div className="col-lg-12">
                                     <div className="banner-premium-content" data-aos="fade-up">
-                                        <span className="banner-premium-badge">Junk Removal Solutions</span>
-                                        <h1 className="banner-premium-title">Click Schedule Pickup Junk Removal Made Effortless In 3 Steps!</h1>
+                                        <span className="banner-premium-badge">BinBear Junk Removal</span>
+                                        <h1 className="banner-premium-title">Fast, Reliable, and Affordable Junk Removal</h1>
                                         <p className="banner-premium-text">
-                                            At BinBear, we make junk removal effortless. Whether it's a single item or a full property cleanout, binbear is here to handle every step!
+                                            We are here to help you get rid of your junk. No job is too big or too small for our team of experts.
                                         </p>
                                         <div className="banner-premium-buttons">
                                             <Link className="btn-premium btn-premium-primary" href="/Booking">

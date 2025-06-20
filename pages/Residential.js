@@ -22,17 +22,17 @@ export default function WorkProcess() {
                 <section className="section d-block position-relative">
                     <div className="   banner-howitwork   ">
                         <div className="container">
-                            <div className="box-info-trackyourparcel"><img className="mb-1 wow animate__animated animate__fadeIn" src="/img/bear.png.png"style={{height:'60px'}} alt="transp" />
+                            <div className="box-info-trackyourparcel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}><img className="mb-1 wow animate__animated animate__fadeIn" src="/img/bear.png.png" style={{ height: '60px' }} alt="transp" />
                                 
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" }}
->BinBear Full-Service Junk Removal: Texas’ #1 Junk Company
+                                    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center", marginTop: '20px' }}
+                                >BinBear Full-Service Junk Removal: Texas' #1 Junk Company
 </h3>
                  
                                            
    <p className="color-grey-700 font-md wow animate__animated animate__fadeIn"
-      style={{ marginTop: '20px',  }}>
+                                    style={{ marginTop: '20px', textAlign: 'center' }}>
       At BinBear Junk Removal, we pride ourselves on being the top-rated junk removal service in the state. We offer:
    </p>
 
@@ -50,7 +50,7 @@ export default function WorkProcess() {
                                         <div className="info-play wow animate__animated animate__fadeIn">
                                             <h4 className="color-white mb-15"></h4>
                                             
-                                            <p className="font-sm color-white">Our team provides a professional level of service that’s unmatched in the industry. We’re so confident in our service that we guarantee to meet or beat any written estimate</p>
+                                            <p className="font-sm color-white">Our team provides a professional level of service that's unmatched in the industry. We're so confident in our service that we guarantee to meet or beat any written estimate</p>
                                            
 
                                             <p className="font-sm color-white"> From garage cleanouts to major construction debris removal, BinBear handles jobs of every size. When you choose us, you can expect friendly, professional service aimed at making your life easier with fast, reliable junk removal.</p>
@@ -110,15 +110,18 @@ export default function WorkProcess() {
                 </section>
                 <section className="section mt-0">
                     <div className="container">
-                        <div className="text-center"><img className="mb-15 wow animate__animated animate__fadeIn" src="/img/bear.png.png" alt="transp"style={{height:'60px'}} />
-                                 
-                        <h3
-    className="wow animate__animated animate__fadeIn responsive-heading"
-    style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
->Our Process
-</h3>
-                 
-                               </div>
+                        <div className="text-center" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <img className="mb-15 wow animate__animated animate__fadeIn" src="/img/bear.png.png" alt="transp" style={{ height: '60px' }} />
+                            <h3
+                                className="wow animate__animated animate__fadeIn responsive-heading"
+                                style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center", marginBlock: '30px' }}
+                            >
+                                Our Process
+                            </h3>
+                            <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginTop: '0px', marginBottom: '20px', textAlign: 'center' }}>
+                                We have simplified our process to make your junk removal experience seamless and hassle-free.
+                            </p>
+                        </div>
                     </div>
                 </section>
                 <section className="section mt-0">
@@ -133,7 +136,7 @@ export default function WorkProcess() {
 >What is Junk Removal?
 </h3>    
                                 
-                                      <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"style={{marginBottom:'20px'}}>Junk removal is an on-demand service for disposing of nearly any type of waste from your home or business. BinBear hauls away large items like furniture and appliances, handles full home cleanouts, provides light demolition in many areas, and clears construction debris from real estate cleanouts. Whether it’s an old couch or piles of post-renovation debris, BinBear can take it (just no hazardous waste)..</p>
+                                <p className="font-md color-grey-700 wow animate__animated animate__fadeIn" style={{ marginBottom: '20px' }}>Junk removal is an on-demand service for disposing of nearly any type of waste from your home or business. BinBear hauls away large items like furniture and appliances, handles full home cleanouts, provides light demolition in many areas, and clears construction debris from real estate cleanouts. Whether it's an old couch or piles of post-renovation debris, BinBear can take it (just no hazardous waste)..</p>
                                <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"style={{marginTop:'20px'}}>Simply make an appointment, and our team will show up on time in our recognizable trucks, ready to clear your space!</p>
                                
                                 
@@ -149,7 +152,7 @@ export default function WorkProcess() {
                             <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
     style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center", marginBlock:'30px' }}
->BinBear’s Approach to Junk Removal
+                                >BinBear's Approach to Junk Removal
 </h3>    
                                 
                                 
@@ -271,7 +274,7 @@ export default function WorkProcess() {
                        
                                 
                                 
-                                     <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">Junk removal is an on-demand service for disposing of nearly any type of waste from your home or business. BinBear hauls away large items like furniture and appliances, handles full home cleanouts, provides light demolition in many areas, and clears construction debris from real estate cleanouts. Whether it’s an old couch or piles of post-renovation debris, BinBear can take it (just no hazardous waste)..</p>
+                                <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">Junk removal is an on-demand service for disposing of nearly any type of waste from your home or business. BinBear hauls away large items like furniture and appliances, handles full home cleanouts, provides light demolition in many areas, and clears construction debris from real estate cleanouts. Whether it's an old couch or piles of post-renovation debris, BinBear can take it (just no hazardous waste)..</p>
                                
                          <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"style={{marginTop:'20px'}}>Simply make an appointment, and our team will show up on time in our recognizable trucks, ready to clear your space!</p>      
                                 
@@ -340,7 +343,7 @@ export default function WorkProcess() {
     style={{ backgroundColor: "#FF7701", color: "white", padding: "15px", borderRadius: "5px", width: "fit-content", textAlign: "center" , marginBlock:'30px'}}
 >What Makes BinBear Different 
 </h3>   
-                                  <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">BinBear has earned its #1 rating by offering exceptional customer service. Our team of friendly professionals is trained, uniformed, licensed, and insured, equipped with vehicles built for efficient junk removal. You’ll notice the BinBear difference as our crew handles everything with care and courtesy.</p>
+                                    <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">BinBear has earned its #1 rating by offering exceptional customer service. Our team of friendly professionals is trained, uniformed, licensed, and insured, equipped with vehicles built for efficient junk removal. You'll notice the BinBear difference as our crew handles everything with care and courtesy.</p>
                                
                          <p className="font-md color-grey-700 wow animate__animated animate__fadeIn"style={{marginTop:'20px'}}></p>      
                                 
@@ -398,16 +401,16 @@ export default function WorkProcess() {
                    <div className="row align-items-end">
                        <div className="col-lg-8 col-md-8 mb-30">
                       
-                           <p className="font-md color-gray-700 wow animate__animated animate__fadeIn">Our residential junk removal service is the ideal solution for homeowners and tenants looking to clear clutter and reclaim space. With BinBear, you’ll get prompt, dependable service—no need to wait around all day.
+                                <p className="font-md color-gray-700 wow animate__animated animate__fadeIn">Our residential junk removal service is the ideal solution for homeowners and tenants looking to clear clutter and reclaim space. With BinBear, you'll get prompt, dependable service—no need to wait around all day.
 
-Customers love BinBear because we’re fast, professional, and eco-friendly. We recycle more than our competitors, providing a green junk removal option you can feel good about.
+                                    Customers love BinBear because we're fast, professional, and eco-friendly. We recycle more than our competitors, providing a green junk removal option you can feel good about.
 
                               </p>
                        </div>
                        
                     
                        <p style={{marginTop:'30px'}}>
-                       Junk doesn’t have to end up in a landfill. BinBear believes in recycling every possible material, and we donate usable items to local charities. Your unwanted furniture or electronics could make 
+                                Junk doesn't have to end up in a landfill. BinBear believes in recycling every possible material, and we donate usable items to local charities. Your unwanted furniture or electronics could make 
                        </p>
                        <p style={{marginTop:'10px'}}>a difference for someone else!</p>
                    </div>
@@ -453,7 +456,7 @@ Customers love BinBear because we’re fast, professional, and eco-friendly. We 
                                    
                                    <div className="card-info">
                                        <h5 className="color- mb-15"style={{color:'#FF7701'}}>House Cleanouts</h5>
-                                       <p className="font-sm color-white-900 mb-35">Moving, spring cleaning, or clearing out a space? We’re here to help.
+                                            <p className="font-sm color-white-900 mb-35">Moving, spring cleaning, or clearing out a space? We're here to help.
 
                                        </p>
                                       
@@ -569,7 +572,7 @@ Customers love BinBear because we’re fast, professional, and eco-friendly. We 
       
                                    <div className="card-info" >
                                        <h5 className="color- mb-15"style={{color:'#FF7701'}}>DIY Construction Debris</h5>
-                                       <p className="font-sm color-white-900 mb-35">Don’t let leftover debris from your home projects clutter up your space. We’ll recycle it for you.</p>
+                                            <p className="font-sm color-white-900 mb-35">Don't let leftover debris from your home projects clutter up your space. We'll recycle it for you.</p>
                                       
                                    </div>
                                </div>
@@ -713,7 +716,7 @@ Customers love BinBear because we’re fast, professional, and eco-friendly. We 
                                   
                                    <div className="card-info">
                                        <h5 className="color- mb-15"style={{color:'#FF7701'}}>Scrap Metal Recycling</h5>
-                                       <p className="font-sm color-white-900 mb-60">Don’t send metal to the landfill. BinBear ensures scrap metals are recycled properly.
+                                            <p className="font-sm color-white-900 mb-60">Don't send metal to the landfill. BinBear ensures scrap metals are recycled properly.
                                        </p>
                                        
                                    </div>
@@ -806,7 +809,7 @@ Customers love BinBear because we’re fast, professional, and eco-friendly. We 
                                   
                                    <div className="card-info">
                                        <h5 className="color- mb-15"style={{color:'#FF7701'}}>Yard Waste Disposal</h5>
-                                       <p className="font-sm color-white-900 mb-60">Created a pile of yard debris? We’ll haul it away so you don’t have to.
+                                            <p className="font-sm color-white-900 mb-60">Created a pile of yard debris? We'll haul it away so you don't have to.
                                        </p>
                                        
                                    </div>
@@ -863,7 +866,7 @@ Customers love BinBear because we’re fast, professional, and eco-friendly. We 
 
 
                                                    <h5 className="color-black mb-15">Eco-Friendly Practices</h5>
-                                                   <p className="font-sm color-grey-900">We’re committed to green practices, recycling materials whenever possible to minimize landfill waste.</p>
+                                                    <p className="font-sm color-grey-900">We're committed to green practices, recycling materials whenever possible to minimize landfill waste.</p>
                                                </div>
                                            </div>
                                        </div>
@@ -890,7 +893,7 @@ Customers love BinBear because we’re fast, professional, and eco-friendly. We 
                                    
                                  
                                    <p className="font-md color-grey-900">
-With BinBear, you get more than just junk removal—you get a reliable, green-focused service that cares about your community and the environment. Whether it’s a one-time cleanout or an ongoing partnership, BinBear is here to make junk removal easy, affordable, and eco-friendly.
+                                        With BinBear, you get more than just junk removal—you get a reliable, green-focused service that cares about your community and the environment. Whether it's a one-time cleanout or an ongoing partnership, BinBear is here to make junk removal easy, affordable, and eco-friendly.
 </p>
                                    <div className="mt-30">
                                       <p>

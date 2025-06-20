@@ -17,12 +17,19 @@ export default function Hero4() {
                                 <div className="row">
                                     <div className="col-lg-9">
                                         <p className="font-md color-white mb-20 wow animate__animated animate__fadeIn">Our
-                                            experienced team of problem solvers and a commitment to always align with<br className="d-none d-lg-block wow animate__animated animate__fadeIn" />our client’s
+                                            experienced team of problem solvers and a commitment to always align with<br className="d-none d-lg-block wow animate__animated animate__fadeIn" />our client's
                                             business goals and objectives is what drives mutual success.</p>
                                     </div>
                                 </div>
                                
-                                <div className="box-button mt-30"><a className="btn btn-brand-1-big hover-up mr-40 wow animate__animated animate__fadeIn" href="#"style={{backgroundColor:'orange'}}>Free Estimate</a>        </div>
+                                <div className="box-button mt-30">
+                                    <div className="box-search-2">
+                                        <div className="form-search d-flex">
+                                            <input className="form-control" defaultValue="Enter your postcode" />
+                                            <a className="btn btn-brand-1-big wow animate__animated animate__fadeIn" style={{ backgroundColor: 'orange' }}>Free Estimate</a>
+                                        </div>
+                                    </div>
+                                </div>
                               
                                 
                     
