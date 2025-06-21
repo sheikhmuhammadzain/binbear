@@ -20,7 +20,7 @@ function ConstructionCleanup() {
           <h1 className="main-title">By Items or Pickup Truck Loads?</h1>
           <div className="location">
             <HiLocationMarker size={18} className="location-pin" /> 
-            <span>Junk King Macon (31217)</span>
+            <span>BinBear Macon (31217)</span>
           </div>
         </div>
         

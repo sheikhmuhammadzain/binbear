@@ -87,12 +87,12 @@ export default function TruckLoadEstimate() {
                             ←
                             </button>
                         <h2 style={{ margin: 0, textAlign: "center", fontSize: "20px" }}>How Many Loads?</h2>
-                        <p style={{ margin: "5px 0 0 0", fontSize: "12px", textAlign: "center" }}>Junk King North Texas (75056)</p>
+                        <p style={{ margin: "5px 0 0 0", fontSize: "12px", textAlign: "center" }}>BinBear North Texas (75056)</p>
                         </div>
 
                     {/* Context Text */}
                     <div style={{ textAlign: "center", marginBottom: "12px", color: "#666", fontSize: "12px" }}>
-                        <p>*1 Junk King Truck = 6 Regular Pickup Truck Loads</p>
+                        <p>*1 BinBear Truck = 6 Regular Pickup Truck Loads</p>
                     </div>
 
                     {/* Truck Selection */}
@@ -239,7 +239,7 @@ export default function TruckLoadEstimate() {
                             fontWeight: "bold",
                             fontSize: "14px"
                         }}>
-                            {Math.round(fillPercentage)}% FULL JUNK KING TRUCK
+                            {Math.round(fillPercentage)}% FULL BinBear TRUCK
                         </p>
                 </div>
 

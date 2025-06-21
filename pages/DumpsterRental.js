@@ -79,7 +79,7 @@ export default function DumpsterRental() {
                         >
                             <h5 style={{marginBottom:'30px'}}>Review Our Terms and Conditions</h5>
                             <p style={{color:'grey'}}>
-                               Due to BedLoad/weight limitation we reserve the right to not accept concrete ,dirt and gravel in the junk King Dumpster.These type of material can be damaging to not only our dumpster but to our trucks therefore
+                                Due to BedLoad/weight limitation we reserve the right to not accept concrete ,dirt and gravel in the BinBear Dumpster.These type of material can be damaging to not only our dumpster but to our trucks therefore
                             they are not allowed.See full term and conditions for more information.
                             </p>
                             <button

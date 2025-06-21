@@ -581,7 +581,7 @@ Our pricing estimator even allows you to estimate based on the space your junk w
 <h3
     className="wow animate__animated animate__fadeIn responsive-heading"
     style={{ backgroundColor: "#FF7701", color: "white", padding: "15px",marginTop:'10px', borderRadius: "5px",marginBottom:'10px', width: "fit-content", textAlign: "center" }}
->Why Choose Junk King?
+                            >Why Choose BinBear?
 </h3> 
       
                              <p className="font-md color-grey-700 mb-35 wow animate__animated animate__fadeIn"style={{marginTop:'30px'}}>When you book with BinBear, you’re choosing convenience, professionalism, and eco-conscious service. Here’s why we’re the #1 choice for junk removal: <br className="d-none d-lg-block" /><br className="d-none d-lg-block" /></p>
