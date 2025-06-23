@@ -98,7 +98,7 @@ export default function TruckLoadEstimate() {
                     {/* Truck Selection */}
                     <div className="truck-selection" style={{
                         display: "flex",
-                        justifyContent: "space-around",
+                        justifyContent: "center",
                         marginBottom: "25px",
                         flexWrap: "wrap",
                         gap: "15px"
@@ -113,10 +113,22 @@ export default function TruckLoadEstimate() {
                             borderRadius: "8px",
                             padding: "15px",
                             boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                            backgroundColor: "white"
+                            backgroundColor: "white",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center"
                         }}>
-                            <FaTruck size={70} color="#FF7701" />
-                            <p style={{ margin: "8px 0", fontSize: "14px" }}>Full Pickup Truck Load(s)</p>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                marginBottom: "8px",
+                                width: "100%"
+                            }}>
+                                <FaTruck size={70} color="#FF7701" />
+                            </div>
+                            <p style={{ margin: "8px 0", fontSize: "14px", textAlign: "center" }}>Full Pickup Truck Load(s)</p>
                             <div style={{
                                 display: "flex",
                                 alignItems: "center",

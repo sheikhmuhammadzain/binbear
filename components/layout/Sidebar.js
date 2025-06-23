@@ -59,9 +59,34 @@ const Sidebar = ({ hideBookNow, handleMobileMenuClose }) => {
                                                 <i className="fi-rr-angle-small-down"></i>
                                             </span>
                                             <Link href="#" className="active">
-                                                What we do
+                                                What We Do
                                             </Link>
                                             <ul className={isActive.key == 1 ? "sidebar-submenu d-block" : "sidebar-submenu d-none"}>
+                                                <li>
+                                                    <Link href="/Item-we-take" className="sidebar-menu-link">
+                                                        Items we take
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href="/history" className="sidebar-menu-link">
+                                                        Quick Junk Removal History
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link href="/Recycle" className="sidebar-menu-link">
+                                                        We Recycle
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li className={isActive.key == 2 ? "active" : ""}>
+                                            <span onClick={() => handleToggle(2)} className="menu-expand">
+                                                <i className="fi-rr-angle-small-down"></i>
+                                            </span>
+                                            <Link href="#" className="active">
+                                                How It Works
+                                            </Link>
+                                            <ul className={isActive.key == 2 ? "sidebar-submenu d-block" : "sidebar-submenu d-none"}>
                                                 <li>
                                                     <Link href="/Residential" className="sidebar-menu-link">
                                                         Residential
@@ -73,43 +98,8 @@ const Sidebar = ({ hideBookNow, handleMobileMenuClose }) => {
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/Item-we-take" className="sidebar-menu-link">
-                                                        Items We Take
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/Dumpster-Rental" className="sidebar-menu-link">
-                                                        Dumpster Rental
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/history" className="sidebar-menu-link">
-                                                        Our History
-                                                    </Link>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li className={isActive.key == 2 ? "active" : ""}>
-                                            <span onClick={() => handleToggle(2)} className="menu-expand">
-                                                <i className="fi-rr-angle-small-down"></i>
-                                            </span>
-                                            <Link href="#" className="active">
-                                                How it works
-                                            </Link>
-                                            <ul className={isActive.key == 2 ? "sidebar-submenu d-block" : "sidebar-submenu d-none"}>
-                                                <li>
-                                                    <Link href="/how-it-works" className="sidebar-menu-link">
-                                                        Process
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/faq" className="sidebar-menu-link">
-                                                        FAQ
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link href="/testimonials" className="sidebar-menu-link">
-                                                        Testimonials
+                                                    <Link href="/Estimateprice" className="sidebar-menu-link">
+                                                        Estimate Pricing
                                                     </Link>
                                                 </li>
                                             </ul>
@@ -123,42 +113,23 @@ const Sidebar = ({ hideBookNow, handleMobileMenuClose }) => {
                                             </Link>
                                             <ul className={isActive.key == 3 ? "sidebar-submenu d-block" : "sidebar-submenu d-none"}>
                                                 <li>
-                                                    <Link href="/pricing/residential" className="sidebar-menu-link">
-                                                        Residential Pricing
+                                                    <Link href="/Estimateprice" className="sidebar-menu-link">
+                                                        Book Online
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/pricing/commercial" className="sidebar-menu-link">
-                                                        Commercial Pricing
+                                                    <Link href="/jk-removal-price" className="sidebar-menu-link">
+                                                        Junk Removal
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <Link href="/pricing/custom" className="sidebar-menu-link">
-                                                        Custom Quote
+                                                    <Link href="/Dumpster-Rental" className="sidebar-menu-link">
+                                                        Dumpster Rental
                                                     </Link>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li>
-                                            <Link href="/blog" className="sidebar-menu-link">
-                                                Blog
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/about" className="sidebar-menu-link">
-                                                About
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/contact" className="sidebar-menu-link">
-                                                Contact
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link href="/login" className="sidebar-menu-link">
-                                                Login
-                                            </Link>
-                                        </li>
+
                                     </ul>
                                 </nav>
                             </div>

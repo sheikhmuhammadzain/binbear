@@ -38,7 +38,7 @@ export default function DumpsterRental() {
                             description: 'Good for small projects, renovation debris, or yard waste',
                             dimensions: '12ft L x 8ft W x 3.5ft H',
                             price: `$${smallPrice}`,
-                            image: 'img/dustbin.png'
+                            image: '/img/dustbin.png'
                         },
                         {
                             id: 'medium',
@@ -46,7 +46,7 @@ export default function DumpsterRental() {
                             description: 'Perfect for home remodels, larger cleanouts, or construction projects',
                             dimensions: '16ft L x 8ft W x 4.5ft H',
                             price: `$${mediumPrice}`,
-                            image: 'img/dustbin.png'
+                            image: '/img/dustbin.png'
                         },
                         {
                             id: 'large',
@@ -54,7 +54,7 @@ export default function DumpsterRental() {
                             description: 'Ideal for major renovations, new construction, or commercial projects',
                             dimensions: '20ft L x 8ft W x 5.5ft H',
                             price: `$${largePrice}`,
-                            image: 'img/dustbin.png'
+                            image: '/img/dustbin.png'
                         }
                     ])
                 } else {
@@ -214,15 +214,15 @@ export default function DumpsterRental() {
                 
                 {/* Navigation Buttons */}
                 <div className="button-container">
-                    <button className="back-button" onClick={() => router.back()}>
-                        ← Back
-                    </button>
                     <button 
                         className={`next-button ${(!selectedSize || !selectedDate || !selectedTime) ? 'disabled' : ''}`}
                         onClick={handleNext}
                         disabled={!selectedSize || !selectedDate || !selectedTime}
                     >
                         Next →
+                    </button>
+                    <button className="back-button" onClick={() => router.back()}>
+                        ← Back
                     </button>
                 </div>
             </div>
@@ -443,7 +443,8 @@ export default function DumpsterRental() {
                 
                 .button-container {
                     display: flex;
-                    justify-content: space-between;
+                    flex-direction: column;
+                    gap: 15px;
                     margin-top: 40px;
                 }
                 

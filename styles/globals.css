@@ -30,6 +30,26 @@ body {
   background-color: #ffffff;
   font-size: 16px;
   overflow-x: hidden; /* Prevent horizontal scroll while allowing vertical scroll */
+  max-width: 100%;
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for the main html element as well */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 img {
@@ -75,6 +95,73 @@ img {
   margin-right: -15px;
   margin-left: -15px;
   flex-wrap: wrap;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Additional Swiper overflow fixes */
+.swiper,
+.swiper-container {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+.swiper-wrapper {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.swiper-slide {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Prevent any section from causing horizontal overflow */
+section {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Specific fix for hero section */
+.hero-premium {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.banner-premium {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Hide scrollbars globally while maintaining scroll functionality */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Ensure main wrapper doesn't show scrollbars */
+#wrapper {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars for any potential containers */
+.main, .site-content {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main::-webkit-scrollbar, 
+.site-content::-webkit-scrollbar {
+  display: none;
 }
 
 /* Fix for mobile navigation */

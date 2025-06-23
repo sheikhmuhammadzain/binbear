@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-export default function BookNowButton() {
+export default function BookNowButton({ hideBookNow }) {
     const [hasScrolled, setHasScrolled] = useState(false);
+    const [shouldHide, setShouldHide] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         const onScroll = () => {
@@ -19,9 +22,34 @@ export default function BookNowButton() {
         };
     }, [hasScrolled]);
 
+    useEffect(() => {
+        // Check if user has entered zip code
+        const hasEnteredZip = sessionStorage.getItem('hasEnteredZip');
+
+        // Pages where the sticky button should be hidden
+        const hideOnPages = [
+            '/item-estimate',
+            '/Booking',
+            '/choose-service',
+            '/item-selection',
+            '/construction-cleanup',
+            '/truck-load-estimate',
+            '/price-estimate',
+            '/BookingConfirmationPage',
+            '/FinalBooking',
+            '/Estimate'
+        ];
+
+        const shouldHideButton = hideOnPages.includes(router.pathname) ||
+            hideBookNow ||
+            hasEnteredZip === 'true';
+
+        setShouldHide(shouldHideButton);
+    }, [router.pathname, hideBookNow]);
+
     return (
         <>
-            {hasScrolled && (
+            {hasScrolled && !shouldHide && (
                 <div className="sticky-container">
                     {/* Image Above the Button - REMOVED */}
                     {/* <div className=\"image-container\">

@@ -12,7 +12,6 @@ export default function Home() {
             <Layout headerStyle={1} footerStyle={1} headTitle="BinBear - Junk Removal & Waste Management">
                 <Hero1 />
                 <Howitwork1 />
-                <Faqs1 />
                 <Cta1 />
                 <Bgmap />
             </Layout>

@@ -88,45 +88,45 @@ export default function Quote() {
             <Layout>
 
           <style jsx>{`
-                .gradient-button {
-                    font-size: 13px;
-                    color: white;
-                    padding: 12px 24px;
-                    border: none;
-                    background: linear-gradient(45deg, #FF7F00, black);
-                    cursor: pointer;
-                    transition: 0.3s;
-                    box-shadow: 0 4px 10px rgba(255, 165, 0, 0.5);
+      .gradient-button {
+            font-size: 13px;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            background: linear-gradient(45deg, #FF7F00, black);
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 165, 0, 0.5);
                     border-radius: 5px;
-                }
+        }
 
-                .gradient-button:hover {
-                    transform: scale(1.05);
-                    box-shadow: 0 6px 15px rgba(255, 165, 0, 0.7);
-                }
+        .gradient-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 165, 0, 0.7);
+        }
 
-                .responsive-margin {
+.responsive-margin {
                     margin-left: 12px;
-                }
+}
 
-                @media (max-width: 576px) {
-                    .responsive-margin {
+@media (max-width: 576px) {
+  .responsive-margin {
                         margin-left: 5px;
-                    }
-                }
+  }
+}
 
-                .responsive-btn {
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 10px 20px;
-                    font-size: 16px;
-                    border-radius: 5px;
-                    background-color: orange;
-                }
+.responsive-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: orange;
+}
 
-                @media (max-width: 576px) {
-                    .responsive-btn {
+@media (max-width: 576px) {
+  .responsive-btn {
                         width: 100%;
                     }
                 }
@@ -385,7 +385,7 @@ export default function Quote() {
                   fontSize: "28px"
                 }}>
                   Types of Commercial Junk Removal Services
-                </h2>
+                </h2>   
               </div>
 
               <div className="row card-grid">
@@ -395,14 +395,14 @@ export default function Quote() {
                               onClick={() => handleCardClick(index)}>
                               <div className="cardImage wow animate__animated animate__fadeIn">
                                 <img src={card.image} alt={card.title} style={{ width: "100%", height: "250px", objectFit: "cover" }} />
-                              </div>
-                              <div className="cardInfo wow animate__animated animate__fadeIn">
+                </div>
+                <div className="cardInfo wow animate__animated animate__fadeIn">
                                 <h6 className="color-black mb-15">{card.title}</h6>
-                                <p className="font-xs color-grey-900">{card.description}</p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
+                  <p className="font-xs color-grey-900">{card.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
               </div>
             </div>
           </section>
@@ -420,7 +420,7 @@ export default function Quote() {
                   fontSize: "24px"
                 }}>
                   Benefits of Outsourcing Your Commercial Junk Removal to BinBear
-                </h3>
+                </h3>   
               </div>
 
               <div className="row mt-50 align-items-center">
@@ -528,7 +528,7 @@ export default function Quote() {
                     marginBottom: "30px"
                   }}>
                     BinBear: A Green Approach to Commercial Junk Removal
-                  </h3>
+                  </h3>   
                   <p className="font-md color-grey-700 wow animate__animated animate__fadeIn">
                     BinBear is committed to eco-friendly practices, leading the way with recycling-based junk removal. We sort each load to separate metals, electronics, paper, and more, aiming to recycle or repurpose as much as possible. Usable items are donated to local charities, helping reduce landfill waste while benefiting the community.
                   </p>
@@ -552,7 +552,7 @@ export default function Quote() {
                     marginBottom: "30px"
                   }}>
                     Ready for Commercial Junk Removal?
-                  </h3>
+                  </h3>   
                   <p className="font-md color-grey-700 wow animate__animated animate__fadeIn mb-30">
                     Getting started with BinBear is easy. Just follow these steps:
                   </p>
@@ -623,7 +623,7 @@ export default function Quote() {
                   fontSize: "24px"
                 }}>
                   Our Comprehensive Junk Removal Services
-                </h3>
+                </h3>   
                 <p className="font-md color-gray-700 wow animate__animated animate__fadeIn mb-40">
                   In addition to commercial junk removal, BinBear specializes in:
                 </p>
@@ -671,7 +671,7 @@ export default function Quote() {
                         backgroundImage: "url('/assets/imgs/page/workprocess/background.png')",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
-                        color: "white",
+                        color: "white", 
                                   padding: "30px",
                                   borderRadius: "15px",
                                   height: "200px",
@@ -679,7 +679,7 @@ export default function Quote() {
                                   flexDirection: "column",
                                   justifyContent: "space-between"
                                 }}>
-                                  <div className="card-info">
+                        <div className="card-info">
                                     <h5 className="color-white mb-15" style={{ fontSize: "18px", fontWeight: "bold" }}>
                                       {service.title}
                                     </h5>
@@ -687,11 +687,11 @@ export default function Quote() {
                                       {service.description}
                                     </p>
                                     <div className="box-button-offer">
-                                      <button className="gradient-button">View Details</button>
-                                    </div>
-                                  </div>
+                            <button className="gradient-button">View Details</button>
+                          </div>
+                        </div>
                                 </div>
-                              </div>
+                    </div>
                             ))}
                         </div>
                     </div>

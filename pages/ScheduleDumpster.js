@@ -356,7 +356,7 @@ export default function ScheduleDumpster() {
                     }}
                 >
                     {/* First Name and Address */}
-                    <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+                    <div className="form-row">
                         <div style={{ flex: 1 }}>
                             <input
                                 type="text"
@@ -457,7 +457,7 @@ export default function ScheduleDumpster() {
                     </div>
 
                     {/* Email and Phone Number */}
-                    <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+                    <div className="form-row">
                         <div style={{ flex: 1 }}>
                             <input
                                 type="email"
@@ -495,7 +495,7 @@ export default function ScheduleDumpster() {
                     </div>
 
                     {/* Date and Time Picker */}
-                    <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+                    <div className="form-row">
                         <div style={{ flex: 1 }}>
                             <input
                                 type="date"
@@ -713,6 +713,27 @@ export default function ScheduleDumpster() {
                     ← Back
                 </button>
             </div>
+            <style jsx>{`
+                .form-row {
+                    display: flex;
+                    gap: 15px;
+                    margin-bottom: 20px;
+                }
+
+                @media (max-width: 640px) {
+                    .form-row {
+                        flex-direction: column;
+                        gap: 0;
+                        margin-bottom: 0;
+                    }
+                    .form-row > div {
+                        margin-bottom: 20px;
+                    }
+                    .form-row:last-of-type > div:last-of-type {
+                        margin-bottom: 0;
+                    }
+                }
+            `}</style>
         </Layout>
     );
 }

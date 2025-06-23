@@ -368,7 +368,7 @@ const ItemSelection = () => {
                         <p className="cta-note">* excludes jobs $99 and under</p>
                     </div>
                     <div className="cta-buttons">
-                         <button onClick={handleBookNow} className="cta-btn book-now-btn">
+                         <button onClick={handleBookNow} className="cta-btn book-now-btn" style={{backgroundColor:'black',color:'white'}}>
                              Book Now
                          </button>
                         <Link href="/pickup" className="cta-btn pick-up-btn">

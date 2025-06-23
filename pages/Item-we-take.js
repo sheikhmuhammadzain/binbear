@@ -288,12 +288,36 @@ export default function ServiceDetail() {
                         </div>
                         
                         <div className="cta-container text-center mt-5 wow animate__animated animate__fadeIn">
-                            <Link href="/contact" className="btn-primary">
+                            <Link href="/contact" style={{
+                                display: 'inline-block',
+                                background: '#FF7701',
+                                color: 'white',
+                                fontSize: '18px',
+                                fontWeight: '700',
+                                padding: '16px 35px',
+                                borderRadius: '8px',
+                                textDecoration: 'none',
+                                border: 'none',
+                                boxShadow: '0 4px 15px rgba(255, 119, 1, 0.3)',
+                                transition: 'all 0.3s ease',
+                                marginRight: '20px'
+                            }}>
                                 Get Your Free Estimate
                             </Link>
-                            <Link href="/pricing" className="btn-secondary ml-3">
+                            <Link href="/pricing" style={{
+                                display: 'inline-block',
+                                background: 'transparent',
+                                color: '#FF7701',
+                                fontSize: '18px',
+                                fontWeight: '700',
+                                padding: '14px 33px',
+                                borderRadius: '8px',
+                                border: '2px solid #FF7701',
+                                textDecoration: 'none',
+                                transition: 'all 0.3s ease'
+                            }}>
                                 View Our Pricing
-                                </Link>
+                            </Link>
                         </div>
                     </div>
                 </section>
@@ -634,37 +658,43 @@ export default function ServiceDetail() {
                     display: inline-block;
                     background: #FF7701;
                     color: white;
-                    font-size: 16px;
-                    font-weight: 600;
-                    padding: 14px 30px;
-                    border-radius: 50px;
+                    font-size: 18px;
+                    font-weight: 700;
+                    padding: 16px 35px;
+                    border-radius: 8px;
                     text-decoration: none;
+                    border: none;
+                    box-shadow: 0 4px 15px rgba(255, 119, 1, 0.3);
                     transition: all 0.3s ease;
                 }
                 
                 .btn-primary:hover {
                     background: #FF5500;
-                    transform: translateY(-3px);
-                    box-shadow: 0 5px 15px rgba(255, 119, 1, 0.3);
-                    }
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 20px rgba(255, 119, 1, 0.4);
+                    color: white;
+                    text-decoration: none;
+                }
 
                 .btn-secondary {
                     display: inline-block;
-                    background: white;
+                    background: transparent;
                     color: #FF7701;
-                    font-size: 16px;
-                    font-weight: 600;
-                    padding: 14px 30px;
-                    border-radius: 50px;
+                    font-size: 18px;
+                    font-weight: 700;
+                    padding: 14px 33px;
+                    border-radius: 8px;
                     border: 2px solid #FF7701;
                     text-decoration: none;
                     transition: all 0.3s ease;
                 }
                 
                 .btn-secondary:hover {
-                    background: #f9f9f9;
-                    transform: translateY(-3px);
-                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                    background: #FF7701;
+                    color: white;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 15px rgba(255, 119, 1, 0.3);
+                    text-decoration: none;
                 }
                 
                 .ml-3 {
@@ -688,9 +718,14 @@ export default function ServiceDetail() {
                         left: 20px;
                     }
                     
-                    .btn-primary, .btn-secondary {
-                        padding: 12px 24px;
-                        font-size: 15px;
+                    .btn-primary {
+                        padding: 14px 28px;
+                        font-size: 16px;
+                    }
+                    
+                    .btn-secondary {
+                        padding: 12px 26px;
+                        font-size: 16px;
                     }
                     
                     .ml-3 {

@@ -63,18 +63,22 @@ export default function Hero1() {
                     overflow: hidden;
                     width: 100%;
                     background: #ffffff;
+                    max-width: 100%;
                 }
                 
                 .box-swiper {
                     position: relative;
                     width: 100%;
                     overflow: hidden;
+                    max-width: 100%;
                 }
                 
                 .swiper-container.swiper-banner-1 {
                     width: 100%;
                     padding: 0;
                     margin: 0;
+                    overflow: hidden;
+                    max-width: 100%;
                 }
                 
                 .hero-premium-features {

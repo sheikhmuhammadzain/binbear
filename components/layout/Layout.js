@@ -9,7 +9,7 @@ import PageHead from './PageHead'
 import WelcomePopup from '../WelcomePopup'
 import { useRouter } from 'next/router'
 
-export default function Layout({ headerStyle, footerStyle, headTitle, children, topBarStyle }) {
+export default function Layout({ headerStyle, footerStyle, headTitle, children, topBarStyle, hideBookNow: propHideBookNow }) {
     const router = useRouter();
     const [scroll, setScroll] = useState(0)
     const [hideBookNow, setHideBookNow] = useState(false);
@@ -34,8 +34,19 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
             setPageLoaded(true);
         }, 200);
         
-        const hideOnPages = ['/item-estimate', '/Booking', '/choose-service', '/item-selection'];
-        const shouldHide = hideOnPages.includes(router.pathname);
+        const hideOnPages = [
+            '/item-estimate',
+            '/Booking',
+            '/choose-service',
+            '/item-selection',
+            '/construction-cleanup',
+            '/truck-load-estimate',
+            '/price-estimate',
+            '/BookingConfirmationPage',
+            '/FinalBooking',
+            '/Estimate'
+        ];
+        const shouldHide = hideOnPages.includes(router.pathname) || propHideBookNow;
         setHideBookNow(shouldHide);
 
         if (shouldHide) {
@@ -124,7 +135,7 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
 
                 {footerStyle === "footerNewsletter" ? <FooterNewsletter /> : <Footer />}
 
-                <BackToTop />
+                <BackToTop hideBookNow={hideBookNow} />
                 
                 {showPopup && <WelcomePopup onClose={closeWelcomePopup} />}
             </div>

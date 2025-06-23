@@ -128,13 +128,11 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                     <div className="container">
                         <div className="mobile-menu-links">
                             <div className="dropdown-section">
-                                <h5>What We Do</h5>
+                                <h5>WHAT WE DO</h5>
                                 <ul>
-                                    <li><Link href="/Residential"><span style={{ color: 'white' }}>Residential</span></Link></li>
-                                    <li><Link href="/Commercial"><span style={{ color: 'white' }}>Commercial</span></Link></li>
-                                    <li><Link href="/Item-we-take"><span style={{ color: 'white' }}>Items We Take</span></Link></li>
-                                    <li><Link href="/Dumpster-Rental"><span style={{ color: 'white' }}>Dumpster Rental</span></Link></li>
-                                    <li><Link href="/history"><span style={{ color: 'white' }}>Our History</span></Link></li>
+                                    <li><Link href="/Item-we-take"><span style={{ color: 'white' }}>Items we take</span></Link></li>
+                                    <li><Link href="/history"><span style={{ color: 'white' }}>Quick Junk Removal History</span></Link></li>
+                                    <li><Link href="/Recycle"><span style={{ color: 'white' }}>We Recycle</span></Link></li>
                                 </ul>
                             </div>
                             
@@ -155,16 +153,7 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                                     <li><Link href="/Dumpster-Rental"><span style={{ color: 'white' }}>Dumpster Rental</span></Link></li>
                                 </ul>
                             </div>
-                            
-                            <div className="dropdown-section">
-                                <h5>Quick Links</h5>
-                                <ul>
-                                    <li><Link href="/about"><span style={{ color: 'white' }}>About Us</span></Link></li>
-                                    <li><Link href="/blog"><span style={{ color: 'white' }}>Blog</span></Link></li>
-                                    <li><Link href="/contact"><span style={{ color: 'white' }}>Contact</span></Link></li>
-                                    <li><Link href="/Booking"><span style={{ color: 'white' }}>Book Now</span></Link></li>
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
                 </div>
