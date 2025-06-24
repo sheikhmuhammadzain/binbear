@@ -2,16 +2,16 @@ import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRecycle, faLeaf, faTruck, faBoxOpen, faTrash, faHome, faBuilding, faLaptop, faCog, faCouch } from '@fortawesome/free-solid-svg-icons';
+import { faRecycle, faLeaf, faTruck, faBoxOpen, faTrash, faHome, faBuilding, faLaptop, faCog, faCouch, faDollarSign, faChartLine, faGlobe, faIndustry } from '@fortawesome/free-solid-svg-icons';
 
 export default function RecyclePage() {
     const [activeTab, setActiveTab] = useState('what');
     
     const recyclingStats = [
         { number: "60%", label: "Recycled Materials", icon: faRecycle },
-        { number: "200B", label: "Industry Value ($)", icon: faLeaf },
-        { number: "100K+", label: "Items Recycled", icon: faTruck },
-        { number: "10M+", label: "Tons Saved From Landfills", icon: faTrash }
+        { number: "200B", label: "Industry Value ($)", icon: faDollarSign },
+        { number: "100K+", label: "Items Recycled", icon: faChartLine },
+        { number: "10M+", label: "Tons Saved From Landfills", icon: faGlobe }
     ];
     
     const recyclingServices = [
@@ -28,7 +28,7 @@ export default function RecyclePage() {
         {
             title: "Trash Removal",
             description: "Efficient disposal of yard waste, construction debris, and more",
-            icon: faTrash
+            icon: faRecycle
         },
         {
             title: "Property Cleanouts",
@@ -100,8 +100,8 @@ export default function RecyclePage() {
                                 />
                                 <div className="stats-card">
                                     <div className="stats-icon">
-                                        <FontAwesomeIcon icon={faRecycle} />
-                            </div>
+                                        <FontAwesomeIcon icon={faRecycle} style={{ fontSize: '16px' }} />
+                                    </div>
                                     <div className="stats-content">
                                         <h3>60%+</h3>
                                         <p>Items Recycled</p>
@@ -113,22 +113,7 @@ export default function RecyclePage() {
                                            </div>
             </section>
 
-            {/* Stats Section */}
-            <section className="recycle-stats">
-                <div className="container">
-                    <div className="stats-container">
-                        {recyclingStats.map((stat, index) => (
-                            <div key={index} className="stat-box">
-                                <div className="stat-icon">
-                                    <FontAwesomeIcon icon={stat.icon} />
-</div>
-                                <div className="stat-number">{stat.number}</div>
-                                <div className="stat-label">{stat.label}</div>
-                                        </div>
-                        ))}
-                                </div>
-                            </div>
-            </section>
+
 
             {/* Services Section */}
             <section className="recycle-services">
@@ -141,9 +126,9 @@ export default function RecyclePage() {
                     <div className="services-grid">
                         {recyclingServices.map((service, index) => (
                             <div key={index} className="service-card">
-                                <div className="service-icon">
-                                    <FontAwesomeIcon icon={service.icon} />
-                                        </div>
+                                <div className="service-icon" style={{ width: '40px', height: '40px' }}>
+                                    <FontAwesomeIcon icon={service.icon} style={{ fontSize: '16px' }} />
+                                </div>
                                 <h3 className="service-title">{service.title}</h3>
                                 <p className="service-description">{service.description}</p>
                                 </div>
@@ -168,7 +153,7 @@ export default function RecyclePage() {
                                     className={`tab-button ${activeTab === topic.id ? 'active' : ''}`}
                                     onClick={() => setActiveTab(topic.id)}
                                 >
-                                    <FontAwesomeIcon icon={topic.icon} className="tab-icon" />
+                                    <FontAwesomeIcon icon={topic.icon} className="tab-icon" style={{ fontSize: '14px' }} />
                                     <span>{topic.title}</span>
                                 </button>
                             ))}
@@ -209,7 +194,7 @@ export default function RecyclePage() {
                           
                     <div className="process-steps">
                         <div className="process-step">
-                            <div className="step-number">1</div>
+                            <div className="step-number" style={{ width: '50px', height: '50px', fontSize: '18px', marginRight: '25px' }}>1</div>
                             <div className="step-content">
                                 <h3>Collection</h3>
                                 <p>Our team arrives at your location and carefully collects all your unwanted items</p>
@@ -217,7 +202,7 @@ export default function RecyclePage() {
                             </div>
 
                         <div className="process-step">
-                            <div className="step-number">2</div>
+                            <div className="step-number" style={{ width: '50px', height: '50px', fontSize: '18px', marginRight: '25px' }}>2</div>
                             <div className="step-content">
                                 <h3>Sorting</h3>
                                 <p>Items are transported to our facility where they're sorted into categories</p>
@@ -225,7 +210,7 @@ export default function RecyclePage() {
 </div>
                           
                         <div className="process-step">
-                            <div className="step-number">3</div>
+                            <div className="step-number" style={{ width: '50px', height: '50px', fontSize: '18px', marginRight: '25px' }}>3</div>
                             <div className="step-content">
                                 <h3>Processing</h3>
                                 <p>Materials are processed appropriately based on their composition and recyclability</p>
@@ -233,7 +218,7 @@ export default function RecyclePage() {
                             </div>
 
                         <div className="process-step">
-                            <div className="step-number">4</div>
+                            <div className="step-number" style={{ width: '50px', height: '50px', fontSize: '18px', marginRight: '25px' }}>4</div>
                             <div className="step-content">
                                 <h3>Recycling</h3>
                                 <p>Recyclable materials are sent to specialized facilities for conversion into new products</p>
@@ -422,7 +407,7 @@ export default function RecyclePage() {
                 }
 
                 .stats-icon {
-                    font-size: 36px;
+                    font-size: 18px;
                 }
 
                 .stats-content h3 {
@@ -471,7 +456,7 @@ export default function RecyclePage() {
                 }
 
                 .stat-icon {
-                    font-size: 36px;
+                    font-size: 20px;
                     margin-bottom: 15px;
                 }
 
@@ -514,12 +499,12 @@ export default function RecyclePage() {
                 }
 
                 .service-icon {
-                    font-size: 36px;
+                    font-size: 20px;
                     color: #FF7701;
                     margin-bottom: 20px;
                     background-color: rgba(255, 119, 1, 0.1);
-                    width: 80px;
-                    height: 80px;
+                    width: 50px;
+                    height: 50px;
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
@@ -585,7 +570,7 @@ export default function RecyclePage() {
                 }
 
                 .tab-icon {
-                    font-size: 18px;
+                    font-size: 16px;
                 }
 
                 .tab-content-container {
@@ -673,17 +658,17 @@ export default function RecyclePage() {
                 }
 
                 .step-number {
-                    width: 100px;
-                    height: 100px;
+                    width: 60px;
+                    height: 60px;
                     background-color: #FF7701;
                     color: white;
-                    font-size: 36px;
+                    font-size: 20px;
                     font-weight: 700;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     border-radius: 50%;
-                    margin-right: 50px;
+                    margin-right: 30px;
                     flex-shrink: 0;
                     position: relative;
                     z-index: 1;

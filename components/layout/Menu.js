@@ -103,11 +103,7 @@ export default function Menu() {
                         <li>
                             <Link href="/Estimateprice" className="menu-link">Book Online</Link>
                         </li>
-                        <li>
-                            <Link href="/jk-removal-price" className="menu-link">
-                                JK Removal Pricing
-                            </Link>
-                        </li>
+                       
                         <li>
                             <Link href="/" className="menu-link"></Link>
                         </li>

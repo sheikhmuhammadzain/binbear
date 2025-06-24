@@ -149,7 +149,7 @@ const Header = ({ scroll, handleMobileMenuOpen, hideBookNow }) => {
                                 <h5>Pricing</h5>
                                 <ul>
                                     <li><Link href="/Estimateprice"><span style={{ color: 'white' }}>Book Online</span></Link></li>
-                                    <li><Link href="/jk-removal-price"><span style={{ color: 'white' }}>Junk Removal</span></Link></li>
+                                  
                                     <li><Link href="/Dumpster-Rental"><span style={{ color: 'white' }}>Dumpster Rental</span></Link></li>
                                 </ul>
                             </div>
