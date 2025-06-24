@@ -170,15 +170,24 @@ export default function Hero1() {
                 @media (max-width: 767px) {
                     .hero-premium {
                         padding-bottom: 40px;
+                        min-height: 400px !important;
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                        background-color: #ffffff !important;
                     }
                     
                     .hero-premium-features {
                         margin-top: 15px;
+                        opacity: 1 !important;
+                        visibility: visible !important;
                     }
                     
                     .feature-premium {
                         padding: 18px;
                         margin-bottom: 15px;
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                        background-color: #ffffff !important;
                     }
                     
                     .feature-premium-icon {
@@ -195,6 +204,13 @@ export default function Hero1() {
                     .feature-premium-title {
                         font-size: 17px;
                         margin-bottom: 10px;
+                    }
+                    
+                    /* Ensure swiper is visible on mobile */
+                    .box-swiper, .swiper-container, .swiper-slide {
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                        min-height: 300px !important;
                     }
                 }
                 

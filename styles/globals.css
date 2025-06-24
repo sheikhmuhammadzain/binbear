@@ -31,6 +31,7 @@ body {
   font-size: 16px;
   overflow-x: hidden; /* Prevent horizontal scroll while allowing vertical scroll */
   max-width: 100%;
+  min-height: 100vh; /* Ensure body always has height */
   
   /* Hide scrollbar for Chrome, Safari and Opera */
   scrollbar-width: none; /* Firefox */
@@ -284,6 +285,32 @@ h6, .h6 { font-size: 1rem; }
   .container {
     padding-left: 10px;
     padding-right: 10px;
+  }
+  
+  /* Critical mobile fixes to prevent blank page */
+  body, html {
+    min-height: 100vh !important;
+    background-color: #ffffff !important;
+  }
+  
+  #wrapper, .main, .site-content {
+    min-height: 100vh !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Ensure sections are visible on mobile */
+  section {
+    min-height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Fix hero section specifically for mobile */
+  .hero-premium, .banner-premium {
+    min-height: 400px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background-color: #ffffff !important;
   }
 }
 

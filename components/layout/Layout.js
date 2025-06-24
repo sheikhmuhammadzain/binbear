@@ -146,16 +146,31 @@ export default function Layout({ headerStyle, footerStyle, headTitle, children, 
                     width: 100%;
                     overflow-x: hidden;
                     min-height: 100vh;
+                    background-color: #ffffff;
                 }
                 
                 .main {
                     margin-bottom: 0;
                     position: relative;
+                    min-height: 100vh;
+                    background-color: #ffffff;
                 }
 
                 .site-content {
                     width: 100%;
                     overflow-x: hidden;
+                    min-height: 100vh;
+                    background-color: #ffffff;
+                }
+                
+                /* Critical mobile fixes */
+                @media (max-width: 768px) {
+                    #wrapper, .main, .site-content {
+                        min-height: 100vh !important;
+                        background-color: #ffffff !important;
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                    }
                 }
 
                 :global(.site-container) {

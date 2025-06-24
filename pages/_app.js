@@ -16,10 +16,10 @@ function MyApp({ Component, pageProps }) {
     const [premiumStylesLoaded, setPremiumStylesLoaded] = useState(false);
 
     useEffect(() => {
-        // Set loading state
+        // Set loading state with shorter timeout for better mobile experience
         setTimeout(() => {
             setLoading(false);
-        }, 1000);
+        }, 500);
 
         // Check if zip code was entered
         const hasEnteredZip = sessionStorage.getItem('hasEnteredZip');
@@ -41,45 +41,72 @@ function MyApp({ Component, pageProps }) {
             document.head.appendChild(style);
         }
 
-        // Initialize AOS animation library
+        // Initialize AOS animation library with better mobile support
         if (typeof window !== 'undefined') {
+            // Add immediate mobile-friendly styles to prevent blank page
+            const mobileFixStyles = document.createElement('style');
+            mobileFixStyles.textContent = `
+                /* Immediate mobile fixes to prevent blank page */
+                @media (max-width: 768px) {
+                    body {
+                        min-height: 100vh !important;
+                        background-color: #ffffff !important;
+                    }
+                    
+                    #wrapper, .main, .site-content {
+                        min-height: 100vh !important;
+                        background-color: #ffffff !important;
+                    }
+                    
+                    /* Ensure all sections are visible on mobile */
+                    section, .hero-premium, .banner-premium {
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                        transform: none !important;
+                    }
+                    
+                    /* Override any problematic animations on mobile */
+                    [data-aos] {
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                        transform: none !important;
+                        transition: none !important;
+                    }
+                }
+            `;
+            document.head.appendChild(mobileFixStyles);
+
             const AOS = require('aos');
             require('aos/dist/aos.css');
+
+            // Better AOS initialization for mobile
+            const isMobile = window.innerWidth <= 768;
+
             AOS.init({
-                duration: 800,
+                duration: isMobile ? 300 : 800, // Faster animations on mobile
                 once: true,
                 easing: 'ease-out-cubic',
-                offset: 100,
-                disable: 'mobile', // Disable on mobile to prevent scrollbar issues
-                debounceDelay: 50, // Throttle scroll events
-                throttleDelay: 99, // Throttle resize events
-                disableMutationObserver: false, // Keep mutation observer
+                offset: isMobile ? 50 : 100, // Lower offset on mobile
+                disable: false, // Don't disable on mobile - just use lighter animations
+                debounceDelay: 50,
+                throttleDelay: 99,
+                disableMutationObserver: false,
                 useClassNames: false,
                 initClassName: 'aos-init',
                 animatedClassName: 'aos-animate'
             });
 
-            // Fix WOW.js conflicts - Convert WOW classes to AOS or make them immediately visible
+            // Simplified WOW.js fix without complex transformations
             setTimeout(() => {
                 const wowElements = document.querySelectorAll('.wow');
                 wowElements.forEach(element => {
-                    // Make WOW elements immediately visible to prevent layout issues
+                    // Simply make WOW elements visible without complex styling
                     element.style.visibility = 'visible';
                     element.style.opacity = '1';
-                    element.style.transform = 'none';
-
-                    // Add AOS attributes for future animations
-                    if (!element.hasAttribute('data-aos')) {
-                        element.setAttribute('data-aos', 'fade-up');
-                        element.setAttribute('data-aos-duration', '600');
-                        element.setAttribute('data-aos-once', 'true');
-                    }
-
-                    // Remove conflicting WOW classes
                     element.classList.remove('wow');
                 });
 
-                // Refresh AOS to pick up new elements
+                // Refresh AOS
                 AOS.refresh();
             }, 100);
             
@@ -630,7 +657,10 @@ function MyApp({ Component, pageProps }) {
     return (
         <>
             <Head>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+                <meta name="mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
