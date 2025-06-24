@@ -1,5 +1,5 @@
 import Layout from "@/components/layout/Layout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FaTruck } from 'react-icons/fa';
 
@@ -9,6 +9,45 @@ export default function TruckLoadEstimate() {
         full: 0,
         half: 0
     });
+    const [pricing, setPricing] = useState({
+        fullTruckPrice: 429, // Default fallback value
+        halfTruckPrice: 229  // Default fallback value
+    });
+    const [isLoadingPrices, setIsLoadingPrices] = useState(true);
+
+    // Fetch pricing data from API
+    useEffect(() => {
+        const fetchPricing = async () => {
+            try {
+                const response = await fetch('https://backend.binbearjunk.com/api/getPrice');
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    const priceData = {};
+                    result.data.forEach(item => {
+                        if (item.name === 'full_truck_price') {
+                            priceData.fullTruckPrice = parseFloat(item.value);
+                        } else if (item.name === 'half_truck_price') {
+                            priceData.halfTruckPrice = parseFloat(item.value);
+                        }
+                    });
+
+                    setPricing(prev => ({
+                        ...prev,
+                        ...priceData
+                    }));
+                    console.log('Pricing data loaded:', priceData);
+                }
+            } catch (error) {
+                console.error('Error fetching pricing data:', error);
+                // Keep default fallback values
+            } finally {
+                setIsLoadingPrices(false);
+            }
+        };
+
+        fetchPricing();
+    }, []);
 
     const handleQuantityChange = (type, change) => {
         setQuantities(prev => ({
@@ -18,7 +57,7 @@ export default function TruckLoadEstimate() {
     };
 
     const calculateTotal = () => {
-        const total = (quantities.full * 429) + (quantities.half * 229);
+        const total = (quantities.full * pricing.fullTruckPrice) + (quantities.half * pricing.halfTruckPrice);
         return {
             min: total,
             max: total + 20
@@ -260,7 +299,11 @@ export default function TruckLoadEstimate() {
                         textAlign: "center",
                         marginBottom: "15px"
                     }}>
-                        <h3 style={{ color: "#333", fontSize: "18px" }}>Your Estimate: ${estimate.min} - ${estimate.max}</h3>
+                        {isLoadingPrices ? (
+                            <h3 style={{ color: "#333", fontSize: "18px" }}>Loading pricing...</h3>
+                        ) : (
+                                <h3 style={{ color: "#333", fontSize: "18px" }}>Your Estimate: ${estimate.min} - ${estimate.max}</h3>
+                        )}
                     </div>
 
                     {/* Call to Action */}
@@ -271,7 +314,7 @@ export default function TruckLoadEstimate() {
                     }}>
                     <button 
                             onClick={handleBookIt}
-                            disabled={estimate.min === 0}
+                            disabled={estimate.min === 0 || isLoadingPrices}
                             className="book-button"
                             style={{
                                 padding: "12px 40px",
@@ -279,12 +322,12 @@ export default function TruckLoadEstimate() {
                                 color: "white",
                                 border: "none",
                                 borderRadius: "4px",
-                                cursor: estimate.min === 0 ? "not-allowed" : "pointer",
+                                cursor: (estimate.min === 0 || isLoadingPrices) ? "not-allowed" : "pointer",
                                 fontSize: "18px",
-                                opacity: estimate.min === 0 ? 0.7 : 1
+                                opacity: (estimate.min === 0 || isLoadingPrices) ? 0.7 : 1
                             }}
                         >
-                            Book It!
+                            {isLoadingPrices ? "Loading..." : "Book It!"}
                     </button>
                     </div>
 

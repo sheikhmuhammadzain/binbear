@@ -13,6 +13,7 @@ export default function ConstructionContact() {
     const [time, setTime] = useState("");
     const [images, setImages] = useState([]);
     const [formStatus, setFormStatus] = useState(""); // For success/error messages
+    const [errors, setErrors] = useState({});
     const fileInputRef = useRef(null);
 
     // Generate time slots from 8:00 AM to 6:00 PM
@@ -56,11 +57,28 @@ export default function ConstructionContact() {
         setImages(newImages);
     };
 
+    const validateForm = () => {
+        const newErrors = {};
+        if (!name) newErrors.name = "Name is required.";
+        if (!email) newErrors.email = "Email address is required.";
+        if (!phone) newErrors.phone = "Phone number is required.";
+        if (!message) newErrors.message = "Project details are required.";
+        if (!date) newErrors.date = "Please select a date.";
+        if (!time) newErrors.time = "Please select a time.";
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return false;
+        }
+        return true;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormStatus("Submitting...");
+        setErrors({});
 
-        if (!name || !email || !phone || !message || !date || !time) {
+        if (!validateForm()) {
             setFormStatus("Please fill in all required fields.");
             return;
         }
@@ -214,15 +232,21 @@ export default function ConstructionContact() {
                                                                     type="text"
                                                                     placeholder="Your name *"
                                                                     value={name}
-                                                                    onChange={(e) => setName(e.target.value)}
+                                                                    onChange={(e) => {
+                                                                        setName(e.target.value);
+                                                                        if (errors.name) setErrors({ ...errors, name: "" });
+                                                                    }}
                                                                     required
                                                                     style={{
                                                                         width: "100%",
                                                                         padding: "10px",
-                                                                        border: name ? "1px solid #ccc" : "1px solid black",
+                                                                        border: errors.name ? "1px solid red" : "1px solid #ccc",
                                                                         borderRadius: "5px",
                                                                     }}
                                                                 />
+                                                                {errors.name && (
+                                                                    <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.name}</p>
+                                                                )}
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-12">
@@ -231,15 +255,21 @@ export default function ConstructionContact() {
                                                                     type="email"
                                                                     placeholder="Your email *"
                                                                     value={email}
-                                                                    onChange={(e) => setEmail(e.target.value)}
+                                                                    onChange={(e) => {
+                                                                        setEmail(e.target.value);
+                                                                        if (errors.email) setErrors({ ...errors, email: "" });
+                                                                    }}
                                                                     required
                                                                     style={{
                                                                         width: "100%",
                                                                         padding: "10px",
-                                                                        border: email ? "1px solid #ccc" : "1px solid black",
+                                                                        border: errors.email ? "1px solid red" : "1px solid #ccc",
                                                                         borderRadius: "5px",
                                                                     }}
                                                                 />
+                                                                {errors.email && (
+                                                                    <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.email}</p>
+                                                                )}
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-12">
@@ -248,15 +278,21 @@ export default function ConstructionContact() {
                                                                     type="text"
                                                                     placeholder="Your phone number *"
                                                                     value={phone}
-                                                                    onChange={(e) => setPhone(e.target.value)}
+                                                                    onChange={(e) => {
+                                                                        setPhone(e.target.value);
+                                                                        if (errors.phone) setErrors({ ...errors, phone: "" });
+                                                                    }}
                                                                     required
                                                                     style={{
                                                                         width: "100%",
                                                                         padding: "10px",
-                                                                        border: phone ? "1px solid #ccc" : "1px solid black",
+                                                                        border: errors.phone ? "1px solid red" : "1px solid #ccc",
                                                                         borderRadius: "5px",
                                                                     }}
                                                                 />
+                                                                {errors.phone && (
+                                                                    <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.phone}</p>
+                                                                )}
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-6">
@@ -265,27 +301,36 @@ export default function ConstructionContact() {
                                                                     type="date"
                                                                     placeholder="Preferred date *"
                                                                     value={date}
-                                                                    onChange={(e) => setDate(e.target.value)}
+                                                                    onChange={(e) => {
+                                                                        setDate(e.target.value);
+                                                                        if (errors.date) setErrors({ ...errors, date: "" });
+                                                                    }}
                                                                     required
                                                                     style={{
                                                                         width: "100%",
                                                                         padding: "10px",
-                                                                        border: date ? "1px solid #ccc" : "1px solid black",
+                                                                        border: errors.date ? "1px solid red" : "1px solid #ccc",
                                                                         borderRadius: "5px",
                                                                     }}
                                                                 />
+                                                                {errors.date && (
+                                                                    <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.date}</p>
+                                                                )}
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-6">
                                                             <div className="form-group">
                                                                 <select
                                                                     value={time}
-                                                                    onChange={(e) => setTime(e.target.value)}
+                                                                    onChange={(e) => {
+                                                                        setTime(e.target.value);
+                                                                        if (errors.time) setErrors({ ...errors, time: "" });
+                                                                    }}
                                                                     required
                                                                     style={{
                                                                         width: "100%",
                                                                         padding: "10px",
-                                                                        border: time ? "1px solid #ccc" : "1px solid black",
+                                                                        border: errors.time ? "1px solid red" : "1px solid #ccc",
                                                                         borderRadius: "5px",
                                                                     }}
                                                                 >
@@ -296,6 +341,9 @@ export default function ConstructionContact() {
                                                                         </option>
                                                                     ))}
                                                                 </select>
+                                                                {errors.time && (
+                                                                    <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.time}</p>
+                                                                )}
                                                             </div>
                                                         </div>
                                                         <div className="col-lg-12">
@@ -304,15 +352,21 @@ export default function ConstructionContact() {
                                                                     placeholder="Project details (size, type of debris, timeline, etc.) *"
                                                                     rows={6}
                                                                     value={message}
-                                                                    onChange={(e) => setMessage(e.target.value)}
+                                                                    onChange={(e) => {
+                                                                        setMessage(e.target.value);
+                                                                        if (errors.message) setErrors({ ...errors, message: "" });
+                                                                    }}
                                                                     required
                                                                     style={{
                                                                         width: "100%",
                                                                         padding: "10px",
-                                                                        border: message ? "1px solid #ccc" : "1px solid black",
+                                                                        border: errors.message ? "1px solid red" : "1px solid #ccc",
                                                                         borderRadius: "5px",
                                                                     }}
                                                                 />
+                                                                {errors.message && (
+                                                                    <p style={{ color: "red", fontSize: "14px", textAlign: "left", marginTop: "5px" }}>{errors.message}</p>
+                                                                )}
                                                             </div>
                                                         </div>
 

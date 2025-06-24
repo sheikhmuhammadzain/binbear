@@ -62,17 +62,17 @@ const EmailForm = ({ onEmailSubmit, onBack, cityName }) => {
 
         <div className="button-group">
           <button
+            type="submit"
+            className="continue-btn"
+          >
+            Continue
+          </button>
+          <button
             type="button"
             onClick={onBack}
             className="back-btn"
           >
             Back
-          </button>
-          <button
-            type="submit"
-            className="continue-btn"
-          >
-            Continue
           </button>
         </div>
 
@@ -141,6 +141,7 @@ const EmailForm = ({ onEmailSubmit, onBack, cityName }) => {
         
         .button-group {
           display: flex;
+          flex-direction: column;
           gap: 10px;
           margin-top: 10px;
         }
@@ -153,7 +154,7 @@ const EmailForm = ({ onEmailSubmit, onBack, cityName }) => {
           border: 1px solid #ccc;
           border-radius: 4px;
           cursor: pointer;
-          flex: 1;
+          width: 100%;
           font-weight: 500;
         }
         
@@ -165,7 +166,7 @@ const EmailForm = ({ onEmailSubmit, onBack, cityName }) => {
           border: none;
           border-radius: 4px;
           cursor: pointer;
-          flex: 2;
+          width: 100%;
           font-weight: bold;
         }
         
@@ -177,10 +178,6 @@ const EmailForm = ({ onEmailSubmit, onBack, cityName }) => {
         }
         
         @media (max-width: 768px) {
-          .button-group {
-            flex-direction: column;
-          }
-          
           .back-btn, .continue-btn {
             width: 100%;
           }
