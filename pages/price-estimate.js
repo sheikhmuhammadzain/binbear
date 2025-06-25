@@ -6,7 +6,49 @@ export default function PriceEstimate() {
   const router = useRouter();
   const [unitCount, setUnitCount] = useState(5);
   const [loading, setLoading] = useState(false);
-  const pricePerUnit = 40; // Price per unit - $40
+  const [pricePerUnit, setPricePerUnit] = useState(40); // Default fallback value
+  const [pricesLoading, setPricesLoading] = useState(true);
+  const [pricesError, setPricesError] = useState(null);
+
+  // Fetch prices from API
+  useEffect(() => {
+    const fetchPrices = async () => {
+      try {
+        setPricesLoading(true);
+        setPricesError(null);
+
+        const response = await fetch('https://backend.binbearjunk.com/api/getPrice');
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success && data.data) {
+          // Find the apartment_trash_valet_per_unit price
+          const unitPrice = data.data.find(item => item.name === 'apartment_trash_valet_per_unit');
+
+          if (unitPrice) {
+            setPricePerUnit(parseFloat(unitPrice.value));
+          } else {
+            console.warn('apartment_trash_valet_per_unit price not found in API response');
+            setPricesError('Price configuration not found');
+          }
+        } else {
+          throw new Error('Invalid API response format');
+        }
+      } catch (error) {
+        console.error('Error fetching prices:', error);
+        setPricesError('Failed to load current pricing. Using default rates.');
+        // Keep the default fallback value
+      } finally {
+        setPricesLoading(false);
+      }
+    };
+
+    fetchPrices();
+  }, []);
 
   const handleRangeChange = (e) => {
     setUnitCount(parseInt(e.target.value));
@@ -57,6 +99,11 @@ export default function PriceEstimate() {
         <div className="estimate-header">
           <h1>Select Number of Units</h1>
           <p>Use the slider or input field to specify how many units you need for construction cleanup services</p>
+          {pricesError && (
+            <div className="price-error">
+              <p>{pricesError}</p>
+            </div>
+          )}
         </div>
 
         <div className="estimate-card">
@@ -73,7 +120,11 @@ export default function PriceEstimate() {
                 />
               </div>
               <div className="per-unit-price">
-                ${pricePerUnit} per unit
+                {pricesLoading ? (
+                  "Loading price..."
+                ) : (
+                  `$${pricePerUnit} per unit`
+                )}
               </div>
             </div>
             <div className="price-section">
@@ -112,9 +163,9 @@ export default function PriceEstimate() {
             <button 
               onClick={handleSaveEstimate} 
               className="save-button"
-              disabled={loading}
+              disabled={loading || pricesLoading}
             >
-              {loading ? "Processing..." : "Save & Continue"}
+              {loading ? "Processing..." : pricesLoading ? "Loading..." : "Save & Continue"}
             </button>
           </div>
         </div>
@@ -141,6 +192,22 @@ export default function PriceEstimate() {
         .estimate-header p {
           color: #666;
           font-size: 16px;
+        }
+
+        .price-error {
+          background-color: #fff3cd;
+          border: 1px solid #ffeaa7;
+          color: #856404;
+          padding: 10px;
+          border-radius: 5px;
+          margin-top: 15px;
+          text-align: center;
+        }
+
+        .price-error p {
+          margin: 0;
+          color: #856404;
+          font-size: 14px;
         }
 
         .estimate-card {
