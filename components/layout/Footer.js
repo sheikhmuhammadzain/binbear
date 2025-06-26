@@ -56,11 +56,11 @@ const Footer = () => {
                             <div className="col-lg-2 col-md-6 mb-4 mb-lg-0">
                                 <h4 className="footer-title">Services</h4>
                                 <ul className="footer-links">
-                                    <li><Link href="/services/residential" className="footer-link">Residential</Link></li>
-                                    <li><Link href="/services/commercial" className="footer-link">Commercial</Link></li>
-                                    <li><Link href="/services/recycling" className="footer-link">Recycling</Link></li>
-                                    <li><Link href="/services/dumpster-rental" className="footer-link">Dumpster Rental</Link></li>
-                                    <li><Link href="/services/junk-removal" className="footer-link">Junk Removal</Link></li>
+                                    <li><Link href="/Residential" className="footer-link">Residential</Link></li>
+                                    <li><Link href="/Commercial" className="footer-link">Commercial</Link></li>
+                                    <li><Link href="/Recycle" className="footer-link">Recycling</Link></li>
+                                    
+                                    <li><Link href="/Item-we-take" className="footer-link">Items We Take</Link></li>
                                 </ul>
                             </div>
                             
@@ -69,9 +69,8 @@ const Footer = () => {
                                 <ul className="footer-links">
                                     <li><Link href="/about" className="footer-link">About Us</Link></li>
                                     <li><Link href="/blog" className="footer-link">Blog</Link></li>
-                                    <li><Link href="/how-it-works" className="footer-link">How It Works</Link></li>
+                                    <li><Link href="/Estimateprice" className="footer-link">Book Online</Link></li>
                                     <li><Link href="/pricing" className="footer-link">Pricing</Link></li>
-                                  
                                     <li><Link href="/contact" className="footer-link">Contact Us</Link></li>
                                 </ul>
                             </div>
