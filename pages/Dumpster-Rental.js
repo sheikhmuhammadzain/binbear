@@ -38,7 +38,7 @@ export default function DumpsterRental() {
                             description: 'Good for small projects, renovation debris, or yard waste',
                             dimensions: '12ft L x 8ft W x 3.5ft H',
                             price: `$${smallPrice}`,
-                            image: '/img/dustbin.png'
+                            image: '/img/drum.svg'
                         },
                         {
                             id: 'medium',
@@ -46,7 +46,7 @@ export default function DumpsterRental() {
                             description: 'Perfect for home remodels, larger cleanouts, or construction projects',
                             dimensions: '16ft L x 8ft W x 4.5ft H',
                             price: `$${mediumPrice}`,
-                            image: '/img/dustbin.png'
+                            image: '/img/drum.svg'
                         },
                         {
                             id: 'large',
@@ -54,7 +54,7 @@ export default function DumpsterRental() {
                             description: 'Ideal for major renovations, new construction, or commercial projects',
                             dimensions: '20ft L x 8ft W x 5.5ft H',
                             price: `$${largePrice}`,
-                            image: '/img/dustbin.png'
+                            image: '/img/drum.svg'
                         }
                     ])
                 } else {
@@ -278,6 +278,7 @@ export default function DumpsterRental() {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                     gap: 20px;
+                    align-items: stretch;
                 }
                 
                 .dumpster-card {
@@ -289,6 +290,10 @@ export default function DumpsterRental() {
                     position: relative;
                     transition: transform 0.2s ease, box-shadow 0.2s ease;
                     border: 2px solid transparent;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    min-height: 420px;
                 }
                 
                 .dumpster-card:hover {
@@ -323,6 +328,11 @@ export default function DumpsterRental() {
                 .image-container {
                     margin-bottom: 15px;
                     text-align: center;
+                    flex-shrink: 0;
+                    height: 120px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
                 
                 .dumpster-image {
@@ -347,11 +357,23 @@ export default function DumpsterRental() {
                     width: 180px;
                     height: auto;
                 }
+
+                .card-content {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
                 
                 .card-content h3 {
                     font-size: 20px;
                     color: #333;
                     margin-bottom: 10px;
+                    min-height: 50px;
+                    display: flex;
+                    align-items: center;
+                    text-align: left;
+                    justify-content: flex-start;
                 }
                 
                 .price {
@@ -359,17 +381,31 @@ export default function DumpsterRental() {
                     font-weight: bold;
                     color: #FF7701;
                     margin-bottom: 12px;
+                    text-align: left;
+                    min-height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
                 }
                 
                 .description {
                     color: #666;
                     margin-bottom: 12px;
                     line-height: 1.5;
+                    text-align: left;
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    min-height: 48px;
                 }
                 
                 .dimensions {
                     font-size: 14px;
                     color: #777;
+                    text-align: left;
+                    margin-top: auto;
+                    padding-top: 10px;
                 }
                 
                 .date-time-picker-container {
@@ -484,6 +520,24 @@ export default function DumpsterRental() {
                 @media (max-width: 768px) {
                     .dumpster-sizes {
                         grid-template-columns: 1fr;
+                    }
+
+                    .dumpster-card {
+                        min-height: 380px;
+                    }
+
+                    .image-container {
+                        height: 100px;
+                    }
+
+                    .card-content h3 {
+                        min-height: 40px;
+                        font-size: 18px;
+                    }
+
+                    .description {
+                        min-height: 40px;
+                        font-size: 14px;
                     }
                     
                     .date-time-picker-container {

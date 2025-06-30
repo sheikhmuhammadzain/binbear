@@ -91,7 +91,7 @@ function ServiceCards() {
         <style jsx>{`
           .service-selection-container {
             padding: 0 20px;
-            max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
           }
           
@@ -109,9 +109,10 @@ function ServiceCards() {
           
           .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             margin-bottom: 40px;
+            width: 100%;
           }
 
           .service-card {

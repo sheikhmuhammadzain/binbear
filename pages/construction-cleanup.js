@@ -163,6 +163,7 @@ function ConstructionCleanup() {
           padding: 0;
           max-width: 900px;
           margin: 0 auto;
+          align-items: stretch;
         }
 
         .card {
@@ -174,7 +175,7 @@ function ConstructionCleanup() {
           transition: all 0.3s ease;
           height: 100%;
           display: flex;
-          min-height: 400px;
+          min-height: 450px;
         }
 
         .card:hover {
@@ -189,6 +190,8 @@ function ConstructionCleanup() {
           display: flex;
           flex-direction: column;
           gap: 15px;
+          height: 100%;
+          justify-content: space-between;
         }
 
         .icons-grid {
@@ -266,6 +269,7 @@ function ConstructionCleanup() {
           display: flex;
           flex-direction: column;
           gap: 12px;
+          min-height: 0;
         }
 
         .recommended-section h3 {
@@ -314,10 +318,10 @@ function ConstructionCleanup() {
           cursor: pointer;
           width: 100%;
           transition: all 0.3s ease;
-          margin-top: auto;
           height: auto;
           min-height: 44px;
           box-shadow: 0 2px 8px rgba(255, 119, 1, 0.3);
+          flex-shrink: 0;
         }
 
         .action-button:hover {
@@ -334,7 +338,7 @@ function ConstructionCleanup() {
           }
           
           .card {
-            min-height: 350px;
+            min-height: 400px;
           }
         }
 
@@ -367,7 +371,7 @@ function ConstructionCleanup() {
           }
           
           .card {
-            min-height: 320px;
+            min-height: 380px;
           }
           
           .card-inner {
@@ -383,7 +387,7 @@ function ConstructionCleanup() {
           }
           
           .card {
-            min-height: 300px;
+            min-height: 360px;
           }
           
           .icons-grid {
@@ -420,7 +424,7 @@ function ConstructionCleanup() {
           }
           
           .card {
-            min-height: 280px;
+            min-height: 340px;
           }
           
           .card-inner {
