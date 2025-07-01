@@ -152,12 +152,16 @@ export default function Quote() {
                 }
 
                 .card-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
                     gap: 30px;
                     align-items: stretch;
                 }
 
-                .card-grid > [class*="col-"] {
-                    display: flex;
+                @media (max-width: 992px) {
+                    .card-grid {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
                 }
 
                 @media (max-width: 768px) {
@@ -195,6 +199,7 @@ export default function Quote() {
                     }
 
                     .card-grid {
+                        grid-template-columns: 1fr;
                         gap: 20px;
                     }
                 }
@@ -511,9 +516,9 @@ export default function Quote() {
                 </h2>   
               </div>
 
-              <div className="row card-grid">
+              <div className="card-grid">
                 {cards.map((card, index) => (
-                          <div className="col-xl-4 col-md-6 mb-40" key={index}>
+                  <div key={index}>
                             <div className={`cardService ${clickedCardIndex === index ? "clicked" : ""}`}
                               onClick={() => handleCardClick(index)}>
                               <div className="cardImage wow animate__animated animate__fadeIn">
