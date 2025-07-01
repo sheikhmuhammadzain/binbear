@@ -5,6 +5,7 @@ import Faqs1 from "@/components/sections/homepage1/Faqs1"
 import Hero1 from "@/components/sections/homepage1/Hero1"
 import Howitwork1 from "@/components/sections/homepage1/Howitwork1"
 import Services1 from "@/components/sections/homepage1/Services1"
+import StickyBookNow from "@/components/elements/StickyBookNow"
 
 export default function Home() {
     return (
@@ -14,6 +15,7 @@ export default function Home() {
                 <Howitwork1 />
                 <Cta1 />
                 <Bgmap />
+                <StickyBookNow />
             </Layout>
         </>
     )
