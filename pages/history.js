@@ -228,7 +228,7 @@ export default function History() {
                                 <p>Become part of the BinBear journey as we continue to grow and shape the future of junk removal</p>
                                 </div>
                             <div className="cta-buttons">
-                                <Link href="/contact" className="cta-button primary outline">Contact Us</Link>
+                                <Link href="/contact" className="cta-button cta-button-custom">Contact Us</Link>
 
                             </div>
                                </div>
@@ -645,21 +645,21 @@ export default function History() {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 35px;
-                    height: 35px;
+                    width: 28px;
+                    height: 28px;
                     background: linear-gradient(135deg, #FF7701, #FF5500);
                     color: white;
                     border-radius: 50%;
-                    margin-right: 15px;
-                    font-size: 18px;
+                    margin-right: 12px;
+                    font-size: 14px;
                     box-shadow: 0 3px 8px rgba(255, 119, 1, 0.4);
                     flex-shrink: 0;
                     border: 2px solid white;
                 }
 
                 .check-icon svg {
-                    width: 18px;
-                    height: 18px;
+                    width: 14px;
+                    height: 14px;
                     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
                 }
 
@@ -881,6 +881,20 @@ export default function History() {
                     background-color: #f0f0f0;
                     transform: translateY(-3px);
                     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+                }
+
+                .cta-button.cta-button-custom {
+                    background-color: white !important;
+                    color: black !important;
+                    border: 2px solid black !important;
+                    font-weight: 700 !important;
+                }
+
+                .cta-button.cta-button-custom:hover {
+                    background-color: black !important;
+                    color: white !important;
+                    transform: translateY(-3px);
+                    box-shadow: 0 6px 15px rgba(0,0,0, 0.25);
                 }
 
                 .cta-button.secondary {

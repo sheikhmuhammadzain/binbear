@@ -393,7 +393,7 @@ export default function Quote() {
                   Professional, reliable, and eco-friendly commercial junk removal solutions for businesses of all sizes.
                 </p>
                 <div className="cta-button-container">
-                  <a href="Booking" style={{
+                  <a href="/Booking" style={{
                     backgroundColor: "#FF7F00",
                     color: "black",
                     border: "none",
