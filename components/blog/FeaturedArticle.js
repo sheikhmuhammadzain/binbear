@@ -1,14 +1,23 @@
 import Link from 'next/link';
+import { useState } from 'react';
 
 const FeaturedArticle = ({ article }) => {
+  const [imageSrc, setImageSrc] = useState(article.image);
+  const fallbackImage = article.fallbackImage || 'https://via.placeholder.com/600x400/FF7701/ffffff?text=BinBear+Blog';
+
+  const handleImageError = () => {
+    setImageSrc(fallbackImage);
+  };
+
   return (
     <div className="main-featured-article">
       <div className="featured-image">
         <Link href={`/blog/${article.slug}`}>
           <img 
-            src={article.image} 
+            src={imageSrc} 
             alt={article.title} 
             className="img-fluid"
+            onError={handleImageError}
           />
         </Link>
       </div>

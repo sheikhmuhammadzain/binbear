@@ -153,6 +153,11 @@ export default function Quote() {
 
                 .card-grid {
                     gap: 30px;
+                    align-items: stretch;
+                }
+
+                .card-grid > [class*="col-"] {
+                    display: flex;
                 }
 
                 @media (max-width: 768px) {
@@ -167,38 +172,138 @@ export default function Quote() {
                     .heading-container {
                         margin-bottom: 30px;
                     }
+
+                    .cardService {
+                        min-height: 420px;
+                    }
+
+                    .cardImage {
+                        height: 180px;
+                    }
+
+                    .cardService .cardInfo {
+                        padding: 25px;
+                    }
+
+                    .cardService .cardInfo h6 {
+                        font-size: 20px;
+                        min-height: 50px;
+                    }
+
+                    .service-card .card-offer {
+                        min-height: 220px;
+                    }
+
+                    .card-grid {
+                        gap: 20px;
+                    }
+                }
+
+                @media (max-width: 576px) {
+                    .cardService {
+                        min-height: 380px;
+                    }
+
+                    .cardImage {
+                        height: 160px;
+                    }
+
+                    .cardService .cardInfo {
+                        padding: 20px;
+                    }
+
+                    .cardService .cardInfo h6 {
+                        font-size: 18px;
+                        min-height: 45px;
+                    }
+
+                    .cardService .cardInfo p {
+                        font-size: 14px;
+                    }
+
+                    .service-card .card-offer {
+                        min-height: 200px;
+                        padding: 20px;
+                    }
+
+                    .card-grid {
+                        gap: 15px;
+                    }
                 }
 
                 .cardService {
-                    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
                     background-color: white;
-                    color: inherit;
-                    border-radius: 10px;
+                    border-radius: 15px;
                     overflow: hidden;
-                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    min-height: 480px;
+                    position: relative;
+                }
+
+                .cardImage {
+                    position: relative;
+                    height: 200px;
+                    overflow: hidden;
+                }
+
+                .cardImage img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.3s ease;
                 }
 
                 .cardService .cardInfo {
-                    height: 280px;
-                    color: white;
-                    padding: 25px;
+                    padding: 30px;
+                    flex: 1;
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
+                    background: linear-gradient(135deg, #2c3e50, #34495e);
+                    color: white;
+                    position: relative;
+                }
+
+                .cardService .cardInfo h6 {
+                    color: white;
+                    font-size: 22px;
+                    font-weight: 700;
+                    margin-bottom: 15px;
+                    line-height: 1.3;
+                    min-height: 60px;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .cardService .cardInfo p {
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 15px;
+                    line-height: 1.6;
+                    flex: 1;
                 }
 
                 .cardService:hover {
-                    transform: translateY(-5px);
-                    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                    transform: translateY(-10px);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
                 }
 
-                .cardInfo:hover {
-                    background-color: black;
+                .cardService:hover .cardImage img {
+                    transform: scale(1.05);
                 }
 
-                .cardService:hover .cardInfo h6,
+                .cardService:hover .cardInfo {
+                    background: linear-gradient(135deg, #FF7F00, #e66901);
+                }
+
+                .cardService:hover .cardInfo h6 {
+                    color: white;
+                }
+
                 .cardService:hover .cardInfo p {
-                    color: orange;
+                    color: rgba(255, 255, 255, 0.95);
                 }
 
                 .process-section {
@@ -231,10 +336,28 @@ export default function Quote() {
                     border-radius: 15px;
                     overflow: hidden;
                     transition: transform 0.3s ease;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 250px;
                 }
 
                 .service-card:hover {
                     transform: translateY(-5px);
+                }
+
+                .service-card .card-offer {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+
+                .service-card .card-info {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
                 }
 
                 .cta-section {
@@ -394,11 +517,11 @@ export default function Quote() {
                             <div className={`cardService ${clickedCardIndex === index ? "clicked" : ""}`}
                               onClick={() => handleCardClick(index)}>
                               <div className="cardImage wow animate__animated animate__fadeIn">
-                                <img src={card.image} alt={card.title} style={{ width: "100%", height: "250px", objectFit: "cover" }} />
+                        <img src={card.image} alt={card.title} />
                 </div>
                 <div className="cardInfo wow animate__animated animate__fadeIn">
-                                <h6 className="color-black mb-15">{card.title}</h6>
-                  <p className="font-xs color-grey-900">{card.description}</p>
+                        <h6>{card.title}</h6>
+                        <p>{card.description}</p>
                 </div>
               </div>
             </div>
@@ -655,7 +778,7 @@ export default function Quote() {
               </div>
 
               <div className="service-cards-container">
-                <div className="row">
+                <div className="row" style={{ alignItems: "stretch" }}>
                   {[
                     { title: "Furniture Removal", description: "Professional furniture removal and disposal services" },
                     { title: "Yard Waste Removal", description: "Eco-friendly yard waste collection and disposal" },
@@ -666,7 +789,7 @@ export default function Quote() {
                     { title: "E-Waste Disposal", description: "Secure electronic waste disposal and recycling" },
                     { title: "General Garbage Removal", description: "All-purpose garbage collection services" }
                   ].map((service, index) => (
-                    <div className="col-lg-4 col-md-6 wow animate__animated animate__fadeIn" key={index}>
+                    <div className="col-lg-4 col-md-6 wow animate__animated animate__fadeIn d-flex" key={index}>
                       <div className="card-offer hover-up service-card" style={{
                         backgroundImage: "url('/assets/imgs/page/workprocess/background.png')",
                         backgroundSize: "cover",
@@ -674,19 +797,27 @@ export default function Quote() {
                         color: "white", 
                                   padding: "30px",
                                   borderRadius: "15px",
-                                  height: "200px",
+                        minHeight: "250px",
                                   display: "flex",
                                   flexDirection: "column",
-                                  justifyContent: "space-between"
+                        justifyContent: "space-between",
+                        width: "100%"
                                 }}>
-                        <div className="card-info">
-                                    <h5 className="color-white mb-15" style={{ fontSize: "18px", fontWeight: "bold" }}>
-                                      {service.title}
-                                    </h5>
-                                    <p className="font-sm color-white mb-25" style={{ fontSize: "14px" }}>
-                                      {service.description}
-                                    </p>
-                                    <div className="box-button-offer">
+                        <div className="card-info" style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                          height: "100%"
+                        }}>
+                          <div>
+                            <h5 className="color-white mb-15" style={{ fontSize: "18px", fontWeight: "bold", minHeight: "50px", display: "flex", alignItems: "center" }}>
+                              {service.title}
+                            </h5>
+                            <p className="font-sm color-white mb-25" style={{ fontSize: "14px", lineHeight: "1.5", flex: "1" }}>
+                              {service.description}
+                            </p>
+                          </div>
+                          <div className="box-button-offer">
                             <button className="gradient-button">View Details</button>
                           </div>
                         </div>

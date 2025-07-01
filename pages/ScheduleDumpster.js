@@ -37,6 +37,16 @@ export default function ScheduleDumpster() {
                     console.error('Error parsing pending booking input:', error);
                 }
             }
+
+            // Auto-fill email from sessionStorage if available
+            const storedEmail = sessionStorage.getItem('userEmail');
+            if (storedEmail) {
+                setFormData(prevData => ({
+                    ...prevData,
+                    email: storedEmail
+                }));
+                console.log('Auto-filled email from session:', storedEmail);
+            }
         }
     }, []);
 
@@ -276,6 +286,26 @@ export default function ScheduleDumpster() {
     const [isVerifying, setIsVerifying] = useState(false);
     const [isVerifyingCoupon, setIsVerifyingCoupon] = useState(false);
 
+    // Function to get dynamic heading based on service type
+    const getServiceHeading = () => {
+        if (!pendingBookingInput) {
+            return "Schedule Your Service";
+        }
+
+        switch (pendingBookingInput.type) {
+            case 'itemSelection':
+                return "Schedule Your Junk Removal";
+            case 'truckLoad':
+                return "Schedule Your Truck Load Service";
+            case 'unitEstimate':
+                return "Schedule Your Construction Unit Service";
+            case 'dumpsterRental':
+                return "Schedule Your Dumpster Rental";
+            default:
+                return "Schedule Your Service";
+        }
+    };
+
     const handleChange = (field, value) => {
         setFormData({ ...formData, [field]: value });
         setErrors({ ...errors, [field]: "" }); 
@@ -343,7 +373,7 @@ export default function ScheduleDumpster() {
                     position: "relative",
                 }}
             >
-                <h4 style={{ marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}>Schedule Your Dumpster/Service</h4>
+                <h4 style={{ marginBottom: "20px", fontSize: "24px", fontWeight: "bold" }}>{getServiceHeading()}</h4>
 
                 <form
                     style={{

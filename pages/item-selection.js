@@ -371,9 +371,7 @@ const ItemSelection = () => {
                          <button onClick={handleBookNow} className="cta-btn book-now-btn" style={{backgroundColor:'black',color:'white'}}>
                              Book Now
                          </button>
-                        <Link href="/pickup" className="cta-btn pick-up-btn">
-                            Pick These Up
-                        </Link>
+                       
                     </div>
                 </div>
             </div>

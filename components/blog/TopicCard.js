@@ -1,13 +1,22 @@
 import Link from 'next/link';
+import { useState } from 'react';
 
 const TopicCard = ({ topic }) => {
+  const [imageSrc, setImageSrc] = useState(topic.image);
+  const fallbackImage = topic.fallbackImage || 'https://via.placeholder.com/110x110/FF7701/ffffff?text=BinBear';
+
+  const handleImageError = () => {
+    setImageSrc(fallbackImage);
+  };
+
   return (
     <div className="topics-card">
       <div className="topics-card-image">
         <img 
-          src={topic.image} 
+          src={imageSrc} 
           alt={topic.title} 
           className="img-fluid"
+          onError={handleImageError}
         />
       </div>
       <div className="topics-card-content">

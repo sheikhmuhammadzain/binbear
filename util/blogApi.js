@@ -1,5 +1,5 @@
 const API_BASE_URL = 'https://backend.binbearjunk.com/api';
-const IMAGE_BASE_URL = 'https://binbear.njnylimo.us/public'; // Base URL for images without the /api path
+const IMAGE_BASE_URL = 'https://backend.binbearjunk.com'; // Base URL for images from the same backend server
 
 /**
  * Fetches all blogs from the API
@@ -99,7 +99,7 @@ export const fetchFeaturedBlogs = async () => {
  */
 export const transformBlogData = (blog) => {
   // Default placeholder image in case the image is missing
-  const placeholderImage = 'https://via.placeholder.com/600x400?text=No+Image+Available';
+  const placeholderImage = 'https://via.placeholder.com/600x400/FF7701/ffffff?text=BinBear+Blog';
   
   // Handle image path construction with fallback
   let imagePath = placeholderImage;
@@ -107,7 +107,9 @@ export const transformBlogData = (blog) => {
     if (blog.image.startsWith('http')) {
       imagePath = blog.image;
     } else {
-      imagePath = `${IMAGE_BASE_URL}${blog.image}`;
+      // Clean the image path (remove any extra slashes)
+      const cleanImagePath = blog.image.startsWith('/') ? blog.image : `/${blog.image}`;
+      imagePath = `${IMAGE_BASE_URL}${cleanImagePath}`;
     }
   }
   
@@ -118,6 +120,7 @@ export const transformBlogData = (blog) => {
     description: blog.body ? blog.body.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : 'No description available', // Strip HTML and limit to 150 chars
     image: imagePath,
     content: blog.body || '<p>No content available</p>',
-    is_featured: blog.is_featured || "No"
+    is_featured: blog.is_featured || "No",
+    fallbackImage: placeholderImage // Add fallback image for components to use if main image fails
   };
 }; 

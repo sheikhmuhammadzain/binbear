@@ -90,9 +90,10 @@ function ServiceCards() {
 
         <style jsx>{`
           .service-selection-container {
-            padding: 0 20px;
+            max-width: 1320px;
             width: 100%;
             margin: 0 auto;
+            padding: 0 15px;
           }
           
           .page-title {
