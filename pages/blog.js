@@ -21,8 +21,14 @@ export default function Blog() {
       try {
         setLoading(true);
         
-        // Fetch all blogs
-        const blogs = await fetchAllBlogs();
+        // Fetch independent endpoints in parallel to avoid request waterfalls.
+        const [blogsResult, popularBlogsResult] = await Promise.allSettled([
+          fetchAllBlogs(),
+          fetchPopularBlogs(),
+        ]);
+
+        const blogs = blogsResult.status === "fulfilled" ? blogsResult.value : [];
+        const popularBlogsData = popularBlogsResult.status === "fulfilled" ? popularBlogsResult.value : [];
         
         if (blogs && blogs.length > 0) {
           // Transform the API data to match our application format
@@ -34,29 +40,22 @@ export default function Blog() {
           // Set the featured article (first featured blog or first blog if no featured)
           setFeaturedArticle(featuredBlogs.length > 0 ? featuredBlogs[0] : transformedBlogs[0]);
           
-          // Try to get popular blogs for the recent articles section
-          try {
-            const popularBlogsData = await fetchPopularBlogs();
-            if (popularBlogsData && popularBlogsData.length > 0) {
-              // Get featured article ID for filtering
-              const featuredId = featuredBlogs.length > 0 ? featuredBlogs[0].id : (transformedBlogs.length > 0 ? transformedBlogs[0].id : null);
-              
-              // Transform and exclude the featured article if it's in the popular blogs
-              const popularTransformed = popularBlogsData
-                .map(blog => transformBlogData(blog))
-                .filter(blog => featuredId === null || blog.id !== featuredId)
-                .slice(0, 3); // Limit to 3 popular articles
-              
-              setRecentArticles(popularTransformed);
-            } else {
-              // Fallback to filtering from all blogs if popular endpoint returns empty
-              const recentBlogsData = transformedBlogs
-                .filter(blog => blog.id !== (featuredBlogs.length > 0 ? featuredBlogs[0].id : transformedBlogs[0].id))
-                .slice(0, 3); // Limit to 3 recent articles
-              setRecentArticles(recentBlogsData);
+          // Get featured article ID for filtering
+          const featuredId = featuredBlogs.length > 0 ? featuredBlogs[0].id : (transformedBlogs.length > 0 ? transformedBlogs[0].id : null);
+
+          if (popularBlogsData && popularBlogsData.length > 0) {
+            // Transform and exclude the featured article if it's in the popular blogs
+            const popularTransformed = popularBlogsData
+              .map(blog => transformBlogData(blog))
+              .filter(blog => featuredId === null || blog.id !== featuredId)
+              .slice(0, 3); // Limit to 3 popular articles
+
+            setRecentArticles(popularTransformed);
+          } else {
+            if (popularBlogsResult.status === "rejected") {
+              console.error("Error fetching popular blogs:", popularBlogsResult.reason);
             }
-          } catch (error) {
-            console.error("Error fetching popular blogs:", error);
+
             // Fallback to recent from all blogs
             const recentBlogsData = transformedBlogs
               .filter(blog => blog.id !== (featuredBlogs.length > 0 ? featuredBlogs[0].id : transformedBlogs[0].id))
