@@ -1,12 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',  // This is the key line you're missing!
+  output: "export",
   reactStrictMode: true,
-  trailingSlash: true,  // Helps with hosting compatibility
+  trailingSlash: true,
   images: {
-    domains: ['binbearjunk.com', 'binbear.njnylimo.us'],
-    // unoptimized: process.env.NODE_ENV === 'development',
-    unoptimized: true,  // Required for static export
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "binbearjunk.com",
+      },
+      {
+        protocol: "https",
+        hostname: "binbear.njnylimo.us",
+      },
+    ],
+    unoptimized: true,
   },
 }
 

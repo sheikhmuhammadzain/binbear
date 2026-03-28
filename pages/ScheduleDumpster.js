@@ -119,7 +119,7 @@ export default function ScheduleDumpster() {
             }
 
             let basePrice = 200; // Default base price
-            let bookingApiDetailsArray = [{ category_id: 4, subcategory_id: 7 }]; // Default API details
+            let bookingApiDetailsArray = []; // Default to empty array - no categories
             let service_name_val = "Junk Removal";
             let service_option_val = "Full Load";
             let units_val = "2";
@@ -135,7 +135,8 @@ export default function ScheduleDumpster() {
                         basePrice = pendingBookingInput.totalEstimate;
                     }
                     if (basePrice < 200 && Object.keys(pendingBookingInput.items || {}).length > 0) basePrice = 200;
-                    bookingApiDetailsArray = pendingBookingInput.detailsApiArray || [{ category_id: 4, subcategory_id: 7 }];
+                    // Only use detailsApiArray if it exists and has valid data, otherwise keep empty array
+                    bookingApiDetailsArray = pendingBookingInput.detailsApiArray || [];
                     apiDetailField = "Booked via Item Selection.";
                 } else if (pendingBookingInput.type === 'truckLoad') {
                     basePrice = pendingBookingInput.estimatePrice;

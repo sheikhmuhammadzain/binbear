@@ -33,7 +33,7 @@ export default function StickyBookNow() {
                     </div>
 
                     {/* Book Now Button */}
-                    <Link href="/Booking" className="book-now-btn" style={{ backgroundColor: '#FF7F00', color: 'white' }}>
+                    <Link href="/Booking" className="book-now-btn" style={{  color: 'white' }}>
                         Book Now
                     </Link>
                 </div>
