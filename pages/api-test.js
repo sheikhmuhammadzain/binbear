@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import Layout from '@/components/layout/Layout';
+import {useState, useEffect} from "react"
+import Layout from "@/components/layout/Layout"
 import {
   fetchCategories,
   fetchAllCategories,
   fetchCategoryPage,
   fetchSubcategoriesByCategoryId,
   fetchPopularCategories,
-  fetchAllCategoriesList
-} from '@/util/categoryApi';
+  fetchAllCategoriesList,
+} from "@/util/categoryApi"
 
 export default function ApiTest() {
   const [loading, setLoading] = useState({
@@ -17,8 +17,8 @@ export default function ApiTest() {
     subcategories: true,
     popularCategories: true,
     allCategoriesList: true,
-  });
-  
+  })
+
   const [data, setData] = useState({
     categories: null,
     allCategories: null,
@@ -26,8 +26,8 @@ export default function ApiTest() {
     subcategories: null,
     popularCategories: null,
     allCategoriesList: null,
-  });
-  
+  })
+
   const [error, setError] = useState({
     categories: null,
     allCategories: null,
@@ -35,95 +35,157 @@ export default function ApiTest() {
     subcategories: null,
     popularCategories: null,
     allCategoriesList: null,
-  });
-  
-  const [selectedCategoryId, setSelectedCategoryId] = useState(1);
-  
+  })
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState(1)
+
+  const baseCategoryRequests = [
+    {key: "categories", fetcher: fetchCategories},
+    {key: "allCategories", fetcher: fetchAllCategories},
+    {key: "popularCategories", fetcher: fetchPopularCategories},
+    {key: "allCategoriesList", fetcher: fetchAllCategoriesList},
+  ]
+
   useEffect(() => {
+    let isMounted = true
+
     const fetchAllData = async () => {
-      try {
-        // Fetch categories
-        setLoading(prev => ({ ...prev, categories: true }));
-        const categoriesData = await fetchCategories();
-        setData(prev => ({ ...prev, categories: categoriesData }));
-        setLoading(prev => ({ ...prev, categories: false }));
-        
-        // Fetch all categories
-        setLoading(prev => ({ ...prev, allCategories: true }));
-        const allCategoriesData = await fetchAllCategories();
-        setData(prev => ({ ...prev, allCategories: allCategoriesData }));
-        setLoading(prev => ({ ...prev, allCategories: false }));
-        
-        // Fetch popular categories
-        setLoading(prev => ({ ...prev, popularCategories: true }));
-        const popularCategoriesData = await fetchPopularCategories();
-        setData(prev => ({ ...prev, popularCategories: popularCategoriesData }));
-        setLoading(prev => ({ ...prev, popularCategories: false }));
-        
-        // Fetch all categories list
-        setLoading(prev => ({ ...prev, allCategoriesList: true }));
-        const allCategoriesListData = await fetchAllCategoriesList();
-        setData(prev => ({ ...prev, allCategoriesList: allCategoriesListData }));
-        setLoading(prev => ({ ...prev, allCategoriesList: false }));
-        
-      } catch (err) {
-        console.error('Error fetching API data:', err);
+      const loadingKeys = baseCategoryRequests.reduce(
+        (acc, request) => ({...acc, [request.key]: true}),
+        {},
+      )
+      setLoading(prev => ({...prev, ...loadingKeys}))
+
+      const results = await Promise.allSettled(
+        baseCategoryRequests.map(request => request.fetcher()),
+      )
+
+      if (!isMounted) {
+        return
       }
-    };
-    
-    fetchAllData();
-  }, []);
-  
-  useEffect(() => {
-    const fetchCategorySpecificData = async () => {
-      try {
-        // Only fetch if we have a valid category ID
-        if (selectedCategoryId) {
-          // Fetch category page
-          setLoading(prev => ({ ...prev, categoryPage: true }));
-          const categoryPageData = await fetchCategoryPage(selectedCategoryId);
-          setData(prev => ({ ...prev, categoryPage: categoryPageData }));
-          setLoading(prev => ({ ...prev, categoryPage: false }));
-          
-          // Fetch subcategories
-          setLoading(prev => ({ ...prev, subcategories: true }));
-          const subcategoriesData = await fetchSubcategoriesByCategoryId(selectedCategoryId);
-          setData(prev => ({ ...prev, subcategories: subcategoriesData }));
-          setLoading(prev => ({ ...prev, subcategories: false }));
+
+      const nextData = {}
+      const nextError = {}
+      const nextLoading = {}
+
+      baseCategoryRequests.forEach((request, index) => {
+        const result = results[index]
+        nextLoading[request.key] = false
+
+        if (result.status === "fulfilled") {
+          nextData[request.key] = result.value
+          nextError[request.key] = null
+          return
         }
-      } catch (err) {
-        console.error(`Error fetching data for category ${selectedCategoryId}:`, err);
+
+        nextError[request.key] = result.reason?.message || "Request failed"
+        console.error(`Error fetching ${request.key}:`, result.reason)
+      })
+
+      setData(prev => ({...prev, ...nextData}))
+      setError(prev => ({...prev, ...nextError}))
+      setLoading(prev => ({...prev, ...nextLoading}))
+    }
+
+    fetchAllData()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
+  useEffect(() => {
+    let isMounted = true
+
+    const fetchCategorySpecificData = async () => {
+      if (!selectedCategoryId) {
+        return
       }
-    };
-    
-    fetchCategorySpecificData();
-  }, [selectedCategoryId]);
-  
-  const handleCategoryChange = (e) => {
-    setSelectedCategoryId(e.target.value);
-  };
-  
+
+      setLoading(prev => ({
+        ...prev,
+        categoryPage: true,
+        subcategories: true,
+      }))
+      setError(prev => ({
+        ...prev,
+        categoryPage: null,
+        subcategories: null,
+      }))
+
+      const [categoryPageResult, subcategoriesResult] =
+        await Promise.allSettled([
+          fetchCategoryPage(selectedCategoryId),
+          fetchSubcategoriesByCategoryId(selectedCategoryId),
+        ])
+
+      if (!isMounted) {
+        return
+      }
+
+      if (categoryPageResult.status === "fulfilled") {
+        setData(prev => ({...prev, categoryPage: categoryPageResult.value}))
+      } else {
+        const message = categoryPageResult.reason?.message || "Request failed"
+        setError(prev => ({...prev, categoryPage: message}))
+        console.error(
+          `Error fetching categoryPage for category ${selectedCategoryId}:`,
+          categoryPageResult.reason,
+        )
+      }
+
+      if (subcategoriesResult.status === "fulfilled") {
+        setData(prev => ({...prev, subcategories: subcategoriesResult.value}))
+      } else {
+        const message = subcategoriesResult.reason?.message || "Request failed"
+        setError(prev => ({...prev, subcategories: message}))
+        console.error(
+          `Error fetching subcategories for category ${selectedCategoryId}:`,
+          subcategoriesResult.reason,
+        )
+      }
+
+      setLoading(prev => ({
+        ...prev,
+        categoryPage: false,
+        subcategories: false,
+      }))
+    }
+
+    fetchCategorySpecificData()
+
+    return () => {
+      isMounted = false
+    }
+  }, [selectedCategoryId])
+
+  const handleCategoryChange = e => {
+    setSelectedCategoryId(Number(e.target.value))
+  }
+
   return (
     <Layout>
       <div className="container mt-5 mb-5">
         <h1 className="mb-4">Category API Test</h1>
-        
+
         <div className="mb-4">
           <label htmlFor="categorySelect" className="form-label">
             Select Category ID for specific endpoints:
           </label>
-          <select 
-            id="categorySelect" 
-            className="form-select" 
-            value={selectedCategoryId} 
+          <select
+            id="categorySelect"
+            className="form-select"
+            value={selectedCategoryId}
             onChange={handleCategoryChange}
           >
-            {Array.from({ length: 10 }, (_, i) => i + 1).map(id => (
-              <option key={id} value={id}>{id}</option>
+            {Array.from({length: 10}, (_, i) => i + 1).map(id => (
+              <option key={id} value={id}>
+                {id}
+              </option>
             ))}
           </select>
         </div>
-        
+
         <div className="row">
           <div className="col-md-6 mb-4">
             <div className="card">
@@ -135,12 +197,14 @@ export default function ApiTest() {
                 {loading.categories ? (
                   <p>Loading...</p>
                 ) : (
-                  <pre className="response-data">{JSON.stringify(data.categories, null, 2)}</pre>
+                  <pre className="response-data">
+                    {JSON.stringify(data.categories, null, 2)}
+                  </pre>
                 )}
               </div>
             </div>
           </div>
-          
+
           <div className="col-md-6 mb-4">
             <div className="card">
               <div className="card-header">
@@ -151,44 +215,54 @@ export default function ApiTest() {
                 {loading.allCategories ? (
                   <p>Loading...</p>
                 ) : (
-                  <pre className="response-data">{JSON.stringify(data.allCategories, null, 2)}</pre>
+                  <pre className="response-data">
+                    {JSON.stringify(data.allCategories, null, 2)}
+                  </pre>
                 )}
               </div>
             </div>
           </div>
-          
+
           <div className="col-md-6 mb-4">
             <div className="card">
               <div className="card-header">
                 <h5>Category Page (ID: {selectedCategoryId})</h5>
-                <small className="text-muted">GET /category-page/{selectedCategoryId}</small>
+                <small className="text-muted">
+                  GET /category-page/{selectedCategoryId}
+                </small>
               </div>
               <div className="card-body">
                 {loading.categoryPage ? (
                   <p>Loading...</p>
                 ) : (
-                  <pre className="response-data">{JSON.stringify(data.categoryPage, null, 2)}</pre>
+                  <pre className="response-data">
+                    {JSON.stringify(data.categoryPage, null, 2)}
+                  </pre>
                 )}
               </div>
             </div>
           </div>
-          
+
           <div className="col-md-6 mb-4">
             <div className="card">
               <div className="card-header">
                 <h5>Subcategories (Category ID: {selectedCategoryId})</h5>
-                <small className="text-muted">GET /subCategoryByID/{selectedCategoryId}</small>
+                <small className="text-muted">
+                  GET /subCategoryByID/{selectedCategoryId}
+                </small>
               </div>
               <div className="card-body">
                 {loading.subcategories ? (
                   <p>Loading...</p>
                 ) : (
-                  <pre className="response-data">{JSON.stringify(data.subcategories, null, 2)}</pre>
+                  <pre className="response-data">
+                    {JSON.stringify(data.subcategories, null, 2)}
+                  </pre>
                 )}
               </div>
             </div>
           </div>
-          
+
           <div className="col-md-6 mb-4">
             <div className="card">
               <div className="card-header">
@@ -199,12 +273,14 @@ export default function ApiTest() {
                 {loading.popularCategories ? (
                   <p>Loading...</p>
                 ) : (
-                  <pre className="response-data">{JSON.stringify(data.popularCategories, null, 2)}</pre>
+                  <pre className="response-data">
+                    {JSON.stringify(data.popularCategories, null, 2)}
+                  </pre>
                 )}
               </div>
             </div>
           </div>
-          
+
           <div className="col-md-6 mb-4">
             <div className="card">
               <div className="card-header">
@@ -215,41 +291,43 @@ export default function ApiTest() {
                 {loading.allCategoriesList ? (
                   <p>Loading...</p>
                 ) : (
-                  <pre className="response-data">{JSON.stringify(data.allCategoriesList, null, 2)}</pre>
+                  <pre className="response-data">
+                    {JSON.stringify(data.allCategoriesList, null, 2)}
+                  </pre>
                 )}
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+
       <style jsx>{`
         .card {
           height: 100%;
           overflow: hidden;
         }
-        
+
         .card-header {
           background-color: #f8f9fa;
           padding: 1rem;
         }
-        
+
         .card-header h5 {
           margin-bottom: 0.25rem;
         }
-        
+
         .card-body {
           padding: 1rem;
           overflow: auto;
           max-height: 300px;
         }
-        
+
         .response-data {
           font-size: 0.85rem;
           margin: 0;
           white-space: pre-wrap;
         }
-        
+
         .form-select {
           display: block;
           width: 100%;
@@ -262,9 +340,11 @@ export default function ApiTest() {
           background-clip: padding-box;
           border: 1px solid #ced4da;
           border-radius: 0.25rem;
-          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          transition:
+            border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
         }
       `}</style>
     </Layout>
-  );
-} 
+  )
+}
