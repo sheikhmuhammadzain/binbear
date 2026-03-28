@@ -3,10 +3,10 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
     "start": "next start",
-    "export": "next build --webpack"
+    "lint": "eslint . --ext .js,.jsx"
   },
   "engines": {
     "node": ">=20.9.0"
@@ -26,7 +26,6 @@
     "react-datepicker": "^8.2.1",
     "react-dom": "^19.2.4",
     "react-icons": "^5.5.0",
-    "react-modal-video": "^2.0.0",
     "react-script": "^2.0.5",
     "sass": "^1.61.0",
     "swiper": "^9.2.0",
