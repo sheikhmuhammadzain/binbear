@@ -22,7 +22,7 @@ export default function ThankYou() {
                         <p className="contact-info">
                             If you need immediate assistance, please contact us at:
                             <br />
-                            <span className="contact-highlight">612-444-JUNK</span> or <span className="contact-highlight">info@binbear.com</span>
+                            <span className="contact-highlight">214 901 4769</span> or <span className="contact-highlight">info@binbear.com</span>
                         </p>
                         <div className="action-buttons">
                             <Link href="/" className="btn btn-home">

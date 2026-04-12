@@ -379,6 +379,14 @@ export default function ConstructionContact() {
                                                         )}
 
                                                         <div className="col-lg-12">
+                                                            <div className="form-group" style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '15px' }}>
+                                                                <input type="checkbox" id="construction-consent" required style={{ marginTop: '3px', accentColor: '#FF7F00', width: '16px', height: '16px', flexShrink: 0 }} />
+                                                                <label htmlFor="construction-consent" style={{ color: '#555', fontSize: '14px', lineHeight: '1.5', cursor: 'pointer' }}>
+                                                                    I agree to the <a href="/privacy-policy" style={{ color: '#FF7F00' }}>Privacy Policy</a> and <a href="/terms-of-service" style={{ color: '#FF7F00' }}>Terms of Service</a>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-12">
                                                             <button
                                                                 type="submit"
                                                                 style={{

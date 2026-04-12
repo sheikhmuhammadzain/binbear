@@ -76,6 +76,13 @@ const ScheduleForm = ({ onClose, formType }) => {
             onChange={(e) => setFormData({...formData, couponCode: e.target.value})}
           />
 
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '1rem' }}>
+            <input type="checkbox" id="schedule-consent" required style={{ marginTop: '3px', accentColor: '#FF6B00', width: '16px', height: '16px', flexShrink: 0 }} />
+            <label htmlFor="schedule-consent" style={{ color: '#555', fontSize: '14px', lineHeight: '1.5', cursor: 'pointer' }}>
+              I agree to the <a href="/privacy-policy" style={{ color: '#FF6B00' }}>Privacy Policy</a> and <a href="/terms-of-service" style={{ color: '#FF6B00' }}>Terms of Service</a>
+            </label>
+          </div>
+
           <button type="submit" className="next-button">Next</button>
         </form>
 

@@ -52,6 +52,14 @@ export default function Contact() {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-12">
+                                                    <div className="form-group" style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                                                        <input type="checkbox" id="contact-consent" required style={{ marginTop: '3px', accentColor: '#FF6C00', width: '16px', height: '16px', flexShrink: 0 }} />
+                                                        <label htmlFor="contact-consent" style={{ color: '#888', fontSize: '14px', lineHeight: '1.5', cursor: 'pointer' }}>
+                                                            I agree to the <a href="/privacy-policy" style={{ color: '#FF6C00' }}>Privacy Policy</a> and <a href="/terms-of-service" style={{ color: '#FF6C00' }}>Terms of Service</a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-12">
                                                     <button type="submit" className="btn btn-brand-1-big" style={{
                                                         backgroundColor: '#FF6C00',
                                                         color: 'white',
@@ -112,7 +120,7 @@ export default function Contact() {
                                                     <span style={{ fontSize: '20px', marginRight: '12px', marginTop: '2px' }}>📞</span>
                                                     <div>
                                                         <strong style={{ fontSize: '16px', display: 'block', marginBottom: '5px', color: '#000', fontWeight: 'bold' }}>Phone:</strong>
-                                                        <span style={{ fontSize: '15px', fontWeight: 'bold', color: '#000' }}>(801) 999-9999</span><br />
+                                                        <span style={{ fontSize: '15px', fontWeight: 'bold', color: '#000' }}>214 901 4769</span><br />
                                                         <span style={{ fontSize: '13px', color: '#000' }}>Available 24/7</span>
                                                     </div>
                                                 </div>

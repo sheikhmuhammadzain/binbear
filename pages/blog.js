@@ -527,92 +527,6 @@ export default function Blog() {
           );
         }
 
-        /* Topics Section */
-        .topics-container {
-          margin-bottom: 50px;
-          background-color: rgb(255, 81, 0);
-          padding: 40px 0;
-          width: 100vw;
-          margin-left: calc(-50vw + 50%);
-          position: relative;
-        }
-
-        .topics-wrapper {
-          margin-bottom: 0;
-          max-width: 1200px;
-          margin-left: auto;
-          margin-right: auto;
-          padding: 0 30px;
-        }
-
-        .topics-main-title {
-          color: white;
-          margin-bottom: 30px;
-          font-weight: 700;
-          font-size: 32px;
-          position: relative;
-          text-align: center;
-        }
-
-        .topics-grid-container {
-          margin-bottom: 30px;
-        }
-
-        .topics-grid-container .row {
-          margin-right: -10px;
-          margin-left: -10px;
-        }
-
-        .topics-grid-container .col-lg-4 {
-          padding-right: 10px;
-          padding-left: 10px;
-          margin-bottom: 20px;
-        }
-
-        /* Remove conflicting card styles from blog.js since they're now defined in the component */
-        .topics-card {
-          /* Styles moved to TopicCard.js component */
-        }
-
-        .topics-card-image {
-          /* Styles moved to TopicCard.js component */
-        }
-
-        .topics-card-image img {
-          /* Styles moved to TopicCard.js component */
-        }
-
-        .topics-card-content {
-          /* Styles moved to TopicCard.js component */
-        }
-
-        .topics-card-title {
-          /* Styles moved to TopicCard.js component */
-        }
-
-        .topics-read-more-btn {
-          /* Styles moved to TopicCard.js component */
-        }
-
-        /* Pagination Controls */
-        .topics-pagination {
-          display: none;
-        }
-
-        .topics-pagination-prev,
-        .topics-pagination-next {
-          display: none;
-        }
-
-        .topics-pagination-prev:hover,
-        .topics-pagination-next:hover {
-          display: none;
-        }
-
-        .topics-pagination-text {
-          display: none;
-        }
-
         /* Sidebar */
         .blog-sidebar {
           padding-left: 30px;
@@ -620,8 +534,9 @@ export default function Blog() {
 
         /* Pricing Estimator (Full Width) */
         .pricing-estimator-container {
-          margin: 60px 0;
-          padding: 0;
+          margin: 0;
+          padding: 80px 0;
+          background-color: white;
         }
 
         .pricing-estimator-section {

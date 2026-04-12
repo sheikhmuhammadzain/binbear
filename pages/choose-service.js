@@ -19,9 +19,9 @@ function ServiceCards() {
   };
 
   const contactInfo = {
-    phone: "612-444-JUNK",
+    phone: "214 901 4769",
     email: "info@binbear.com",
-    text: "612-444-JUNK"
+    text: "214 901 4769"
   };
 
   return (

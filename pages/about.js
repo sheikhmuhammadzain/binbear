@@ -41,7 +41,7 @@ function AboutUs() {
             <div className="contact-details">
               <div className="contact-item">
                 <strong>Phone:</strong>
-                <p>(815) 246-2327 (BINBEAR)</p>
+                <p>214 901 4769</p>
               </div>
               <div className="contact-item">
                 <strong>Email:</strong>
