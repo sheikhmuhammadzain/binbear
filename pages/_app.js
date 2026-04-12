@@ -7,6 +7,7 @@ import "../styles/globals.css"
 import 'swiper/css';
 // import "swiper/css/navigation";
 import "swiper/css/pagination";
+import 'aos/dist/aos.css';
 import { PremiumButtonStyles } from "@/components/elements/PremiumButton";
 import { PremiumCardStyles } from "@/components/elements/PremiumCard";
 import Head from "next/head";
@@ -76,39 +77,36 @@ function MyApp({ Component, pageProps }) {
             `;
             document.head.appendChild(mobileFixStyles);
 
-            const AOS = require('aos');
-            require('aos/dist/aos.css');
-
             // Better AOS initialization for mobile
             const isMobile = window.innerWidth <= 768;
 
-            AOS.init({
-                duration: isMobile ? 300 : 800, // Faster animations on mobile
-                once: true,
-                easing: 'ease-out-cubic',
-                offset: isMobile ? 50 : 100, // Lower offset on mobile
-                disable: false, // Don't disable on mobile - just use lighter animations
-                debounceDelay: 50,
-                throttleDelay: 99,
-                disableMutationObserver: false,
-                useClassNames: false,
-                initClassName: 'aos-init',
-                animatedClassName: 'aos-animate'
-            });
-
-            // Simplified WOW.js fix without complex transformations
-            setTimeout(() => {
-                const wowElements = document.querySelectorAll('.wow');
-                wowElements.forEach(element => {
-                    // Simply make WOW elements visible without complex styling
-                    element.style.visibility = 'visible';
-                    element.style.opacity = '1';
-                    element.classList.remove('wow');
+            import('aos').then((AOS) => {
+                AOS.default.init({
+                    duration: isMobile ? 300 : 800,
+                    once: true,
+                    easing: 'ease-out-cubic',
+                    offset: isMobile ? 50 : 100,
+                    disable: false,
+                    debounceDelay: 50,
+                    throttleDelay: 99,
+                    disableMutationObserver: false,
+                    useClassNames: false,
+                    initClassName: 'aos-init',
+                    animatedClassName: 'aos-animate'
                 });
 
-                // Refresh AOS
-                AOS.refresh();
-            }, 100);
+                // Simplified WOW.js fix without complex transformations
+                setTimeout(() => {
+                    const wowElements = document.querySelectorAll('.wow');
+                    wowElements.forEach(element => {
+                        element.style.visibility = 'visible';
+                        element.style.opacity = '1';
+                        element.classList.remove('wow');
+                    });
+
+                    AOS.default.refresh();
+                }, 100);
+            });
             
             // Load premium buttons script
             const premiumButtonsScript = document.createElement('script');
