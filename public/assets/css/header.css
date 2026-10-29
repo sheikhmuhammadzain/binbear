@@ -1,0 +1,38 @@
+/* General styles for header */
+.header {
+    position: relative;
+    width: 100%;
+    z-index: 9999;
+}
+
+/* Sticky header styles for all screen sizes */
+.sticky-bar {
+    position: sticky;
+    top: 0;
+    background-color: black;
+    color: white;
+}
+
+/* For mobile screens only */
+@media (max-width: 768px) {
+    .mobile-header {
+        position: fixed; /* Make it fixed for mobile */
+        top: 0;
+        width: 100%;
+        left: 0;
+        right: 0;
+        z-index: 10000;
+    }
+
+    .mobile-header .container {
+        padding: 0; /* Ensure no padding/margin inside the header on mobile */
+        margin: 0;
+    }
+}
+
+/* Styles for larger screens (optional) */
+@media (min-width: 769px) {
+    .mobile-header {
+        position: relative; /* For larger screens, it behaves like a normal header */
+    }
+}

@@ -1,0 +1,362 @@
+@import "tailwindcss";/* Global styles to improve responsiveness */
+:root {
+  --primary-color: #FF7F00;
+  --primary-dark: #FF5E00;
+  --primary-light: #FFA64D;
+  --secondary-color: #1a1a1a;
+  --text-color: #333333;
+  --light-text: #777777;
+  --white: #ffffff;
+  --light-bg: #f5f7fa;
+  --border-color: #e0e0e0;
+  --container-max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--text-color);
+  line-height: 1.5;
+  background-color: #ffffff;
+  font-size: 16px;
+  overflow-x: hidden; /* Prevent horizontal scroll while allowing vertical scroll */
+  max-width: 100%;
+  min-height: 100vh; /* Ensure body always has height */
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for the main html element as well */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Container fixes */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Responsive Images */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.cta-button {
+  border-radius: 10px;
+  color: #fff;
+  &:hover{
+    color:black
+  }
+}
+/* Full width sections */
+.section-full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+/* Fix potential horizontal scrollbar issues */
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+  flex-wrap: wrap;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Additional Swiper overflow fixes */
+.swiper,
+.swiper-container {
+  overflow: hidden !important;
+  max-width: 100% !important;
+}
+
+.swiper-wrapper {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.swiper-slide {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Prevent any section from causing horizontal overflow */
+section {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Specific fix for hero section */
+.hero-premium {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.banner-premium {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Hide scrollbars globally while maintaining scroll functionality */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+/* Ensure main wrapper doesn't show scrollbars */
+#wrapper {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbars for any potential containers */
+.main, .site-content {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.main::-webkit-scrollbar, 
+.site-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fix for mobile navigation */
+.mobile-menu-active {
+  overflow: hidden;
+}
+
+/* AOS Animation Fixes - Prevent scrollbar issues */
+.aos-init {
+  pointer-events: none;
+}
+
+.aos-animate {
+  pointer-events: auto;
+}
+
+/* Prevent layout shifts during AOS animations */
+[data-aos] {
+  transition-property: transform, opacity !important;
+  will-change: transform, opacity;
+}
+
+/* Fix double scrollbar issues caused by animations */
+html.aos-animate {
+  overflow-x: hidden !important;
+}
+
+/* Stabilize animated elements to prevent layout jumps */
+.wow, [data-aos] {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Fix WOW.js conflicts - Make all WOW elements immediately visible */
+.wow {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  animation-fill-mode: none !important;
+}
+
+/* Override any problematic animate.css animations that cause layout shifts */
+.animate__animated {
+  animation-fill-mode: none !important;
+  animation-duration: 0s !important;
+}
+
+/* Prevent any layout shifts from fade animations */
+.animate__fadeIn,
+.animate__fadeInUp,
+.animate__fadeInDown,
+.animate__fadeInLeft,
+.animate__fadeInRight {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* Ensure stable layout during page load */
+.animate__animated.animate__fadeIn {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.book-now-btn{
+  border-radius: 10px;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  color: #fff;
+  &:hover{
+    color:black
+  }
+}
+.pick-up-btn{
+  border-radius: 10px;
+  color: #fff;
+  &:hover{
+    color:black
+  }
+}
+
+/* Responsive typography */
+h1, .h1 { font-size: 2.25rem; }
+h2, .h2 { font-size: 1.875rem; }
+h3, .h3 { font-size: 1.5rem; }
+h4, .h4 { font-size: 1.25rem; }
+h5, .h5 { font-size: 1.125rem; }
+h6, .h6 { font-size: 1rem; }
+
+/* Media Queries */
+@media (max-width: 1199px) {
+  :root {
+    --container-max-width: 960px;
+  }
+  
+  h1, .h1 { font-size: 2rem; }
+  h2, .h2 { font-size: 1.75rem; }
+  h3, .h3 { font-size: 1.4rem; }
+}
+
+@media (max-width: 991px) {
+  :root {
+    --container-max-width: 720px;
+  }
+  
+  h1, .h1 { font-size: 1.875rem; }
+  h2, .h2 { font-size: 1.625rem; }
+  h3, .h3 { font-size: 1.3rem; }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --container-max-width: 540px;
+  }
+  
+  h1, .h1 { font-size: 1.75rem; }
+  h2, .h2 { font-size: 1.5rem; }
+  h3, .h3 { font-size: 1.25rem; }
+  
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  /* Critical mobile fixes to prevent blank page */
+  body, html {
+    min-height: 100vh !important;
+    background-color: #ffffff !important;
+  }
+  
+  #wrapper, .main, .site-content {
+    min-height: 100vh !important;
+    background-color: #ffffff !important;
+  }
+  
+  /* Ensure sections are visible on mobile */
+  section {
+    min-height: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Fix hero section specifically for mobile */
+  .hero-premium, .banner-premium {
+    min-height: 400px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background-color: #ffffff !important;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --container-max-width: 100%;
+  }
+  
+  h1, .h1 { font-size: 1.625rem; }
+  h2, .h2 { font-size: 1.375rem; }
+  h3, .h3 { font-size: 1.125rem; }
+}
+
+/* Fix for Next.js Image component */
+.next-image-container {
+  width: 100%;
+  position: relative;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mt-1 { margin-top: 0.25rem; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.pt-0 { padding-top: 0; }
+.pb-0 { padding-bottom: 0; }
+.pt-1 { padding-top: 0.25rem; }
+.pb-1 { padding-bottom: 0.25rem; }
+.pt-2 { padding-top: 0.5rem; }
+.pb-2 { padding-bottom: 0.5rem; }
+.pt-3 { padding-top: 1rem; }
+.pb-3 { padding-bottom: 1rem; }
+.pt-4 { padding-top: 1.5rem; }
+.pb-4 { padding-bottom: 1.5rem; }
+.pt-5 { padding-top: 3rem; }
+.pb-5 { padding-bottom: 3rem; } 

@@ -1,0 +1,14 @@
+.top-bar-style-3 {
+    .box-bar {
+        background-color: $background-bg-1;
+        .icon-socials svg {
+            fill: $color-brand-2;
+        }
+    }
+    .phone-icon, .email-icon {
+        color: $color-brand-2;
+        svg {
+            color: $color-brand-2;
+        }
+    }
+}

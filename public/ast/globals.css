@@ -1,0 +1,11 @@
+/* globals.css */
+/* Mobile styles (up to 768px wide) */
+
+
+
+
+
+html, body {
+    
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
